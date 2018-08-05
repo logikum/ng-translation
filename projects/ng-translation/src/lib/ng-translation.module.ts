@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { NgTranslationComponent } from './ng-translation.component';
+
 import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
@@ -40,11 +40,9 @@ function translationConfigFactory(): TranslationConfig {
     HttpClientModule
   ],
   declarations: [
-    NgTranslationComponent,
     TranslatePipe
   ],
   exports: [
-    NgTranslationComponent,
     TranslatePipe
   ],
   providers: [

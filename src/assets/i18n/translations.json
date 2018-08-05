@@ -1,0 +1,21 @@
+{
+  "en": {
+    "home": {
+      "title": "Honlap",
+      "link1": "Első modul",
+      "link2": "Második modul"
+    },
+    "books": {
+      "title": "1. modul * Honlap",
+      "link1": "Honlap",
+      "link2": "Második modul"
+    },
+    "music": {
+      "title": "2. modul * Honlap",
+      "link1": "Honlap",
+      "link2": "Első modul"
+    }
+  },
+  "hu": {
+  }
+}

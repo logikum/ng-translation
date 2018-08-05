@@ -16,6 +16,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ng-translation": [
+        "dist/ng-translation"
+      ],
+      "ng-translation/*": [
+        "dist/ng-translation/*"
+      ]
+    }
   }
 }

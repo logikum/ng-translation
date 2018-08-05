@@ -5,6 +5,7 @@ import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
+let url: string;
 let defaultTranslations: object;
 
 export function getDefaultTranslations(
@@ -12,7 +13,7 @@ export function getDefaultTranslations(
 ): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise((resolve, reject) => {
-      http.get( '/assets/i18n/translations.json' ).toPromise()
+      http.get( url ).toPromise()
         .then( translations => {
           defaultTranslations = translations;
           resolve();
@@ -31,7 +32,7 @@ function translationServiceFactory(
 function translationConfigFactory(): TranslationConfig {
   const config = new TranslationConfig();
   config.default = defaultTranslations;
-  config.url = '/assets/i18n/translations.json';
+  config.url = url;
   return config;
 }
 
@@ -63,8 +64,9 @@ function translationConfigFactory(): TranslationConfig {
 export class NgTranslationModule {
 
   static forRoot(
-    xlatePath: string
+    translationUrl: string
   ): ModuleWithProviders {
+    url = translationUrl;
     return {
       ngModule: NgTranslationModule,
       providers: [

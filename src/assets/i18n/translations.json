@@ -2,18 +2,27 @@
   "en": {
     "home": {
       "title": "Honlap",
-      "link1": "Első modul",
-      "link2": "Második modul"
+      "link1": "Könyvek",
+      "link2": "Zene",
+      "link3": "Filmek"
     },
     "books": {
-      "title": "1. modul * Honlap",
+      "title": "Könyvek",
       "link1": "Honlap",
-      "link2": "Második modul"
+      "link2": "Zene",
+      "link3": "Filmek"
     },
     "music": {
-      "title": "2. modul * Honlap",
+      "title": "Zene",
       "link1": "Honlap",
-      "link2": "Első modul"
+      "link2": "Könyvek",
+      "link3": "Filmek"
+    },
+    "films": {
+      "title": "Filmek",
+      "link1": "Honlap",
+      "link2": "Könyvek",
+      "link3": "Zene"
     }
   },
   "hu": {

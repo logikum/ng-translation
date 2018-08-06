@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NgTranslationModule } from '../../projects/ng-translation/src/lib/ng-translation.module';
+import { FilmsModule } from './films/films.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'books', loadChildren: './books/books.module#BooksModule' },
   { path: 'music', loadChildren: './music/music.module#MusicModule' },
+  { path: 'films', loadChildren: './films/films.module#FilmsModule' },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -21,10 +23,11 @@ const routes: Routes = [
       routes,
       {
         initialNavigation: 'enabled',
-        enableTracing: false // <-- debugging purposes only
+        enableTracing: true // <-- debugging purposes only
       }
     ),
-    NgTranslationModule.forRoot( '/assets/i18n/translations.json' )
+    NgTranslationModule.forRoot( '/assets/i18n/translations.json' ),
+    FilmsModule
   ],
   declarations: [
     AppComponent,

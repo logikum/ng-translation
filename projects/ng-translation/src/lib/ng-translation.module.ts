@@ -1,11 +1,12 @@
 import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+import { TranslationOptions } from './translation-options.model';
 import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
-let url: string;
+let options: TranslationOptions;
 let defaultTranslations: object;
 
 export function getDefaultTranslations(
@@ -13,7 +14,7 @@ export function getDefaultTranslations(
 ): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise((resolve, reject) => {
-      http.get( url ).toPromise()
+      http.get( options.translationUrl ).toPromise()
         .then( translations => {
           defaultTranslations = translations;
           resolve();
@@ -32,7 +33,7 @@ function translationServiceFactory(
 function translationConfigFactory(): TranslationConfig {
   const config = new TranslationConfig();
   config.default = defaultTranslations;
-  config.url = url;
+  config.url = options.translationUrl;
   return config;
 }
 
@@ -64,9 +65,9 @@ function translationConfigFactory(): TranslationConfig {
 export class NgTranslationModule {
 
   static forRoot(
-    translationUrl: string
+    translationOptions: TranslationOptions
   ): ModuleWithProviders {
-    url = translationUrl;
+    options = translationOptions;
     return {
       ngModule: NgTranslationModule,
       providers: [

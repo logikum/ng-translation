@@ -26,7 +26,11 @@ const routes: Routes = [
         enableTracing: true // <-- debugging purposes only
       }
     ),
-    NgTranslationModule.forRoot( '/assets/i18n/translations.json' ),
+    NgTranslationModule.forRoot( {
+      translationUrl: '/assets/i18n/translations.json',
+      defaultLanguage: 'en',
+      rootSections: [ 'app', 'films' ]
+    } ),
     FilmsModule
   ],
   declarations: [

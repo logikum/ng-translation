@@ -5,7 +5,12 @@ import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
-let configuration: TranslationConfig;
+function initialize(
+  service: TranslationService,
+  config: TranslationConfig
+) {
+  return () => service.initialize( config );
+}
 
 @NgModule({
   imports: [
@@ -16,21 +21,6 @@ let configuration: TranslationConfig;
   ],
   exports: [
     TranslatePipe
-  ],
-  providers: [
-    TranslationService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: TranslationService.initialize,
-      multi: true,
-      deps: [ TranslationConfig, HttpClient ]
-    },
-    {
-      provide: TranslationConfig,
-      useFactory: () => configuration,
-      multi: false
-    },
-    TranslationService
   ]
 })
 export class NgTranslationModule {
@@ -38,14 +28,24 @@ export class NgTranslationModule {
   static forRoot(
     config: TranslationConfig
   ): ModuleWithProviders {
-    configuration = config;
     return {
       ngModule: NgTranslationModule,
       providers: [
         {
+          provide: APP_INITIALIZER,
+          useFactory: initialize,
+          multi: true,
+          deps: [ TranslationService, TranslationConfig ]
+        },
+        {
           provide: TranslationService,
           useFactory: http => new TranslationService( http ),
           deps: [ HttpClient ]
+        },
+        {
+          provide: TranslationConfig,
+          useFactory: () => config,
+          multi: false
         }
       ]
     };
@@ -54,13 +54,7 @@ export class NgTranslationModule {
   static forChild(): ModuleWithProviders {
     return {
       ngModule: NgTranslationModule,
-      providers: [
-        {
-          provide: TranslationService,
-          useFactory: http => new TranslationService( http ),
-          deps: [ HttpClient ]
-        }
-      ]
+      providers: [ ]
     };
   }
 }

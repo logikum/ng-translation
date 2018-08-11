@@ -1,41 +1,11 @@
 import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { TranslationOptions } from './translation-options.model';
 import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
-let options: TranslationOptions;
-let defaultTranslations: object;
-
-export function getDefaultTranslations(
-  http: HttpClient
-): () => Promise<any> {
-  return (): Promise<any> => {
-    return new Promise((resolve, reject) => {
-      http.get( options.translationUrl ).toPromise()
-        .then( translations => {
-          defaultTranslations = translations;
-          resolve();
-        } );
-    });
-  };
-}
-
-function translationServiceFactory(
-  config: TranslationConfig,
-  http: HttpClient
-): TranslationService {
-  return new TranslationService( config, http );
-}
-
-function translationConfigFactory(): TranslationConfig {
-  const config = new TranslationConfig();
-  config.default = defaultTranslations;
-  config.url = options.translationUrl;
-  return config;
-}
+let configuration: TranslationConfig;
 
 @NgModule({
   imports: [
@@ -48,15 +18,16 @@ function translationConfigFactory(): TranslationConfig {
     TranslatePipe
   ],
   providers: [
+    TranslationService,
     {
       provide: APP_INITIALIZER,
-      useFactory: getDefaultTranslations,
+      useFactory: TranslationService.initialize,
       multi: true,
-      deps: [ HttpClient ]
+      deps: [ TranslationConfig, HttpClient ]
     },
     {
       provide: TranslationConfig,
-      useFactory: translationConfigFactory,
+      useFactory: () => configuration,
       multi: false
     },
     TranslationService
@@ -65,16 +36,16 @@ function translationConfigFactory(): TranslationConfig {
 export class NgTranslationModule {
 
   static forRoot(
-    translationOptions: TranslationOptions
+    config: TranslationConfig
   ): ModuleWithProviders {
-    options = translationOptions;
+    configuration = config;
     return {
       ngModule: NgTranslationModule,
       providers: [
         {
           provide: TranslationService,
-          useFactory: translationServiceFactory,
-          deps: [ TranslationConfig, HttpClient ]
+          useFactory: http => new TranslationService( http ),
+          deps: [ HttpClient ]
         }
       ]
     };
@@ -86,8 +57,8 @@ export class NgTranslationModule {
       providers: [
         {
           provide: TranslationService,
-          useFactory: translationServiceFactory,
-          deps: [ TranslationConfig, HttpClient ]
+          useFactory: http => new TranslationService( http ),
+          deps: [ HttpClient ]
         }
       ]
     };

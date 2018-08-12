@@ -6,8 +6,6 @@ import { TranslationService } from './translation.service';
 })
 export class TranslatePipe implements PipeTransform {
 
-  private lang = 'en';
-
   constructor(
     private translationService: TranslationService
   ) { }
@@ -16,6 +14,6 @@ export class TranslatePipe implements PipeTransform {
     value: string,
     args?: any
   ): string {
-    return this.translationService.get( this.lang, value, args );
+    return this.translationService.get( value, args );
   }
 }

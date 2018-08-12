@@ -28,10 +28,11 @@ const routes: Routes = [
       }
     ),
     NgTranslationModule.forRoot( {
-      translationUrl: '/assets/i18n',
+      translationUrl: '/assets/i18n/{ language }/{ section }.json',
+      // translationUrl: '/assets/i18n/{section}.{language}.json',
       sections: [ 'app', 'films', 'books:books', 'music:music' ],
       defaultLanguage: 'en',
-      // activeLanguage: 'en'
+      // activeLanguage: 'hu'
     } ),
     FilmsModule
   ],

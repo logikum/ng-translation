@@ -9,7 +9,7 @@ function initialize(
   service: TranslationService,
   config: TranslationConfig
 ) {
-  return () => service.initialize( config );
+  return () => service.initializeApp( config );
 }
 
 @NgModule({

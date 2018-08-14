@@ -3,5 +3,5 @@
  */
 
 export * from './lib/translation.service';
-export * from './lib/translation-options.model';
+export * from './lib/translation.config';
 export * from './lib/ng-translation.module';

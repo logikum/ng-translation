@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationService } from '../../../projects/ng-translation/src/lib/translation.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  dailyOffer: string;
+
+  constructor(
+    private translate: TranslationService
+  ) { }
 
   ngOnInit() {
+    this.translate.languageChange.subscribe( language => {
+      this.getMessages();
+    } );
+    this.getMessages();
   }
 
+  getMessages() {
+    this.dailyOffer = this.translate.get( 'app.home.offer' );
+  }
 }

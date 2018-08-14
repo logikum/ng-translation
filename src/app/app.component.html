@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="isTranslated">
+
+  <router-outlet></router-outlet>
+
+  <p>
+    {{ 'app.shared.currLang' | translate }} {{ active }}
+    <button *ngIf="active !== 'en'" (click)="changeLanguage('en')">
+      English
+    </button>
+    <button *ngIf="active !== 'hu'" (click)="changeLanguage('hu')">
+      magyar
+    </button>
+  </p>
+
+</ng-container>

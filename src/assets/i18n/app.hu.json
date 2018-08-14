@@ -3,6 +3,10 @@
     "title": "Honlap",
     "link1": "Könyvek",
     "link2": "Zene",
-    "link3": "Filmek"
+    "link3": "Filmek",
+    "offer": "Napi ajánlat: kettőt fizet, hármat kap!"
+  },
+  "shared": {
+    "currLang": "Jelenlegi nyelv:"
   }
 }

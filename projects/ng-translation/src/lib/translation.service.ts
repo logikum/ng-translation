@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { TranslationConfig } from './translation.config';
-import { stringDistance } from '../../../../node_modules/codelyzer/util/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,12 @@ import { stringDistance } from '../../../../node_modules/codelyzer/util/utils';
 export class TranslationService {
 
   private config: TranslationConfig;
-  private activeLanguage: string;
+  private active: string;
   private translations: object = { };
+
+  @Output() languageChange = new EventEmitter<string>();
+
+  get activeLanguage(): string { return this.active; }
 
   constructor(
     private http: HttpClient
@@ -22,12 +25,12 @@ export class TranslationService {
   ): Promise<any> {
 
     this.config = config;
-    this.activeLanguage = config.defaultLanguage;
+    this.active = config.defaultLanguage;
     const languages: string[] = [ config.defaultLanguage ];
 
     if (config.activeLanguage && config.activeLanguage !== config.defaultLanguage ) {
       languages.push( config.activeLanguage );
-      this.activeLanguage = config.activeLanguage;
+      this.active = config.activeLanguage;
     }
     const promises: Promise<object>[] = this.getDownloadPromises( languages );
 
@@ -46,6 +49,40 @@ export class TranslationService {
         .then( () => {
           resolve( true );
         });
+    } );
+  }
+
+  changeLanguage(
+    language: string
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      this.active = language;
+
+      if (!this.translations[ language ]) {
+        const promises: Promise<object>[] = [];
+        const sections = Object.getOwnPropertyNames( this.translations[ this.config.defaultLanguage ] );
+
+        sections.forEach( section => {
+          promises.push(
+            this.getDownloadPromise(
+              language,
+              section.indexOf( ':' ) > 0 ?
+                section.split( ':' )[1] :
+                section
+            )
+          );
+        } );
+
+        Promise.all( promises )
+          .then( () => {
+            this.languageChange.emit( language );
+            resolve();
+          });
+      } else {
+        this.languageChange.emit( language );
+        resolve();
+      }
     } );
   }
 
@@ -106,10 +143,14 @@ export class TranslationService {
   ): string {
 
     const path: string[] = key.split( '.' );
-    let result: any = this.translations[ this.activeLanguage ];
+    let result: any = this.translations[ this.active ];
     for (let i = 0; i < path.length; i++) {
-      result = result[ path[ i ] ];
+      if (result) {
+        result = result[ path[ i ] ];
+      } else {
+        break;
+      }
     }
-    return result || '';
+    return result || key;
   }
 }

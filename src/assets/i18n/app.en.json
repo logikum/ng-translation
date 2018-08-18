@@ -4,7 +4,7 @@
     "link1": "Books",
     "link2": "Music",
     "link3": "Films",
-    "offer": "Offer of the day: buy three pay two!"
+    "offer": "Offer of the day: buy {{ buy }} pay {{ pay }}!"
   },
   "shared": {
     "currLang": "Current language:"

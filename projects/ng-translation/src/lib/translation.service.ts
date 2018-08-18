@@ -139,11 +139,47 @@ export class TranslationService {
 
   get(
     key: string,
-    args?: any
+    args?: object
   ): string {
 
+    return this.translate( this.active, key, args );
+  }
+
+  translate(
+    language: string,
+    key: string,
+    args?: object
+  ): string {
+  
+    // Try the requested (eventual specific) culture (language).
+    let translation = this.find( language, key );
+
+    // If not found...
+    if (translation === key) {
+      // ...try neutral culture (language without country/region).
+      const pos = language.indexOf( '-' );
+      if (pos > 0) {
+        translation = this.find( language.substr(0, pos), key );
+      }
+    }
+
+    // Finally if not found...
+    if (translation === key) {
+      // ...try invariant culture (default language)
+      translation = this.find( this.config.defaultLanguage, key );
+    }
+
+    // Insert eventual arguments.
+    return this.insert( translation, args );
+  }
+
+  private find(
+    language: string,
+    key: string
+  ): string {
+  
     const path: string[] = key.split( '.' );
-    let result: any = this.translations[ this.active ];
+    let result: any = this.translations[ language ];
     for (let i = 0; i < path.length; i++) {
       if (result) {
         result = result[ path[ i ] ];
@@ -152,5 +188,19 @@ export class TranslationService {
       }
     }
     return result || key;
+  }
+
+  private insert(
+    text: string,
+    args?: object
+  ) {
+    if (args) {
+      const names = Object.getOwnPropertyNames( args );
+      names.forEach( name => {
+        const re = new RegExp( `\\{\\{\\s*${ name }\\s*\\}\\}`, 'g' );
+        text = text.replace( re, args[ name ].toString() );
+      } );
+    }
+    return text;
   }
 }

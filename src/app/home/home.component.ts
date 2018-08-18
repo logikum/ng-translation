@@ -22,6 +22,6 @@ export class HomeComponent implements OnInit {
   }
 
   getMessages() {
-    this.dailyOffer = this.translate.get( 'app.home.offer' );
+    this.dailyOffer = this.translate.get( 'app.home.offer', { buy: 3, pay: 2 } );
   }
 }

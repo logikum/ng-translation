@@ -5,10 +5,10 @@
   <p>
     {{ 'app.shared.currLang' | translate }} {{ active }}
     <select (click)="changeLanguage( $event )">
-      <option *ngFor="let language of languages"
-        value="{{ language.code }}" selected=""
+      <option *ngFor="let language of languageList.items"
+        value="{{ language.value }}"
         selected="{{ language.selected ? 'selected' : '' }}">
-        {{ language.name }}
+        {{ language.text }}
       </option>
     </select>
   </p>

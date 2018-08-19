@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         initialNavigation: 'enabled',
         onSameUrlNavigation: 'reload',
-        enableTracing: true // <-- debugging purposes only
+        enableTracing: false // <-- debugging purposes only
       }
     ),
     NgTranslationModule.forRoot( {

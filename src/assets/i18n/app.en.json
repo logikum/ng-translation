@@ -8,5 +8,13 @@
   },
   "shared": {
     "currLang": "Current language:"
+  },
+  "languages": {
+    "en": "English",
+    "de": "German",
+    "es": "Spanish",
+    "it": "Italian",
+    "ru": "Russian",
+    "hu": "Hungarian"
   }
 }

@@ -8,5 +8,13 @@
   },
   "shared": {
     "currLang": "Jelenlegi nyelv:"
+  },
+  "languages": {
+    "en": "angol",
+    "de": "német",
+    "es": "spanyol",
+    "it": "olasz",
+    "ru": "orosz",
+    "hu": "magyar"
   }
 }

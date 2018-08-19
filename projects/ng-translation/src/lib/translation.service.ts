@@ -11,6 +11,7 @@ export class TranslationService {
   private config: TranslationConfig;
   private active: string;
   private translations: object = { };
+  private errorHandler: (error: any) => void;
 
   @Output() languageChange = new EventEmitter<string>();
 
@@ -21,12 +22,14 @@ export class TranslationService {
   ) { }
 
   initializeApp(
-    config: TranslationConfig
+    config: TranslationConfig,
+    errorHandler?: (error: any) => void
   ): Promise<any> {
 
     this.config = config;
     this.active = config.defaultLanguage;
     const languages: string[] = [ config.defaultLanguage ];
+    this.errorHandler = errorHandler ? errorHandler : this.handleError;
 
     if (config.activeLanguage && config.activeLanguage !== config.defaultLanguage ) {
       languages.push( config.activeLanguage );
@@ -133,8 +136,21 @@ export class TranslationService {
           }
           this.translations[ language ][ section ] = sectionTranslations;
           resolve();
-        } );
+        } )
+        .catch( this.errorHandler );
     } );
+  }
+
+  private handleError(
+    error: any
+  ): void {
+
+    const message = 
+      error ?
+        (error.message ? error.message : error.toString()) :
+        'An error occurred while downloading a translation file.'
+      ;
+    console.log( `TRANSLATION ERROR: ${ message }`);
   }
 
   get(
@@ -152,7 +168,7 @@ export class TranslationService {
   ): string {
   
     // Try the requested (eventual specific) culture (language).
-    let translation = this.find( language, key );
+    let translation: string = this.find( language, key );
 
     // If not found...
     if (translation === key) {
@@ -202,5 +218,51 @@ export class TranslationService {
       } );
     }
     return text;
+  }
+
+  getGroup(
+    key: string,
+    language?: string
+  ): object {
+
+    language = language || this.active;
+
+    // Try the requested (eventual specific) culture (language).
+    let group: object = this.findGroup( language, key );
+
+    // If not found...
+    if (group === null) {
+      // ...try neutral culture (language without country/region).
+      const pos = language.indexOf( '-' );
+      if (pos > 0) {
+        group = this.findGroup( language.substr(0, pos), key );
+      }
+    }
+
+    // Finally if not found...
+    if (group === null) {
+      // ...try invariant culture (default language)
+      group = this.findGroup( this.config.defaultLanguage, key );
+    }
+
+    // Return the translation group.
+    return group;
+  }
+
+  private findGroup(
+    language: string,
+    key: string
+  ): object {
+  
+    const path: string[] = key.split( '.' );
+    let result: object = this.translations[ language ];
+    for (let i = 0; i < path.length; i++) {
+      if (result) {
+        result = result[ path[ i ] ];
+      } else {
+        break;
+      }
+    }
+    return result || null;
   }
 }

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslationService } from '../../projects/ng-translation/src/lib/translation.service';
+import { Option } from './option.model';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
 
   active = 'en';
   isTranslated = true;
+  languages: Array<Option> = [];
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.translate.languageChange.subscribe( language => {
+      this.getLangauges();
 
       this.isTranslated = false;
       this.cdRef.detectChanges();
@@ -27,12 +30,26 @@ export class AppComponent implements OnInit {
       this.cdRef.markForCheck();
       this.cdRef.detectChanges();
     } );
+    this.getLangauges();
+  }
+
+  getLangauges() {
+    this.languages.length = 0;
+    const languageGroup = this.translate.getGroup( 'app.languages' );
+    const languageCodes = Object.getOwnPropertyNames( languageGroup );
+    languageCodes.forEach( code => {
+      this.languages.push( {
+         code: code,
+          name: languageGroup[ code ],
+          selected: code === this.active
+         } );
+    } );
   }
 
   changeLanguage(
-    language: string
+    event: any
   ): void {
-    this.translate.changeLanguage( language );
-    this.active = language;
+    this.active = event.target.value;
+    this.translate.changeLanguage( this.active );
   }
 }

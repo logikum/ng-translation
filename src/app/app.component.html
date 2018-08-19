@@ -4,12 +4,13 @@
 
   <p>
     {{ 'app.shared.currLang' | translate }} {{ active }}
-    <button *ngIf="active !== 'en'" (click)="changeLanguage('en')">
-      English
-    </button>
-    <button *ngIf="active !== 'hu'" (click)="changeLanguage('hu')">
-      magyar
-    </button>
+    <select (click)="changeLanguage( $event )">
+      <option *ngFor="let language of languages"
+        value="{{ language.code }}" selected=""
+        selected="{{ language.selected ? 'selected' : '' }}">
+        {{ language.name }}
+      </option>
+    </select>
   </p>
 
 </ng-container>

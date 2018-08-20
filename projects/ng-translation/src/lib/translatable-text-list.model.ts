@@ -1,9 +1,11 @@
+import { Subscription } from 'rxjs';
 import { TranslationService } from './translation.service';
 
 export class TranslatableTextList {
 
   private names = new Map();
   private texts = new Map();
+  private subscription: Subscription;
 
   constructor(
     private translate: TranslationService,
@@ -22,16 +24,17 @@ export class TranslatableTextList {
       } );
     }
 
-    this.translate.languageChange.subscribe( language => {
-      this.translateTexts();
-    } );
+    this.subscription = this.translate.languageChange
+      .subscribe( language => {
+        this.translateTexts();
+      } );
     this.translateTexts();
   }
 
   private translateTexts() {
-    this.texts.clear();  
+    this.texts.clear();
     this.names.forEach( name => {
-      this.texts.set( this.names.get( name ), this.translate.get( name) );  
+      this.texts.set( this.names.get( name ), this.translate.get( name) );
     } );
   }
 
@@ -41,5 +44,9 @@ export class TranslatableTextList {
   ): string {
 
     return this.translate.insert( this.texts.get( key ), args );
+  }
+
+  destroy() {
+    this.subscription.unsubscribe();
   }
 }

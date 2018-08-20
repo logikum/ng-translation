@@ -145,7 +145,7 @@ export class TranslationService {
     error: any
   ): void {
 
-    const message = 
+    const message =
       error ?
         (error.message ? error.message : error.toString()) :
         'An error occurred while downloading a translation file.'
@@ -166,7 +166,7 @@ export class TranslationService {
     key: string,
     args?: object
   ): string {
-  
+
     // Try the requested (eventual specific) culture (language).
     let translation: string = this.find( language, key );
 
@@ -193,7 +193,7 @@ export class TranslationService {
     language: string,
     key: string
   ): string {
-  
+
     const path: string[] = key.split( '.' );
     let result: any = this.translations[ language ];
     for (let i = 0; i < path.length; i++) {
@@ -253,7 +253,7 @@ export class TranslationService {
     language: string,
     key: string
   ): object {
-  
+
     const path: string[] = key.split( '.' );
     let result: object = this.translations[ language ];
     for (let i = 0; i < path.length; i++) {

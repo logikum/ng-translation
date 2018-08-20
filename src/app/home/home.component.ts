@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslatableTextList } from 'projects/ng-translation/src/lib/translatable-text-list.model';
 import { TranslationService } from '../../../projects/ng-translation/src/lib/translation.service';
 
@@ -7,7 +7,7 @@ import { TranslationService } from '../../../projects/ng-translation/src/lib/tra
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   private texts: TranslatableTextList;
 
@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() { }
+
+  ngOnDestroy() {
+    this.texts.destroy();
+  }
 }

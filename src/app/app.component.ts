@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslatableOption } from 'projects/ng-translation/src/lib/translatable-option.model';
 import { TranslatableOptionList } from 'projects/ng-translation/src/lib/translatable-option-list.model';
 import { TranslationService } from '../../projects/ng-translation/src/lib/translation.service';
@@ -9,7 +9,7 @@ import { TranslationService } from '../../projects/ng-translation/src/lib/transl
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   private languageList: TranslatableOptionList;
 
@@ -40,5 +40,9 @@ export class AppComponent implements OnInit {
   ): void {
     this.translate.changeLanguage( event.target.value );
     this.languageList.selectedValue = event.target.value;
+  }
+
+  ngOnDestroy() {
+    this.languageList.destroy();
   }
 }

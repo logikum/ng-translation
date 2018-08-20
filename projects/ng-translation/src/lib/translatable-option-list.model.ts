@@ -1,9 +1,11 @@
+import { Subscription } from 'rxjs';
 import { TranslatableOption } from './translatable-option.model';
 import { TranslationService } from './translation.service';
 
 export class TranslatableOptionList {
 
   private currentValue: string;
+  private subscription: Subscription;
 
   get selectedValue(): string {
     return this.currentValue;
@@ -20,9 +22,10 @@ export class TranslatableOptionList {
     private translate: TranslationService,
     private key: string
   ) {
-    this.translate.languageChange.subscribe( language => {
-      this.getItems();
-    } );
+    this.subscription = this.translate.languageChange
+      .subscribe( language => {
+        this.getItems();
+      } );
     this.getItems();
   }
 
@@ -38,7 +41,7 @@ export class TranslatableOptionList {
     const self = this;
     optionValues.forEach( value => {
       if (!self.currentValue) {
-        self.currentValue = value;  
+        self.currentValue = value;
       }
       self.items.push( {
         value: value,
@@ -46,5 +49,9 @@ export class TranslatableOptionList {
         selected: value === self.currentValue
       } );
     } );
+  }
+
+  destroy() {
+    this.subscription.unsubscribe();
   }
 }

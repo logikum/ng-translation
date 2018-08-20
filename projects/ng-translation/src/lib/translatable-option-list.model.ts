@@ -1,7 +1,7 @@
-import { Option } from './option.model';
+import { TranslatableOption } from './translatable-option.model';
 import { TranslationService } from './translation.service';
 
-export class OptionList {
+export class TranslatableOptionList {
 
   private currentValue: string;
 
@@ -14,7 +14,7 @@ export class OptionList {
       item.selected = item.value === value;
     } );
   }
-  items: Array<Option> = [];
+  items: Array<TranslatableOption> = [];
 
   constructor(
     private translate: TranslationService,
@@ -40,7 +40,6 @@ export class OptionList {
       if (!self.currentValue) {
         self.currentValue = value;  
       }
-      console.log( `Selected language: ${ self.currentValue }`);
       self.items.push( {
         value: value,
         text: optionGroup[ value ],

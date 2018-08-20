@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { OptionList } from '../../projects/ng-translation/src/lib/option-list.model';
+import { TranslatableOptionList } from 'projects/ng-translation/src/lib/translatable-option-list.model';
 import { TranslationService } from '../../projects/ng-translation/src/lib/translation.service';
 
 @Component({
@@ -11,13 +11,13 @@ import { TranslationService } from '../../projects/ng-translation/src/lib/transl
 export class AppComponent implements OnInit {
 
   isTranslated = true;
-  languageList: OptionList;
+  languageList: TranslatableOptionList;
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private translate: TranslationService
   ) {
-    this.languageList = new OptionList( translate, 'app.languages' );
+    this.languageList = new TranslatableOptionList( translate, 'app.languages' );
    }
 
   ngOnInit() {

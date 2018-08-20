@@ -1,4 +1,4 @@
-export interface Option {
+export interface TranslatableOption {
 
   value: string;
   text: string;

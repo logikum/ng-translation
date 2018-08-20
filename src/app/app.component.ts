@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
-import { TranslatableOption } from 'projects/ng-translation/src/lib/translatable-option.model';
-import { TranslatableOptionList } from 'projects/ng-translation/src/lib/translatable-option-list.model';
-import { TranslationService } from '../../projects/ng-translation/src/lib/translation.service';
+import { TranslationService, TranslatableOptionList, TranslatableOption } from 'ng-translation';
 
 @Component({
   selector: 'app-root',

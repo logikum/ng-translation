@@ -1,15 +1,27 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { TranslationConfig } from './translation.config';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
-function initialize(
+export function initializerFactory(
   service: TranslationService,
   config: TranslationConfig
 ) {
-  return () => service.initializeApp( config );
+  function initializer() {
+    service.initializeApp( config )
+      .then( () => {
+        service.changeLanguage( config.activeLanguage || config.defaultLanguage );
+      } );
+  }
+  return initializer;
+}
+
+export function serviceFactory(
+  http: HttpClient
+) {
+  return new TranslationService( http );
 }
 
 @NgModule({
@@ -33,18 +45,18 @@ export class NgTranslationModule {
       providers: [
         {
           provide: APP_INITIALIZER,
-          useFactory: initialize,
+          useFactory: initializerFactory,
           multi: true,
           deps: [ TranslationService, TranslationConfig ]
         },
         {
           provide: TranslationService,
-          useFactory: http => new TranslationService( http ),
+          useFactory: serviceFactory,
           deps: [ HttpClient ]
         },
         {
           provide: TranslationConfig,
-          useFactory: () => config,
+          useValue: config,
           multi: false
         }
       ]

@@ -36,19 +36,21 @@ export class TranslatableOptionList {
     this.items.length = 0;
 
     const optionGroup = this.translate.getGroup( this.key );
-    const optionValues = Object.getOwnPropertyNames( optionGroup );
+    if (optionGroup) {
+      const optionValues = Object.getOwnPropertyNames( optionGroup );
 
-    const self = this;
-    optionValues.forEach( value => {
-      if (!self.currentValue) {
-        self.currentValue = value;
-      }
-      self.items.push( {
-        value: value,
-        text: optionGroup[ value ],
-        selected: value === self.currentValue
+      const self = this;
+      optionValues.forEach( value => {
+        if (!self.currentValue) {
+          self.currentValue = value;
+        }
+        self.items.push( {
+          value: value,
+          text: optionGroup[ value ],
+          selected: value === self.currentValue
+        } );
       } );
-    } );
+    }
   }
 
   destroy() {

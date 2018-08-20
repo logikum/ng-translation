@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NgTranslationModule } from '../../projects/ng-translation/src/lib/ng-translation.module';
-import { CanLoadTranslationsGuard } from '../../projects/ng-translation/src/lib/can-load-translations.guard';
+import { NgTranslationModule, CanLoadTranslationsGuard } from 'ng-translation';
+
 import { FilmsModule } from './films/films.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';

@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TranslatableTextList } from 'projects/ng-translation/src/lib/translatable-text-list.model';
-import { TranslationService } from '../../../projects/ng-translation/src/lib/translation.service';
+import { TranslationService, TranslatableTextList } from 'ng-translation';
 
 @Component({
   selector: 'app-home',

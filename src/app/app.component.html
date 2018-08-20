@@ -3,9 +3,9 @@
   <router-outlet></router-outlet>
 
   <p>
-    {{ 'app.shared.currLang' | translate }} {{ active }}
+    {{ 'app.shared.currLang' | translate }}
     <select (click)="changeLanguage( $event )">
-      <option *ngFor="let language of languageList.items"
+      <option *ngFor="let language of languages"
         value="{{ language.value }}"
         selected="{{ language.selected ? 'selected' : '' }}">
         {{ language.text }}

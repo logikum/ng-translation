@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslatableTextList } from 'projects/ng-translation/src/lib/translatable-text-list.model';
 import { TranslationService } from '../../../projects/ng-translation/src/lib/translation.service';
 
 @Component({
@@ -8,20 +9,17 @@ import { TranslationService } from '../../../projects/ng-translation/src/lib/tra
 })
 export class HomeComponent implements OnInit {
 
-  dailyOffer: string;
+  private texts: TranslatableTextList;
+
+  get dailyOffer(): string {
+    return this.texts.get( 'app.home.offer', { buy: 3, pay: 2 } );
+  }
 
   constructor(
     private translate: TranslationService
-  ) { }
+  ) {
+    this.texts = new TranslatableTextList( this.translate, 'app.home.offer' );
+   }
 
-  ngOnInit() {
-    this.translate.languageChange.subscribe( language => {
-      this.getMessages();
-    } );
-    this.getMessages();
-  }
-
-  getMessages() {
-    this.dailyOffer = this.translate.get( 'app.home.offer', { buy: 3, pay: 2 } );
-  }
+  ngOnInit() { }
 }

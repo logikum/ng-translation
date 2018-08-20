@@ -161,7 +161,7 @@ export class TranslationService {
     return this.translate( this.active, key, args );
   }
 
-  translate(
+  private translate(
     language: string,
     key: string,
     args?: object
@@ -206,7 +206,7 @@ export class TranslationService {
     return result || key;
   }
 
-  private insert(
+  insert(
     text: string,
     args?: object
   ) {

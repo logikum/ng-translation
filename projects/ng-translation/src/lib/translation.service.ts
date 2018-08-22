@@ -155,7 +155,7 @@ export class TranslationService {
 
   get(
     key: string,
-    args?: object
+    args?: any
   ): string {
 
     return this.translate( this.active, key, args );
@@ -164,8 +164,13 @@ export class TranslationService {
   private translate(
     language: string,
     key: string,
-    args?: object
+    args?: any
   ): string {
+
+    // Skip uninitialized state.
+    if (!this.translations[ language ]) {
+      return key;
+    }
 
     // Try the requested (eventual specific) culture (language).
     let translation: string = this.find( language, key );
@@ -183,6 +188,11 @@ export class TranslationService {
     if (translation === key) {
       // ...try invariant culture (default language)
       translation = this.find( this.config.defaultLanguage, key );
+    }
+
+    // Warning of missing translation text.
+    if (translation === key) {
+      console.log( `Missing translation text: [${ language }] ${ key }` );
     }
 
     // Insert eventual arguments.
@@ -208,14 +218,36 @@ export class TranslationService {
 
   insert(
     text: string,
-    args?: object
+    args?: any
   ) {
-    if (args) {
-      const names = Object.getOwnPropertyNames( args );
-      names.forEach( name => {
-        const re = new RegExp( `\\{\\{\\s*${ name }\\s*\\}\\}`, 'g' );
-        text = text.replace( re, args[ name ].toString() );
-      } );
+    if (text && args !== undefined) {
+      if (args === null) {
+        args = 'null';
+      }
+      if (typeof args === 'string' || typeof args === 'number' || typeof args === 'boolean') {
+        args = [ args ];
+      }
+      if (args instanceof Array) {
+
+        // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
+        let index = 0;
+        args.forEach( arg => {
+          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*\\}\\}`, 'g' );
+          if (re) {
+            text = text.replace( re, arg );
+          }
+        } );
+      } else if (typeof args === 'object') {
+
+        // Replace named parameters: 'xxxxxx{{name-A}}xxxxxxxx{{name-B}}xxxxxx'
+        const names = Object.getOwnPropertyNames( args );
+        names.forEach( name => {
+          const re = new RegExp( `\\{\\{\\s*${ name }\\s*\\}\\}`, 'g' );
+          if (re) {
+            text = text.replace( re, args[ name ] );
+          }
+        } );
+      }
     }
     return text;
   }

@@ -12,12 +12,16 @@ export class TranslatableTextList {
     private keyList: string | Array<string> | object
   ) {
     if (typeof this.keyList === 'string') {
+
       this.names.set( this.keyList, this.keyList );
-    } else if (this.keyList instanceof( Array )) {
+
+    } else if (this.keyList instanceof Array) {
+
       this.keyList.forEach( key => {
         this.names.set( key, key );
       } );
     } else {
+
       const names = Object.getOwnPropertyNames( this.keyList );
       names.forEach( name => {
         this.names.set( name, this.keyList[ name ] );
@@ -33,17 +37,18 @@ export class TranslatableTextList {
 
   private translateTexts() {
     this.texts.clear();
-    this.names.forEach( name => {
-      this.texts.set( this.names.get( name ), this.translate.get( name) );
+    this.names.forEach( (value, key) => {
+      this.texts.set( value, this.translate.get( key ) );
     } );
   }
 
   get(
     key: string,
-    args?: object
+    args?: any
   ): string {
 
-    return this.translate.insert( this.texts.get( key ), args );
+    const translation = this.texts.get( key );
+    return translation ? this.translate.insert( translation, args ) : key;
   }
 
   destroy() {

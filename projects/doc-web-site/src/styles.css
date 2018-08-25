@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: lightyellow;
+}
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+.mat-card {
+  margin-bottom: 1rem;
+}
+.mat-card .mat-card-actions {
+  display: flex;
+  align-items: center;
+}
+.control-button {
+  font-size: 1.5rem;
+}
+.control-text {
+  padding: 1rem;
+}

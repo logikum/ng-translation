@@ -24,3 +24,13 @@ body {
 .control-text {
   padding: 1rem;
 }
+pre {
+  background-color: #FFE6F1;
+  padding: .5rem 1rem;
+}
+em {
+  color: blue;
+}
+strong {
+  color: deeppink;
+}

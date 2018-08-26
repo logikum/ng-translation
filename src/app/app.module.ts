@@ -11,8 +11,8 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'books', loadChildren: './books/books.module#BooksModule', canLoad: [CanLoadTranslationsGuard] },
-  { path: 'music', loadChildren: './music/music.module#MusicModule', canLoad: [CanLoadTranslationsGuard] },
+  { path: 'books', loadChildren: './books/books.module#BooksModule', canLoad: [ CanLoadTranslationsGuard ] },
+  { path: 'music', loadChildren: './music/music.module#MusicModule', canLoad: [ CanLoadTranslationsGuard ] },
   { path: 'films', loadChildren: './films/films.module#FilmsModule' },
   { path: '**', redirectTo: 'home' }
 ];

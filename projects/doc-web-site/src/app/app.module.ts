@@ -8,6 +8,7 @@ import { MatToolbarModule, MatCardModule, MatButtonModule } from '@angular/mater
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { UsageComponent } from './usage/usage.component';
 import { SelectionListComponent } from './selection-list/selection-list.component';
 import { TextListComponent } from './text-list/text-list.component';
@@ -16,6 +17,7 @@ import { ApiComponent } from './api/api.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'configuration', component: ConfigurationComponent },
   { path: 'usage', component: UsageComponent },
   { path: 'selection-list', component: SelectionListComponent },
   { path: 'text-list', component: TextListComponent },
@@ -37,6 +39,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
+    ConfigurationComponent,
     UsageComponent,
     SelectionListComponent,
     TextListComponent,

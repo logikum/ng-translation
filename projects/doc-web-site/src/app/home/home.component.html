@@ -67,11 +67,11 @@ export class AppModule &#123; }</pre>
 export class SharedModule &#123; }</pre>
     <h4>Lazy loaded modules</h4>
     <p>
-      For lazy loaded modules yuo have to use the CanLoadTranslationsGuard in
-      the route definitions to load the translations before loading the modules:
+      For lazy loaded modules yuo have to use the LoadTranslationsGuard in the
+      route definitions to load the translations before loading the modules:
     </p>
     <pre>import &#123; RouterModule, Routes } from '@angular/router';
-<strong>import &#123; NgTranslationModule, CanLoadTranslationsGuard } from '@logikum/ng-translation';</strong>
+<strong>import &#123; NgTranslationModule, LoadTranslationsGuard } from '@logikum/ng-translation';</strong>
 
 const routes: Routes = [
   &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -79,7 +79,7 @@ const routes: Routes = [
   &#123;
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',
-    <strong>canLoad: [ CanLoadTranslationsGuard ]</strong>
+    <strong>canLoad: [ LoadTranslationsGuard ]</strong>
   },
   &#123; path: '**', redirectTo: 'home' }
 ];

@@ -5,7 +5,7 @@ import { TranslationService } from './translation.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CanLoadTranslationsGuard implements CanLoad {
+export class LoadTranslationsGuard implements CanLoad {
 
   constructor(
     private translationService: TranslationService

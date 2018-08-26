@@ -1,15 +1,15 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { CanLoadTranslationsGuard } from './can-load-translations.guard';
+import { LoadTranslationsGuard } from './load-translations.guard';
 
 describe('CanLoadTranslationsGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CanLoadTranslationsGuard]
+      providers: [LoadTranslationsGuard]
     });
   });
 
-  it('should ...', inject([CanLoadTranslationsGuard], (guard: CanLoadTranslationsGuard) => {
+  it('should ...', inject([LoadTranslationsGuard], (guard: LoadTranslationsGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

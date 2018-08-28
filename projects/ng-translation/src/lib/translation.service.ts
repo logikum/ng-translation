@@ -11,6 +11,7 @@ export class TranslationService {
   private config: TranslationConfig;
   private active: string;
   private translations: object = { };
+  private sections: Array<string> = [ ];
   private errorHandler: (error: any) => void;
 
   @Output() languageChange = new EventEmitter<string>();
@@ -28,14 +29,17 @@ export class TranslationService {
 
     this.config = config;
     this.active = config.defaultLanguage;
-    const languages: string[] = [ config.defaultLanguage ];
     this.errorHandler = errorHandler ? errorHandler : this.handleError;
 
+    const languages: string[] = [ config.defaultLanguage ];
     if (config.activeLanguage && config.activeLanguage !== config.defaultLanguage ) {
       languages.push( config.activeLanguage );
       this.active = config.activeLanguage;
     }
-    const promises: Promise<object>[] = this.getDownloadPromises( languages );
+    const sections: string[] = this.config.sections
+      .filter( section =>  section.indexOf( ':' ) < 0 );
+    const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
+    this.sections.push( ...sections );
 
     return Promise.all( promises );
   }
@@ -45,8 +49,16 @@ export class TranslationService {
   ): Promise<boolean> {
     return new Promise((resolve, reject) => {
 
+      const prefix = route.data && route.data.sectionPrefix ?
+        route.data.sectionPrefix :
+        route.path;
+
       const languages: string[] = Object.getOwnPropertyNames( this.translations );
-      const promises: Promise<object>[] = this.getDownloadPromises( languages, route.path );
+      const sections: string[] = this.config.sections
+        .filter( section => section.startsWith( prefix + ':' ) )
+        .map( section => section.split( ':' )[ 1 ] );
+      const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
+      this.sections.push( ...sections );
 
       Promise.all( promises )
         .then( () => {
@@ -63,19 +75,7 @@ export class TranslationService {
       this.active = language;
 
       if (!this.translations[ language ]) {
-        const promises: Promise<object>[] = [];
-        const sections = Object.getOwnPropertyNames( this.translations[ this.config.defaultLanguage ] );
-
-        sections.forEach( section => {
-          promises.push(
-            this.getDownloadPromise(
-              language,
-              section.indexOf( ':' ) > 0 ?
-                section.split( ':' )[1] :
-                section
-            )
-          );
-        } );
+        const promises: Promise<object>[] = this.getDownloadPromises( [ language ], this.sections );
 
         Promise.all( promises )
           .then( () => {
@@ -91,27 +91,17 @@ export class TranslationService {
 
   private getDownloadPromises(
     languages: string[],
-    path?: string
+    sections: string[]
   ): Promise<object>[] {
 
     const promises: Promise<object>[] = [];
 
     languages.forEach( language => {
-      this.config.sections
-        .filter( section => path ?
-          section.startsWith( path + ':' ) :
-          section.indexOf( ':' ) < 0
-        )
-        .forEach( section => {
-          promises.push(
-            this.getDownloadPromise(
-              language,
-              path ?
-                section.split( ':' )[1] :
-                section
-            )
-          );
-        } );
+      sections.forEach( section => {
+        promises.push(
+          this.getDownloadPromise( language, section )
+        );
+      } );
     } );
 
     return promises;
@@ -134,11 +124,37 @@ export class TranslationService {
           if (!this.translations[ language ]) {
             this.translations[ language ] = { };
           }
-          this.translations[ language ][ section ] = sectionTranslations;
+          // this.translations[ language ][ section ] = sectionTranslations;
+          this.storeTranslations( language, section, sectionTranslations);
           resolve();
         } )
         .catch( this.errorHandler );
     } );
+  }
+
+  private storeTranslations(
+    language: string,
+    section: string,
+    sectionTranslations: object
+  ): void {
+
+    // Check language property.
+    if (this.translations[ language ] === undefined) {
+      this.translations[ language ] = { };
+    }
+    let target = this.translations[ language ];
+
+    // Check section properties.
+    const path: string[] = section.split( '.' );
+    for (let i = 0; i < path.length; i++) {
+      if (target[ path[ i ] ] === undefined) {
+        target[ path[ i ] ] = i === path.length - 1 ? sectionTranslations : { };
+      }
+      target = target[ path[ i ] ];
+    }
+
+    // Store the section translations.
+    // target = sectionTranslations;
   }
 
   private handleError(

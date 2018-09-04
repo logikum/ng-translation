@@ -1,0 +1,30 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+.app-header {
+  display: flex;
+  align-items: baseline;
+  margin: auto;
+  width: 800px;
+}
+.app-header .title {
+
+}
+.app-header a, .app-header a:visited {
+  font-size: 1rem;
+  color: pink;
+  padding: 0 10px;
+  text-decoration: none;
+}
+.app-header a.title, .app-header a:visited.title {
+  font-size: 1.4rem;
+  color: white;
+  padding: 0 10px;
+  text-decoration: none;
+}
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

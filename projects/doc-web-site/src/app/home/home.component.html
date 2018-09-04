@@ -29,12 +29,12 @@
   </mat-card-title>
 
   <mat-card-content>
-    <h4>Root module</h4>
+    <h3>Root module</h3>
     <p>
       To use ng-translation you have to import the NgTranslationModule.forRoot()
       in the root module of your Angular application:
     </p>
-    <pre>import &#123; BrowserModule } from '@angular/platform-browser';
+<pre>import &#123; BrowserModule } from '@angular/platform-browser';
 import &#123; NgModule } from '@angular/core';
 <strong>import &#123; NgTranslationModule } from '@logikum/ng-translation';</strong>
 
@@ -51,7 +51,7 @@ export class AppModule &#123; }</pre>
     <p>
       The forRoot method requires a configuration object, see later.
     </p>
-    <h4>Feature modules or shared module</h4>
+    <h3>Feature modules or shared module</h3>
     <p>
       In feature modules you have to use the NgTranslationModule.forChild()
       method, or if you use a shared module that you import in multiple other
@@ -65,12 +65,12 @@ export class AppModule &#123; }</pre>
   ]
 })
 export class SharedModule &#123; }</pre>
-    <h4>Lazy loaded modules</h4>
+    <h3>Lazy loaded modules</h3>
     <p>
       For lazy loaded modules yuo have to use the LoadTranslationsGuard in the
       route definitions to load the translations before loading the modules:
     </p>
-    <pre>import &#123; RouterModule, Routes } from '@angular/router';
+<pre>import &#123; RouterModule, Routes } from '@angular/router';
 <strong>import &#123; NgTranslationModule, LoadTranslationsGuard } from '@logikum/ng-translation';</strong>
 
 const routes: Routes = [
@@ -92,6 +92,23 @@ const routes: Routes = [
   ]
 })
 export class AppModule &#123; }</pre>
+    <p>
+      The translations belonging to the lazy loaded modules are identified by the
+      path. To avoid path conflicts you can use an alternative way to identify the
+      proper translation. Add a data object having a section prefix property to
+      the route definition:
+    </p>
+<pre>const routes: Routes = [
+  &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
+  &#123; path: 'home', component: HomeComponent },
+  &#123;
+    path: 'lazy',
+    loadChildren: './lazy/lazy.module#LazyModule',
+    <strong>canLoad: [ LoadTranslationsGuard ],
+    data: &#123; sectionPrefix: 'laggard' }</strong>
+  },
+  &#123; path: '**', redirectTo: 'home' }
+];</pre>
   </mat-card-content>
 
   <mat-card-actions>

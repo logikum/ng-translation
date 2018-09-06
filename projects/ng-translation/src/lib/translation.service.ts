@@ -152,9 +152,6 @@ export class TranslationService {
       }
       target = target[ path[ i ] ];
     }
-
-    // Store the section translations.
-    // target = sectionTranslations;
   }
 
   private handleError(

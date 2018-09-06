@@ -4,7 +4,70 @@
   </mat-card-title>
 
   <mat-card-content>
-    Content
+    <h3>Define translations</h3>
+    <p>
+
+    </p>
+
+    <h3>Use pipe in views</h3>
+    <p>
+      You can use the TranslatePipe to get your translation values:
+    </p>
+    <pre>&lt;div>&#123;<span></span>&#123; '<strong>key</strong>' | translate:<strong>parameters</strong> }}&lt;/div></pre>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <pre>&lt;div>&#123;<span></span>&#123; 'app.home.title' | translate }}&lt;/div></pre>
+    <p>
+      Or with parameters:
+    </p>
+    <pre>&lt;div>&#123;<span></span>&#123; 'app.home.welcome' | translate:&#123; name: 'John' } }}&lt;/div></pre>
+    <p>
+      You can also specify the paramater in the component:
+    </p>
+    <pre>const profile = &#123;
+  name: 'John',
+  age: 37
+};</pre>
+    <pre>&lt;div>&#123;<span></span>&#123; 'app.home.welcome' | translate:profile }}&lt;/div></pre>
+    <p>
+      When you use HTML tags in the translation text:
+    </p>
+    <pre>&#123;
+  "version": "Application Name&lt;br>&lt;strong>Version 1.0.0&lt;/strong>"
+}</pre>
+    <p>
+      It can be displayed using the innerHTML attribute:
+    </p>
+    <pre>&lt;div [innerHTML]="'app.version' | translate">&lt;/div></pre>
+
+    <h3>Use service in components</h3>
+    <p>
+      Instantiate the translation service in the component:
+    </p>
+    <pre>constructor(
+  private translate: TranslationService
+) &#123; }</pre>
+    <p>
+      Then you can get the translation texts:
+    </p>
+    <pre>ngOnInit() &#123;
+  const title = this.translate.get( 'app.home.title' );
+  const promo = this.translate.get(
+    'app.promotions.daily',
+    &#123; product: 'CPG34500', discount: 15 }
+  );
+}</pre>
+    <p>
+      You must get the translation texts again after the current language has changed.
+      Another solution to use the TranslatableTextList or TranslatableOptionList
+      classes to manage the translations because they update their texts automatically.
+    </p>
+
+    <h3>Parameter interpolation</h3>
+    <p>
+
+    </p>
   </mat-card-content>
 
   <mat-card-actions>

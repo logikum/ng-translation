@@ -6,7 +6,53 @@
   <mat-card-content>
     <h3>Define translations</h3>
     <p>
-
+      The translation texts are stored in JSON files:
+    </p>
+    <pre>// app.en.json
+&#123;
+  "version": "1.0.0",
+  "title": "Application Name",
+  "welcome": "Welcome, &#123;<span></span>&#123; name }}!"
+}</pre>
+    <p>
+      The translation texts are referred in the Angular app by their keys. The key
+      consists of the name of the translation file and the name of the JSON property
+      separated by a dot. The texts in the above example can be referred by the
+      following keys:
+    </p>
+    <pre>'app.version', 'app.title', 'app.welcome'</pre>
+    <p>
+      The JSON objects can be nested:
+    </p>
+    <pre>// app.en.json
+&#123;
+  "version": "1.0.0",
+  "home": &#123;
+    "title": "Application Name",
+    "welcome": "Welcome, &#123;<span></span>&#123; name }}!"
+  }
+}</pre>
+    <p>
+      In this case the keys will be:
+    </p>
+    <pre>'app.version', 'app.home.title', 'app.home.welcome'</pre>
+    <p>
+      You can use an extended translation file names in similar way:
+    </p>
+    <pre>// app.auth.en.json
+&#123;
+  "userid": "User name",
+  "pwd": "Password",
+  "errors": &#123;
+    "failed": "The credentials are wrong!"
+  }
+}</pre>
+    <p>
+      Then the keys will be:
+    </p>
+    <pre>'app.auth.userid', 'app.auth.pwd', 'app.auth.errors.failed'</pre>
+    <p>
+      The section prefixes of lazy loaded modules will not part of the keys.
     </p>
 
     <h3>Use pipe in views</h3>
@@ -66,8 +112,45 @@
 
     <h3>Parameter interpolation</h3>
     <p>
-
+      If the parameter is an object, the translation service searches the names its
+      properties surrounded by double curly brackets. When it finds one, it will be
+      replaced by the value of the given property, e.g.:
     </p>
+    <pre>// app.en.json
+&#123;
+  "welcome": "Welcome, &#123;<span></span>&#123; name }}!"
+}
+
+// app.compoonent.html
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:&#123; name: 'John' } }}&lt;/div>
+
+// Output: Wlecome, John!</pre>
+    <p>
+      When the parameter is an array, the translation service searches the indeces
+      of the array items surrounded by double curly brackets:
+    </p>
+    <pre>// app.en.json
+&#123;
+  "welcome": "Welcome, &#123;<span></span>&#123; 0 }}!"
+}
+
+// app.compoonent.html
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:[ 'John' ] }}&lt;/div>
+
+// Output: Wlecome, John!</pre>
+    <p>
+      In case of the parameter being a string, number or Boolean, the search phrase
+      is always &#123;<span></span>&#123;0}}:
+    </p>
+    <pre>// app.en.json
+&#123;
+  "welcome": "Welcome, &#123;<span></span>&#123; 0 }}!"
+}
+
+// app.compoonent.html
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:'John' }}&lt;/div>
+
+// Output: Wlecome, John!</pre>
   </mat-card-content>
 
   <mat-card-actions>

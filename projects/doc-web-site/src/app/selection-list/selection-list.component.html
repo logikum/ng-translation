@@ -4,7 +4,58 @@
   </mat-card-title>
 
   <mat-card-content>
-    Content
+    <p>
+      The localization of the texts of a selection list is a frequent task. The
+      TranslatableOptionList class provides a way to do that easily. Let us assume
+      that we want to create a list of fruits. Tha names of the fruits are stored
+      in JSON files:
+    </p>
+    <pre>// app.hu.json
+&#123;
+  ...
+  "fruits": &#123;
+    "apple": "alma",
+    "peach": "barack",
+    "cherry": "cseresznye",
+    "plum": "szilva"
+  },
+  ...
+}</pre>
+    <p>
+      We can use the TranslatableOptionList class to provide the list items in
+      the following way:
+    </p>
+    <pre>@Component(&#123; ... })
+export class FruitComponent implements OnDestroy &#123;
+
+  private fruitList: TranslatableOptionList;
+
+  get fruits(): Array&lt;TranslatableOption> &#123; return this.fruitList.items; }
+
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.fruitList = new TranslatableOptionList( translate, 'app.fruits' );
+  }
+  ...
+  ngOnDestroy() &#123;
+    this.fruitList.destroy();
+  }
+}</pre>
+    <p>
+      Thereafter the fruits can be used in the view:
+    </p>
+    <pre>&lt;select>
+  &lt;option *ngFor="let fruit of fruits"
+          value="&#123;<span></span>&#123; fruit.value }}"
+          selected="&#123;<span></span>&#123; fruit.selected ? 'selected' : '' }}">
+    &#123;<span></span>&#123; fruit.text }}
+  &lt;/option>
+&lt;/select></pre>
+    <p>
+      The TranslatableOptionList object wil load the appropriate translation texts
+      when the user changes the current language.
+    </p>
   </mat-card-content>
 
   <mat-card-actions>

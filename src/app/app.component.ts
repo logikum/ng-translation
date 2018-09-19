@@ -12,14 +12,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private languageList: TranslatableOptionList;
 
   isTranslated = true;
-  get languages(): Array<TranslatableOption> { return this.languageList.items; };
+  get languages(): Array<TranslatableOption> { return this.languageList.items; }
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private translate: TranslationService
   ) {
     this.languageList = new TranslatableOptionList( translate, 'app.languages' );
-   }
+  }
 
   ngOnInit() {
     this.translate.languageChange.subscribe( language => {

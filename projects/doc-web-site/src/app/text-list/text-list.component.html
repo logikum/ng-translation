@@ -4,7 +4,43 @@
   </mat-card-title>
 
   <mat-card-content>
-    Content
+    <p>
+      The TranslatableTextList class makes easy to handle several text items in
+      the controller code. For example you want to use these texts:
+    </p>
+    <pre>// shop.en.json
+&#123;
+  ...
+  "introduction": "If you are looking for good deals and bargains, this is the place to come.",
+  ...
+  "offers": &#123;
+    ...
+    "special": "Offer of the day: buy &#123;<span></span>&#123; buy }} pay &#123;<span></span>&#123; pay }}!",
+    ...
+  },
+  ...
+}</pre>
+    <p>
+
+    </p>
+    <pre>@Component(&#123; ... })
+export class FruitComponent implements OnDestroy &#123;
+
+  private fruitList: TranslatableOptionList;
+
+  get fruits(): Array&lt;TranslatableOption> &#123; return this.fruitList.items; }
+
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.fruitList = new TranslatableOptionList( translate, 'app.fruits' );
+  }
+  ...
+  ngOnDestroy() &#123;
+    this.fruitList.destroy();
+  }
+}</pre>
+    <p>
   </mat-card-content>
 
   <mat-card-actions>

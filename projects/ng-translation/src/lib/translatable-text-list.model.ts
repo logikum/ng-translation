@@ -28,7 +28,7 @@ export class TranslatableTextList {
       } );
     }
 
-    this.subscription = this.translate.languageChange
+    this.subscription = this.translate.languageChanged
       .subscribe( language => {
         this.translateTexts();
       } );

@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { TranslationConfig } from './translation.config';
+import { Locale } from './locale';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,8 @@ export class TranslationService {
   private active: string;
   private translations: object = { };
   private sections: Array<string> = [ ];
-  private errorHandler: (error: any) => void;
 
-  @Output() languageChange = new EventEmitter<string>();
+  @Output() languageChanged = new EventEmitter<string>();
 
   get activeLanguage(): string { return this.active; }
 
@@ -23,30 +23,54 @@ export class TranslationService {
   ) { }
 
   initializeApp(
-    config: TranslationConfig,
-    errorHandler?: (error: any) => void
-  ): Promise<any> {
+    config: TranslationConfig
+  ): Promise<boolean> {
 
-    this.config = config;
-    this.active = config.defaultLanguage;
-    this.errorHandler = errorHandler ? errorHandler : this.handleError;
+    return new Promise((resolve, reject) => {
 
-    const languages: string[] = [ config.defaultLanguage ];
-    if (config.activeLanguage && config.activeLanguage !== config.defaultLanguage ) {
-      languages.push( config.activeLanguage );
-      this.active = config.activeLanguage;
+      this.config = config;
+      this.active = config.defaultLanguage;
+
+      const languages: string[] = [ config.defaultLanguage ];
+      if (navigator.language && navigator.language !== config.defaultLanguage ) {
+        languages.push( navigator.language );
+      }
+      const sections: string[] = this.config.sections
+        .filter( section =>  section.indexOf( ':' ) < 0 );
+
+      const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
+      this.sections.push( ...sections );
+
+      Promise.all( promises )
+        .then( () => {
+          resolve( this.browserLanguageSupported() );
+        } )
+        .catch( error => {
+          reject( error );
+        } );
+    } );
+  }
+
+  private browserLanguageSupported(): boolean {
+
+    let isSupported = false;
+
+    if (navigator.language) {
+      const locale = new Locale( navigator.language );
+
+      if (this.translations[ locale.name ]) {
+        isSupported = true;
+      } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
+        isSupported = true;
+      }
     }
-    const sections: string[] = this.config.sections
-      .filter( section =>  section.indexOf( ':' ) < 0 );
-    const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
-    this.sections.push( ...sections );
-
-    return Promise.all( promises );
+    return isSupported;
   }
 
   initializeSection(
     route: Route
   ): Promise<boolean> {
+
     return new Promise((resolve, reject) => {
 
       const prefix = route.data && route.data.sectionPrefix ?
@@ -57,34 +81,51 @@ export class TranslationService {
       const sections: string[] = this.config.sections
         .filter( section => section.startsWith( prefix + ':' ) )
         .map( section => section.split( ':' )[ 1 ] );
+
       const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
       this.sections.push( ...sections );
 
       Promise.all( promises )
         .then( () => {
           resolve( true );
-        });
+        } )
+        .catch( error => {
+          reject( error );
+        } );
     } );
   }
 
   changeLanguage(
     language: string
   ): Promise<any> {
+
     return new Promise((resolve, reject) => {
 
-      this.active = language;
+      const locale = new Locale( language );
 
-      if (!this.translations[ language ]) {
-        const promises: Promise<object>[] = this.getDownloadPromises( [ language ], this.sections );
+      if (this.translations[ locale.name ]) {
+        this.active = locale.name;
+        this.languageChanged.emit( locale.name );
+        resolve();
 
+      } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
+        this.active = locale.neutral;
+        this.languageChanged.emit( locale.neutral );
+        resolve();
+
+      } else {
+        const promises: Promise<object>[] = this.getDownloadPromises(
+          [ locale.name ], this.sections
+        );
         Promise.all( promises )
           .then( () => {
-            this.languageChange.emit( language );
+            this.active = this.translations[ locale.name ] ? locale.name : locale.neutral;
+            this.languageChanged.emit( language );
             resolve();
-          });
-      } else {
-        this.languageChange.emit( language );
-        resolve();
+          } )
+          .catch( error => {
+            reject( error );
+          } );
       }
     } );
   }
@@ -112,24 +153,58 @@ export class TranslationService {
     section: string
   ): Promise<object> {
 
-    const url = this.config.translationUrl
-      .replace(/{\s*language\s*}/gi, language)
-      .replace(/{\s*section\s*}/gi, section)
-      ;
+    const locale = new Locale( language );
     return new Promise((resolve, reject) => {
+
+      const url = this.buildUrl( locale.name, section );
       this.http.get( url )
         .toPromise()
         .then( sectionTranslations => {
 
-          if (!this.translations[ language ]) {
-            this.translations[ language ] = { };
+          if (!this.translations[ locale.name ]) {
+            this.translations[ locale.name ] = { };
           }
-          // this.translations[ language ][ section ] = sectionTranslations;
-          this.storeTranslations( language, section, sectionTranslations);
+          this.storeTranslations( locale.name, section, sectionTranslations);
           resolve();
         } )
-        .catch( this.errorHandler );
+        .catch( error => {
+
+          if (locale.hasRegion) {
+            console.log( `TRANSLATION alternative: ${ locale.neutral }`);
+
+            const url2 = this.buildUrl( locale.neutral, section );
+            this.http.get( url2 )
+              .toPromise()
+              .then( sectionTranslations => {
+
+                if (!this.translations[ locale.neutral ]) {
+                  this.translations[ locale.neutral ] = { };
+                }
+                this.storeTranslations( locale.neutral, section, sectionTranslations);
+                resolve();
+              } )
+             .catch( error2 => {
+               this.handleError( error );
+               reject();
+             } );
+
+          } else {
+            this.handleError( error );
+            reject();
+          }
+        } );
     } );
+  }
+
+  private buildUrl(
+    language: string,
+    section: string
+  ): string {
+
+    return this.config.translationUrl
+      .replace(/{\s*language\s*}/gi, language)
+      .replace(/{\s*section\s*}/gi, section)
+    ;
   }
 
   private storeTranslations(
@@ -180,34 +255,31 @@ export class TranslationService {
     args?: any
   ): string {
 
-    // Skip uninitialized state.
-    if (!this.translations[ language ]) {
-      return key;
-    }
+    let locale = new Locale( language );
 
     // Try the requested (eventual specific) culture (language).
-    let translation: string = this.find( language, key );
+    let translation: string = this.find( locale.name, key );
 
-    // If not found...
-    if (translation === key) {
-      // ...try neutral culture (language without country/region).
-      const pos = language.indexOf( '-' );
-      if (pos > 0) {
-        translation = this.find( language.substr(0, pos), key );
-      }
+    // If not found try neutral culture (language without country/region).
+    if (translation === key && locale.hasRegion) {
+      translation = this.find( locale.neutral, key );
     }
 
     // Finally if not found...
     if (translation === key) {
+
+      // Warning of missing translation text.
+      console.log( `Missing translation text: [${ locale.name }] ${ key }` );
+
       // ...try invariant culture (default language)
-      translation = this.find( this.config.defaultLanguage, key );
-    }
+      locale = new Locale( this.config.defaultLanguage );
+      translation = this.find( locale.name, key );
 
-    // Warning of missing translation text.
-    if (translation === key) {
-      console.log( `Missing translation text: [${ language }] ${ key }` );
+      // If not found still try invariant neutral culture.
+      if (translation === key && locale.hasRegion) {
+        translation = this.find( locale.neutral, key );
+      }
     }
-
     // Insert eventual arguments.
     return this.insert( translation, args );
   }
@@ -219,6 +291,7 @@ export class TranslationService {
 
     const path: string[] = key.split( '.' );
     let result: any = this.translations[ language ];
+
     for (let i = 0; i < path.length; i++) {
       if (result) {
         result = result[ path[ i ] ];
@@ -270,26 +343,31 @@ export class TranslationService {
     language?: string
   ): object {
 
-    language = language || this.active;
+    let locale = new Locale( language || this.active );
 
     // Try the requested (eventual specific) culture (language).
-    let group: object = this.findGroup( language, key );
+    let group: object = this.findGroup( locale.name, key );
 
-    // If not found...
-    if (group === null) {
-      // ...try neutral culture (language without country/region).
-      const pos = language.indexOf( '-' );
-      if (pos > 0) {
-        group = this.findGroup( language.substr(0, pos), key );
-      }
+    // If not found try neutral culture (language without country/region).
+    if (group === null && locale.hasRegion) {
+      group = this.findGroup( locale.neutral, key );
     }
 
     // Finally if not found...
     if (group === null) {
-      // ...try invariant culture (default language)
-      group = this.findGroup( this.config.defaultLanguage, key );
-    }
 
+      // Warning of missing translation text.
+      console.log( `Missing translation group: [${ locale.name }] ${ key }` );
+
+      // ...try invariant culture (default language)
+      locale = new Locale( this.config.defaultLanguage );
+      group = this.findGroup( locale.name, key );
+
+      // If not found still try invariant neutral culture.
+      if (group === null && locale.hasRegion) {
+        group = this.findGroup( locale.neutral, key );
+      }
+    }
     // Return the translation group.
     return group;
   }

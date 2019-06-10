@@ -11,8 +11,12 @@ export function initializerFactory(
 ) {
   function initializer() {
     service.initializeApp( config )
-      .then( () => {
-        service.changeLanguage( config.activeLanguage || config.defaultLanguage );
+      .then( browserLanguageSupported => {
+        service.changeLanguage(
+          browserLanguageSupported ?
+            navigator.language :
+            config.defaultLanguage
+        );
       } );
   }
   return initializer;

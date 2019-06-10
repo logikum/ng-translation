@@ -22,7 +22,7 @@ export class TranslatableOptionList {
     private translate: TranslationService,
     private key: string
   ) {
-    this.subscription = this.translate.languageChange
+    this.subscription = this.translate.languageChanged
       .subscribe( language => {
         this.getItems();
       } );

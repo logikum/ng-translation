@@ -1,0 +1,24 @@
+{
+  "home": {
+    "title": "Le Quattro Stagioni",
+    "link1": "Books",
+    "link2": "Music",
+    "link3": "Films",
+    "offer": "Offer of the day: buy {{ buy }} pay {{ pay }}!",
+    "special": "Every {{0}} film is {{1}}% off!",
+    "sale": "The sale still lasts for {{0}} days."
+  },
+  "shared": {
+    "title": "Stagioni",
+    "spring": "Primavera",
+    "summer": "Estate",
+    "autumn": "Autunno",
+    "winter": "Inverno",
+    "currLang": "Lingua corrente:"
+  },
+  "languages": {
+    "en": "inglese",
+    "it": "Italiano",
+    "hu": "ungherese"
+  }
+}

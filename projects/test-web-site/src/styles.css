@@ -28,3 +28,45 @@ html, body {
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+.app-content {
+  display: flex;
+  align-items: baseline;
+  margin: auto;
+  width: 800px;
+}
+h1 {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  text-align: center;
+  width: 800px;
+}
+h3 {
+  font-style: italic;
+}
+p {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+.center {
+  margin: auto;
+  width: 60%;
+}
+.text-center {
+  text-align: center;
+}
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+select, option {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 11pt;
+  padding: 5px 10px;
+  width: 120px;
+}
+option {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 11pt;
+  height: 40px;
+  line-height: 40px;
+}

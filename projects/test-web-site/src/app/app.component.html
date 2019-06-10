@@ -1,14 +1,29 @@
 <mat-toolbar color="primary">
   <div class="app-header">
 
-    <a href="" class="title">Nature</a>
-    <a href="">Trees</a>
-    <a href="">Flowers</a>
-    <a href="">Animals</a>
+    <a routerLink="" class="title">{{ menuItem( 'title' ) }}</a>
+
+    <a routerLink="spring">{{ menuItem( 'spring' ) }}</a>
+    <a routerLink="summer">{{ menuItem( 'summer' ) }}</a>
+    <a routerLink="autumn">{{ menuItem( 'autumn' ) }}</a>
+    <a routerLink="winter">{{ menuItem( 'winter' ) }}</a>
 
     <span class="fill-remaining-space"></span>
+
+    <label class="curr-language">{{ menuItem( 'currLang' ) }}</label>
+    <select (change)="changeLanguage( $event )">
+      <option *ngFor="let language of languages"
+              value="{{ language.value }}"
+              selected="{{ language.selected ? 'selected' : '' }}">
+        {{ language.text }}
+      </option>
+    </select>
 
   </div>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div class="app-content">
+
+  <router-outlet></router-outlet>
+
+</div>

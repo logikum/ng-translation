@@ -6,4 +6,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './text-list.component.html',
   styleUrls: ['./text-list.component.css']
 })
-export class TextListComponent { }
+export class TextListComponent {
+
+  buy = '';
+  pay = '';
+}

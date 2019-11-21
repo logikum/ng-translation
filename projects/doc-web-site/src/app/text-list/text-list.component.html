@@ -8,36 +8,56 @@
       The TranslatableTextList class makes easy to handle several text items in
       the controller code. For example you want to use these texts:
     </p>
-    <pre>// shop.en.json
+    <pre>// app.json
 &#123;
   ...
-  "introduction": "If you are looking for good deals and bargains, this is the place to come.",
-  ...
-  "offers": &#123;
-    ...
-    "special": "Offer of the day: buy &#123;<span></span>&#123; buy }} pay &#123;<span></span>&#123; pay }}!",
-    ...
+  "shop": &#123;
+    "offer": "Offer of the day: buy {{ buy }} pay {{ pay }}!",
+    "special": "Every {{0}} film is {{1}}% off!",
+    "sale": "The sale still lasts for {{0}} days."
   },
   ...
-}</pre>
+}
+</pre>
     <p>
-
+      You can do it like that:
     </p>
-    <pre>@Component(&#123; ... })
-export class FruitComponent implements OnDestroy &#123;
+    <pre>@Component(&#123;
+  selector: 'app-shop',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.css']
+})
+export class ShopComponent implements OnInit, OnDestroy &#123;
 
-  private fruitList: TranslatableOptionList;
+  private texts: TranslatableTextList;
 
-  get fruits(): Array&lt;TranslatableOption> &#123; return this.fruitList.items; }
+  get dailyOffer(): string &#123;
+    return this.texts.get( 'offer', &#123; buy: 3, pay: 2 } );
+  }
+  get specialOffer(): string &#123;
+    return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );
+  }
+  get specialLasts(): string &#123;
+    return this.texts.get( 'lasts', 4 );
+  }
 
   constructor(
     private translate: TranslationService
   ) &#123;
-    this.fruitList = new TranslatableOptionList( translate, 'app.fruits' );
+    this.texts = new TranslatableTextList(
+      this.translate,
+      &#123;
+        'app.shop.offer': 'offer',
+        'app.shop.special': 'special',
+        'app.shop.sale': 'lasts'
+      }
+    );
   }
-  ...
+
+  ngOnInit() &#123; }
+
   ngOnDestroy() &#123;
-    this.fruitList.destroy();
+    this.texts.destroy();
   }
 }</pre>
     <p>

@@ -10,8 +10,7 @@
 <pre>&#123;
   translationUrl: '/assets/i18n/&#123; language }/&#123; section }.json',
   sections: [ 'app', 'common', 'lazy:feature', 'lazy:texts' ],
-  defaultLanguage: 'en',
-  activeLanguage: 'hu'
+  defaultLanguage: 'en'
 }</pre>
     <p>
       The configuration object has the following properties:
@@ -73,7 +72,6 @@
       could download the necessary translation files for the lazy loaded module,
       the path is used to filter the needed sections. The download is initiated by
       the LoadTranslationsGuard.
-      path required
     </p>
     <p>
       As an example, if you define the following route:
@@ -108,13 +106,6 @@
     <p>
       The code of the default language. The translations of the eager loaded modules
       in the default language are downloaded at the start of the application.
-    </p>
-    <h3>activeLanguage?: <span class="dataType">string</span></h3>
-    <p>
-      The code of the active language at the start of the application, if it is
-      different from the default. Optional, when it is provided, the translations
-      of the active language are downloaded
-      immediately, too.
     </p>
   </mat-card-content>
 

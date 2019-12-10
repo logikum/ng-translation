@@ -1,14 +1,15 @@
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-import { TranslationConfig } from './translation.config';
+import { TranslationConfig } from './translation-config.model';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 
 export function initializerFactory(
   service: TranslationService,
   config: TranslationConfig
-) {
+): () => void {
+
   function initializer() {
     service.initializeApp( config )
       .then( browserLanguageSupported => {
@@ -24,7 +25,8 @@ export function initializerFactory(
 
 export function serviceFactory(
   http: HttpClient
-) {
+): TranslationService {
+
   return new TranslationService( http );
 }
 

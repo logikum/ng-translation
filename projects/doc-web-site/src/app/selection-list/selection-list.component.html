@@ -52,6 +52,18 @@ export class FruitComponent implements OnDestroy &#123;
   &lt;/option>
 &lt;/select></pre>
     <p>
+      The actual value is available as:
+    </p>
+    <pre>...
+  doSomething() &#123;
+    ...
+    this.fruitList.selectedValue = 'cherry';
+    ...
+    const fruit: string = this.fruitList.selectedValue;
+    ...
+  }
+...</pre>
+    <p>
       The TranslatableOptionList object wil load the appropriate translation texts
       when the user changes the current language.
     </p>

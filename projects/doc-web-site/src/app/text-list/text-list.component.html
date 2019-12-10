@@ -8,19 +8,136 @@
       The TranslatableTextList class makes easy to handle several text items in
       the controller code. For example you want to use these texts:
     </p>
+    <pre>// seasons.json
+&#123;
+  "spring": &#123;
+    "name": "tavasz"
+  },
+  "summer": &#123;
+    "name": "nyár"
+  },
+  "autumn": &#123;
+    "name": "ősz"
+  },
+  "winter": &#123;
+    "name": "tél"
+  }
+}
+</pre>
+    <p>
+      You can do it like that:
+    </p>
+    <pre>@Component(&#123;
+  selector: 'app-seasons',
+  templateUrl: './seasons.component.html',
+  styleUrls: ['./seasons.component.css']
+})
+export class ShopComponent implements OnInit, OnDestroy &#123;
+
+  private texts: <strong>TranslatableTextList</strong>;
+
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.texts = new <strong>TranslatableTextList;</strong>(
+      this.translate,
+      <strong><em>keyList</em></strong>
+    );
+  }
+
+  ngOnInit() &#123; }
+
+  ngOnDestroy() &#123;
+    this.texts.destroy();
+  }
+}</pre>
+    <p>
+      The key list can be a string, a string array or an object.
+    </p>
+
+    <h3>Key list is string</h3>
+    <p>
+      In that case the text list will contain one item only, not very useful.
+      Anyway, it can be used like that:
+    </p>
+    <pre>...
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.texts = new TranslatableTextList(
+      this.translate,
+      'seasons.spring.name'
+    );
+  }
+
+  doSomething() &#123;
+    const spring: string = this.texts.get( 'seasons.spring.name' );
+    ...
+  }
+...</pre>
+
+    <h3>Key list is string array</h3>
+    <p>
+      Similar to the previous case, but several items can be fetched at a time:
+    </p>
+    <pre>...
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.texts = new TranslatableTextList(
+      this.translate, [
+      'seasons.summer.name',
+      'seasons.autumn.name',
+      'seasons.winter.name'
+    ] );
+  }
+
+  doSomething() &#123;
+    const summer: string = this.texts.get( 'seasons.summer.name' );
+    ...
+  }
+...</pre>
+
+    <h3>Key list is object</h3>
+    <p>
+      The most practical use case, as the object can used to map the text keys to
+      shorter ones:
+    </p>
+    <pre>...
+  constructor(
+    private translate: TranslationService
+  ) &#123;
+    this.texts = new TranslatableTextList(
+      this.translate, &#123;
+      'seasons.summer.name': 'summer',
+      'seasons.autumn.name': 'autumn',
+      'seasons.winter.name': 'winter'
+    } );
+  }
+
+  doSomething() &#123;
+    const winter: string = this.texts.get( 'winter' );
+    ...
+  }
+...</pre>
+
+    <h3>Parameter interpolation</h3>
+    <p>
+      Parameters are allowed as usual, e.g.:
+    </p>
     <pre>// app.json
 &#123;
   ...
   "shop": &#123;
-    "offer": "Offer of the day: buy {{ buy }} pay {{ pay }}!",
-    "special": "Every {{0}} film is {{1}}% off!",
-    "sale": "The sale still lasts for {{0}} days."
+    "offer": "Offer of the day: buy &#123;<span></span>&#123; buy }} pay &#123;<span></span>&#123; pay }}!",
+    "special": "Every &#123;<span></span>&#123;0}} film is &#123;<span></span>&#123;1}}% off!",
+    "sale": "The sale still lasts for &#123;<span></span>&#123;0}} days."
   },
   ...
 }
 </pre>
     <p>
-      You can do it like that:
+      And then:
     </p>
     <pre>@Component(&#123;
   selector: 'app-shop',

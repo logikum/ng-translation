@@ -13,7 +13,7 @@ export class TranslatePipe implements PipeTransform  {
   transform(
     value: string,
     args?: any
-  ): any {
+  ): string {
 
     return this.translation.get( value, args );
   }

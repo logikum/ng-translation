@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
-import { TranslationConfig } from './translation.config';
+import { TranslationConfig } from './translation-config.model';
 import { Locale } from './locale';
 
 @Injectable({

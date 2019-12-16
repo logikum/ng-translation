@@ -4,7 +4,99 @@
   </mat-card-title>
 
   <mat-card-content>
-    Content
+    <mat-accordion>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          NgTranslationModule
+        </mat-expansion-panel-header>
+        Set translation parameters and adds providers.
+        <pre>class NgTranslationModule &#123;
+  static forRoot(config: TranslationConfig): ModuleWithProviders&lt;NgTranslationModule>
+  static forChild(): ModuleWithProviders&lt;NgTranslationModule>
+}</pre>
+        <h3>forRoot()</h3>
+        Parameters:
+        <dl>
+          <dt>config</dt>
+          <dd>The settings of the transaltions.</dd>
+        </dl>
+        <b>Returns</b> the new translation module.
+
+        <h3>forChild()</h3>
+        <b>Returns</b> the new child translation module.
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          TranslationConfig
+        </mat-expansion-panel-header>
+        Represents the settings of the translation module.
+        <pre>class TranslationConfig &#123;
+  translationUrl: string
+  sections: Array&lt;string>
+  defaultLanguage: string
+}</pre>
+        <h3>translationUrl</h3>
+        The property defines the URL where NgTranslation will download the translation
+        files from. The property value is a template string that has to contain 2 named
+        parameters surrounded by curly brackets:
+        <dl>
+          <dt>language</dt>
+          <dd>The code of the current or the requested language.</dd>
+          <dt>section</dt>
+          <dd>The name of a partial translation file without the file extension.</dd>
+        </dl>
+        <h3>sections</h3>
+        The names of the translation files without the file extension.  In case of
+        lazy loaded modules the path of the module has to precede the file name,
+        separated by a colon.
+        <h3>defaultLanguage</h3>
+        The code of the default language.
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          LoadTranslationsGuard
+        </mat-expansion-panel-header>
+        Loads the translations for a lazy loaded module before loading the module itself.
+        <pre>class LoadTranslationsGuard &#123;
+  constructor(translationService: TranslationService): void
+  canLoad(route: Route): Promise&lt;boolean>
+}</pre>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          TranslatePipe
+        </mat-expansion-panel-header>
+        Transforms a key string to a localized texts.
+        <pre>&#123;<span></span>&#123; 'key' | translate[: values] }}</pre>
+        <dl>
+          <dt>values: object | Array&lt;string> | string | number | Boolean</dt>
+          <dd>The value or values to interpolate into the localized text.</dd>
+        </dl>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          TranslatableOptionList
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          TranslatableOption
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          TranslatableTextList
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+    </mat-accordion>
   </mat-card-content>
 
   <mat-card-actions>

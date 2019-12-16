@@ -1,0 +1,28 @@
+<h1>{{ 'app.shared.tests' | translate }}</h1>
+
+<h3>TranslatableOptionList</h3>
+<p>
+  <label>{{ 'app.shared.select' | translate }}</label>
+  <select>
+    <option *ngFor="let month of months" [value]="month.value" [selected]="month.selected">
+      {{ month.text }}
+    </option>
+  </select>
+</p>
+<p>
+  <label>{{ 'app.shared.selected' | translate }}</label>{{ monthList.selectedValue }}
+</p>
+
+<h3>TranslatableTextList</h3>
+<p>
+  {{ textList.get ('seasons') }}:<br>
+  {{ textList.get ('spring') }}<br>
+  {{ textList.get ('summer') }}<br>
+  {{ textList.get ('autumn') }}<br>
+  {{ textList.get ('winter') }}
+</p>
+
+<h3>Parameter interpolation</h3>
+<p>{{ dailyOffer }}</p>
+<p>{{ specialOffer }}</p>
+<p>{{ specialLasts }}</p>

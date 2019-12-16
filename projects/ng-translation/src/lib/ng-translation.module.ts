@@ -45,7 +45,7 @@ export class NgTranslationModule {
 
   static forRoot(
     config: TranslationConfig
-  ): ModuleWithProviders {
+  ): ModuleWithProviders<NgTranslationModule> {
     return {
       ngModule: NgTranslationModule,
       providers: [
@@ -69,7 +69,7 @@ export class NgTranslationModule {
     };
   }
 
-  static forChild(): ModuleWithProviders {
+  static forChild(): ModuleWithProviders<NgTranslationModule> {
     return {
       ngModule: NgTranslationModule,
       providers: [ ]

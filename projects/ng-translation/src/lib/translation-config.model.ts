@@ -1,6 +1,6 @@
 export class TranslationConfig {
 
   translationUrl: string;
-  sections: string[];
+  sections: Array<string>;
   defaultLanguage: string;
 }

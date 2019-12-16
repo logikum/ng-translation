@@ -34,3 +34,7 @@ em {
 strong {
   color: deeppink;
 }
+dt {
+  font-family: "Courier New";
+  font-size: 1rem;
+}

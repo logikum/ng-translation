@@ -37,9 +37,9 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   private texts: <strong>TranslatableTextList</strong>;
 
   constructor(
-    private translate: TranslationService
+    private translate: <strong>TranslationService</strong>
   ) &#123;
-    this.texts = new <strong>TranslatableTextList;</strong>(
+    this.texts = <strong>new</strong> TranslatableTextList(
       this.translate,
       <strong><em>keyList</em></strong>
     );
@@ -48,7 +48,7 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   ngOnInit() &#123; }
 
   ngOnDestroy() &#123;
-    this.texts.destroy();
+    this.texts.<strong>destroy()</strong>;
   }
 }</pre>
     <p>
@@ -71,7 +71,7 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   }
 
   doSomething() &#123;
-    const spring: string = this.texts.get( 'seasons.spring.name' );
+    const spring: string = this.texts.<strong>get</strong>( 'seasons.spring.name' );
     ...
   }
 ...</pre>
@@ -93,7 +93,7 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   }
 
   doSomething() &#123;
-    const summer: string = this.texts.get( 'seasons.summer.name' );
+    const summer: string = this.texts.<strong>get</strong>( 'seasons.summer.name' );
     ...
   }
 ...</pre>
@@ -116,7 +116,7 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   }
 
   doSomething() &#123;
-    const winter: string = this.texts.get( 'winter' );
+    const winter: string = this.texts.<strong>get</strong>( 'winter' );
     ...
   }
 ...</pre>
@@ -149,13 +149,13 @@ export class ShopComponent implements OnInit, OnDestroy &#123;
   private texts: TranslatableTextList;
 
   get dailyOffer(): string &#123;
-    return this.texts.get( 'offer', &#123; buy: 3, pay: 2 } );
+    <strong>return this.texts.get( 'offer', &#123; buy: 3, pay: 2 } );</strong>
   }
   get specialOffer(): string &#123;
-    return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );
+    <strong>return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );</strong>
   }
   get specialLasts(): string &#123;
-    return this.texts.get( 'lasts', 4 );
+    <strong>return this.texts.get( 'lasts', 4 );</strong>
   }
 
   constructor(

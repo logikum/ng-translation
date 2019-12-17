@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MatToolbarModule, MatCardModule, MatButtonModule } from '@angular/material';
+import {
+  MatToolbarModule, MatCardModule, MatButtonModule, MatExpansionModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,7 +36,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatToolbarModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   declarations: [
     AppComponent,

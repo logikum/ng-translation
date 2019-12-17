@@ -3,8 +3,10 @@
 <h3>TranslatableOptionList</h3>
 <p>
   <label>{{ 'app.shared.select' | translate }}</label>
-  <select>
-    <option *ngFor="let month of months" [value]="month.value" [selected]="month.selected">
+  <select (change)="monthChange( $event )">
+    <option *ngFor="let month of months"
+            [value]="month.value"
+            [selected]="month.selected">
       {{ month.text }}
     </option>
   </select>

@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslatableOption, TranslatableOptionList, TranslationService, TranslatableTextList } from 'ng-translation';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslatableOption, TranslatableOptionList, TranslatableTextList, TranslationService } from 'ng-translation';
 
 @Component({
   selector: 'app-components',
   templateUrl: './components.component.html',
-  styleUrls: ['./components.component.css']
+  styleUrls: ['./components.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentsComponent implements OnInit, OnDestroy {
 
@@ -44,8 +45,13 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.monthList.items[ new Date( Date.now() ).getMonth() ].selected = true;
     this.monthList.selectedValue = this.monthList.items[ new Date( Date.now() ).getMonth() ].value;
+  }
+
+  monthChange(
+    event: any
+  ): void {
+    this.monthList.selectedValue = event.target.value;
   }
 
   ngOnDestroy() {

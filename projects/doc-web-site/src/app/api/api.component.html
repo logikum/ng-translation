@@ -82,18 +82,77 @@
         <mat-expansion-panel-header>
           TranslatableOptionList
         </mat-expansion-panel-header>
+        Provides properties and methods to create a translatable select list.
+        <pre>class TranslatableOptionList &#123;
+  constructor(translate: TranslationService, key: string)
+  items: Array&lt;TranslatableOption>
+  selectedValue: string
+  destroy(): void
+}</pre>
+        <h3>constructor()</h3>
+        Creates a new instance of the select list.
+        <dl>
+          <dt>translate</dt>
+          <dd>The translation service.</dd>
+          <dt>key</dt>
+          <dd>The key of the text node that contains the keys and texts of the items.</dd>
+        </dl>
+        <h3>items</h3>
+        Provides access to the array of the options.
+        <h3>selectedValue</h3>
+        Gets or sets the value of the selected item.
+        <h3>destroy()</h3>
+        Cleans up the list when the instance is destroyed.
       </mat-expansion-panel>
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           TranslatableOption
         </mat-expansion-panel-header>
+        Represents an item contained in a select list.
+        <pre>interface TranslatableOption &#123;
+  value: string
+  text: string
+  selected: boolean
+}</pre>
+        <h3>value</h3>
+        The value to be submitted with the form, should this option be selected.
+        <h3>text</h3>
+        The text content of the item.
+        <h3>selected</h3>
+        Indicates that the option is selected.
       </mat-expansion-panel>
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           TranslatableTextList
         </mat-expansion-panel-header>
+        Provides methods to retrieve a bunch of texts to use in code.
+        <pre>class TranslatableTextList &#123;
+  constructor(translate: TranslationService, keyList: string | Array&lt;string> | object)
+  get(key: string, args?: any): string
+  destroy(): void
+}</pre>
+        <h3>constructor()</h3>
+        Creates a new instance of the text list.
+        <dl>
+          <dt>translate</dt>
+          <dd>The translation service.</dd>
+          <dt>keyList</dt>
+          <dd>Defines the keys of the texts to retrieve.</dd>
+        </dl>
+        <h3>get()</h3>
+        Returns the text identified by the key in the current language. If the text
+        contains placeholders for values, then they are replaced with the values
+        provided by the second argument.
+        <dl>
+          <dt>key</dt>
+          <dd>The key of the text to return.</dd>
+          <dt>args</dt>
+          <dd>That optional argument provides the eventual values to interpolate.</dd>
+        </dl>
+        <h3>destroy()</h3>
+        Cleans up the list when the instance is destroyed.
       </mat-expansion-panel>
 
     </mat-accordion>

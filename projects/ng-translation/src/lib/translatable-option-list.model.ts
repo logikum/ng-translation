@@ -16,7 +16,7 @@ export class TranslatableOptionList {
       item.selected = item.value === value;
     } );
   }
-  items: Array<TranslatableOption> = [];
+  readonly items: Array<TranslatableOption> = [];
 
   constructor(
     private translate: TranslationService,

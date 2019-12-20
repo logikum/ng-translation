@@ -7,16 +7,21 @@
     "it": "Italiano",
     "hu": "ungherese"
   },
-  "shared": {
-    "title": "Stagioni",
+  "menu": {
     "spring": "Primavera",
     "summer": "Estate",
     "autumn": "Autunno",
-    "winter": "Inverno",
+    "winter": "Inverno"
+  },
+  "shared": {
+    "title": "Stagioni",
     "tests": "Test dei componenti",
     "currLang": "Lingua corrente:",
     "select": "Selezionare il mese:",
-    "selected": "Il valore selezionato:"
+    "selectedIndex": "L'indice selezionato:",
+    "selectedValue": "Il valore selezionato:",
+    "selectedText": "Il testo selezionato:",
+    "selectedItem": "L'articolo selezionato:"
   },
   "month": {
     "jan": "gennaio",

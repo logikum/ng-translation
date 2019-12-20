@@ -7,16 +7,21 @@
     "it": "olasz",
     "hu": "magyar"
   },
-  "shared": {
-    "title": "Évszakok",
+  "menu": {
     "spring": "Tavasz",
     "summer": "Nyár",
     "autumn": "Ősz",
-    "winter": "Tél",
+    "winter": "Tél"
+  },
+  "shared": {
+    "title": "Évszakok",
     "tests": "Komponens tesztek",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
-    "selected": "A választott érték:"
+    "selectedIndex": "A választott index:",
+    "selectedValue": "A választott érték:",
+    "selectedText": "A választott szöveg:",
+    "selectedItem": "A választott elem:"
   },
   "month": {
     "jan": "január",

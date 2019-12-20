@@ -7,16 +7,21 @@
     "it": "Italian",
     "hu": "Hungarian"
   },
-  "shared": {
-    "title": "Seasons",
+  "menu": {
     "spring": "Spring",
     "summer": "Summer",
     "autumn": "Autumn",
-    "winter": "Winter",
+    "winter": "Winter"
+  },
+  "shared": {
+    "title": "Seasons",
     "tests": "Component Tests",
     "currLang": "Current language:",
     "select": "Select month:",
-    "selected": "The selected value:"
+    "selectedIndex": "The selected index:",
+    "selectedValue": "The selected value:",
+    "selectedText": "The selected text:",
+    "selectedItem": "The selected item:"
   },
   "month": {
     "jan": "January",

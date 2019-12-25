@@ -5,7 +5,7 @@
 
   <mat-card-content>
     <p>
-      NgTranslation is a localization support package for Angular 6 applications.
+      NgTranslation is a localization support package for Angular 7 applications.
     </p>
   </mat-card-content>
 </mat-card>
@@ -75,7 +75,7 @@ export class SharedModule &#123; }</pre>
 
 const routes: Routes = [
   &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
-  &#123; path: 'home', component: HomeComponent },
+  &#123; path: 'home', component: SetupComponent },
   &#123;
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',
@@ -100,7 +100,7 @@ export class AppModule &#123; }</pre>
     </p>
 <pre>const routes: Routes = [
   &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
-  &#123; path: 'home', component: HomeComponent },
+  &#123; path: 'home', component: SetupComponent },
   &#123;
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',

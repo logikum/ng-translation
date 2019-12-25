@@ -56,14 +56,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgTranslationModule, LoadTranslationsGuard } from '@logikum/ng-translation';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'setup', pathMatch: 'full' },
+  { path: 'setup', component: SetupComponent },
   {
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',
     canLoad: [ LoadTranslationsGuard ]
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'setup' }
 ];
 
 @NgModule({
@@ -81,15 +81,15 @@ proper translation. Add a data object having a section prefix property to
 the route definition:
 ```typescript
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'setup', pathMatch: 'full' },
+  { path: 'setup', component: SetupComponent },
   {
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',
     canLoad: [ LoadTranslationsGuard ],
     data: { sectionPrefix: 'laggard' }
   },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'setup' }
 ];
 ```
 
@@ -230,7 +230,7 @@ The JSON objects can be nested:
 ```
 In this case the keys will be:
 ```typescript
-'app.version', 'app.home.title', 'app.home.welcome'
+'app.version', 'app.setup.title', 'app.setup.welcome'
 ```
 You can use an extended translation file names in similar way:
 ```json
@@ -295,7 +295,7 @@ constructor(
 Then you can get the translation texts:
 ```typescript
 ngOnInit() {
-  const title = this.translate.get( 'app.home.title' );
+  const title = this.translate.get( 'app.setup.title' );
   const promo = this.translate.get(
     'app.promotions.daily',
     { product: 'CPG34500', discount: 15 }

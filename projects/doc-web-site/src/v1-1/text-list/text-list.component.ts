@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-text-list',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './text-list.component.html',
-  styleUrls: ['./text-list.component.css']
+  styleUrls: ['./text-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextListComponent {
 

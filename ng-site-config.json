@@ -1,0 +1,5 @@
+{
+  "ngSitePath": "dist/doc-web-site",
+  "startUpPage": "./dist/doc-web-site/index.html",
+  "logFile": "logs/ng-site-runner.log"
+}

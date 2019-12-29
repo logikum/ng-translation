@@ -30,6 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
         'app.shared.summer': 'summer',
         'app.shared.autumn': 'autumn',
         'app.shared.winter': 'winter',
+        'app.shared.tests': 'tests',
         'app.shared.currLang': 'currLang'
       }
     );

@@ -35,7 +35,7 @@ export class TranslatableTextList {
     this.translateTexts();
   }
 
-  private translateTexts() {
+  private translateTexts(): void {
     this.texts.clear();
     this.names.forEach( (value, key) => {
       this.texts.set( value, this.translate.get( key ) );
@@ -51,7 +51,7 @@ export class TranslatableTextList {
     return translation ? this.translate.insert( translation, args ) : key;
   }
 
-  destroy() {
+  destroy(): void {
     this.subscription.unsubscribe();
   }
 }

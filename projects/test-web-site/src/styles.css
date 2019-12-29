@@ -34,6 +34,15 @@ html, body {
   margin: auto;
   width: 800px;
 }
+.app-footer {
+  margin: auto;
+  width: 800px;
+  border-top: #3f51b5 solid 5px;
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
 h1 {
   font-family: Roboto,"Helvetica Neue",sans-serif;
   text-align: center;
@@ -44,6 +53,10 @@ h3 {
 }
 p {
   font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+a, a:visited {
+  color: crimson;
+  text-decoration: none;
 }
 .center {
   margin: auto;

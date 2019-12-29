@@ -16,7 +16,7 @@ export class TranslatableOptionList {
       item.selected = item.value === value;
     } );
   }
-  items: Array<TranslatableOption> = [];
+  readonly items: Array<TranslatableOption> = [];
 
   constructor(
     private translate: TranslationService,
@@ -29,7 +29,7 @@ export class TranslatableOptionList {
     this.getItems();
   }
 
-  private getItems() {
+  private getItems(): void {
 
     const selected = this.items.find( option => option.selected);
     this.currentValue = selected ? selected.value : '';
@@ -53,7 +53,7 @@ export class TranslatableOptionList {
     }
   }
 
-  destroy() {
+  destroy(): void {
     this.subscription.unsubscribe();
   }
 }

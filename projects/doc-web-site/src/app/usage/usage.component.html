@@ -118,11 +118,11 @@
     </p>
     <pre>// app.en.json
 &#123;
-  "welcome": "Welcome, &#123;<span></span>&#123; name }}!"
+  "welcome": "Welcome, <strong>&#123;<span></span>&#123; name }}</strong>!"
 }
 
 // app.compoonent.html
-&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:&#123; name: 'John' } }}&lt;/div>
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:<strong>&#123; name: 'John' }</strong> }}&lt;/div>
 
 // Output: Wlecome, John!</pre>
     <p>
@@ -131,11 +131,11 @@
     </p>
     <pre>// app.en.json
 &#123;
-  "welcome": "Welcome, &#123;<span></span>&#123; 0 }}!"
+  "welcome": "Welcome, <strong>&#123;<span></span>&#123; 0 }}</strong>!"
 }
 
 // app.compoonent.html
-&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:[ 'John' ] }}&lt;/div>
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:<strong>[ 'John' ]</strong> }}&lt;/div>
 
 // Output: Wlecome, John!</pre>
     <p>
@@ -144,11 +144,11 @@
     </p>
     <pre>// app.en.json
 &#123;
-  "welcome": "Welcome, &#123;<span></span>&#123; 0 }}!"
+  "welcome": "Welcome, <strong>&#123;<span></span>&#123; 0 }}</strong>!"
 }
 
 // app.compoonent.html
-&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:'John' }}&lt;/div>
+&lt;div>&#123;<span></span>&#123; 'app.welcome' | translate:<strong>'John'</strong> }}&lt;/div>
 
 // Output: Wlecome, John!</pre>
   </mat-card-content>

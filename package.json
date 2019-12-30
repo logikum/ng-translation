@@ -1,11 +1,10 @@
 {
   "name": "ng-translation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000",
     "build": "ng build ng-translation --prod",
-    "postbuild": "node scripts/copy-artifacts.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

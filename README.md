@@ -4,16 +4,42 @@ NgTranslation is a localization support package for Angular 6 applications.
 
 See documentation: [NgTranslation](https://ngt.logikum.hu/)
 
-Features:
+### Usage
 
-* Supports multiple languages
-* Supports multiple files per modules
-* Supports lazy loading
-* Supports server-side rendering
-* Uses pipe in views
-* Uses service in code
-* Supports parameter interpolation
-* Provides component to collect multiple texts
-* Provides component to support selection lists
+Run this command to use the localization library:
+```
+npm install @logikum/ng-translation --save
+```
+### Install
 
-Source code: [GitHub](https://github.com/logikum/ng-translation)
+Run these commands to get the sources of the localization library:
+```
+git clone https://github.com/logikum/ng-translation.git
+npm install
+```
+### Build the package
+
+Run this command to build the localization package:
+```
+ng build --prod ng-translation
+```
+### Documentation
+
+Run this command to start the documentation site in development mode:
+```
+ng serve doc-web-site
+```
+Run this command to build the documentation site:
+```
+ng build --prod doc-web-site
+```
+Run this command to start the documentation site in production mode:
+```
+NODE_ENV=production PORT=3000 node dist/doc-web-site
+```
+### Test
+
+Run this command to start the test site in development mode:
+```
+ng serve test-web-site
+```

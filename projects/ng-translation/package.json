@@ -1,9 +1,8 @@
 {
   "name": "@logikum/ng-translation",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "peerDependencies": {
     "@angular/common": "^6.0.0",
-    "@angular/common/http": "^6.0.0",
     "@angular/core": "^6.0.0",
     "@angular/router": "^6.0.0",
     "rxjs": "^6.0.0"

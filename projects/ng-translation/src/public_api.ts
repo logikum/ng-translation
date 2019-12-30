@@ -1,7 +1,6 @@
 /*
  * Public API Surface of ng-translation
  */
-
 export * from './lib/ng-translation.module';
 
 export * from './lib/load-translations.guard';

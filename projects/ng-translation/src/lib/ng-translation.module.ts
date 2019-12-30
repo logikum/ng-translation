@@ -1,6 +1,5 @@
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
 import { TranslationConfig } from './translation-config.model';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';

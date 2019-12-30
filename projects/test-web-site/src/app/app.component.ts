@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatableOptionList, TranslationService } from 'ng-translation';
 
@@ -8,7 +8,7 @@ import { TranslatableOptionList, TranslationService } from 'ng-translation';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
   menu: TranslatableOptionList;
   languages: TranslatableOptionList;
@@ -43,10 +43,5 @@ export class AppComponent implements OnInit, OnDestroy {
     this.languages.selectedValue = language;
     const url = this.router.routerState.snapshot.url;
     this.router.navigateByUrl( `refresh-translation?url=${ url }` );
-  }
-
-  ngOnDestroy() {
-    this.menu.destroy();
-    this.languages.destroy();
   }
 }

@@ -1,11 +1,13 @@
-import { Subscription } from 'rxjs';
+import { OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { TranslationService } from './translation.service';
 
-export class TranslatableTextList {
+export class TranslatableTextList implements OnDestroy {
 
   private names = new Map();
   private texts = new Map();
-  private subscription: Subscription;
+  private onDestroy: Subject<void> = new Subject();
 
   constructor(
     private translate: TranslationService,
@@ -28,7 +30,8 @@ export class TranslatableTextList {
       } );
     }
 
-    this.subscription = this.translate.languageChanged
+    this.translate.languageChanged
+      .pipe( takeUntil( this.onDestroy ) )
       .subscribe( language => {
         this.translateTexts();
       } );
@@ -63,7 +66,8 @@ export class TranslatableTextList {
     return translation ? this.translate.insert( translation, args ) : key;
   }
 
-  destroy(): void {
-    this.subscription.unsubscribe();
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 }

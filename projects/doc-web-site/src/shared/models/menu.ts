@@ -4,7 +4,7 @@ export class Menu implements IterableIterator<MenuItem> {
 
   private items: Array<MenuItem> = new Array<MenuItem>();
   private basePath: string;
-  private index: number;
+  private index = 0;
 
   constructor(
     basePath: string = '/'
@@ -26,12 +26,12 @@ export class Menu implements IterableIterator<MenuItem> {
     if (this.index < this.items.length) {
       return { value: this.items[ this.index++ ], done: false };
     } else {
+      this.index = 0;
       return { value: undefined, done: true };
     }
   }
 
   [Symbol.iterator](): IterableIterator<MenuItem> {
-    this.index = 0;
     return this;
   }
 }

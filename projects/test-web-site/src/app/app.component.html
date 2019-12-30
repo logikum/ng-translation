@@ -1,29 +1,33 @@
-<mat-toolbar color="primary">
-  <div class="app-header">
+<div *translate="let t">
 
-    <a routerLink="" class="title">{{ text( 'title' ) }}</a>
-    <a *ngFor="let item of menu" routerLink="{{ item.value }}">{{ item.text }}</a>
+  <mat-toolbar color="primary">
+    <div class="app-header">
 
-    <span class="fill-remaining-space"></span>
+      <a routerLink="" class="title">{{ t( 'app.shared.title' ) }}</a>
+      <a *ngFor="let item of menu" routerLink="{{ item.value }}">{{ item.text }}</a>
 
-    <label class="curr-language">{{ text( 'currLang' ) }}</label>
-    <select (change)="changeLanguage( $event )">
-      <option *ngFor="let language of languages"
-              value="{{ language.value }}"
-              [selected]="language.selected">
-        {{ language.text }}
-      </option>
-    </select>
+      <span class="fill-remaining-space"></span>
 
+      <label class="curr-language">{{ t( 'app.shared.currLang' ) }}</label>
+      <select (change)="changeLanguage( $event )">
+        <option *ngFor="let language of languages"
+                value="{{ language.value }}"
+                [selected]="language.selected">
+          {{ language.text }}
+        </option>
+      </select>
+
+    </div>
+  </mat-toolbar>
+
+  <div class="app-content">
+    <router-outlet></router-outlet>
   </div>
-</mat-toolbar>
 
-<div class="app-content">
-  <router-outlet></router-outlet>
-</div>
+  <div class="app-footer">
+    <p>
+      <a routerLink="tests">{{ t( 'app.shared.tests' ) }}</a>
+    </p>
+  </div>
 
-<div class="app-footer">
-  <p>
-    <a routerLink="tests">{{ text( 'tests' ) }}</a>
-  </p>
 </div>

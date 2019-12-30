@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslatableOptionList, TranslationService, TranslatableTextList } from 'ng-translation';
+import { TranslatableOptionList, TranslationService } from 'ng-translation';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,6 @@ import { TranslatableOptionList, TranslationService, TranslatableTextList } from
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit, OnDestroy {
-
-  private texts: TranslatableTextList;
 
   menu: TranslatableOptionList;
   languages: TranslatableOptionList;
@@ -21,14 +19,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.menu = new TranslatableOptionList( this.translate, 'app.menu' );
     this.languages = new TranslatableOptionList( this.translate, 'app.languages' );
-    this.texts = new TranslatableTextList(
-      this.translate,
-      {
-        'app.shared.title': 'title',
-        'app.shared.tests': 'tests',
-        'app.shared.currLang': 'currLang'
-      }
-    );
   }
 
   ngOnInit(): void {
@@ -55,15 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl( `refresh-translation?url=${ url }` );
   }
 
-  text(
-    key: string
-  ): string {
-    return this.texts.get( key );
-  }
-
   ngOnDestroy() {
     this.menu.destroy();
     this.languages.destroy();
-    this.texts.destroy();
   }
 }

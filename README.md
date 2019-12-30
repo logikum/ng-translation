@@ -19,10 +19,9 @@ npm install
 ```
 ### Build the package
 
-Run these commands to build the localization package:
+Run this command to build the localization package:
 ```
-npm run build
-npm run postbuild
+ng build --prod ng-translation
 ```
 ### Documentation
 

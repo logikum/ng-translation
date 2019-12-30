@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { TranslatableOption, TranslatableOptionList, TranslatableTextList, TranslationService } from 'ng-translation';
+import { TranslatableOptionList, TranslatableTextList, TranslationService } from 'ng-translation';
 
 @Component({
   selector: 'app-components',
@@ -9,34 +9,41 @@ import { TranslatableOption, TranslatableOptionList, TranslatableTextList, Trans
 })
 export class ComponentsComponent implements OnInit, OnDestroy {
 
-  monthList: TranslatableOptionList;
-  textList: TranslatableTextList;
+  months: TranslatableOptionList;
+  seasons: TranslatableOptionList;
+  texts: TranslatableTextList;
 
-  get months(): Array<TranslatableOption> { return this.monthList.items; }
-
+  get selectedMonth(): string {
+    return JSON.stringify( this.months.selectedItem );
+  }
+  get selectedSeason(): string {
+    return JSON.stringify( this.seasons.selectedItem );
+  }
   get dailyOffer(): string {
-    return this.textList.get( 'offer', { buy: 3, pay: 2 } );
+    return this.texts.get( 'offer', { buy: 3, pay: 2 } );
   }
   get specialOffer(): string {
-    return this.textList.get( 'special', [ 'Jackie Chan', 20 ] );
+    return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );
   }
   get specialLasts(): string {
-    return this.textList.get( 'lasts', 4 );
+    return this.texts.get( 'lasts', 4 );
   }
 
   constructor(
     private translate: TranslationService
   ) {
-    this.monthList = new TranslatableOptionList( translate, 'app.month' );
+    this.months = new TranslatableOptionList( translate, 'app.month' );
+    this.seasons = new TranslatableOptionList( translate, 'app.menu' );
 
-    this.textList = new TranslatableTextList(
+    this.texts = new TranslatableTextList(
       translate,
       {
         'app.home.title': 'seasons',
         'spring.index.title': 'spring',
-        'app.shared.summer': 'summer',
-        'app.shared.autumn': 'autumn',
-        'app.shared.winter': 'winter',
+        'app.menu.summer': 'summer',
+        'app.menu.autumn': 'autumn',
+        'app.menu.winter': 'winter',
+        'app.languages': 'lng',
         'app.shop.offer': 'offer',
         'app.shop.special': 'special',
         'app.shop.sale': 'lasts'
@@ -45,16 +52,24 @@ export class ComponentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.monthList.selectedValue = this.monthList.items[ new Date( Date.now() ).getMonth() ].value;
+    this.months.selectedIndex = new Date( Date.now() ).getMonth();
   }
 
   monthChange(
     event: any
   ): void {
-    this.monthList.selectedValue = event.target.value;
+    this.months.selectedValue = event.target.value;
+  }
+
+  seasonChange(
+    event: any
+  ): void {
+    this.seasons.selectedValue = event.target.value;
   }
 
   ngOnDestroy() {
-    this.textList.destroy();
+    this.months.destroy();
+    this.seasons.destroy();
+    this.texts.destroy();
   }
 }

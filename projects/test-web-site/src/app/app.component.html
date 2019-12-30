@@ -1,20 +1,16 @@
 <mat-toolbar color="primary">
   <div class="app-header">
 
-    <a routerLink="" class="title">{{ menuItem( 'title' ) }}</a>
-
-    <a routerLink="spring">{{ menuItem( 'spring' ) }}</a>
-    <a routerLink="summer">{{ menuItem( 'summer' ) }}</a>
-    <a routerLink="autumn">{{ menuItem( 'autumn' ) }}</a>
-    <a routerLink="winter">{{ menuItem( 'winter' ) }}</a>
+    <a routerLink="" class="title">{{ text( 'title' ) }}</a>
+    <a *ngFor="let item of menu" routerLink="{{ item.value }}">{{ item.text }}</a>
 
     <span class="fill-remaining-space"></span>
 
-    <label class="curr-language">{{ menuItem( 'currLang' ) }}</label>
+    <label class="curr-language">{{ text( 'currLang' ) }}</label>
     <select (change)="changeLanguage( $event )">
       <option *ngFor="let language of languages"
               value="{{ language.value }}"
-              selected="{{ language.selected ? 'selected' : '' }}">
+              [selected]="language.selected">
         {{ language.text }}
       </option>
     </select>
@@ -28,6 +24,6 @@
 
 <div class="app-footer">
   <p>
-    <a routerLink="tests">{{ menuItem( 'tests' ) }}</a>
+    <a routerLink="tests">{{ text( 'tests' ) }}</a>
   </p>
 </div>

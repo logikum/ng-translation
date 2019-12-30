@@ -38,7 +38,19 @@ export class TranslatableTextList {
   private translateTexts(): void {
     this.texts.clear();
     this.names.forEach( (value, key) => {
-      this.texts.set( value, this.translate.get( key ) );
+      const result = this.translate.get( key );
+
+      if (typeof result === 'object') {
+        const names = Object.getOwnPropertyNames( result );
+        names.forEach( name => {
+          this.texts.set(
+            value ? `${ value }.${ name }` : name,
+            result[ name ]
+          );
+        } );
+      } else {
+        this.texts.set( value, result );
+      }
     } );
   }
 

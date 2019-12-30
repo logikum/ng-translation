@@ -11,18 +11,71 @@
     </option>
   </select>
 </p>
+<table>
+  <tr>
+    <td><label>{{ 'app.shared.selectedIndex' | translate }}</label></td>
+    <td>{{ months.selectedIndex }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedValue' | translate }}</label></td>
+    <td>{{ months.selectedValue }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedText' | translate }}</label></td>
+    <td>{{ months.selectedText }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedItem' | translate }}</label></td>
+    <td>{{ selectedMonth }}</td>
+  </tr>
+</table>
 <p>
-  <label>{{ 'app.shared.selected' | translate }}</label>{{ monthList.selectedValue }}
+  <ng-container *ngFor="let season of seasons">
+    <label>
+      <input type="radio" name="season" [value]="season.value"
+             [checked]="season.selected"
+             (change)="seasonChange( $event)">
+      {{ season.text }}
+    </label>
+  </ng-container>
 </p>
+<table>
+  <tr>
+    <td><label>{{ 'app.shared.selectedIndex' | translate }}</label></td>
+    <td>{{ seasons.selectedIndex }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedValue' | translate }}</label></td>
+    <td>{{ seasons.selectedValue }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedText' | translate }}</label></td>
+    <td>{{ seasons.selectedText }}</td>
+  </tr>
+  <tr>
+    <td><label>{{ 'app.shared.selectedItem' | translate }}</label></td>
+    <td>{{ selectedSeason }}</td>
+  </tr>
+</table>
 
 <h3>TranslatableTextList</h3>
-<p>
-  {{ textList.get ('seasons') }}:<br>
-  {{ textList.get ('spring') }}<br>
-  {{ textList.get ('summer') }}<br>
-  {{ textList.get ('autumn') }}<br>
-  {{ textList.get ('winter') }}
-</p>
+<table>
+  <tr>
+    <td>
+      {{ texts.get ('seasons') }}:<br>
+      {{ texts.get ('spring') }}<br>
+      {{ texts.get ('summer') }}<br>
+      {{ texts.get ('autumn') }}<br>
+      {{ texts.get ('winter') }}
+    </td>
+    <td>&nbsp;</td>
+    <td>
+      {{ texts.get ('lng.en') }}<br>
+      {{ texts.get ('lng.it') }}<br>
+      {{ texts.get ('lng.hu') }}
+    </td>
+  </tr>
+</table>
 
 <h3>Parameter interpolation</h3>
 <p>{{ dailyOffer }}</p>

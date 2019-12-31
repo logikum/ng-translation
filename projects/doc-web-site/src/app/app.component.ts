@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     private svcApp: AppService
   ) {
     this.versions.push( { value: VERSION.v2_0, text: 'Version 2.0' } );
-    this.versions.push( { value: VERSION.v1_1, text: 'Version 1.1' } );
+    this.versions.push( { value: VERSION.v1_0, text: 'Version 1.0' } );
 
     this.svcApp.menu$.subscribe( menu => {
       this.menu = menu;

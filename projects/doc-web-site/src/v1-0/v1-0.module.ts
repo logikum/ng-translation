@@ -37,13 +37,13 @@ const routes: Routes = [
   ],
   providers: []
 } )
-export class V11Module {
+export class V10Module {
 
   constructor(
     router: Router,
     svcApp: AppService
   ) {
-    const menu: Menu = new Menu( VERSION.v1_1 );
+    const menu: Menu = new Menu( VERSION.v1_0 );
 
     menu.add( PATH.setup, MENU.setup );
     menu.add( PATH.configuration, MENU.configuration );
@@ -55,7 +55,7 @@ export class V11Module {
     svcApp.setMenu( menu );
 
     router.events.subscribe( event => {
-      if (event instanceof NavigationStart && event.url === VERSION.v1_1) {
+      if (event instanceof NavigationStart && event.url === VERSION.v1_0) {
         svcApp.setMenu( menu );
       }
     } );

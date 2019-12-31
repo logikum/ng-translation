@@ -10,60 +10,20 @@
       that we want to create a list of fruits. Tha names of the fruits are stored
       in JSON files:
     </p>
-    <pre>// app.hu.json
-&#123;
-  ...
-  "fruits": &#123;
-    "apple": "alma",
-    "peach": "barack",
-    "cherry": "cseresznye",
-    "plum": "szilva"
-  },
-  ...
-}</pre>
+    <app-excerpt [text]="translation"></app-excerpt>
     <p>
       The TranslatableOptionList class provides the list items in the following way:
     </p>
-    <pre>@Component(&#123; ... })
-export class FruitComponent implements OnDestroy &#123;
-
-  private fruitList: <strong>TranslatableOptionList</strong>;
-
-  get fruits(): Array&lt;<strong>TranslatableOption</strong>> &#123; return this.fruitList.<strong>items</strong>; }
-
-  constructor(
-    private translate: <strong>TranslationService</strong>
-  ) &#123;
-    this.fruitList = <strong>new</strong> TranslatableOptionList( translate, 'app.fruits' );
-  }
-  ...
-  ngOnDestroy() &#123;
-    this.fruitList.<strong>destroy()</strong>;
-  }
-}</pre>
+    <app-excerpt [text]="code"></app-excerpt>
     <p>
       Here <i>'app.fruits'</i> is the key of the text node. Thereafter the fruit
       list can be used in the view:
     </p>
-    <pre>&lt;select>
-  &lt;option *ngFor="let fruit of fruits"
-          [value]="fruit.<strong>value</strong>"
-          [selected]="fruit.<strong>selected</strong>">
-    &#123;<span></span>&#123; fruit.text }}
-  &lt;/option>
-&lt;/select></pre>
+    <app-excerpt [text]="view"></app-excerpt>
     <p>
       The actual value is available as:
     </p>
-    <pre>...
-  doSomething() &#123;
-    ...
-    this.fruitList.<strong>selectedValue</strong> = 'cherry';
-    ...
-    const fruit: string = this.fruitList.<strong>selectedValue</strong>;
-    ...
-  }
-...</pre>
+    <app-excerpt [text]="properties"></app-excerpt>
     <p>
       The TranslatableOptionList object wil load the appropriate translation texts
       when the user changes the current language.

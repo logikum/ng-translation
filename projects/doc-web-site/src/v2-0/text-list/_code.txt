@@ -1,0 +1,24 @@
+@Component({
+  selector: 'app-seasons',
+  templateUrl: './seasons.component.html',
+  styleUrls: ['./seasons.component.css']
+})
+export class ShopComponent implements OnInit, OnDestroy {
+
+  private texts: <strong>TranslatableTextList</strong>;
+
+  constructor(
+    private translate: <strong>TranslationService</strong>
+  ) {
+    this.texts = <strong>new</strong> TranslatableTextList(
+      this.translate,
+      <strong><em>keyList</em></strong>
+    );
+  }
+
+  ngOnInit() { }
+
+  ngOnDestroy() {
+    this.texts.<strong>destroy()</strong>;
+  }
+}

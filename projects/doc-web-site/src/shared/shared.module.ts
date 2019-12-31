@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   MatToolbarModule, MatCardModule, MatButtonModule, MatExpansionModule
 } from '@angular/material';
+import { ExcerptComponent } from './excerpt/excerpt.component';
 
 @NgModule( {
   imports: [
@@ -14,13 +15,17 @@ import {
     MatButtonModule,
     MatExpansionModule
   ],
+  declarations: [
+    ExcerptComponent
+  ],
   exports: [
     CommonModule,
     HttpClientModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ExcerptComponent
   ]
 } )
 export class SharedModule { }

@@ -1,0 +1,7 @@
+const routes: Routes = [
+  {
+    <strong>path: 'shakespeare'</strong>,
+    loadChildren: './dramas/shakespeare.module#ShakespeareModule',
+    canLoad: [ LoadTranslationsGuard ]
+  }
+];

@@ -1,0 +1,17 @@
+@Component({ ... })
+export class FruitComponent implements OnDestroy {
+
+  private fruitList: <strong>TranslatableOptionList</strong>;
+
+  get fruits(): Array&lt;<strong>TranslatableOption</strong>&gt; { return this.fruitList.<strong>items</strong>; }
+
+  constructor(
+    private translate: <strong>TranslationService</strong>
+  ) {
+    this.fruitList = <strong>new</strong> TranslatableOptionList( translate, 'app.fruits' );
+  }
+  ...
+  ngOnDestroy() {
+    this.fruitList.<strong>destroy()</strong>;
+  }
+}

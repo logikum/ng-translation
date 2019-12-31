@@ -14,11 +14,11 @@ const routes: Routes = [
   { path: '**', redirectTo: '' }
 ];
 
-@NgModule({
+@NgModule( {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot( routes ),
     SharedModule
   ],
   declarations: [

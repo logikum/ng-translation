@@ -11,10 +11,7 @@
           NgTranslationModule
         </mat-expansion-panel-header>
         Set translation parameters and adds providers.
-        <pre>class NgTranslationModule &#123;
-  static forRoot(config: TranslationConfig): ModuleWithProviders&lt;NgTranslationModule>
-  static forChild(): ModuleWithProviders&lt;NgTranslationModule>
-}</pre>
+        <app-excerpt [text]="ngTranslationModule"></app-excerpt>
         <h3>forRoot()</h3>
         Parameters:
         <dl>
@@ -32,11 +29,7 @@
           TranslationConfig
         </mat-expansion-panel-header>
         Represents the settings of the translation module.
-        <pre>class TranslationConfig &#123;
-  translationUrl: string
-  sections: Array&lt;string>
-  defaultLanguage: string
-}</pre>
+        <app-excerpt [text]="translationConfig"></app-excerpt>
         <h3>translationUrl</h3>
         The property defines the URL where NgTranslation will download the translation
         files from. The property value is a template string that has to contain 2 named
@@ -60,10 +53,7 @@
           LoadTranslationsGuard
         </mat-expansion-panel-header>
         Loads the translations for a lazy loaded module before loading the module itself.
-        <pre>class LoadTranslationsGuard &#123;
-  constructor(translationService: TranslationService): void
-  canLoad(route: Route): Promise&lt;boolean>
-}</pre>
+        <app-excerpt [text]="loadTranslationGuard"></app-excerpt>
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -71,7 +61,7 @@
           TranslatePipe
         </mat-expansion-panel-header>
         Transforms a key string to a localized texts.
-        <pre>&#123;<span></span>&#123; 'key' | translate[: values] }}</pre>
+        <app-excerpt [text]="translationPipe"></app-excerpt>
         <dl>
           <dt>values: object | Array&lt;string> | string | number | Boolean</dt>
           <dd>The value or values to interpolate into the localized text.</dd>
@@ -83,12 +73,7 @@
           TranslatableOptionList
         </mat-expansion-panel-header>
         Provides properties and methods to create a translatable select list.
-        <pre>class TranslatableOptionList &#123;
-  constructor(translate: TranslationService, key: string)
-  items: Array&lt;TranslatableOption>
-  selectedValue: string
-  destroy(): void
-}</pre>
+        <app-excerpt [text]="translatableOptionList"></app-excerpt>
         <h3>constructor()</h3>
         Creates a new instance of the select list.
         <dl>
@@ -110,11 +95,7 @@
           TranslatableOption
         </mat-expansion-panel-header>
         Represents an item contained in a select list.
-        <pre>interface TranslatableOption &#123;
-  value: string
-  text: string
-  selected: boolean
-}</pre>
+        <app-excerpt [text]="translatableOption"></app-excerpt>
         <h3>value</h3>
         The value to be submitted with the form, should this option be selected.
         <h3>text</h3>
@@ -128,11 +109,7 @@
           TranslatableTextList
         </mat-expansion-panel-header>
         Provides methods to retrieve a bunch of texts to use in code.
-        <pre>class TranslatableTextList &#123;
-  constructor(translate: TranslationService, keyList: string | Array&lt;string> | object)
-  get(key: string, args?: any): string
-  destroy(): void
-}</pre>
+        <app-excerpt [text]="translatableTextList"></app-excerpt>
         <h3>constructor()</h3>
         Creates a new instance of the text list.
         <dl>

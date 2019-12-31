@@ -7,14 +7,11 @@
     <p>
       An example configuration object looks like that:
     </p>
-<pre>&#123;
-  translationUrl: '/assets/i18n/&#123; language }/&#123; section }.json',
-  sections: [ 'app', 'common', 'lazy:feature', 'lazy:texts' ],
-  defaultLanguage: 'en'
-}</pre>
+    <app-excerpt [text]="config"></app-excerpt>
     <p>
       The configuration object has the following properties:
     </p>
+
     <h3>translationUrl: <span class="dataType">string</span></h3>
     <p>
       The property defines the URL where NgTranslation will download the translation
@@ -32,30 +29,20 @@
     <p>
       In the case of the above example the following files will be downloaded:
     </p>
-<pre>/assets
-       /i18n
-            /en
-               /app.json
-               /common.json
-            /hu
-               /app.json
-               /common.json</pre>
+    <app-excerpt [text]="assets"></app-excerpt>
     <p>
       When you use this template:
     </p>
-    <pre>translationUrl: '/translations/&#123; section }.&#123; language }.json'</pre>
+    <app-excerpt [text]="translationUrl"></app-excerpt>
     <p>
       Then the following translation files will be downloaded:
     </p>
-    <pre>/translations
-             /app.en.json
-             /app.hu.json
-             /common.en.json
-             /common.hu.json</pre>
+    <app-excerpt [text]="translations"></app-excerpt>
     <p>
       All the other translation files will bo downloaded when they are needed,
       i.e. the user changes language or request a lazy loaded module.
     </p>
+
     <h3>sections: <span class="dataType">Array&lt;string></span></h3>
     <p>
       All translations can be stored in a big file, however, it is easier to maintain
@@ -76,32 +63,19 @@
     <p>
       As an example, if you define the following route:
     </p>
-<pre>const routes: Routes = [
-  &#123;
-    <strong>path: 'shakespeare'</strong>,
-    loadChildren: './dramas/shakespeare.module#ShakespeareModule',
-    canLoad: [ LoadTranslationsGuard ]
-  }
-];</pre>
+    <app-excerpt [text]="routes1"></app-excerpt>
     <p>
       Then you can use the following sections:
     </p>
-<pre>sections: [ 'shakespeare:tragedies', 'shakespeare:histories', 'shakespeare:comedies' ]</pre>
+    <app-excerpt [text]="sections1"></app-excerpt>
     <p>
       If you apply the section prefix on the route definition like that:
     </p>
-<pre>const routes: Routes = [
-  &#123;
-    path: 'shakespeare',
-    loadChildren: './dramas/shakespeare.module#ShakespeareModule',
-    canLoad: [ LoadTranslationsGuard ],
-    <strong>data: &#123; sectionPrefix: 'dramas' }</strong>,
-  }
-];</pre>
+    <app-excerpt [text]="routes2"></app-excerpt>
     <p>
       Then the corresponding sections will be:
     </p>
-<pre>sections: [ 'dramas:tragedies', 'dramas:histories', 'dramas:comedies' ]</pre>
+    <app-excerpt [text]="sections2"></app-excerpt>
     <h3>defaultLanguage: <span class="dataType">string</span></h3>
     <p>
       The code of the default language. The translations of the eager loaded modules

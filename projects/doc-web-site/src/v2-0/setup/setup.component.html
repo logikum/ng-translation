@@ -19,7 +19,7 @@
     <p>
       First you need to install the npm module:
     </p>
-    <pre>npm install @logikum/ng-translation --save</pre>
+    <app-excerpt [text]="install"></app-excerpt>
   </mat-card-content>
 </mat-card>
 
@@ -34,23 +34,11 @@
       To use ng-translation you have to import the NgTranslationModule.forRoot()
       in the root module of your Angular application:
     </p>
-<pre>import &#123; BrowserModule } from '@angular/platform-browser';
-import &#123; NgModule } from '@angular/core';
-<strong>import &#123; NgTranslationModule } from '@logikum/ng-translation';</strong>
-
-@NgModule(&#123;
-  imports: [
-    BrowserModule,
-    <strong>NgTranslationModule.forRoot( <em>configuration</em> )</strong>
-  ],
-  bootstrap: [
-    AppComponent
-  ]
-})
-export class AppModule &#123; }</pre>
+    <app-excerpt [text]="setup"></app-excerpt>
     <p>
       The forRoot method requires a configuration object, see later.
     </p>
+
     <h3>Feature modules or shared module</h3>
     <p>
       In feature modules you have to use the NgTranslationModule.forChild()
@@ -58,57 +46,21 @@ export class AppModule &#123; }</pre>
       feature modules, you can export the NgTranslationModule to make sure you
       don't have to import it in every module.
     </p>
-<pre>@NgModule(&#123;
-  exports: [
-    CommonModule,
-    <strong>NgTranslationModule.forChild()</strong>
-  ]
-})
-export class SharedModule &#123; }</pre>
+    <app-excerpt [text]="feature"></app-excerpt>
+
     <h3>Lazy loaded modules</h3>
     <p>
       For lazy loaded modules yuo have to use the LoadTranslationsGuard in the
       route definitions to load the translations before loading the modules:
     </p>
-<pre>import &#123; RouterModule, Routes } from '@angular/router';
-<strong>import &#123; NgTranslationModule, LoadTranslationsGuard } from '@logikum/ng-translation';</strong>
-
-const routes: Routes = [
-  &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
-  &#123; path: 'home', component: SetupComponent },
-  &#123;
-    path: 'lazy',
-    loadChildren: './lazy/lazy.module#LazyModule',
-    <strong>canLoad: [ LoadTranslationsGuard ]</strong>
-  },
-  &#123; path: '**', redirectTo: 'home' }
-];
-
-@NgModule(&#123;
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot( routes ),
-    <strong>NgTranslationModule.forRoot( <em>configuration</em> )</strong>
-  ]
-})
-export class AppModule &#123; }</pre>
+    <app-excerpt [text]="lazy"></app-excerpt>
     <p>
       The translations belonging to the lazy loaded modules are identified by the
       path. To avoid path conflicts you can use an alternative way to identify the
       proper translation. Add a data object having a section prefix property to
       the route definition:
     </p>
-<pre>const routes: Routes = [
-  &#123; path: '', redirectTo: 'home', pathMatch: 'full' },
-  &#123; path: 'home', component: SetupComponent },
-  &#123;
-    path: 'lazy',
-    loadChildren: './lazy/lazy.module#LazyModule',
-    <strong>canLoad: [ LoadTranslationsGuard ],
-    data: &#123; sectionPrefix: 'laggard' }</strong>
-  },
-  &#123; path: '**', redirectTo: 'home' }
-];</pre>
+    <app-excerpt [text]="guard"></app-excerpt>
   </mat-card-content>
 
   <mat-card-actions>

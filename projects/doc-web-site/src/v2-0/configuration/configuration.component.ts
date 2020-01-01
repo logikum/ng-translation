@@ -5,7 +5,8 @@ import _assets from 'raw-loader!./_assets.txt';
 import _translationUrl from 'raw-loader!./_translation-url.txt';
 import _translations from 'raw-loader!./_translations.txt';
 import _routes1 from 'raw-loader!./_routes-1.txt';
-import _sections1 from 'raw-loader!./_sections-1.txt';
+import _sections11 from 'raw-loader!./_sections-1-1.txt';
+import _sections12 from 'raw-loader!./_sections-1-2.txt';
 import _routes2 from 'raw-loader!./_routes-2.txt';
 import _sections2 from 'raw-loader!./_sections-2.txt';
 
@@ -22,7 +23,8 @@ export class ConfigurationComponent {
   readonly translationUrl = _translationUrl;
   readonly translations = _translations;
   readonly routes1 = _routes1;
-  readonly sections1 = _sections1;
+  readonly sections11 = _sections11;
+  readonly sections12 = _sections12;
   readonly routes2 = _routes2;
   readonly sections2 = _sections2;
 }

@@ -1,1 +1,1 @@
-sections: [ 'dramas:tragedies', 'dramas:histories', 'dramas:comedies' ]
+sections: [ '<strong>dramas</strong>:tragedies', '<strong>dramas</strong>:histories', '<strong>dramas</strong>:comedies' ]

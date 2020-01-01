@@ -1,21 +1,7 @@
-@Component({
-  selector: 'app-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
-})
-export class ShopComponent implements OnInit, OnDestroy {
+@Component({...})
+export class ShopComponent {
 
   private texts: TranslatableTextList;
-
-  get dailyOffer(): string {
-    return this.texts.<strong>get( 'offer', { buy: 3, pay: 2 } )</strong>;
-  }
-  get specialOffer(): string {
-    return this.texts.<strong>get( 'special', [ 'Jackie Chan', 20 ] )</strong>;
-  }
-  get specialLasts(): string {
-    return this.texts.<strong>get( 'lasts', 4 )</strong>;
-  }
 
   constructor(
     private translate: TranslationService
@@ -30,9 +16,10 @@ export class ShopComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit() { }
-
-  ngOnDestroy() {
-    this.texts.destroy();
+  doSomething() {
+    const dailyOffer: string = this.texts.<strong>get( 'offer', { buy: 3, pay: 2 } )</strong>;
+    const specialOffer: string = this.texts.<strong>get( 'special', [ 'Jackie Chan', 20 ] )</strong>;
+    const specialLasts: string = this.texts.<strong>get( 'lasts', 4 )</strong>;
+    ...
   }
 }

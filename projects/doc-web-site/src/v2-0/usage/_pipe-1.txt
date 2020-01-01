@@ -1,1 +1,0 @@
-&lt;div&gt;{{ '<strong>key</strong>' | translate:<strong>parameters</strong> }}&lt;/div&gt;

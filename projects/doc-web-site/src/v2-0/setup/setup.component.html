@@ -34,7 +34,7 @@
       To use ng-translation you have to import the NgTranslationModule.forRoot()
       in the root module of your Angular application:
     </p>
-    <app-excerpt [text]="setup"></app-excerpt>
+    <app-excerpt [text]="root" language="typescript"></app-excerpt>
     <p>
       The forRoot method requires a configuration object, see later.
     </p>
@@ -46,28 +46,28 @@
       feature modules, you can export the NgTranslationModule to make sure you
       don't have to import it in every module.
     </p>
-    <app-excerpt [text]="feature"></app-excerpt>
+    <app-excerpt [text]="feature" language="typescript"></app-excerpt>
 
     <h3>Lazy loaded modules</h3>
     <p>
       For lazy loaded modules yuo have to use the LoadTranslationsGuard in the
       route definitions to load the translations before loading the modules:
     </p>
-    <app-excerpt [text]="lazy"></app-excerpt>
+    <app-excerpt [text]="lazy" language="typescript"></app-excerpt>
     <p>
       The translations belonging to the lazy loaded modules are identified by the
       path. To avoid path conflicts you can use an alternative way to identify the
       proper translation. Add a data object having a section prefix property to
       the route definition:
     </p>
-    <app-excerpt [text]="guard"></app-excerpt>
+    <app-excerpt [text]="guard" language="typescript"></app-excerpt>
   </mat-card-content>
 
   <mat-card-actions>
     <span class="fill-remaining-space"></span>
 
     <span class="control-text">Configuration</span>
-    <a href="configuration">
+    <a routerLink="../configuration">
       <button mat-fab color="accent">
         <i class="fas fa-chevron-right control-button"></i>
       </button>

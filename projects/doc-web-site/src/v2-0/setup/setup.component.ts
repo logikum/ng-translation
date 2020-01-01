@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import _install from 'raw-loader!./_install.txt';
-import _setup from 'raw-loader!./_setup.txt';
+import _root from 'raw-loader!./_root.txt';
 import _feature from 'raw-loader!./_feature.txt';
 import _lazy from 'raw-loader!./_lazy.txt';
 import _guard from 'raw-loader!./_guard.txt';
@@ -15,7 +15,7 @@ import _guard from 'raw-loader!./_guard.txt';
 export class SetupComponent {
 
   readonly install = _install;
-  readonly setup = _setup;
+  readonly root = _root;
   readonly feature = _feature;
   readonly lazy = _lazy;
   readonly guard = _guard;

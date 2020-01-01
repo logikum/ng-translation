@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ExcerptComponent {
 
   @Input() text: string;
+  @Input() language = 'plaintext';
 }

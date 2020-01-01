@@ -4,8 +4,8 @@ const routes: Routes = [
   {
     path: 'lazy',
     loadChildren: './lazy/lazy.module#LazyModule',
-    <strong>canLoad: [ LoadTranslationsGuard ],
-    data: { sectionPrefix: 'laggard' }</strong>
+    <strong>canLoad: [ LoadTranslationsGuard ]</strong>,
+    <strong>data: { sectionPrefix: 'laggard' }</strong>
   },
   { path: '**', redirectTo: 'home' }
 ];

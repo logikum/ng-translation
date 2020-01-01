@@ -5,6 +5,7 @@ import {
   MatToolbarModule, MatCardModule, MatButtonModule, MatExpansionModule
 } from '@angular/material';
 import { ExcerptComponent } from './excerpt/excerpt.component';
+import { HighlightCodeDirective } from './excerpt/highlight-code.directive';
 
 @NgModule( {
   imports: [
@@ -16,7 +17,8 @@ import { ExcerptComponent } from './excerpt/excerpt.component';
     MatExpansionModule
   ],
   declarations: [
-    ExcerptComponent
+    ExcerptComponent,
+    HighlightCodeDirective
   ],
   exports: [
     CommonModule,

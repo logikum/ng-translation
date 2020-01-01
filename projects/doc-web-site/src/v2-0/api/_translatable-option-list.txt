@@ -1,6 +1,9 @@
 class TranslatableOptionList {
   constructor(translate: TranslationService, key: string)
-  items: Array&lt;TranslatableOption&gt;
+  selectedIndex: number
   selectedValue: string
-  destroy(): void
+  readonly selectedText: string
+  readonly selectedItem: TranslatableOption
+  next(): IteratorResult&ly;TranslatableOption&gt;
+  [Symbol.iterator](): IterableIterator&lt;TranslatableOption&gt;
 }

@@ -8,11 +8,17 @@
       The TranslatableTextList class makes easy to handle several text items in
       the controller code. For example you want to use these texts:
     </p>
-    <app-excerpt [text]="translation1"></app-excerpt>
+    <table>
+      <tr>
+        <td><app-excerpt [text]="translation11" language="json"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="translation12" language="json"></app-excerpt></td>
+      </tr>
+    </table>
     <p>
       You can do it like that:
     </p>
-    <app-excerpt [text]="code"></app-excerpt>
+    <app-excerpt [text]="code" language="typescript"></app-excerpt>
     <p>
       The key list can be a string, a string array or an object.
     </p>
@@ -22,35 +28,40 @@
       In that case the text list will contain one item only, not very useful.
       Anyway, it can be used like that:
     </p>
-    <app-excerpt [text]="keyString"></app-excerpt>
+    <app-excerpt [text]="keyString" language="typescript"></app-excerpt>
+    <p>
+      However, when the key identifies a node in the translations, all items of the
+      node are returned. The items canbe  accessed using the property names:
+    </p>
+    <app-excerpt [text]="keyNode" language="typescript"></app-excerpt>
 
     <h3>Key list is string array</h3>
     <p>
       Similar to the previous case, but several items can be fetched at a time:
     </p>
-    <app-excerpt [text]="keyArray"></app-excerpt>
+    <app-excerpt [text]="keyArray" language="typescript"></app-excerpt>
 
     <h3>Key list is object</h3>
     <p>
       The most practical use case, as the object can used to map the text keys to
       shorter ones:
     </p>
-    <app-excerpt [text]="keyObject"></app-excerpt>
+    <app-excerpt [text]="keyObject" language="typescript"></app-excerpt>
 
     <h3>Parameter interpolation</h3>
     <p>
       Parameters are allowed as usual, e.g.:
     </p>
-    <app-excerpt [text]="translation2"></app-excerpt>
+    <app-excerpt [text]="translation2" language="json"></app-excerpt>
     <p>
       And then:
     </p>
-    <app-excerpt [text]="interpolation"></app-excerpt>
+    <app-excerpt [text]="interpolation" language="typescript"></app-excerpt>
     <p>
   </mat-card-content>
 
   <mat-card-actions>
-    <a href="selection-list">
+    <a routerLink="../selection-list">
       <button mat-fab color="primary">
         <i class="fas fa-chevron-left control-button"></i>
       </button>
@@ -60,7 +71,7 @@
     <span class="fill-remaining-space"></span>
 
     <span class="control-text">API</span>
-    <a href="api">
+    <a routerLink="../api">
       <button mat-fab color="accent">
         <i class="fas fa-chevron-right control-button"></i>
       </button>

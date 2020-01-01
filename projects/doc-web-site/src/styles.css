@@ -30,6 +30,7 @@ pre {
 }
 em {
   color: blue;
+  font-style: normal;
 }
 strong {
   color: deeppink;
@@ -37,4 +38,19 @@ strong {
 dt {
   font-family: "Courier New";
   font-size: 1rem;
+}
+code strong {
+  border: cyan solid thin;
+  background-color: #402050;
+  color: unset;
+}
+code em {
+  color: yellow;
+}
+td pre {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.mat-expansion-panel-header {
+  font-size: 24px;
 }

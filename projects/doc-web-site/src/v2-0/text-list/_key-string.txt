@@ -2,16 +2,11 @@
   constructor(
     private translate: TranslationService
   ) {
-    this.texts = new TranslatableTextList(
-      this.translate, [
-      'seasons.summer.name',
-      'seasons.autumn.name',
-      'seasons.winter.name'
-    ] );
+    this.texts = new TranslatableTextList( this.translate, 'seasons.spring.name' );
   }
 
   doSomething() {
-    const summer: string = this.texts.<strong>get</strong>( 'seasons.summer.name' );
+    const spring: string = this.texts.<strong>get( 'seasons.spring.name' )</strong>;
     ...
   }
 ...

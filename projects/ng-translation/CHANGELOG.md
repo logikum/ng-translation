@@ -1,5 +1,14 @@
 # Changes
 
+### v2.0.0
+_Published on 1/3/2020._
+
+* Update to Angular 7.
+* Make TranslatableOptionList and TranslatableTextList components iterable.
+* Improve subscription management of TranslatableOptionList and TranslatableTextList components.
+* Add new properties to TranslatableOptionList component.
+* Add translate structural directive.
+
 ### v1.0.2
 _Published on 12/30/2019._
 

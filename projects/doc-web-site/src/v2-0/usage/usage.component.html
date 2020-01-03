@@ -10,6 +10,15 @@
     </p>
     <app-excerpt [text]="translation1" language="json"></app-excerpt>
     <p>
+      The texts may contain placeholders for values to insert runtime. Double
+      curly brackets mark the placeholders in the text and are identified by
+      names or ordered indeces:
+    </p>
+    <app-excerpt [text]="placeholder" language="json"></app-excerpt>
+    <p>
+      See the <i>Parameter interpolation</i> chapter for more details.
+    </p>
+    <p>
       The translation texts are referred in the Angular app by their keys. The key
       consists of the name of the translation file and the name of the JSON property
       separated by a dot. The texts in the above example can be referred by the
@@ -37,13 +46,49 @@
     </p>
   </mat-expansion-panel>
 
+  <!-- Use structural directive in views -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use structural directive in views
+    </mat-expansion-panel-header>
+    <blockquote>
+      Using a structural directive is the recommended way as it creates one
+      subscription per template.
+    </blockquote>
+    <p>
+      You can use the translate directive to get your translation values:
+    </p>
+    <app-excerpt [text]="directive1" language="html"></app-excerpt>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <app-excerpt [text]="directive2" language="html"></app-excerpt>
+    <p>
+      Or with parameter:
+    </p>
+    <app-excerpt [text]="directive3" language="html"></app-excerpt>
+    <p>
+      You can also specify paramaters in the component:
+    </p>
+    <app-excerpt [text]="param_1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param_2" language="html"></app-excerpt>
+    <p>
+      When you use HTML tags in the translation text:
+    </p>
+    <app-excerpt [text]="html_1" language="json"></app-excerpt>
+    <p>
+      It can be displayed using the innerHTML attribute:
+    </p>
+    <app-excerpt [text]="html_2" language="html"></app-excerpt>
+  </mat-expansion-panel>
+
   <!-- Use pipe in views -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       Use pipe in views
     </mat-expansion-panel-header>
     <p>
-      You can use the TranslatePipe to get your translation values:
+      You can use the translate pipe to get your translation values:
     </p>
     <app-excerpt [text]="pipe1" language="html"></app-excerpt>
     <p>
@@ -51,11 +96,11 @@
     </p>
     <app-excerpt [text]="pipe2" language="html"></app-excerpt>
     <p>
-      Or with parameters:
+      Or with parameter:
     </p>
     <app-excerpt [text]="pipe3" language="html"></app-excerpt>
     <p>
-      You can also specify the paramater in the component:
+      You can also specify the paramaters in the component:
     </p>
     <app-excerpt [text]="param1" language="typescript"></app-excerpt>
     <app-excerpt [text]="param2" language="html"></app-excerpt>

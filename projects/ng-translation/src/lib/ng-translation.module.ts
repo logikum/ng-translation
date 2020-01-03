@@ -1,9 +1,9 @@
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-
 import { TranslationConfig } from './translation-config.model';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
+import { TranslateDirective } from './translate.directive';
 
 export function initializerFactory(
   service: TranslationService,
@@ -35,10 +35,12 @@ export function serviceFactory(
     HttpClientModule
   ],
   declarations: [
-    TranslatePipe
+    TranslatePipe,
+    TranslateDirective
   ],
   exports: [
-    TranslatePipe
+    TranslatePipe,
+    TranslateDirective
   ]
 })
 export class NgTranslationModule {

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslatableOption, TranslatableOptionList, TranslationService, TranslatableTextList } from 'ng-translation';
+import { TranslatableOptionList, TranslationService } from 'ng-translation';
 
 @Component({
   selector: 'app-root',
@@ -8,32 +8,17 @@ import { TranslatableOption, TranslatableOptionList, TranslationService, Transla
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
-  private languageList: TranslatableOptionList;
-  private menuList: TranslatableTextList;
-
-  get languages(): Array<TranslatableOption> {
-    return this.languageList.items;
-  }
+  menu: TranslatableOptionList;
+  languages: TranslatableOptionList;
 
   constructor(
     private router: Router,
     private translate: TranslationService
   ) {
-    this.languageList = new TranslatableOptionList( this.translate, 'app.languages' );
-    this.menuList = new TranslatableTextList(
-      this.translate,
-      {
-        'app.shared.title': 'title',
-        'app.shared.spring': 'spring',
-        'app.shared.summer': 'summer',
-        'app.shared.autumn': 'autumn',
-        'app.shared.winter': 'winter',
-        'app.shared.tests': 'tests',
-        'app.shared.currLang': 'currLang'
-      }
-    );
+    this.menu = new TranslatableOptionList( this.translate, 'app.menu' );
+    this.languages = new TranslatableOptionList( this.translate, 'app.languages' );
   }
 
   ngOnInit(): void {
@@ -55,18 +40,8 @@ export class AppComponent implements OnInit, OnDestroy {
     language: string
   ): void {
 
-    this.languageList.selectedValue = language;
+    this.languages.selectedValue = language;
     const url = this.router.routerState.snapshot.url;
     this.router.navigateByUrl( `refresh-translation?url=${ url }` );
-  }
-
-  menuItem(
-    key: string
-  ): string {
-    return this.menuList.get( key );
-  }
-
-  ngOnDestroy() {
-    this.languageList.destroy();
   }
 }

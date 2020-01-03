@@ -182,7 +182,8 @@
               "projects/doc-web-site/src/assets"
             ],
             "styles": [
-              "projects/doc-web-site/src/styles.css"
+              "projects/doc-web-site/src/styles.css",
+              "projects/doc-web-site/src/agate.css"
             ],
             "scripts": []
           },

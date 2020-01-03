@@ -16,8 +16,8 @@ import { RefreshTranslationComponent } from './refresh-translation/refresh-trans
 import { SpringModule } from './spring/spring.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'setup', pathMatch: 'full' },
+  { path: 'setup', component: HomeComponent },
   { path: 'refresh-translation', component: RefreshTranslationComponent },
   { path: 'spring', loadChildren: './spring/spring.module#SpringModule' },
   { path: 'summer', loadChildren: './summer/summer.module#SummerModule',
@@ -28,7 +28,7 @@ const routes: Routes = [
                     canLoad: [ LoadTranslationsGuard ],
                     data: { sectionPrefix: 'frosty' } },
   { path: 'tests', component: ComponentsComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'setup' }
 ];
 
 @NgModule({

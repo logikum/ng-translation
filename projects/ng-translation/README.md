@@ -1,6 +1,6 @@
 # NgTranslation
 
-NgTranslation is a localization support package for Angular 6 applications.
+NgTranslation is a localization support package for Angular 7 applications.
 
 See documentation: [NgTranslation](https://ngt.logikum.hu/)
 
@@ -10,6 +10,7 @@ Features:
 * Supports multiple files per modules
 * Supports lazy loading
 * Supports server-side rendering
+* Uses structural directive in views
 * Uses pipe in views
 * Uses service in code
 * Supports parameter interpolation

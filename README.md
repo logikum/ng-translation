@@ -32,10 +32,12 @@ ng serve doc-web-site
 Run this command to build the documentation site:
 ```
 ng build --prod doc-web-site
+cp server.js dist/doc-web-site
+cp ng-site-config.json dist/doc-web-site
 ```
 Run this command to start the documentation site in production mode:
 ```
-NODE_ENV=production PORT=3000 node dist/doc-web-site
+NODE_ENV=production PORT=3000 node dist/doc-web-site/server
 ```
 ### Test
 

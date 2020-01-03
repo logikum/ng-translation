@@ -1,15 +1,15 @@
-import { Subscription } from 'rxjs';
+import { OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { TranslatableOption } from './translatable-option.model';
 import { TranslationService } from './translation.service';
 
-interface IteratorResult { value: TranslatableOption; done: boolean; }
-interface Iterator { next: () => IteratorResult; }
-
-export class TranslatableOptionList {
+export class TranslatableOptionList implements IterableIterator<TranslatableOption>, OnDestroy {
 
   private currentIndex = -1;
   private items: Array<TranslatableOption> = [];
-  private subscription: Subscription;
+  private index = 0;
+  private onDestroy: Subject<void> = new Subject();
 
   get selectedIndex(): number {
     return this.currentIndex;
@@ -45,7 +45,8 @@ export class TranslatableOptionList {
     private translate: TranslationService,
     private key: string
   ) {
-    this.subscription = this.translate.languageChanged
+    this.translate.languageChanged
+      .pipe( takeUntil( this.onDestroy ) )
       .subscribe( language => {
         this.getItems();
       } );
@@ -75,25 +76,25 @@ export class TranslatableOptionList {
     }
   }
 
-  [Symbol.iterator](): Iterator {
-    let index = 0;
-    return {
-      next: (): IteratorResult => {
-        if (index < this.items.length) {
-          return {
-            value: this.items[ index++ ],
-            done: false
-          };
-        }
-        return {
-          value: undefined,
-          done: true
-        };
-      }
-    };
+  next(): IteratorResult<TranslatableOption> {
+
+    if (this.index < this.items.length) {
+      return {
+        value: this.items[ this.index++ ],
+        done: false
+      };
+    } else {
+      this.index = 0;
+      return { value: undefined, done: true };
+    }
   }
 
-  destroy(): void {
-    this.subscription.unsubscribe();
+  [Symbol.iterator](): IterableIterator<TranslatableOption> {
+    return this;
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 }

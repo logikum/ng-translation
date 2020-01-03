@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   MatToolbarModule, MatCardModule, MatButtonModule, MatExpansionModule
 } from '@angular/material';
+import { ExcerptComponent } from './excerpt/excerpt.component';
+import { HighlightCodeDirective } from './excerpt/highlight-code.directive';
 
 @NgModule( {
   imports: [
@@ -14,13 +16,18 @@ import {
     MatButtonModule,
     MatExpansionModule
   ],
+  declarations: [
+    ExcerptComponent,
+    HighlightCodeDirective
+  ],
   exports: [
     CommonModule,
     HttpClientModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ExcerptComponent
   ]
 } )
 export class SharedModule { }

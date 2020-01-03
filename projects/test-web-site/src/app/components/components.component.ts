@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslatableOptionList, TranslatableTextList, TranslationService } from 'ng-translation';
 
 @Component({
@@ -7,7 +7,7 @@ import { TranslatableOptionList, TranslatableTextList, TranslationService } from
   styleUrls: ['./components.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ComponentsComponent implements OnInit, OnDestroy {
+export class ComponentsComponent implements OnInit {
 
   months: TranslatableOptionList;
   seasons: TranslatableOptionList;
@@ -65,11 +65,5 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     event: any
   ): void {
     this.seasons.selectedValue = event.target.value;
-  }
-
-  ngOnDestroy() {
-    this.months.destroy();
-    this.seasons.destroy();
-    this.texts.destroy();
   }
 }

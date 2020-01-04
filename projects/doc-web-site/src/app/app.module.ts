@@ -9,8 +9,8 @@ import { AppService } from './services/app.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'v2.0', pathMatch: 'full' },
-  { path: 'v2.0', loadChildren: '../v2-0/v2-0.module#V20Module' },
-  { path: 'v1.0', loadChildren: '../v1-0/v1-0.module#V10Module' },
+  { path: 'v2.0', loadChildren: () => import('../v2-0/v2-0.module').then(m => m.V20Module) },
+  { path: 'v1.0', loadChildren: () => import('../v1-0/v1-0.module').then(m => m.V10Module) },
   { path: '**', redirectTo: '' }
 ];
 

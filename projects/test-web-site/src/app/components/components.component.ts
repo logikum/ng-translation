@@ -19,15 +19,6 @@ export class ComponentsComponent implements OnInit {
   get selectedSeason(): string {
     return JSON.stringify( this.seasons.selectedItem );
   }
-  get dailyOffer(): string {
-    return this.texts.get( 'offer', { buy: 3, pay: 2 } );
-  }
-  get specialOffer(): string {
-    return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );
-  }
-  get specialLasts(): string {
-    return this.texts.get( 'lasts', 4 );
-  }
 
   constructor(
     private translate: TranslationService
@@ -43,10 +34,7 @@ export class ComponentsComponent implements OnInit {
         'app.menu.summer': 'summer',
         'app.menu.autumn': 'autumn',
         'app.menu.winter': 'winter',
-        'app.languages': 'lng',
-        'app.shop.offer': 'offer',
-        'app.shop.special': 'special',
-        'app.shop.sale': 'lasts'
+        'app.languages': 'lng'
       }
     );
   }

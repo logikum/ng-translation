@@ -15,7 +15,8 @@
   },
   "shared": {
     "title": "Seasons",
-    "tests": "Component Tests",
+    "components": "Component Tests",
+    "auxiliary": "Auxiliary Tests",
     "currLang": "Current language:",
     "select": "Select month:",
     "selectedIndex": "The selected index:",

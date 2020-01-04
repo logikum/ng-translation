@@ -15,7 +15,8 @@
   },
   "shared": {
     "title": "Stagioni",
-    "tests": "Test dei componenti",
+    "components": "Prove dei componenti",
+    "auxiliary": "Prove ausiliarie",
     "currLang": "Lingua corrente:",
     "select": "Selezionare il mese:",
     "selectedIndex": "L'indice selezionato:",

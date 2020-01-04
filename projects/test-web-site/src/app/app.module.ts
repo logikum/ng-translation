@@ -11,6 +11,7 @@ import { NgTranslationModule, LoadTranslationsGuard } from 'ng-translation';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { RefreshTranslationComponent } from './refresh-translation/refresh-translation.component';
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'winter', loadChildren: () => import('./winter/winter.module').then(m => m.WinterModule),
                     canLoad: [ LoadTranslationsGuard ],
                     data: { sectionPrefix: 'frosty' } },
-  { path: 'tests', component: ComponentsComponent },
+  { path: 'components', component: ComponentsComponent },
+  { path: 'auxiliary', component: AuxiliaryComponent },
   { path: '**', redirectTo: 'setup' }
 ];
 
@@ -37,6 +39,7 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     ComponentsComponent,
+    AuxiliaryComponent,
     RefreshTranslationComponent
   ],
   imports: [

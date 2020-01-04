@@ -8,9 +8,14 @@ import { Menu } from '../../shared';
 export class AppService {
 
   private menu: Subject<Menu> = new Subject<Menu>();
+  private version: Subject<string> = new Subject<string>();
 
   get menu$(): Observable<Menu> {
     return this.menu.asObservable();
+  }
+
+  get version$(): Observable<string> {
+    return this.version.asObservable();
   }
 
   constructor() { }
@@ -19,5 +24,11 @@ export class AppService {
     menu: Menu
   ): void {
     this.menu.next( menu );
+  }
+
+  setVersion(
+    url: string
+  ): void {
+    this.version.next( url );
   }
 }

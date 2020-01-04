@@ -1,6 +1,6 @@
 # NgTranslation
 
-NgTranslation is a localization support package for Angular 6 applications.
+NgTranslation is an internationalization package for Angular 6, 7 & 8 applications.
 
 See documentation: [NgTranslation](https://ngt.logikum.hu/)
 
@@ -32,12 +32,10 @@ ng serve doc-web-site
 Run this command to build the documentation site:
 ```
 ng build --prod doc-web-site
-cp server.js dist/doc-web-site
-cp ng-site-config.json dist/doc-web-site
 ```
 Run this command to start the documentation site in production mode:
 ```
-NODE_ENV=production PORT=3000 node dist/doc-web-site/server
+NODE_ENV=production PORT=3000 node server
 ```
 ### Test
 

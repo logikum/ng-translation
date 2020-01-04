@@ -1,0 +1,3 @@
+&lt;ng-container *translate="let t"&gt;
+  &lt;div [innerHTML]="{{ t( 'app.version' ) }}"&gt;&lt;/div&gt;
+&lt;/ng-container&gt;

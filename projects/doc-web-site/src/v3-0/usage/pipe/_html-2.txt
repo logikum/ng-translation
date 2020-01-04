@@ -1,0 +1,1 @@
+&lt;div [innerHTML]="'app.version' | translate"&gt;&lt;/div&gt;

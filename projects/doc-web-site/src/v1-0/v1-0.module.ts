@@ -1,39 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { NavigationStart, Router, RouterModule, Routes } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 
-import { Menu, MENU, PATH, VERSION } from '../shared';
 import { AppService } from '../app/services/app.service';
-
-import { SetupComponent } from './setup/setup.component';
-import { ConfigurationComponent } from './configuration/configuration.component';
-import { UsageComponent } from './usage/usage.component';
-import { SelectionListComponent } from './selection-list/selection-list.component';
-import { TextListComponent } from './text-list/text-list.component';
-import { ApiComponent } from './api/api.component';
-
-const routes: Routes = [
-  { path: '', redirectTo: 'setup', pathMatch: 'full' },
-  { path: PATH.setup, component: SetupComponent },
-  { path: PATH.configuration, component: ConfigurationComponent },
-  { path: PATH.usage, component: UsageComponent },
-  { path: PATH.selectionList, component: SelectionListComponent },
-  { path: PATH.textList, component: TextListComponent },
-  { path: PATH.api, component: ApiComponent }
-];
+import { Menu, MenuFactory, SharedModule, VERSION } from '../shared';
+import { V10Routing } from './v1-0.routing';
+import { pages } from './pages';
 
 @NgModule( {
   imports: [
-    RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    V10Routing
   ],
   declarations: [
-    SetupComponent,
-    ConfigurationComponent,
-    UsageComponent,
-    SelectionListComponent,
-    TextListComponent,
-    ApiComponent
+    ...pages
   ],
   providers: []
 } )
@@ -43,15 +22,7 @@ export class V10Module {
     router: Router,
     svcApp: AppService
   ) {
-    const menu: Menu = new Menu( VERSION.v1_0 );
-
-    menu.add( PATH.setup, MENU.setup );
-    menu.add( PATH.configuration, MENU.configuration );
-    menu.add( PATH.usage, MENU.usage );
-    menu.add( PATH.selectionList, MENU.selectionList );
-    menu.add( PATH.textList, MENU.textList );
-    menu.add( PATH.api, MENU.api );
-
+    const menu: Menu = MenuFactory.create( VERSION.v1_0 );
     svcApp.setMenu( menu );
 
     router.events.subscribe( event => {

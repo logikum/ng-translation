@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { Menu, Option, VERSION } from '../shared';
+import { Menu } from '../shared';
 
 import { AppService } from './services/app.service';
+import { VersionFactory } from '../shared';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,9 @@ import { AppService } from './services/app.service';
 })
 export class AppComponent implements OnInit {
 
-  private versions: Array<Option> = new Array<Option>();
-  versions$: Observable<Array<Option>> = new Observable<Array<Option>>();
+  @ViewChild('version', { static: true }) versionSelect;
+
+  versions$ = VersionFactory.create();
   menu: Menu;
 
   get menu$(): Observable<Menu> {
@@ -26,16 +28,17 @@ export class AppComponent implements OnInit {
     private router: Router,
     private svcApp: AppService
   ) {
-    this.versions.push( { value: VERSION.v2_0, text: 'Version 2.0' } );
-    this.versions.push( { value: VERSION.v1_0, text: 'Version 1.0' } );
-
     this.svcApp.menu$.subscribe( menu => {
       this.menu = menu;
+    } );
+    this.svcApp.version$.subscribe( url => {
+      this.versionSelect.nativeElement.value = url;
+      this.router.navigateByUrl( url );
     } );
   }
 
   ngOnInit(): void {
-    this.versions$ = of( this.versions );
+    this.versions$ = VersionFactory.create();
   }
 
   versionChange(

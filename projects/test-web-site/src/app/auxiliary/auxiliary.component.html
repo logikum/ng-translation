@@ -11,4 +11,10 @@
   <p>{{ t('jan') }}, {{ t('feb') }}, {{ t('mar') }} ... {{ t('oct') }}, {{ t('nov') }}, {{ t('dec') }}</p>
   <p>{{ t('/app.home.title') }}</p>
 
+  <h3>Using attribute directive</h3>
+  <p translate="app.shared.title"></p>
+  <p translate="app.shop.offer" [translateParams]="dailyData"></p>
+  <p translate="app.shop.special" [translateParams]="specialData"></p>
+  <p translate="app.shop.sale" [translateParams]="period"></p>
+
 </ng-container>

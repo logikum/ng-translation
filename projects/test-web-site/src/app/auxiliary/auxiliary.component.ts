@@ -10,15 +10,18 @@ import { TranslatableTextList, TranslationService } from 'ng-translation';
 export class AuxiliaryComponent {
 
   texts: TranslatableTextList;
+  dailyData = { buy: 3, pay: 2 };
+  specialData = [ 'Jackie Chan', 20 ];
+  period = 4;
 
   get dailyOffer(): string {
-    return this.texts.get( 'offer', { buy: 3, pay: 2 } );
+    return this.texts.get( 'offer', this.dailyData );
   }
   get specialOffer(): string {
-    return this.texts.get( 'special', [ 'Jackie Chan', 20 ] );
+    return this.texts.get( 'special', this.specialData );
   }
   get specialLasts(): string {
-    return this.texts.get( 'lasts', 4 );
+    return this.texts.get( 'lasts', this.period );
   }
 
   constructor(

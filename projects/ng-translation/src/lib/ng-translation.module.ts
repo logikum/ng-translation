@@ -4,6 +4,7 @@ import { TranslationConfig } from './translation-config.model';
 import { TranslatePipe } from './translate.pipe';
 import { TranslationService } from './translation.service';
 import { TranslateDirective } from './translate.directive';
+import { TranslateParamsDirective } from './translate-params.directive';
 
 export function initializerFactory(
   service: TranslationService,
@@ -36,11 +37,13 @@ export function serviceFactory(
   ],
   declarations: [
     TranslatePipe,
-    TranslateDirective
+    TranslateDirective,
+    TranslateParamsDirective
   ],
   exports: [
     TranslatePipe,
-    TranslateDirective
+    TranslateDirective,
+    TranslateParamsDirective
   ]
 })
 export class NgTranslationModule {

@@ -1,5 +1,12 @@
 # Changes
 
+### v3.0.0
+_Published on ?/?/2020._
+
+* Update to Angular 8.
+* Add key root option to structural directive.
+* Add translate atribute directive.
+
 ### v2.0.0
 _Published on 1/3/2020._
 

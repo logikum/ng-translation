@@ -12,6 +12,7 @@ Features:
 * Supports server-side rendering
 * Uses structural directive in views
 * Uses pipe in views
+* Uses attribute directive in views
 * Uses service in code
 * Supports parameter interpolation
 * Provides component to collect multiple texts

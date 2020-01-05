@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import _ngTranslationModule from 'raw-loader!./_ng-translation-module.txt';
 import _translationConfig from 'raw-loader!./_translation-config.txt';
 import _loadTranslationGuard from 'raw-loader!./_load-translation-guard.txt';
+import _translateService from 'raw-loader!./_translate-service.txt';
 import _translateDirective from 'raw-loader!./_translate-directive.txt';
 import _translatePipe from 'raw-loader!./_translate-pipe.txt';
 import _translatableOptionList from 'raw-loader!./_translatable-option-list.txt';
@@ -20,6 +21,7 @@ export class ApiComponent {
   readonly ngTranslationModule = _ngTranslationModule;
   readonly translationConfig = _translationConfig;
   readonly loadTranslationGuard = _loadTranslationGuard;
+  readonly translateService = _translateService;
   readonly translateDirective = _translateDirective;
   readonly translatePipe = _translatePipe;
   readonly translatableOptionList = _translatableOptionList;

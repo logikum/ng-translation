@@ -305,7 +305,8 @@ export class TranslationService {
   insert(
     text: string,
     args?: any
-  ) {
+  ): string {
+
     if (text && args !== undefined) {
       if (args === null) {
         args = 'null';
@@ -339,11 +340,10 @@ export class TranslationService {
   }
 
   getGroup(
-    key: string,
-    language?: string
+    key: string
   ): object {
 
-    let locale = new Locale( language || this.active );
+    let locale = new Locale( this.active );
 
     // Try the requested (eventual specific) culture (language).
     let group: object = this.findGroup( locale.name, key );

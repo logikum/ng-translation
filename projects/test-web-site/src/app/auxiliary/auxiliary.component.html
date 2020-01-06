@@ -1,20 +1,74 @@
+<h1> {{ 'app.shared.auxiliary' | translate }} </h1>
+
+<h3>Parameter interpolation</h3>
+<div>{{ dailyOffer }}</div>
+<div>{{ specialOffer }}</div>
+<div>{{ specialLasts }}</div>
+
+<h3>Using explicit translation node</h3>
 <ng-container *translate="let t; node: 'app.month'">
-
-  <h1> {{ t('/app.shared.auxiliary') }} </h1>
-
-  <h3>Parameter interpolation</h3>
-  <p>{{ dailyOffer }}</p>
-  <p>{{ specialOffer }}</p>
-  <p>{{ specialLasts }}</p>
-
-  <h3>Using explicit translation node</h3>
-  <p>{{ t('jan') }}, {{ t('feb') }}, {{ t('mar') }} ... {{ t('oct') }}, {{ t('nov') }}, {{ t('dec') }}</p>
-  <p>{{ t('/app.home.title') }}</p>
-
-  <h3>Using attribute directive</h3>
-  <p translate="app.shared.title"></p>
-  <p translate="app.shop.offer" [translateParams]="dailyData"></p>
-  <p translate="app.shop.special" [translateParams]="specialData"></p>
-  <p translate="app.shop.sale" [translateParams]="period"></p>
-
+  <div>{{ t('jan') }}, {{ t('feb') }}, {{ t('mar') }} ... {{ t('oct') }}, {{ t('nov') }}, {{ t('dec') }}</div>
+  <div>{{ t('/app.home.title') }}</div>
 </ng-container>
+
+<h3>Using structural directive</h3>
+<ng-container *translate="let t; node: 'app.shop'">
+  <table>
+    <tr>
+      <td>
+        <div>{{ t('/app.shared.title') }}</div>
+        <div>{{ t('offer', dailyData) }}</div>
+        <div>{{ t('special', specialData) }}</div>
+        <div>{{ t('sale', period) }}</div>
+      </td>
+      <td>
+        <div>{{ t('/app.shared.title') }}</div>
+        <div>{{ t('offer', { buy: 4, pay: 3 }) }}</div>
+        <div>{{ t('special', [ 'Bruce Lee', 25 ]) }}</div>
+        <div>{{ t('sale', 3) }}</div>
+      </td>
+    </tr>
+  </table>
+</ng-container>
+
+<h3>Using pipe</h3>
+<table>
+  <tr>
+    <td>
+      <div>{{ 'app.shared.title' | translate }}</div>
+      <div>{{ 'app.shop.offer' | translate:dailyData }}</div>
+      <div>{{ 'app.shop.special' | translate:specialData }}</div>
+      <div>{{ 'app.shop.sale' | translate:period }}</div>
+    </td>
+    <td>
+      <div>{{ 'app.shared.title' | translate }}</div>
+      <div>{{ 'app.shop.offer' | translate:{ buy: 4, pay: 3 } }}</div>
+      <div>{{ 'app.shop.special' | translate:[ 'Bruce Lee', 25 ] }}</div>
+      <div>{{ 'app.shop.sale' | translate:3 }}</div>
+    </td>
+  </tr>
+</table>
+
+<h3>Using attribute directive</h3>
+<table>
+  <tr>
+    <td>
+      <div translate="app.shared.title"></div>
+      <div translate="app.shop.offer" [translateParams]="dailyData"></div>
+      <div translate="app.shop.special" [translateParams]="specialData"></div>
+      <div translate="app.shop.sale" [translateParams]="period"></div>
+    </td>
+    <td>
+      <div translate="app.shared.title"></div>
+      <div translate="app.shop.offer" [translateParams]="{ buy: 4, pay: 3 } "></div>
+      <div translate="app.shop.special" [translateParams]="[ 'Bruce Lee', 25 ]"></div>
+      <div translate="app.shop.sale" [translateParams]="3"></div>
+    </td>
+  </tr>
+</table>
+
+<h3>HTML content</h3>
+<ng-container *translate="let t">
+  <div [innerHTML]="t('app.home.subtitle')"></div>
+</ng-container>
+<div [innerHTML]="'app.home.subtitle' | translate"></div>

@@ -45,7 +45,6 @@
       The section prefixes of lazy loaded modules will not part of the keys.
     </p>
   </mat-expansion-panel>
-
   <!-- Use structural directive in views -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -56,32 +55,37 @@
       subscription per template.
     </blockquote>
     <p>
-      You can use the translate directive to get your translation values:
+      You can use the translate structural directive to get your translated texts:
     </p>
-    <app-excerpt [text]="directive1" language="html"></app-excerpt>
+    <app-excerpt [text]="structural1" language="html"></app-excerpt>
     <p>
       The parameters are optional. For example:
     </p>
-    <app-excerpt [text]="directive2" language="html"></app-excerpt>
+    <app-excerpt [text]="structural2" language="html"></app-excerpt>
     <p>
       Or with parameter:
     </p>
-    <app-excerpt [text]="directive3" language="html"></app-excerpt>
+    <app-excerpt [text]="structural3" language="html"></app-excerpt>
     <p>
       You can also specify paramaters in the component:
     </p>
-    <app-excerpt [text]="param_1" language="typescript"></app-excerpt>
-    <app-excerpt [text]="param_2" language="html"></app-excerpt>
+    <app-excerpt [text]="param_s1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param_s2" language="html"></app-excerpt>
+    <p>
+      If the keys of the texts in the view mostly starts with the same path, they
+      can be shortened providing the beginning of the keys in the node property.
+      Exceptiona are marked with a starting slash ('/') character:
+    </p>
+    <app-excerpt [text]="node" language="html"></app-excerpt>
     <p>
       When you use HTML tags in the translation text:
     </p>
-    <app-excerpt [text]="html_1" language="json"></app-excerpt>
+    <app-excerpt [text]="html_s1" language="json"></app-excerpt>
     <p>
       It can be displayed using the innerHTML attribute:
     </p>
-    <app-excerpt [text]="html_2" language="html"></app-excerpt>
+    <app-excerpt [text]="html_s2" language="html"></app-excerpt>
   </mat-expansion-panel>
-
   <!-- Use pipe in views -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -113,7 +117,29 @@
     </p>
     <app-excerpt [text]="html2" language="html"></app-excerpt>
   </mat-expansion-panel>
-
+  <!-- Use attribute directive in views -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use attribute directive in views
+    </mat-expansion-panel-header>
+    <p>
+      You can use the translate attribute directive to get your translated texts:
+    </p>
+    <app-excerpt [text]="attribute1" language="html"></app-excerpt>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <app-excerpt [text]="attribute2" language="html"></app-excerpt>
+    <p>
+      Or with parameter:
+    </p>
+    <app-excerpt [text]="attribute3" language="html"></app-excerpt>
+    <p>
+      You can also specify paramaters in the component:
+    </p>
+    <app-excerpt [text]="param_a1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param_a2" language="html"></app-excerpt>
+  </mat-expansion-panel>
   <!-- Use service in components -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -133,7 +159,6 @@
       classes to manage the translations because they update their texts automatically.
     </p>
   </mat-expansion-panel>
-
   <!-- Parameter interpolation -->
   <mat-expansion-panel>
     <mat-expansion-panel-header>

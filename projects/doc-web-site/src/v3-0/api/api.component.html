@@ -53,6 +53,19 @@
     </mat-expansion-panel-header>
     Loads the translations for a lazy loaded module before loading the module itself.
     <app-excerpt [text]="loadTranslationGuard" language="typescript"></app-excerpt>
+    <h3>constructor()</h3>
+    Creates a new instance of the guard.
+    <dl>
+      <dt>translationService</dt>
+      <dd>The translation service.</dd>
+    </dl>
+    <h3>canLoad()</h3>
+    Loads the translations of a lazy loaded module for all languages already in use.
+    <dl>
+      <dt>route</dt>
+      <dd>The route of the lazy loaded module to load.</dd>
+    </dl>
+    <span class="code">Returns</span> a promise indicating whether loading has succeeded.
   </mat-expansion-panel>
   <!-- TranslateService -->
   <mat-expansion-panel>
@@ -81,13 +94,12 @@
     <span class="code">Returns</span> a promise indicating whether the language
     of the browser is supported.
     <h3>initializeSection()</h3>
-    Loads the translations of a lazy loaded module for the default and active languages.
+    Loads the translations of a lazy loaded module for all languages already in use.
     <dl>
       <dt>route</dt>
       <dd>The route of a lazy loaded module.</dd>
     </dl>
-    <span class="code">Returns</span> a promise indicating whether the language
-    of the browser is supported.
+    <span class="code">Returns</span> a promise indicating whether loading has succeeded.
     <h3>changeLanguage()</h3>
     Sets the new active language and loads the translations of the language for
     all loaded modules.

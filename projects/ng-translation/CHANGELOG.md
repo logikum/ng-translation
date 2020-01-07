@@ -1,7 +1,7 @@
 # Changes
 
 ### v3.0.0
-_Published on ?/?/2020._
+_Published on 1/7/2020._
 
 * Update to Angular 8.
 * Add key root option to structural directive.

@@ -51,7 +51,7 @@ h1 {
 h3 {
   font-style: italic;
 }
-p, td {
+p, div, td {
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 a, a:visited {
@@ -82,4 +82,7 @@ option {
   font-size: 11pt;
   height: 40px;
   line-height: 40px;
+}
+table {
+  width: 100%;
 }

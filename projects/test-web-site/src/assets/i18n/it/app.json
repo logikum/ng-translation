@@ -1,6 +1,7 @@
 {
   "home": {
-    "title": "Le Quattro Stagioni"
+    "title": "Le Quattro Stagioni",
+    "subtitle": "\"<b>Le quattro stagioni</b>\" è l'opera più popolare di <i>Antonio Vivaldi</i>."
   },
   "languages": {
     "en": "inglese",
@@ -15,7 +16,8 @@
   },
   "shared": {
     "title": "Stagioni",
-    "tests": "Test dei componenti",
+    "components": "Prove dei componenti",
+    "auxiliary": "Prove ausiliarie",
     "currLang": "Lingua corrente:",
     "select": "Selezionare il mese:",
     "selectedIndex": "L'indice selezionato:",

@@ -1,6 +1,7 @@
 {
   "home": {
-    "title": "The Four Seasons"
+    "title": "The Four Seasons",
+    "subtitle": "\"<b>The Four Seasons</b>\" is <i>Antonio Vivaldi</i>'s most popular work."
   },
   "languages": {
     "en": "English",
@@ -15,7 +16,8 @@
   },
   "shared": {
     "title": "Seasons",
-    "tests": "Component Tests",
+    "components": "Component Tests",
+    "auxiliary": "Auxiliary Tests",
     "currLang": "Current language:",
     "select": "Select month:",
     "selectedIndex": "The selected index:",

@@ -1,6 +1,7 @@
 {
   "home": {
-    "title": "A négy évszak"
+    "title": "A négy évszak",
+    "subtitle": "\"<b>A négy évszak</b>\" <i>Antonio Vivaldi</i> legnépszerűbb műve."
   },
   "languages": {
     "en": "angol",
@@ -15,7 +16,8 @@
   },
   "shared": {
     "title": "Évszakok",
-    "tests": "Komponens tesztek",
+    "components": "Komponens tesztek",
+    "auxiliary": "Kiegészítő tesztek",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
     "selectedIndex": "A választott index:",

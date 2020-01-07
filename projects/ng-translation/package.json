@@ -1,10 +1,13 @@
 {
   "name": "@logikum/ng-translation",
-  "version": "2.0.0",
+  "version": "3.0.0",
+  "description": "NgTranslation is an internationalization package for Angular 6, 7 & 8 applications.",
+  "keywords": [ "Angular", "internationalization", "localization" ],
+  "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "@angular/router": "^7.0.0",
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/router": "^8.0.0",
     "rxjs": "^6.5.0"
   }
 }

@@ -1,8 +1,9 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
-import { TranslationConfig } from './translation-config.model';
 import { Locale } from './locale.model';
+import { TranslationConfig } from './translation-config.model';
+import { TranspilerService } from './transpiler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class TranslationService {
   get activeLanguage(): string { return this.active; }
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private transpile: TranspilerService
   ) { }
 
   initializeApp(
@@ -164,13 +166,13 @@ export class TranslationService {
           if (!this.translations[ locale.name ]) {
             this.translations[ locale.name ] = { };
           }
-          this.storeTranslations( locale.name, section, sectionTranslations);
+          this.storeTranslations( locale.name, section, sectionTranslations );
           resolve();
         } )
         .catch( error => {
 
           if (locale.hasRegion) {
-            console.log( `TRANSLATION alternative: ${ locale.neutral }`);
+            console.log( `NG-TRANSLATION alternative: ${ locale.neutral }`);
 
             const url2 = this.buildUrl( locale.neutral, section );
             this.http.get( url2 )
@@ -180,17 +182,21 @@ export class TranslationService {
                 if (!this.translations[ locale.neutral ]) {
                   this.translations[ locale.neutral ] = { };
                 }
-                this.storeTranslations( locale.neutral, section, sectionTranslations);
+                this.storeTranslations( locale.neutral, section, sectionTranslations );
                 resolve();
               } )
              .catch( error2 => {
                this.handleError( error );
-               reject();
+               // reject();
+               this.storeTranslations( locale.name, section, { } );
+               resolve();
              } );
 
           } else {
             this.handleError( error );
-            reject();
+            // reject();
+            this.storeTranslations( locale.name, section, { } );
+            resolve();
           }
         } );
     } );
@@ -238,7 +244,7 @@ export class TranslationService {
         (error.message ? error.message : error.toString()) :
         'An error occurred while downloading a translation file.'
       ;
-    console.log( `TRANSLATION ERROR: ${ message }`);
+    console.error( `NG-TRANSLATION ERROR: ${ message }`);
   }
 
   get(
@@ -319,9 +325,9 @@ export class TranslationService {
         // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
         let index = 0;
         args.forEach( arg => {
-          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*\\}\\}`, 'g' );
+          const re = new RegExp( `\\{\\{\\s*${ index++ }([^\}]+)?\\}\\}` );
           if (re) {
-            text = text.replace( re, arg );
+            text = this.transpile.do( this.active, text, re, arg );
           }
         } );
       } else if (typeof args === 'object') {
@@ -329,9 +335,9 @@ export class TranslationService {
         // Replace named parameters: 'xxxxxx{{name-A}}xxxxxxxx{{name-B}}xxxxxx'
         const names = Object.getOwnPropertyNames( args );
         names.forEach( name => {
-          const re = new RegExp( `\\{\\{\\s*${ name }\\s*\\}\\}`, 'g' );
+          const re = new RegExp( `\\{\\{\\s*${ name }([^\}]+)?\\}\\}` );
           if (re) {
-            text = text.replace( re, args[ name ] );
+            text = this.transpile.do( this.active, text, re, args[ name ] );
           }
         } );
       }

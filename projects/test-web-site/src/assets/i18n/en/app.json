@@ -18,6 +18,7 @@
     "title": "Seasons",
     "components": "Component Tests",
     "auxiliary": "Auxiliary Tests",
+    "l10n": "Localization Tests",
     "currLang": "Current language:",
     "select": "Select month:",
     "selectedIndex": "The selected index:",

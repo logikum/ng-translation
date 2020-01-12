@@ -1,0 +1,48 @@
+{
+  "title": "Lokalizációs tesztek",
+  "number": {
+    "title": "Szám formázása",
+    "basic": "Alap számformátum: {{ 0|number }}",
+    "minimumIntegerDigits": "Minimális egész számjegyek: {{ 0|N:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Minimális tört számjegyek: {{ 0|N:minimumFractionDigits=5 }}",
+    "maximumFractionDigits": "Maximális tört számjegyek: {{ 0|N:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Minimális jelentős számjegyek: {{ 0|N:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Maximális jelentős számjegyek: {{ 0|N:maximumSignificantDigits=3 }}",
+    "combined": "Több beállítással: {{ 0 | N : minimumIntegerDigits = 3 ; minimumFractionDigits = 5 }}",
+    "useGrouping": "Csoportosítás nélkül: {{ 0 | N : useGrouping = false }}"
+  },
+  "percent": {
+    "title": "Százalék formázása",
+    "basic": "Alap százalékformátum: {{ 0|percent }}",
+    "minimumIntegerDigits": "Minimális egész számjegyek: {{ 0|P:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Minimális tört számjegyek: {{ 0|P:minimumFractionDigits=3 }}",
+    "maximumFractionDigits": "Maximális tört számjegyek: {{ 0|P:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Minimális jelentős számjegyek: {{ 0|P:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Maximális jelentős számjegyek: {{ 0|P:maximumSignificantDigits=3 }}",
+    "combined": "Több beállítással: {{ 0 | P : minimumIntegerDigits = 3 ; minimumFractionDigits = 5 }}",
+    "useGrouping": "Csoportosítás nélkül: {{ 0 | P : useGrouping = false }}"
+  },
+  "currency": {
+    "title": "Deviza formázása",
+    "default": "Alap pénznemformátum: {{ price|currency }}",
+    "code": "Pénznem kód formátuma: {{ 0|C:currencyDisplay=code }}",
+    "name": "Pénznem név formátuma: {{ 0|C:currencyDisplay=name }}",
+    "symbol": "Pénznem szimbólum formátuma: {{ 0|C:currencyDisplay=symbol }}",
+    "_default": "{{ price|currency }}",
+    "_code": "{{ 0|C:currencyDisplay=code }}",
+    "_name": "{{ 0|C:currencyDisplay=name }}",
+    "_symbol": "{{ 0|C:currencyDisplay=symbol }}"
+  },
+  "datetime": {
+    "title": "Dátum és idő formázása",
+    "default": "Alap dátumformátum: {{ 0|datetime }}",
+    "short": "Rövid dátum és idő: {{ 0|D:dateStyle=short;timeStyle=short }}",
+    "medium": "Közepes dátum és idő: {{ 0|D:dateStyle=medium;timeStyle=medium }}",
+    "long": "Hosszú dátum és idő: {{ 0|D:dateStyle=long;timeStyle=long }}",
+    "full": "Teljes dátum és idő: {{ 0|D:dateStyle=full;timeStyle=full }}"
+  },
+  "plural": {
+    "title": "Többes számú szabályok",
+    "updated": "Ezt az oldalt {{ 0 | plural : 0=most; 1-5=# perccel ezelőtt; other=nem régen }} frissítették."
+  }
+}

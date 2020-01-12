@@ -1,0 +1,62 @@
+<ng-container *translate="let t; node: 'l10n'">
+
+  <h1>{{ t('title') }}</h1>
+
+  <h3>{{ t('number.title') }}</h3>
+  <div>{{ t('number.basic', longNumber) }}</div>
+  <div>{{ t('number.minimumIntegerDigits', shortNumber) }}</div>
+  <div>{{ t('number.minimumFractionDigits', longNumber) }}</div>
+  <div>{{ t('number.maximumFractionDigits', longNumber) }}</div>
+  <div>{{ t('number.minimumSignificantDigits', shortNumber) }}</div>
+  <div>{{ t('number.maximumSignificantDigits', longNumber) }}</div>
+  <div>{{ t('number.combined', shortNumber) }}</div>
+  <div>{{ t('number.useGrouping', longNumber) }}</div>
+
+  <h3>{{ t('percent.title') }}</h3>
+  <div>{{ t('percent.basic', shortPercent) }}</div>
+  <div>{{ t('percent.minimumIntegerDigits', shortPercent) }}</div>
+  <div>{{ t('percent.minimumFractionDigits', shortPercent) }}</div>
+  <div>{{ t('percent.maximumFractionDigits', shortPercent) }}</div>
+  <div>{{ t('percent.minimumSignificantDigits', longPercent) }}</div>
+  <div>{{ t('percent.maximumSignificantDigits', longPercent) }}</div>
+  <div>{{ t('percent.combined', shortPercent) }}</div>
+  <div>{{ t('percent.useGrouping', longPercent) }}</div>
+
+  <h3>{{ t('currency.title') }}</h3>
+  <table>
+    <tr>
+      <td>{{ t('currency.default', priceU) }}</td>
+      <td>{{ t('currency._default', priceE) }}</td>
+      <td>{{ t('currency._default', priceF) }}</td>
+    </tr>
+    <tr>
+      <td>{{ t('currency.code', currencyU) }}</td>
+      <td>{{ t('currency._code', currencyE) }}</td>
+      <td>{{ t('currency._code', currencyF) }}</td>
+    </tr>
+    <tr>
+      <td>{{ t('currency.name', currencyU) }}</td>
+      <td>{{ t('currency._name', currencyE) }}</td>
+      <td>{{ t('currency._name', currencyF) }}</td>
+    </tr>
+    <tr>
+      <td>{{ t('currency.symbol', currencyU) }}</td>
+      <td>{{ t('currency._symbol', currencyE) }}</td>
+      <td>{{ t('currency._symbol', currencyF) }}</td>
+    </tr>
+  </table>
+
+  <h3>{{ t('datetime.title') }}</h3>
+  <div>{{ t('datetime.default', now) }}</div>
+  <div>{{ t('datetime.short', now) }}</div>
+  <div>{{ t('datetime.medium', now) }}</div>
+  <div>{{ t('datetime.long', now) }}</div>
+  <div>{{ t('datetime.full', now) }}</div>
+
+  <h3>{{ t('plural.title') }}</h3>
+  <div>{{ t( 'plural.updated', 0) }}</div>
+  <div>{{ t( 'plural.updated', 1) }}</div>
+  <div>{{ t( 'plural.updated', 5) }}</div>
+  <div>{{ t( 'plural.updated', 20) }}</div>
+
+</ng-container>

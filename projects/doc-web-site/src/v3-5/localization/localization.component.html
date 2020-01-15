@@ -1,0 +1,171 @@
+<mat-card class="mat-card-top">
+  <mat-card-title>
+    Localization
+  </mat-card-title>
+
+  <mat-card-content>
+    <p>
+      Localization information can be added to the data placeholders of
+      transalations in the following form:
+    </p>
+    <app-excerpt [text]="localization" language="json"></app-excerpt>
+    <p>where</p>
+    <table>
+      <tr>
+        <td class="key">key</td>
+        <td colspan="2">The order or the name of the value to interpolate.</td>
+      </tr>
+      <tr>
+        <td class="key">type</td>
+        <td colspan="2">The type of the localization. The possible types are</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>N</code> or <code>number</code></td>
+        <td>for number formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>P</code> or <code>percent</code></td>
+        <td>for percent formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>C</code> or <code>currency</code></td>
+        <td>for currency formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>D</code> or <code>datetime</code></td>
+        <td>for dateand time formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>R</code> or <code>plural</code></td>
+        <td>for plural rules</td>
+      </tr>
+      <tr>
+        <td class="key">options</td>
+        <td colspan="2">Optional information depending on the type of the localization.</td>
+      </tr>
+    </table>
+    <p>
+      The rules of the <b>active language</b> are applied to the value to interpolate.
+    </p>
+  </mat-card-content>
+</mat-card>
+<mat-accordion>
+
+  <!-- Number formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'hu', then these translation texts:
+    </p>
+    <app-excerpt [text]="numberFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="numberUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="numberResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Percent formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Percent formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'en', then these translation texts:
+    </p>
+    <app-excerpt [text]="percentFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="percentUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="percentResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Currency formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Currency formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'it', then these translation texts:
+    </p>
+    <app-excerpt [text]="currencyFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="currencyUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="currencyResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Number, percent and currency options -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number, percent and currency options
+    </mat-expansion-panel-header>
+    <p>
+      DUMA
+    </p>
+  </mat-expansion-panel>
+  <!-- Date and time formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Date and time formatting
+    </mat-expansion-panel-header>
+    <p>
+      DUMA
+    </p>
+  </mat-expansion-panel>
+  <!-- Plural rules -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Plural rules
+    </mat-expansion-panel-header>
+    <p>
+      DUMA
+    </p>
+  </mat-expansion-panel>
+
+</mat-accordion>
+<mat-card class="mat-card-bottom">
+
+  <mat-card-actions>
+    <a routerLink="../usage">
+      <button mat-fab color="primary">
+        <i class="fas fa-chevron-left control-button"></i>
+      </button>
+    </a>
+    <span class="control-text">Usage</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="control-text">Selection Lists</span>
+    <a routerLink="../selection-list">
+      <button mat-fab color="accent">
+        <i class="fas fa-chevron-right control-button"></i>
+      </button>
+    </a>
+  </mat-card-actions>
+
+</mat-card>

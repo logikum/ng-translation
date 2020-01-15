@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -12,6 +13,7 @@ import { HighlightCodeDirective } from './excerpt/highlight-code.directive';
   imports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
@@ -24,6 +26,7 @@ import { HighlightCodeDirective } from './excerpt/highlight-code.directive';
   exports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,

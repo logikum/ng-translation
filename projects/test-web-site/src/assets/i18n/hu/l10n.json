@@ -39,7 +39,7 @@
     "short": "Rövid dátum és idő: {{ 0|D:dateStyle=short;timeStyle=short }}",
     "medium": "Közepes dátum és idő: {{ 0|D:dateStyle=medium;timeStyle=medium }}",
     "long": "Hosszú dátum és idő: {{ 0|D:dateStyle=long;timeStyle=long }}",
-    "full": "Teljes dátum és idő: {{ 0|D:dateStyle=full;timeStyle=full }}"
+    "full": "Teljes dátum és idő: {{ 0|D:dateStyle=full;timeStyle=full; }}"
   },
   "plural": {
     "title": "Többes számú szabályok",

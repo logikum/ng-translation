@@ -1,0 +1,296 @@
+<mat-card class="mat-card-top">
+  <mat-card-title>
+    Localization
+  </mat-card-title>
+
+  <mat-card-content>
+    <p>
+      Localization information can be added to the data placeholders of
+      transalations in the following form:
+    </p>
+    <app-excerpt [text]="localization" language="json"></app-excerpt>
+    <p>where</p>
+    <table>
+      <tr>
+        <td class="key">key</td>
+        <td colspan="2">The order or the name of the value to interpolate.</td>
+      </tr>
+      <tr>
+        <td class="key">type</td>
+        <td colspan="2">The type of the localization. The possible types are</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>N</code> or <code>number</code></td>
+        <td>for number formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>P</code> or <code>percent</code></td>
+        <td>for percent formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>C</code> or <code>currency</code></td>
+        <td>for currency formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>D</code> or <code>datetime</code></td>
+        <td>for dateand time formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>R</code> or <code>plural</code></td>
+        <td>for plural rules</td>
+      </tr>
+      <tr>
+        <td class="key">options</td>
+        <td colspan="2">Optional information depending on the type of the localization.</td>
+      </tr>
+    </table>
+    <p>
+      The rules of the <b>active language</b> are applied to the value to interpolate.
+    </p>
+  </mat-card-content>
+</mat-card>
+<mat-accordion>
+
+  <!-- Number formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'hu', then these translation texts:
+    </p>
+    <app-excerpt [text]="numberFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="numberUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="numberResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Percent formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Percent formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'en', then these translation texts:
+    </p>
+    <app-excerpt [text]="percentFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="percentUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="percentResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Currency formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Currency formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'it', then these translation texts:
+    </p>
+    <app-excerpt [text]="currencyFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="currencyUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="currencyResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>
+      The value of the currency must be provided as a 2 element array: the first
+      element is a number, the second one is the currency code. See options lower.
+    </p>
+  </mat-expansion-panel>
+  <!-- Number, percent and currency options -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number, percent and currency options
+    </mat-expansion-panel-header>
+    <dl>
+      <dt>currencyDisplay</dt>
+      <dd>
+        How to display the currency in currency formatting. Possible values are
+        <code>"symbol"</code> to use a localized currency symbol such as €,
+        <code>"code"</code> to use the ISO currency code, <code>"name"</code> to
+        use a localized currency name such as "dollar"; the default is <code>"symbol"</code>.
+      </dd>
+      <dt>useGrouping</dt>
+      <dd>
+        Whether to use grouping separators, such as thousands separators or
+        thousand/lakh/crore separators. Possible values are <code>true</code> and
+        <code>false</code>; the default is <code>true</code>.
+      </dd>
+    </dl>
+    <p>
+      The following properties fall into two groups: <code>minimumIntegerDigits</code>,
+      <code>minimumFractionDigits</code>, and <code>maximumFractionDigits</code> in one
+      group, <code>minimumSignificantDigits</code> and <code>maximumSignificantDigits</code>
+      in the other. If at least one property from the second group is defined, then the
+      first group is ignored.
+    </p>
+    <dl>
+      <dt>minimumIntegerDigits</dt>
+      <dd>
+        The minimum number of integer digits to use. Possible values are from 1 to 21;
+        the default is 1.
+      </dd>
+      <dt>minimumFractionDigits</dt>
+      <dd>
+        The minimum number of fraction digits to use. Possible values are from 0 to 20;
+        the default for plain number and percent formatting is 0; the default for
+        currency formatting is the number of minor unit digits provided by the
+        <a href="http://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 currency code list</a>
+        (2 if the list doesn't provide that information).
+      </dd>
+      <dt>maximumFractionDigits</dt>
+      <dd>
+        The maximum number of fraction digits to use. Possible values are from 0 to 20;
+        the default for plain number formatting is the larger of
+        <code>minimumFractionDigits</code> and 3; the default for currency formatting
+        is the larger of <code>minimumFractionDigits</code> and the number of minor
+        unit digits provided by the
+        <a href="http://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 currency code list</a>
+        (2 if the list doesn't provide that information); the default for percent
+        formatting is the larger of <code>minimumFractionDigits</code> and 0.
+      </dd>
+      <dt>minimumSignificantDigits</dt>
+      <dd>
+        The minimum number of significant digits to use. Possible values are from 1 to 21;
+        the default is 1.
+      </dd>
+      <dt>maximumSignificantDigits</dt>
+      <dd>
+        The maximum number of significant digits to use. Possible values are from 1 to 21;
+        the default is 21.
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+  <!-- Date and time formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Date and time formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'hu', then these translation texts:
+    </p>
+    <app-excerpt [text]="dateFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="dateUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="dateResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>Possible options:</p>
+    <dl>
+      <dt>dateStyle</dt>
+      <dd>
+        The date formatting style to use. Possible values include: <code>"short"</code>,
+        <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
+      </dd>
+      <dt>timeStyle</dt>
+      <dd>
+        The time formatting style to use. Possible values include: <code>"short"</code>,
+        <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
+      </dd>
+      <dt>hour12</dt>
+      <dd>
+        Whether to use 12-hour time (as opposed to 24-hour time). Possible values
+        are <code>true</code> and <code>false</code>; the default is locale dependent.
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+  <!-- Plural rules -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Plural rules
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'en', then these translation texts:
+    </p>
+    <app-excerpt [text]="pluralFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="pluralUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="pluralResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>
+      Each option determines a text to be displayed depending on the value passed.
+    </p>
+    <dl>
+      <dt>option key</dt>
+      <dd>
+        <div class="pull-left"><code>number</code></div>
+        <div>
+          The option value is displayed if the key matches the value passed.
+        </div>
+        <div class="pull-left"><code>number-number</code></div>
+        <div>
+          If the option key defines a range, the option value is displayed when
+          the value passed is in the range.
+        </div>
+        <div class="pull-left"><code>"other"</code></div>
+        <div>
+          The option value is displayed when none of the option keys matches
+          the value passed.
+        </div>
+      </dd>
+      <dt>option value</dt>
+      <dd>
+        Represents a text to be displayed when the option key matches the value passed.
+        If the text contains a hashmark (<code>#</code>), it is replaced by the value passed.
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+
+</mat-accordion>
+<mat-card class="mat-card-bottom">
+
+  <mat-card-actions>
+    <a routerLink="../usage">
+      <button mat-fab color="primary">
+        <i class="fas fa-chevron-left control-button"></i>
+      </button>
+    </a>
+    <span class="control-text">Usage</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="control-text">Selection Lists</span>
+    <a routerLink="../selection-list">
+      <button mat-fab color="accent">
+        <i class="fas fa-chevron-right control-button"></i>
+      </button>
+    </a>
+  </mat-card-actions>
+
+</mat-card>

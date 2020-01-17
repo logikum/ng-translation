@@ -1,6 +1,7 @@
 import { Menu } from './menu';
 import { MENU } from '../constants/MENU';
 import { PATH } from '../constants/PATH';
+import { VERSION } from '../constants/VERSION';
 
 export class MenuFactory {
 
@@ -13,6 +14,9 @@ export class MenuFactory {
     menu.add( PATH.setup, MENU.setup );
     menu.add( PATH.configuration, MENU.configuration );
     menu.add( PATH.usage, MENU.usage );
+    if (basePath === VERSION.v3_5) {
+      menu.add( PATH.localization, MENU.localization );
+    }
     menu.add( PATH.selectionList, MENU.selectionList );
     menu.add( PATH.textList, MENU.textList );
     menu.add( PATH.api, MENU.api );

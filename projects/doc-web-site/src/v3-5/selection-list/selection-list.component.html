@@ -1,0 +1,50 @@
+<mat-card>
+  <mat-card-title>
+    Selection Lists
+  </mat-card-title>
+
+  <mat-card-content>
+    <p>
+      The translation of the texts of a selection list is a frequent task. The
+      TranslatableOptionList class provides a way to do that easily. Let us assume
+      that we want to create a list of fruits. Tha names of the fruits are stored
+      in JSON files:
+    </p>
+    <app-excerpt [text]="translation" language="json"></app-excerpt>
+    <p>
+      The TranslatableOptionList class provides the list items in an easy way:
+    </p>
+    <app-excerpt [text]="code" language="typescript"></app-excerpt>
+    <p>
+      Here <i>'app.fruits'</i> is the key of the text node. Thereafter the fruit
+      list can be used in the view:
+    </p>
+    <app-excerpt [text]="view" language="html"></app-excerpt>
+    <p>
+      The following properties are available:
+    </p>
+    <app-excerpt [text]="properties" language="typescript"></app-excerpt>
+    <p>
+      The TranslatableOptionList object wil load the appropriate translation texts
+      when the user changes the current language.
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a routerLink="../localization">
+      <button mat-fab color="primary">
+        <i class="fas fa-chevron-left control-button"></i>
+      </button>
+    </a>
+    <span class="control-text">Localization</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="control-text">Text Lists</span>
+    <a routerLink="../text-list">
+      <button mat-fab color="accent">
+        <i class="fas fa-chevron-right control-button"></i>
+      </button>
+    </a>
+  </mat-card-actions>
+</mat-card>

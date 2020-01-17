@@ -18,13 +18,27 @@ td {
   padding: 2px 20px;
 }
 .key {
-  background-color: #FFE6F1;
+  background-color: #ffe6f1;
   font-family: monospace;
   padding: 5px 20px;
 }
 code {
-  font-weight: bold;
   background-color: #ffedb8;
+  font-weight: bold;
   padding: 2px 5px;
   border: white solid 2px;
+}
+dt {
+  background-color: #ffe6f1;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: white solid 2px;
+}
+dd {
+  padding: 5px 10px;
+}
+.pull-left {
+  float: left;
+  clear: left;
+  width: 140px;
 }

@@ -1,9 +1,3 @@
-.mat-card-top {
-  margin-bottom: 0;
-}
-.mat-card-top:not([class*=mat-elevation-z]) {
-  box-shadow: -1px 0 1px 0 rgba(0,0,0,.12), 1px 0 1px 0 rgba(0,0,0,.12), 0 0 1px 0 rgba(0,0,0,.12);
-}
 .mat-card-bottom {
   padding-top: 8px;
 }

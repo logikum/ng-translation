@@ -5,10 +5,26 @@
   </span>
   <span class="title">NgTranslation</span>
 
-  <ng-container *ngFor="let item of menu; last as isLast">
-    <a [routerLink]="item.link">{{ item.text }}</a>
-    <span *ngIf="!isLast">♦</span>
-  </ng-container>
+  <span class="fill-remaining-space"></span>
+
+  <table>
+    <tr>
+      <td>
+        <ng-container *ngFor="let item of menu1; last as isLast">
+          <a [routerLink]="item.link">{{ item.text }}</a>
+          <span *ngIf="!isLast">♦</span>
+        </ng-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ng-container *ngFor="let item of menu2; last as isLast">
+          <a [routerLink]="item.link">{{ item.text }}</a>
+          <span *ngIf="!isLast">♦</span>
+        </ng-container>
+      </td>
+    </tr>
+  </table>
 
   <span class="fill-remaining-space"></span>
 

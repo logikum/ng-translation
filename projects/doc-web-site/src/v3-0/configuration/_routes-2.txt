@@ -1,7 +1,7 @@
 const routes: Routes = [
   {
     path: 'shakespeare',
-    loadChildren: './dramas/shakespeare.module#ShakespeareModule',
+    loadChildren: './bookshelf/shakespeare.module#ShakespeareModule',
     canLoad: [ LoadTranslationsGuard ],
     <strong>data: { sectionPrefix: 'dramas' }</strong>
   }

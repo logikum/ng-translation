@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { AppService } from './services/app.service';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
@@ -27,7 +26,6 @@ const routes: Routes = [
   ],
   declarations: [
     AppComponent,
-    ToolbarComponent,
     HeaderComponent
   ],
   providers: [

@@ -7,21 +7,18 @@ import { Menu } from '../../shared';
 })
 export class AppService {
 
-  private menu: Subject<Menu> = new Subject<Menu>();
+  private menu: Subject<Array<Menu>> = new Subject<Array<Menu>>();
   private version: Subject<string> = new Subject<string>();
 
-  get menu$(): Observable<Menu> {
+  get menu$(): Observable<Array<Menu>> {
     return this.menu.asObservable();
   }
-
   get version$(): Observable<string> {
     return this.version.asObservable();
   }
 
-  constructor() { }
-
   setMenu(
-    menu: Menu
+    menu: Array<Menu>
   ): void {
     this.menu.next( menu );
   }

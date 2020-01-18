@@ -7,20 +7,21 @@ export class MenuFactory {
 
   static create(
     basePath: string
-  ): Menu {
+  ): Array<Menu> {
 
-    const menu: Menu = new Menu( basePath );
-
-    menu.add( PATH.setup, MENU.setup );
-    menu.add( PATH.configuration, MENU.configuration );
-    menu.add( PATH.usage, MENU.usage );
+    const menu1: Menu = new Menu( basePath );
+    menu1.add( PATH.setup, MENU.setup );
+    menu1.add( PATH.configuration, MENU.configuration );
+    menu1.add( PATH.usage, MENU.usage );
     if (basePath === VERSION.v3_5) {
-      menu.add( PATH.localization, MENU.localization );
+      menu1.add( PATH.localization, MENU.localization );
     }
-    menu.add( PATH.selectionList, MENU.selectionList );
-    menu.add( PATH.textList, MENU.textList );
-    menu.add( PATH.api, MENU.api );
 
-    return menu;
+    const menu2: Menu = new Menu( basePath );
+    menu2.add( PATH.selectionList, MENU.selectionList );
+    menu2.add( PATH.textList, MENU.textList );
+    menu2.add( PATH.api, MENU.api );
+
+    return [ menu1, menu2 ];
   }
 }

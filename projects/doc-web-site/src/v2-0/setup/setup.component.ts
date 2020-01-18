@@ -10,7 +10,7 @@ import _lazy from 'raw-loader!./_lazy.txt';
 import _guard from 'raw-loader!./_guard.txt';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-setup',
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

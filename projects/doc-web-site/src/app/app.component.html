@@ -1,6 +1,4 @@
-<app-header *ngIf="useHeader$ | async"></app-header>
-<app-toolbar *ngIf="!(useHeader$ | async)"></app-toolbar>
+<app-header></app-header>
 <div class="page">
   <router-outlet></router-outlet>
 </div>
-

@@ -21,7 +21,7 @@ export class V35Module {
     router: Router,
     svcApp: AppService
   ) {
-    const menu: Menu = MenuFactory.create( VERSION.v3_5 );
+    const menu: Array<Menu> = MenuFactory.create( VERSION.v3_5 );
     svcApp.setMenu( menu );
 
     router.events.subscribe( event => {

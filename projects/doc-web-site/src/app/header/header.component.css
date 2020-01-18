@@ -27,3 +27,7 @@ select, option {
   font-size: 1rem;
   padding: 5px 10px;
 }
+td {
+  text-align: center;
+  line-height: 20px;
+}

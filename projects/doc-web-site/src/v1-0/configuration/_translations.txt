@@ -1,0 +1,5 @@
+/translations
+             /app.en.json
+             /app.hu.json
+             /common.en.json
+             /common.hu.json

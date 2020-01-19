@@ -56,8 +56,9 @@ export class TranspilerService {
             break;
         }
       }
+      return text.replace( result[ 0 ], localized );
     }
-    return text.replace( result[ 0 ], localized );
+    return value ? value.toString() : '';
   }
 
   private numberFormat(
@@ -111,12 +112,42 @@ export class TranspilerService {
       if (parts.length === 2) {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
-        if (optionName === 'useGrouping') {
-          options[ optionName ] = optionValue.toLowerCase() !== 'false';
-        } else if (optionName === 'currencyDisplay') {
-          options[ optionName ] = optionValue;
-        } else {
-          options[ optionName ] = parseInt( optionValue, 10 );
+        // if (optionName === 'useGrouping') {
+        //   options[ optionName ] = optionValue.toLowerCase() !== 'false';
+        // } else if (optionName === 'currencyDisplay') {
+        //   options[ optionName ] = optionValue;
+        // } else {
+        //   options[ optionName ] = parseInt( optionValue, 10 );
+        // }
+        switch (optionName) {
+          case 'cd':
+          case 'currencyDisplay':
+            options[ 'currencyDisplay' ] = optionValue;
+            break;
+          case 'ug':
+          case 'useGrouping':
+            options[ 'useGrouping' ] = optionValue.toLowerCase() !== 'false';
+            break;
+          case 'minid':
+          case 'minimumIntegerDigits':
+            options[ 'minimumIntegerDigits' ] = parseInt( optionValue, 10 );
+            break;
+          case 'minfd':
+          case 'minimumFractionDigits':
+            options[ 'minimumFractionDigits' ] = parseInt( optionValue, 10 );
+            break;
+          case 'maxfd':
+          case 'maximumFractionDigits':
+            options[ 'maximumFractionDigits' ] = parseInt( optionValue, 10 );
+            break;
+          case 'minsd':
+          case 'minimumSignificantDigits':
+            options[ 'minimumSignificantDigits' ] = parseInt( optionValue, 10 );
+            break;
+          case 'maxsd':
+          case 'maximumSignificantDigits':
+            options[ 'maximumSignificantDigits' ] = parseInt( optionValue, 10 );
+            break;
         }
       }
     } );
@@ -136,12 +167,30 @@ export class TranspilerService {
       if (parts.length === 2) {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
-        if (optionName === 'hour12') {
-          options[ optionName ] = optionValue.toLowerCase() === 'true';
-        } else if (optionName === 'fractionalSecondDigits ') {
-          options[ optionName ] = parseInt( optionValue, 10 );
-        } else {
-          options[ optionName ] = optionValue;
+        // if (optionName === 'hour12') {
+        //   options[ optionName ] = optionValue.toLowerCase() === 'true';
+        // } else if (optionName === 'fractionalSecondDigits ') {
+        //   options[ optionName ] = parseInt( optionValue, 10 );
+        // } else {
+        //   options[ optionName ] = optionValue;
+        // }
+        switch (optionName) {
+          case 'ds':
+          case 'dateStyle':
+            options[ 'dateStyle' ] = optionValue;
+            break;
+          case 'ts':
+          case 'timeStyle':
+            options[ 'timeStyle' ] = optionValue;
+            break;
+          case 'h12':
+          case 'hour12':
+            options[ 'hour12' ] = optionValue.toLowerCase() === 'true';
+            break;
+          case 'fsd':
+          case 'fractionalSecondDigits':
+            options[ 'fractionalSecondDigits' ] = parseInt( optionValue, 10 );
+            break;
         }
       }
     } );
@@ -161,6 +210,7 @@ export class TranspilerService {
       if (parts.length === 2) {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
+
         if (optionName === 'other') {
           options.set( optionName, optionValue );
         } else {

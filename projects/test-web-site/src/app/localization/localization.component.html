@@ -3,24 +3,56 @@
   <h1>{{ t('title') }}</h1>
 
   <h3>{{ t('number.title') }}</h3>
-  <div>{{ t('number.basic', longNumber) }}</div>
-  <div>{{ t('number.minimumIntegerDigits', shortNumber) }}</div>
-  <div>{{ t('number.minimumFractionDigits', longNumber) }}</div>
-  <div>{{ t('number.maximumFractionDigits', longNumber) }}</div>
-  <div>{{ t('number.minimumSignificantDigits', shortNumber) }}</div>
-  <div>{{ t('number.maximumSignificantDigits', longNumber) }}</div>
-  <div>{{ t('number.combined', shortNumber) }}</div>
-  <div>{{ t('number.useGrouping', longNumber) }}</div>
+  <table>
+    <tr>
+      <td>
+        <div>{{ t('number.basic', longNumber) }}</div>
+        <div>{{ t('number.minimumIntegerDigits', shortNumber) }}</div>
+        <div>{{ t('number.minimumFractionDigits', longNumber) }}</div>
+        <div>{{ t('number.maximumFractionDigits', longNumber) }}</div>
+        <div>{{ t('number.minimumSignificantDigits', shortNumber) }}</div>
+        <div>{{ t('number.maximumSignificantDigits', longNumber) }}</div>
+        <div>{{ t('number.combined', shortNumber) }}</div>
+        <div>{{ t('number.useGrouping', longNumber) }}</div>
+      </td>
+      <td>
+        <div>{{ t('number.basic', longNumber) }}</div>
+        <div>{{ t('number.minid', shortNumber) }}</div>
+        <div>{{ t('number.minfd', longNumber) }}</div>
+        <div>{{ t('number.maxfd', longNumber) }}</div>
+        <div>{{ t('number.minsd', shortNumber) }}</div>
+        <div>{{ t('number.maxsd', longNumber) }}</div>
+        <div>{{ t('number.mixed', shortNumber) }}</div>
+        <div>{{ t('number.ug', longNumber) }}</div>
+      </td>
+    </tr>
+  </table>
 
   <h3>{{ t('percent.title') }}</h3>
-  <div>{{ t('percent.basic', shortPercent) }}</div>
-  <div>{{ t('percent.minimumIntegerDigits', shortPercent) }}</div>
-  <div>{{ t('percent.minimumFractionDigits', shortPercent) }}</div>
-  <div>{{ t('percent.maximumFractionDigits', shortPercent) }}</div>
-  <div>{{ t('percent.minimumSignificantDigits', longPercent) }}</div>
-  <div>{{ t('percent.maximumSignificantDigits', longPercent) }}</div>
-  <div>{{ t('percent.combined', shortPercent) }}</div>
-  <div>{{ t('percent.useGrouping', longPercent) }}</div>
+  <table>
+    <tr>
+      <td>
+        <div>{{ t('percent.basic', shortPercent) }}</div>
+        <div>{{ t('percent.minimumIntegerDigits', shortPercent) }}</div>
+        <div>{{ t('percent.minimumFractionDigits', shortPercent) }}</div>
+        <div>{{ t('percent.maximumFractionDigits', shortPercent) }}</div>
+        <div>{{ t('percent.minimumSignificantDigits', longPercent) }}</div>
+        <div>{{ t('percent.maximumSignificantDigits', longPercent) }}</div>
+        <div>{{ t('percent.combined', shortPercent) }}</div>
+        <div>{{ t('percent.useGrouping', longPercent) }}</div>
+      </td>
+      <td>
+        <div>{{ t('percent.basic', shortPercent) }}</div>
+        <div>{{ t('percent.minid', shortPercent) }}</div>
+        <div>{{ t('percent.minfd', shortPercent) }}</div>
+        <div>{{ t('percent.maxfd', shortPercent) }}</div>
+        <div>{{ t('percent.minsd', longPercent) }}</div>
+        <div>{{ t('percent.maxsd', longPercent) }}</div>
+        <div>{{ t('percent.mixed', shortPercent) }}</div>
+        <div>{{ t('percent.ug', longPercent) }}</div>
+      </td>
+    </tr>
+  </table>
 
   <h3>{{ t('currency.title') }}</h3>
   <table>
@@ -52,6 +84,14 @@
   <div>{{ t('datetime.medium', now) }}</div>
   <div>{{ t('datetime.long', now) }}</div>
   <div>{{ t('datetime.full', now) }}</div>
+  <div>&nbsp;</div>
+  <div>{{ t('datetime._default', now) }}</div>
+  <div>{{ t('datetime._short', now) }}</div>
+  <div>{{ t('datetime._medium', now) }}</div>
+  <div>{{ t('datetime._long', now) }}</div>
+  <div>{{ t('datetime._full', now) }}</div>
+  <div>&nbsp;</div>
+  <div>{{ t('datetime.fractional', now) }}</div>
 
   <h3>{{ t('plural.title') }}</h3>
   <div>{{ t( 'plural.updated', 0) }}</div>

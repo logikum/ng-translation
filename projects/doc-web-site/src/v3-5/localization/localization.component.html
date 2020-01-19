@@ -126,14 +126,14 @@
       Number, percent and currency options
     </mat-expansion-panel-header>
     <dl>
-      <dt>currencyDisplay</dt>
+      <dt>currencyDisplay, cd</dt>
       <dd>
         How to display the currency in currency formatting. Possible values are
         <code>"symbol"</code> to use a localized currency symbol such as €,
         <code>"code"</code> to use the ISO currency code, <code>"name"</code> to
         use a localized currency name such as "dollar"; the default is <code>"symbol"</code>.
       </dd>
-      <dt>useGrouping</dt>
+      <dt>useGrouping, ug</dt>
       <dd>
         Whether to use grouping separators, such as thousands separators or
         thousand/lakh/crore separators. Possible values are <code>true</code> and
@@ -148,12 +148,12 @@
       first group is ignored.
     </p>
     <dl>
-      <dt>minimumIntegerDigits</dt>
+      <dt>minimumIntegerDigits, minid</dt>
       <dd>
         The minimum number of integer digits to use. Possible values are from 1 to 21;
         the default is 1.
       </dd>
-      <dt>minimumFractionDigits</dt>
+      <dt>minimumFractionDigits, minfd</dt>
       <dd>
         The minimum number of fraction digits to use. Possible values are from 0 to 20;
         the default for plain number and percent formatting is 0; the default for
@@ -161,7 +161,7 @@
         <a href="http://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 currency code list</a>
         (2 if the list doesn't provide that information).
       </dd>
-      <dt>maximumFractionDigits</dt>
+      <dt>maximumFractionDigits, maxfd</dt>
       <dd>
         The maximum number of fraction digits to use. Possible values are from 0 to 20;
         the default for plain number formatting is the larger of
@@ -172,12 +172,12 @@
         (2 if the list doesn't provide that information); the default for percent
         formatting is the larger of <code>minimumFractionDigits</code> and 0.
       </dd>
-      <dt>minimumSignificantDigits</dt>
+      <dt>minimumSignificantDigits, minsd</dt>
       <dd>
         The minimum number of significant digits to use. Possible values are from 1 to 21;
         the default is 1.
       </dd>
-      <dt>maximumSignificantDigits</dt>
+      <dt>maximumSignificantDigits, maxsd</dt>
       <dd>
         The maximum number of significant digits to use. Possible values are from 1 to 21;
         the default is 21.
@@ -205,20 +205,24 @@
     </table>
     <p>Possible options:</p>
     <dl>
-      <dt>dateStyle</dt>
+      <dt>dateStyle, ds</dt>
       <dd>
         The date formatting style to use. Possible values include: <code>"short"</code>,
         <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
       </dd>
-      <dt>timeStyle</dt>
+      <dt>timeStyle, ts</dt>
       <dd>
         The time formatting style to use. Possible values include: <code>"short"</code>,
         <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
       </dd>
-      <dt>hour12</dt>
+      <dt>hour12, h12</dt>
       <dd>
         Whether to use 12-hour time (as opposed to 24-hour time). Possible values
         are <code>true</code> and <code>false</code>; the default is locale dependent.
+      </dd>
+      <dt>fractionalSecondDigits, fsd</dt>
+      <dd>
+        The number of fractional seconds to apply. Valid values are 0-3.
       </dd>
     </dl>
   </mat-expansion-panel>

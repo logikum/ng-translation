@@ -125,35 +125,35 @@ export class TranspilerService {
         switch (optionName) {
           case 'cd':
           case 'currencyDisplay':
-            options[ 'currencyDisplay' ] = optionValue;
+            options.currencyDisplay = optionValue;
             break;
           case 'minid':
           case 'minimumIntegerDigits':
-            options[ 'minimumIntegerDigits' ] = parseInt( optionValue, 10 );
+            options.minimumIntegerDigits = parseInt( optionValue, 10 );
             break;
           case 'minfd':
           case 'minimumFractionDigits':
-            options[ 'minimumFractionDigits' ] = parseInt( optionValue, 10 );
+            options.minimumFractionDigits = parseInt( optionValue, 10 );
             break;
           case 'maxfd':
           case 'maximumFractionDigits':
-            options[ 'maximumFractionDigits' ] = parseInt( optionValue, 10 );
+            options.maximumFractionDigits = parseInt( optionValue, 10 );
             break;
           case 'minsd':
           case 'minimumSignificantDigits':
-            options[ 'minimumSignificantDigits' ] = parseInt( optionValue, 10 );
+            options.minimumSignificantDigits = parseInt( optionValue, 10 );
             break;
           case 'maxsd':
           case 'maximumSignificantDigits':
-            options[ 'maximumSignificantDigits' ] = parseInt( optionValue, 10 );
+            options.maximumSignificantDigits = parseInt( optionValue, 10 );
             break;
           case 'ug':
           case 'useGrouping':
-            options[ 'useGrouping' ] = optionValue.toLowerCase() !== 'false';
+            options.useGrouping = optionValue.toLowerCase() !== 'false';
             break;
           case 'lm':
           case 'localeMatcher':
-            options[ 'localeMatcher' ] = optionValue;
+            options.localeMatcher = optionValue;
             break;
         }
       }
@@ -175,36 +175,88 @@ export class TranspilerService {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
         switch (optionName) {
+          case 'ds':
+          case 'dateStyle':
+            switch (optionValue) {
+              case 'short':
+                options.year = 'numeric';
+                options.month = '2-digit';
+                options.day = '2-digit';
+                break;
+              case 'medium':
+                options.year = 'numeric';
+                options.month = 'short';
+                options.day = 'numeric';
+                break;
+              case 'long':
+                options.year = 'numeric';
+                options.month = 'long';
+                options.day = 'numeric';
+                break;
+              case 'full':
+                options.year = 'numeric';
+                options.month = 'long';
+                options.day = 'numeric';
+                options.weekday = 'long';
+                break;
+            }
+            break;
+          case 'ts':
+          case 'timeStyle':
+            switch (optionValue) {
+              case 'short':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                break;
+              case 'medium':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                break;
+              case 'long':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                options.timeZoneName = 'short';
+                break;
+              case 'full':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                options.timeZoneName = 'long';
+                break;
+            }
+            break;
           case 'wd':
           case 'weekday':
-            options[ 'weekday' ] = optionValue;
+            options.weekday = optionValue;
             break;
           case 'era':
-            options[ 'era' ] = optionValue;
+            options.era = optionValue;
             break;
           case 'y':
           case 'year':
-            options[ 'year' ] = optionValue;
+            options.year = optionValue;
             break;
           case 'M':
           case 'month':
-            options[ 'month' ] = optionValue;
+            options.month = optionValue;
             break;
           case 'd':
           case 'day':
-            options[ 'day' ] = optionValue;
+            options.day = optionValue;
             break;
           case 'h':
           case 'hour':
-            options[ 'hour' ] = optionValue;
+            options.hour = optionValue;
             break;
           case 'h12':
           case 'hour12':
-            options[ 'hour12' ] = optionValue.toLowerCase() === 'true';
+            options.hour12 = optionValue.toLowerCase() === 'true';
             break;
           case 'm':
           case 'minute':
-            options[ 'minute' ] = optionValue;
+            options.minute = optionValue;
             break;
           case 's':
           case 'second':
@@ -212,19 +264,19 @@ export class TranspilerService {
             break;
           case 'tz':
           case 'timeZone':
-            options[ 'timeZone' ] = optionValue;
+            options.timeZone = optionValue;
             break;
           case 'tzn':
           case 'timeZoneName':
-            options[ 'timeZoneName' ] = optionValue;
+            options.timeZoneName = optionValue;
             break;
           case 'lm':
           case 'localeMatcher':
-            options[ 'localeMatcher' ] = optionValue;
+            options.localeMatcher = optionValue;
             break;
           case 'fm':
           case 'formatMatcher':
-            options[ 'formatMatcher' ] = optionValue;
+            options.formatMatcher = optionValue;
             break;
         }
       }

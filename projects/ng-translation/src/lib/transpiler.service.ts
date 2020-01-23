@@ -5,6 +5,7 @@ const PATTERN_SEP = ':';
 const OPTION_SEP = ';';
 const VALUE_SEP = '=';
 const RANGE_SEP = '-';
+const VALUE_PH = '#';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class TranspilerService {
             break;
           case 'R':
           case 'plural':
-            localized = this.pluralFormat( locale, params, value );
+            localized = this.pluralFormat( params, value );
             break;
         }
       }
@@ -67,7 +68,10 @@ export class TranspilerService {
     value: any
   ): string {
 
-    const options = this.extendOptions( { style: 'decimal' }, params );
+    const options: Intl.NumberFormatOptions = this.extendOptions(
+      { style: 'decimal' },
+      params
+    );
     return new Intl.NumberFormat( locale, options ).format( value );
   }
 
@@ -77,7 +81,10 @@ export class TranspilerService {
     value: any
   ): string {
 
-    const options = this.extendOptions( { style: 'percent' }, params );
+    const options: Intl.NumberFormatOptions = this.extendOptions(
+      { style: 'percent' },
+      params
+    );
     return new Intl.NumberFormat( locale, options ).format( value );
   }
 
@@ -97,14 +104,17 @@ export class TranspilerService {
     } else {
       worth = value;
     }
-    const options = this.extendOptions( { style: 'currency', currency: currency }, params );
+    const options: Intl.NumberFormatOptions = this.extendOptions(
+      { style: 'currency', currency: currency },
+      params
+    );
     return new Intl.NumberFormat( locale, options ).format( worth );
   }
 
   private extendOptions(
-    options: object,
+    options: Intl.NumberFormatOptions,
     params: string
-  ): object {
+  ): Intl.NumberFormatOptions {
 
     const items = params.split( OPTION_SEP );
     items.forEach( item => {
@@ -112,41 +122,38 @@ export class TranspilerService {
       if (parts.length === 2) {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
-        // if (optionName === 'useGrouping') {
-        //   options[ optionName ] = optionValue.toLowerCase() !== 'false';
-        // } else if (optionName === 'currencyDisplay') {
-        //   options[ optionName ] = optionValue;
-        // } else {
-        //   options[ optionName ] = parseInt( optionValue, 10 );
-        // }
         switch (optionName) {
           case 'cd':
           case 'currencyDisplay':
-            options[ 'currencyDisplay' ] = optionValue;
-            break;
-          case 'ug':
-          case 'useGrouping':
-            options[ 'useGrouping' ] = optionValue.toLowerCase() !== 'false';
+            options.currencyDisplay = optionValue;
             break;
           case 'minid':
           case 'minimumIntegerDigits':
-            options[ 'minimumIntegerDigits' ] = parseInt( optionValue, 10 );
+            options.minimumIntegerDigits = parseInt( optionValue, 10 );
             break;
           case 'minfd':
           case 'minimumFractionDigits':
-            options[ 'minimumFractionDigits' ] = parseInt( optionValue, 10 );
+            options.minimumFractionDigits = parseInt( optionValue, 10 );
             break;
           case 'maxfd':
           case 'maximumFractionDigits':
-            options[ 'maximumFractionDigits' ] = parseInt( optionValue, 10 );
+            options.maximumFractionDigits = parseInt( optionValue, 10 );
             break;
           case 'minsd':
           case 'minimumSignificantDigits':
-            options[ 'minimumSignificantDigits' ] = parseInt( optionValue, 10 );
+            options.minimumSignificantDigits = parseInt( optionValue, 10 );
             break;
           case 'maxsd':
           case 'maximumSignificantDigits':
-            options[ 'maximumSignificantDigits' ] = parseInt( optionValue, 10 );
+            options.maximumSignificantDigits = parseInt( optionValue, 10 );
+            break;
+          case 'ug':
+          case 'useGrouping':
+            options.useGrouping = optionValue.toLowerCase() !== 'false';
+            break;
+          case 'lm':
+          case 'localeMatcher':
+            options.localeMatcher = optionValue;
             break;
         }
       }
@@ -160,36 +167,116 @@ export class TranspilerService {
     value: any
   ): string {
 
-    const options = { };
+    const options: Intl.DateTimeFormatOptions = { };
     const items = params.split( OPTION_SEP );
     items.forEach( item => {
       const parts = item.split( VALUE_SEP );
       if (parts.length === 2) {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
-        // if (optionName === 'hour12') {
-        //   options[ optionName ] = optionValue.toLowerCase() === 'true';
-        // } else if (optionName === 'fractionalSecondDigits ') {
-        //   options[ optionName ] = parseInt( optionValue, 10 );
-        // } else {
-        //   options[ optionName ] = optionValue;
-        // }
         switch (optionName) {
           case 'ds':
           case 'dateStyle':
-            options[ 'dateStyle' ] = optionValue;
+            switch (optionValue) {
+              case 'short':
+                options.year = 'numeric';
+                options.month = '2-digit';
+                options.day = '2-digit';
+                break;
+              case 'medium':
+                options.year = 'numeric';
+                options.month = 'short';
+                options.day = 'numeric';
+                break;
+              case 'long':
+                options.year = 'numeric';
+                options.month = 'long';
+                options.day = 'numeric';
+                break;
+              case 'full':
+                options.year = 'numeric';
+                options.month = 'long';
+                options.day = 'numeric';
+                options.weekday = 'long';
+                break;
+            }
             break;
           case 'ts':
           case 'timeStyle':
-            options[ 'timeStyle' ] = optionValue;
+            switch (optionValue) {
+              case 'short':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                break;
+              case 'medium':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                break;
+              case 'long':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                options.timeZoneName = 'short';
+                break;
+              case 'full':
+                options.hour = 'numeric';
+                options.minute = '2-digit';
+                options.second = '2-digit';
+                options.timeZoneName = 'long';
+                break;
+            }
+            break;
+          case 'wd':
+          case 'weekday':
+            options.weekday = optionValue;
+            break;
+          case 'era':
+            options.era = optionValue;
+            break;
+          case 'y':
+          case 'year':
+            options.year = optionValue;
+            break;
+          case 'M':
+          case 'month':
+            options.month = optionValue;
+            break;
+          case 'd':
+          case 'day':
+            options.day = optionValue;
+            break;
+          case 'h':
+          case 'hour':
+            options.hour = optionValue;
             break;
           case 'h12':
           case 'hour12':
-            options[ 'hour12' ] = optionValue.toLowerCase() === 'true';
+            options.hour12 = optionValue.toLowerCase() === 'true';
             break;
-          case 'fsd':
-          case 'fractionalSecondDigits':
-            options[ 'fractionalSecondDigits' ] = parseInt( optionValue, 10 );
+          case 'm':
+          case 'minute':
+            options.minute = optionValue;
+            break;
+          case 's':
+          case 'second':
+            options[ 'second' ] = optionValue;
+            break;
+          case 'tz':
+          case 'timeZone':
+            options.timeZone = optionValue;
+            break;
+          case 'tzn':
+          case 'timeZoneName':
+            options.timeZoneName = optionValue;
+            break;
+          case 'lm':
+          case 'localeMatcher':
+            options.localeMatcher = optionValue;
+            break;
+          case 'fm':
+          case 'formatMatcher':
+            options.formatMatcher = optionValue;
             break;
         }
       }
@@ -198,7 +285,6 @@ export class TranspilerService {
   }
 
   private pluralFormat(
-    locale: string,
     params: string,
     value: number
   ): string {
@@ -236,6 +322,6 @@ export class TranspilerService {
       }
     } );
     const pluralized = options.has( value ) ? options.get( value ) : options.get( 'other' ) || '';
-    return pluralized.replace( '#' , value );
+    return pluralized.replace( VALUE_PH , value );
   }
 }

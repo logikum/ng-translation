@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { VERSION } from '../shared';
@@ -15,7 +15,6 @@ export class AppComponent {
   useHeader$ = new BehaviorSubject<boolean>(true);
 
   constructor(
-    private cdRef: ChangeDetectorRef,
     private router: Router
   ) {
     router.events.pipe(
@@ -23,8 +22,6 @@ export class AppComponent {
     ).subscribe((e: NavigationEnd) => {
       const useHeader = e.url === '/' || e.url.startsWith( VERSION.v3_5 );
       this.useHeader$.next( useHeader );
-      // cdRef.detectChanges();
-      console.log(e.id, e.url);
     });
   }
 }

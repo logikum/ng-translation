@@ -436,7 +436,7 @@ export class TranspilerService {
     return num;
   }
 
-  checkMember(
+  private checkMember(
     key: string,
     member: string,
     list: Array<string>

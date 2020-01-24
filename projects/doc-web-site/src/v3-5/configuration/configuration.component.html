@@ -81,10 +81,17 @@
       Then the corresponding sections will be:
     </p>
     <app-excerpt [text]="sections2" language="typescript"></app-excerpt>
+
     <h3>defaultLanguage: <span class="data-type">string</span></h3>
     <p>
       The code of the default language. The translations of the eager loaded modules
       in the default language are downloaded at the start of the application.
+    </p>
+
+    <h3>disableWarnings: <span class="data-type">boolean</span></h3>
+    <p>
+      An optional value to disable NgTranslation warning messages.The default
+      value is false.
     </p>
   </mat-card-content>
 

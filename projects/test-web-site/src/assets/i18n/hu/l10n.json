@@ -63,6 +63,6 @@
   },
   "plural": {
     "title": "Többes számú szabályok",
-    "updated": "Ezt az oldalt {{ 0 | plural : 0=most; 1-5=# perccel ezelőtt; other=nem régen }} frissítették."
+    "updated": "Ezt az oldalt {{ 0 | plural : 0=most; 1~5=# perccel ezelőtt; other=nem régen }} frissítették."
   }
 }

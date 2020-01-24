@@ -7,5 +7,5 @@ class TranslationService {
   changeLanguage(language: string): Promise<any>
   get(key: string, args?: any): string
   getGroup(key: string): object
-  insert(text: string, args?: any): string
+  insert(key: string, text: string, args?: any): string
 }

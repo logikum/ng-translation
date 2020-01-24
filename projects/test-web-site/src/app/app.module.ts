@@ -57,7 +57,8 @@ const routes: Routes = [
       translationUrl: '/assets/i18n/{ language }/{ section }.json',
       // translationUrl: '/assets/i18n/{section}.{language}.json',
       sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
-      defaultLanguage: 'en'
+      defaultLanguage: 'en',
+      disableWarnings: false
     } ),
     SpringModule
   ],

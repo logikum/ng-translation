@@ -6,6 +6,7 @@ import { TranslationService } from './translation.service';
 import { TranslateDirective } from './translate.directive';
 import { TranslateParamsDirective } from './translate-params.directive';
 import { TranspilerService } from './transpiler.service';
+import { MessengerService } from './messenger.service';
 
 export function initializerFactory(
   service: TranslationService,
@@ -29,7 +30,8 @@ export function serviceFactory(
   http: HttpClient
 ): TranslationService {
 
-  return new TranslationService( http, new TranspilerService() );
+  const messenger = new MessengerService();
+  return new TranslationService( http, messenger, new TranspilerService( messenger ) );
 }
 
 @NgModule({

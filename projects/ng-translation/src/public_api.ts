@@ -10,6 +10,7 @@ export * from './lib/translation-config.model';
 // export * from './lib/translate-params.directive';
 // export * from './lib/translate.pipe';
 // export * from './lib/transpiler.service';
+// export * from './lib/messenger.service';
 
 export * from './lib/translatable-text-list.model';
 export * from './lib/translatable-option-list.model';

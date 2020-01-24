@@ -1,0 +1,411 @@
+<mat-accordion>
+
+  <!-- Localization -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Localization
+    </mat-expansion-panel-header>
+    <p>
+      Localization information can be added to the data placeholders of
+      transalations in the following form:
+    </p>
+    <app-excerpt [text]="localization" language="json"></app-excerpt>
+    <p>where</p>
+    <table>
+      <tr>
+        <td class="key">key</td>
+        <td colspan="2">The order or the name of the value to interpolate.</td>
+      </tr>
+      <tr>
+        <td class="key">type</td>
+        <td colspan="2">The type of the localization. The possible types are</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>N</code> or <code>number</code></td>
+        <td>for number formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>P</code> or <code>percent</code></td>
+        <td>for percent formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>C</code> or <code>currency</code></td>
+        <td>for currency formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>D</code> or <code>datetime</code></td>
+        <td>for dateand time formatting</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>R</code> or <code>plural</code></td>
+        <td>for plural rules</td>
+      </tr>
+      <tr>
+        <td class="key">options</td>
+        <td colspan="2">Optional information depending on the type of the localization.</td>
+      </tr>
+    </table>
+    <p>
+      The rules of the <b>active language</b> are applied to the value to interpolate.
+    </p>
+  </mat-expansion-panel>
+  <!-- Number formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'hu', then these translation texts:
+    </p>
+    <app-excerpt [text]="numberFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="numberUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="numberResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Percent formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Percent formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'en', then these translation texts:
+    </p>
+    <app-excerpt [text]="percentFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="percentUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="percentResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>See options lower.</p>
+  </mat-expansion-panel>
+  <!-- Currency formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Currency formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'it', then these translation texts:
+    </p>
+    <app-excerpt [text]="currencyFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="currencyUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="currencyResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>
+      The value of the currency must be provided as a 2 element array: the first
+      element is a number, the second one is the currency code. See options lower.
+    </p>
+  </mat-expansion-panel>
+  <!-- Number, percent and currency options -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Number, percent and currency options
+    </mat-expansion-panel-header>
+    <dl>
+      <dt>localeMatcher, lm</dt>
+      <dd>
+        The locale matching algorithm to use. Possible values are <code>"lookup"</code>
+        and <code>"best fit"</code>; the default is <code>"best fit"</code>.
+      </dd>
+      <dt>currencyDisplay, cd</dt>
+      <dd>
+        How to display the currency in currency formatting. Possible values are
+        <code>"symbol"</code> to use a localized currency symbol such as €,
+        <code>"code"</code> to use the ISO currency code, <code>"name"</code> to
+        use a localized currency name such as "dollar"; the default is <code>"symbol"</code>.
+      </dd>
+      <dt>useGrouping, ug</dt>
+      <dd>
+        Whether to use grouping separators, such as thousands separators or
+        thousand/lakh/crore separators. Possible values are <code>true</code> and
+        <code>false</code>; the default is <code>true</code>.
+      </dd>
+    </dl>
+    <p>
+      The following properties fall into two groups: <code>minimumIntegerDigits</code>,
+      <code>minimumFractionDigits</code>, and <code>maximumFractionDigits</code> in one
+      group, <code>minimumSignificantDigits</code> and <code>maximumSignificantDigits</code>
+      in the other. If at least one property from the second group is defined, then the
+      first group is ignored.
+    </p>
+    <dl>
+      <dt>minimumIntegerDigits, minid</dt>
+      <dd>
+        The minimum number of integer digits to use. Possible values are from 1 to 21;
+        the default is 1.
+      </dd>
+      <dt>minimumFractionDigits, minfd</dt>
+      <dd>
+        The minimum number of fraction digits to use. Possible values are from 0 to 20;
+        the default for plain number and percent formatting is 0; the default for
+        currency formatting is the number of minor unit digits provided by the
+        <a href="http://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 currency code list</a>
+        (2 if the list doesn't provide that information).
+      </dd>
+      <dt>maximumFractionDigits, maxfd</dt>
+      <dd>
+        The maximum number of fraction digits to use. Possible values are from 0 to 20;
+        the default for plain number formatting is the larger of
+        <code>minimumFractionDigits</code> and 3; the default for currency formatting
+        is the larger of <code>minimumFractionDigits</code> and the number of minor
+        unit digits provided by the
+        <a href="http://www.currency-iso.org/en/home/tables/table-a1.html">ISO 4217 currency code list</a>
+        (2 if the list doesn't provide that information); the default for percent
+        formatting is the larger of <code>minimumFractionDigits</code> and 0.
+      </dd>
+      <dt>minimumSignificantDigits, minsd</dt>
+      <dd>
+        The minimum number of significant digits to use. Possible values are from 1 to 21;
+        the default is 1.
+      </dd>
+      <dt>maximumSignificantDigits, maxsd</dt>
+      <dd>
+        The maximum number of significant digits to use. Possible values are from 1 to 21;
+        the default is 21.
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+  <!-- Date and time formatting -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Date and time formatting
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'hu', then these translation texts:
+    </p>
+    <app-excerpt [text]="dateFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="dateUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="dateResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>Possible options:</p>
+    <dl>
+      <dt>dateStyle, ds</dt>
+      <dd>
+        The date formatting style to use. Possible values include: <code>"short"</code>,
+        <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
+      </dd>
+      <dt>timeStyle, ts</dt>
+      <dd>
+        The time formatting style to use. Possible values include: <code>"short"</code>,
+        <code>"medium"</code>, <code>"long"</code> and <code>"full"</code>.
+      </dd>
+      <dt>localeMatcher, lm</dt>
+      <dd>
+        The locale matching algorithm to use. Possible values are <code>"lookup"</code>
+        and <code>"best fit"</code>; the default is <code>"best fit"</code>.
+      </dd>
+      <dt>timeZone, tz</dt>
+      <dd>
+        The time zone to use. The only value implementations must recognize is
+        <code>"UTC"</code>; the default is the runtime's default time zone. Implementations
+        may also recognize the time zone names of the IANA time zone database, such as
+        <code>"Asia/Shanghai"</code>, <code>"Asia/Kolkata"</code>, <code>"America/New_York"</code>.
+      </dd>
+      <dt>hour12, h12</dt>
+      <dd>
+        Whether to use 12-hour time (as opposed to 24-hour time). Possible values
+        are <code>true</code> and <code>false</code>; the default is locale dependent.
+      </dd>
+      <dt>formatMatcher, fm</dt>
+      <dd>
+        The format matching algorithm to use. Possible values are <code>"basic"</code>
+        and <code>"best fit"</code>; the default is <code>"best fit"</code>. See the
+        following paragraphs for information about the use of this property.
+      </dd>
+    </dl>
+    <p>
+      The following properties describe the date-time components to use in formatted
+      output, and their desired representations. Implementations are required to
+      support at least the following subsets:
+    </p>
+    <ul>
+      <li><code>weekday</code>, <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, <code>minute</code>, <code>second</code></li>
+      <li><code>weekday</code>, <code>year</code>, <code>month</code>, <code>day</code></li>
+      <li><code>year</code>, <code>month</code>, <code>day</code></li>
+      <li><code>year</code>, <code>month</code></li>
+      <li><code>month</code>, <code>day</code></li>
+      <li><code>hour</code>, <code>minute</code>, <code>second</code></li>
+      <li><code>hour</code>, <code>minute</code></li>
+    </ul>
+    <p>
+      Implementations may support other subsets, and requests will be negotiated
+      against all available subset-representation combinations to find the best match.
+      Two algorithms are available for this negotiation and selected by the <code>formatMatcher</code>
+      property: A fully specified <code>"basic"</code> algorithm and an implementation-dependent
+      <code>"best fit"</code> algorithm.
+    </p>
+    <dl>
+      <dt>weekday, wd</dt>
+      <dd>
+        The representation of the weekday. Possible values are:
+        <ul>
+          <li><code>"long"</code> (e.g. Thursday)</li>
+          <li><code>"short"</code> (e.g. Thu)</li>
+          <li><code>"narrow"</code> (e.g. T). Two weekdays may have the same narrow
+            style for some locales (e.g. Tuesday's narrow style is also T).</li>
+        </ul>
+      </dd>
+      <dt>era</dt>
+      <dd>
+        The representation of the era. Possible values are:
+        <ul>
+          <li><code>"long"</code> (e.g. Anno Domini)</li>
+          <li><code>"short"</code> (e.g. AD)</li>
+          <li><code>"narrow"</code> (e.g. A)</li>
+        </ul>
+      </dd>
+      <dt>year, y</dt>
+      <dd>
+        The representation of the year. Possible values are:
+        <ul>
+          <li><code>"numeric"</code> (e.g. 2020)</li>
+          <li><code>"2-digit"</code> (e.g. 20)</li>
+        </ul>
+      </dd>
+      <dt>month, M</dt>
+      <dd>
+        The representation of the month. Possible values are:
+        <ul>
+          <li><code>"numeric"</code> (e.g. 2)</li>
+          <li><code>"2-digit"</code> (e.g. 02)</li>
+          <li><code>"long"</code> (e.g. March)</li>
+          <li><code>"short"</code> (e.g. Mar)</li>
+          <li><code>"narrow"</code> (e.g. M). Two months may have the same narrow
+            style for some locales (e.g. May's narrow style is also M).</li>
+        </ul>
+      </dd>
+      <dt>day, d</dt>
+      <dd>
+        The representation of the day. Possible values are:
+        <ul>
+          <li><code>"numeric"</code> (e.g. 1)</li>
+          <li><code>"2-digit"</code> (e.g. 01)</li>
+        </ul>
+      </dd>
+      <dt>hour, h</dt>
+      <dd>
+        The representation of the hour. Possible values are <code>"numeric"</code>,
+        <code>"2-digit"</code>.
+      </dd>
+      <dt>minute, m</dt>
+      <dd>
+        The representation of the minute. Possible values are <code>"numeric"</code>,
+        <code>"2-digit"</code>.
+      </dd>
+      <dt>second, s</dt>
+      <dd>
+        The representation of the second. Possible values are <code>"numeric"</code>,
+        <code>"2-digit"</code>.
+      </dd>
+      <dt>timeZoneName, tzn</dt>
+      <dd>
+        The representation of the time zone name. Possible values are:
+        <ul>
+          <li><code>"long"</code> (e.g. British Summer Time)</li>
+          <li><code>"short"</code> (e.g. GMT+1)</li>
+        </ul>
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+  <!-- Plural rules -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Plural rules
+    </mat-expansion-panel-header>
+    <p>
+      If activeLanguage = 'en', then these translation texts:
+    </p>
+    <app-excerpt [text]="pluralFormat" language="json"></app-excerpt>
+    <p>
+      And this employ will produce the indicated output:
+    </p>
+    <table class="splitted">
+      <tr>
+        <td><app-excerpt [text]="pluralUsage" language="html"></app-excerpt></td>
+        <td>&nbsp;</td>
+        <td><app-excerpt [text]="pluralResult" language="html"></app-excerpt></td>
+      </tr>
+    </table>
+    <p>
+      Each option determines a text to be displayed depending on the value passed.
+    </p>
+    <dl>
+      <dt>option key</dt>
+      <dd>
+        <div class="pull-left"><code>number</code></div>
+        <div>
+          The option value is displayed if the key matches the value passed.
+        </div>
+        <div class="pull-left"><code>number~number</code></div>
+        <div>
+          If the option key defines a range, the option value is displayed when
+          the value passed is in the range. The boundaries  of the range are separated
+          by a tilde (<code>~</code>),
+        </div>
+        <div class="pull-left"><code>"other"</code></div>
+        <div>
+          The option value is displayed when none of the option keys matches
+          the value passed.
+        </div>
+      </dd>
+      <dt>option value</dt>
+      <dd>
+        Represents a text to be displayed when the option key matches the value passed.
+        If the text contains a hashmark (<code>#</code>), it is replaced by the value passed.
+      </dd>
+    </dl>
+  </mat-expansion-panel>
+
+</mat-accordion>
+<mat-card class="mat-card-bottom">
+
+  <mat-card-actions>
+    <a routerLink="../usage">
+      <button mat-fab color="primary">
+        <i class="fas fa-chevron-left control-button"></i>
+      </button>
+    </a>
+    <span class="control-text">Usage</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="control-text">Selection Lists</span>
+    <a routerLink="../selection-list">
+      <button mat-fab color="accent">
+        <i class="fas fa-chevron-right control-button"></i>
+      </button>
+    </a>
+  </mat-card-actions>
+
+</mat-card>

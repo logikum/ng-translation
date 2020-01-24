@@ -1,8 +1,10 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
-import { TranslationConfig } from './translation-config.model';
 import { Locale } from './locale.model';
+import { MessengerService } from './messenger.service';
+import { TranslationConfig } from './translation-config.model';
+import { TranspilerService } from './transpiler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,9 @@ export class TranslationService {
   get activeLanguage(): string { return this.active; }
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private messenger: MessengerService,
+    private transpile: TranspilerService
   ) { }
 
   initializeApp(
@@ -30,6 +34,7 @@ export class TranslationService {
 
       this.config = config;
       this.active = config.defaultLanguage;
+      this.messenger.setup( config );
 
       const languages: string[] = [ config.defaultLanguage ];
       if (navigator.language && navigator.language !== config.defaultLanguage ) {
@@ -43,9 +48,11 @@ export class TranslationService {
 
       Promise.all( promises )
         .then( () => {
+          this.messenger.start();
           resolve( this.browserLanguageSupported() );
         } )
         .catch( error => {
+          this.messenger.start();
           reject( error );
         } );
     } );
@@ -164,13 +171,13 @@ export class TranslationService {
           if (!this.translations[ locale.name ]) {
             this.translations[ locale.name ] = { };
           }
-          this.storeTranslations( locale.name, section, sectionTranslations);
+          this.storeTranslations( locale.name, section, sectionTranslations );
           resolve();
         } )
         .catch( error => {
 
           if (locale.hasRegion) {
-            console.log( `TRANSLATION alternative: ${ locale.neutral }`);
+            this.messenger.info( `Using alternative: ${ locale.neutral }` );
 
             const url2 = this.buildUrl( locale.neutral, section );
             this.http.get( url2 )
@@ -180,17 +187,21 @@ export class TranslationService {
                 if (!this.translations[ locale.neutral ]) {
                   this.translations[ locale.neutral ] = { };
                 }
-                this.storeTranslations( locale.neutral, section, sectionTranslations);
+                this.storeTranslations( locale.neutral, section, sectionTranslations );
                 resolve();
               } )
              .catch( error2 => {
                this.handleError( error );
-               reject();
+               // reject();
+               this.storeTranslations( locale.name, section, { } );
+               resolve();
              } );
 
           } else {
             this.handleError( error );
-            reject();
+            // reject();
+            this.storeTranslations( locale.name, section, { } );
+            resolve();
           }
         } );
     } );
@@ -238,7 +249,7 @@ export class TranslationService {
         (error.message ? error.message : error.toString()) :
         'An error occurred while downloading a translation file.'
       ;
-    console.log( `TRANSLATION ERROR: ${ message }`);
+    this.messenger.error( message );
   }
 
   get(
@@ -269,7 +280,7 @@ export class TranslationService {
     if (translation === key) {
 
       // Warning of missing translation text.
-      console.log( `Missing translation text: [${ locale.name }] ${ key }` );
+      this.messenger.warn( `Missing translation text: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
       locale = new Locale( this.config.defaultLanguage );
@@ -281,7 +292,7 @@ export class TranslationService {
       }
     }
     // Insert eventual arguments.
-    return this.insert( translation, args );
+    return this.insert( key, translation, args );
   }
 
   private find(
@@ -303,40 +314,12 @@ export class TranslationService {
   }
 
   insert(
+    key: string,
     text: string,
     args?: any
   ): string {
 
-    if (text && args !== undefined) {
-      if (args === null) {
-        args = 'null';
-      }
-      if (typeof args === 'string' || typeof args === 'number' || typeof args === 'boolean') {
-        args = [ args ];
-      }
-      if (args instanceof Array) {
-
-        // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
-        let index = 0;
-        args.forEach( arg => {
-          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*\\}\\}`, 'g' );
-          if (re) {
-            text = text.replace( re, arg );
-          }
-        } );
-      } else if (typeof args === 'object') {
-
-        // Replace named parameters: 'xxxxxx{{name-A}}xxxxxxxx{{name-B}}xxxxxx'
-        const names = Object.getOwnPropertyNames( args );
-        names.forEach( name => {
-          const re = new RegExp( `\\{\\{\\s*${ name }\\s*\\}\\}`, 'g' );
-          if (re) {
-            text = text.replace( re, args[ name ] );
-          }
-        } );
-      }
-    }
-    return text;
+    return this.transpile.insert( key, this.active, text, args );
   }
 
   getGroup(
@@ -357,7 +340,7 @@ export class TranslationService {
     if (group === null) {
 
       // Warning of missing translation text.
-      console.log( `Missing translation group: [${ locale.name }] ${ key }` );
+      this.messenger.warn( `Missing translation group: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
       locale = new Locale( this.config.defaultLanguage );

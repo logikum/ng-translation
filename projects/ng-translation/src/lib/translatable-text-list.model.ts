@@ -63,7 +63,7 @@ export class TranslatableTextList implements OnDestroy {
   ): string {
 
     const translation = this.texts.get( key );
-    return translation ? this.translate.insert( translation, args ) : key;
+    return translation ? this.translate.insert( key, translation, args ) : key;
   }
 
   ngOnDestroy(): void {

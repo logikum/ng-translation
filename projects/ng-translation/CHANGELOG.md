@@ -1,5 +1,11 @@
 # Changes
 
+### v3.5.0
+_Published on 1/24/2020._
+
+* Add localization for data placeholders.
+* Improve error handling.
+
 ### v3.0.0
 _Published on 1/7/2020._
 

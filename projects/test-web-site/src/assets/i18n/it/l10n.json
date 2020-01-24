@@ -1,0 +1,68 @@
+{
+  "title": "Prove di localizzazione",
+  "number": {
+    "title": "Formattazione numerica",
+    "basic": "Formato numerico di base: {{ 0|number }}",
+    "minimumIntegerDigits": "Cifre intere minime: {{ 0|N:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Cifre della frazione minima: {{ 0|N:minimumFractionDigits=5 }}",
+    "maximumFractionDigits": "Cifre della frazione massima: {{ 0|N:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Cifre minime significative: {{ 0|N:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Cifre massime significative: {{ 0|N:maximumSignificantDigits=3 }}",
+    "combined": "Con diverse opzioni: {{ 0|N:minimumIntegerDigits=3;minimumFractionDigits=5 }}",
+    "useGrouping": "Senza raggruppamento: {{ 0|N:useGrouping=false }}",
+    "minid": "Cifre intere minime: {{ 0 | N : minid = 3 }}",
+    "minfd": "Cifre della frazione minima: {{ 0 | N : minfd = 5 }}",
+    "maxfd": "Cifre della frazione massima: {{ 0 | N : maxfd = 1 }}",
+    "minsd": "Cifre minime significative: {{ 0 | N : minsd = 3 }}",
+    "maxsd": "Cifre massime significative: {{ 0 | N : maxsd = 3 }}",
+    "mixed": "Con diverse opzioni: {{ 0 | N : minid = 3 ; minfd = 5 }}",
+    "ug": "Senza raggruppamento: {{ 0 | N : ug = false }}"
+  },
+  "percent": {
+    "title": "Formattazione percentuale",
+    "basic": "Formato percentuale di base: {{ 0|percent }}",
+    "minimumIntegerDigits": "Cifre intere minime: {{ 0|P:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Cifre della frazione minima: {{ 0|P:minimumFractionDigits=3 }}",
+    "maximumFractionDigits": "Cifre della frazione massima: {{ 0|P:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Cifre minime significative: {{ 0|P:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Cifre massime significative: {{ 0|P:maximumSignificantDigits=3 }}",
+    "combined": "Con diverse opzioni: {{ 0|P:minimumIntegerDigits=3;minimumFractionDigits=5 }}",
+    "useGrouping": "Senza raggruppamento: {{ 0|P:useGrouping=false }}",
+    "minid": "Cifre intere minime: {{ 0 | P : minid = 3 }}",
+    "minfd": "Cifre della frazione minima: {{ 0 | P : minfd = 3 }}",
+    "maxfd": "Cifre della frazione massima: {{ 0 | P : maxfd=1 }}",
+    "minsd": "Cifre minime significative: {{ 0 | P : minsd = 3 }}",
+    "maxsd": "Cifre massime significative: {{ 0 | P : maxsd = 3 }}",
+    "mixed": "Con diverse opzioni: {{ 0 | P : minid = 3 ; minfd = 5 }}",
+    "ug": "Senza raggruppamento: {{ 0 | P : ug = false }}"
+  },
+  "currency": {
+    "title": "Formattazione della valuta",
+    "default": "Formato valuta predefinito: {{ price|currency }}",
+    "code": "Formato del codice valuta: {{ 0|C:currencyDisplay=code }}",
+    "name": "Formato del nome della valuta: {{ 0|C:currencyDisplay=name }}",
+    "symbol": "Formato del simbolo di valuta: {{ 0|C:currencyDisplay=symbol }}",
+    "_default": "{{ price | C }}",
+    "_code": "{{ 0 | C : cd = code }}",
+    "_name": "{{ 0 | C : cd = name }}",
+    "_symbol": "{{ 0 | C : cd = symbol }}"
+  },
+  "datetime": {
+    "title": "Formattazione data e ora",
+    "default": "Formato data predefinito: {{ 0|datetime }}",
+    "short": "Data e ora breve: {{ 0|D:dateStyle=short;timeStyle=short;hour12=false }}",
+    "medium": "Data e ora medie: {{ 0|D:dateStyle=medium;timeStyle=medium }}",
+    "long": "Data e ora lunghe: {{ 0|D:dateStyle=long;timeStyle=long }}",
+    "full": "Data e ora complete: {{ 0|D:dateStyle=full;timeStyle=full;hour12=true }}",
+    "_default": "Formato data predefinito: {{ 0 | D }}",
+    "_short": "Data e ora breve: {{ 0| D : ds = short; ts = short; h12 = false }}",
+    "_medium": "Data e ora medie: {{ 0 | D : ds = medium; ts = medium }}",
+    "_long": "Data e ora lunghe: {{ 0 | D : ds = long; ts = long }}",
+    "_full": "Data e ora complete: {{ 0 | D : ds = full; ts = full; h12 = true }}",
+    "fractional": "Cifre secondarie frazionarie: {{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}"
+  },
+  "plural": {
+    "title": "Regole plurali",
+    "updated": "Questa pagina è stata aggiornata {{ 0 | plural : 0=proprio ora; 1=un minuto fa; 2-10=# minuti fa; other=in precedenza }}."
+  }
+}

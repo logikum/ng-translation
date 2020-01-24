@@ -1,0 +1,38 @@
+.mat-card-bottom {
+  padding-top: 8px;
+}
+table.splitted {
+  border-spacing: 0;
+  width: 100%;
+}
+table.splitted td {
+  padding: 0;
+}
+td {
+  padding: 2px 20px;
+}
+.key {
+  background-color: #ffe6f1;
+  font-family: monospace;
+  padding: 5px 20px;
+}
+code {
+  background-color: #ffedb8;
+  font-weight: bold;
+  padding: 2px 5px;
+  border: white solid 2px;
+}
+dt {
+  background-color: #ffe6f1;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: white solid 2px;
+}
+dd {
+  padding: 5px 10px;
+}
+.pull-left {
+  float: left;
+  clear: left;
+  width: 140px;
+}

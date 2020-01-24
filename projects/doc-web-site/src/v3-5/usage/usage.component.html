@@ -1,0 +1,209 @@
+<mat-accordion>
+
+  <!-- Define translations -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Define translations
+    </mat-expansion-panel-header>
+    <p>
+      The translation texts are stored in JSON files:
+    </p>
+    <app-excerpt [text]="translation1" language="json"></app-excerpt>
+    <p>
+      The texts may contain placeholders for values to insert runtime. Double
+      curly brackets mark the placeholders in the text and are identified by
+      names or ordered indeces:
+    </p>
+    <app-excerpt [text]="placeholder" language="json"></app-excerpt>
+    <p>
+      See the <b>Parameter interpolation</b> panel for more details.
+    </p>
+    <p>
+      The translation texts are referred in the Angular app by their keys. The key
+      consists of the name of the translation file and the name of the JSON property
+      separated by a dot. The texts in the above example can be referred by the
+      following keys:
+    </p>
+    <app-excerpt [text]="keys1" language="typescript"></app-excerpt>
+    <p>
+      The JSON objects can be nested:
+    </p>
+    <app-excerpt [text]="translation2" language="json"></app-excerpt>
+    <p>
+      In this case the keys will be:
+    </p>
+    <app-excerpt [text]="keys2" language="typescript"></app-excerpt>
+    <p>
+      You can use an extended translation file names in similar way:
+    </p>
+    <app-excerpt [text]="translation3" language="json"></app-excerpt>
+    <p>
+      Then the keys will be:
+    </p>
+    <app-excerpt [text]="keys3" language="typescript"></app-excerpt>
+    <p>
+      The section prefixes of lazy loaded modules will not part of the keys.
+    </p>
+  </mat-expansion-panel>
+  <!-- Use structural directive in views -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use structural directive in views
+    </mat-expansion-panel-header>
+    <blockquote>
+      Using a structural directive is the recommended way as it creates one
+      subscription per template.
+    </blockquote>
+    <p>
+      You can use the translate structural directive to get your translated texts:
+    </p>
+    <app-excerpt [text]="structural1" language="html"></app-excerpt>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <app-excerpt [text]="structural2" language="html"></app-excerpt>
+    <p>
+      Or with parameter:
+    </p>
+    <app-excerpt [text]="structural3" language="html"></app-excerpt>
+    <p>
+      You can also specify paramaters in the component:
+    </p>
+    <app-excerpt [text]="param_s1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param_s2" language="html"></app-excerpt>
+    <p>
+      If the keys of the texts in the view mostly starts with the same path, they
+      can be shortened providing the beginning of the keys in the node property.
+      Exceptiona are marked with a starting slash ('/') character:
+    </p>
+    <app-excerpt [text]="node" language="html"></app-excerpt>
+    <p>
+      When you use HTML tags in the translation text:
+    </p>
+    <app-excerpt [text]="html_s1" language="json"></app-excerpt>
+    <p>
+      It can be displayed using the innerHTML attribute:
+    </p>
+    <app-excerpt [text]="html_s2" language="html"></app-excerpt>
+  </mat-expansion-panel>
+  <!-- Use pipe in views -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use pipe in views
+    </mat-expansion-panel-header>
+    <p>
+      You can use the translate pipe to get your translation values:
+    </p>
+    <app-excerpt [text]="pipe1" language="html"></app-excerpt>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <app-excerpt [text]="pipe2" language="html"></app-excerpt>
+    <p>
+      Or with parameter:
+    </p>
+    <app-excerpt [text]="pipe3" language="html"></app-excerpt>
+    <p>
+      You can also specify the paramaters in the component:
+    </p>
+    <app-excerpt [text]="param1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param2" language="html"></app-excerpt>
+    <p>
+      When you use HTML tags in the translation text:
+    </p>
+    <app-excerpt [text]="html1" language="json"></app-excerpt>
+    <p>
+      It can be displayed using the innerHTML attribute:
+    </p>
+    <app-excerpt [text]="html2" language="html"></app-excerpt>
+  </mat-expansion-panel>
+  <!-- Use attribute directive in views -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use attribute directive in views
+    </mat-expansion-panel-header>
+    <p>
+      You can use the translate attribute directive to get your translated texts:
+    </p>
+    <app-excerpt [text]="attribute1" language="html"></app-excerpt>
+    <p>
+      The parameters are optional. For example:
+    </p>
+    <app-excerpt [text]="attribute2" language="html"></app-excerpt>
+    <p>
+      Or with parameter:
+    </p>
+    <app-excerpt [text]="attribute3" language="html"></app-excerpt>
+    <p>
+      You can also specify paramaters in the component:
+    </p>
+    <app-excerpt [text]="param_a1" language="typescript"></app-excerpt>
+    <app-excerpt [text]="param_a2" language="html"></app-excerpt>
+  </mat-expansion-panel>
+  <!-- Use service in components -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Use service in components
+    </mat-expansion-panel-header>
+    <p>
+      Instantiate the translation service in the component:
+    </p>
+    <app-excerpt [text]="service1" language="typescript"></app-excerpt>
+    <p>
+      Then you can get the translation texts:
+    </p>
+    <app-excerpt [text]="service2" language="typescript"></app-excerpt>
+    <p>
+      You must get the translation texts again after the current language has changed.
+      Another solution is to use the TranslatableTextList or TranslatableOptionList
+      classes to manage the translations because they update their texts automatically.
+    </p>
+  </mat-expansion-panel>
+  <!-- Parameter interpolation -->
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Parameter interpolation
+    </mat-expansion-panel-header>
+    <p>
+      If the parameter is an object, the translation service searches the names its
+      properties surrounded by double curly brackets. When it finds one, it will be
+      replaced by the value of the given property, e.g.:
+    </p>
+    <app-excerpt [text]="interpolation1"></app-excerpt>
+    <p>
+      When the parameter is an array, the translation service searches the indeces
+      of the array items surrounded by double curly brackets:
+    </p>
+    <app-excerpt [text]="interpolation2"></app-excerpt>
+    <p>
+      In case of the parameter being a string, number or Boolean, the search phrase
+      is always &#123;<span></span>&#123;0}}:
+    </p>
+    <app-excerpt [text]="interpolation3"></app-excerpt>
+    <p>
+      See the next chapter to learn how to localize the inserted values.
+    </p>
+  </mat-expansion-panel>
+
+</mat-accordion>
+<mat-card class="mat-card-bottom">
+
+  <mat-card-actions>
+    <a routerLink="../configuration">
+      <button mat-fab color="primary">
+        <i class="fas fa-chevron-left control-button"></i>
+      </button>
+    </a>
+    <span class="control-text">Configuration</span>
+
+    <span class="fill-remaining-space"></span>
+
+    <span class="control-text">Localization</span>
+    <a routerLink="../localization">
+      <button mat-fab color="accent">
+        <i class="fas fa-chevron-right control-button"></i>
+      </button>
+    </a>
+  </mat-card-actions>
+
+</mat-card>

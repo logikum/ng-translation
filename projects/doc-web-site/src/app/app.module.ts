@@ -6,9 +6,11 @@ import { SharedModule } from '../shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { AppService } from './services/app.service';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'v3.0', pathMatch: 'full' },
+  { path: '', redirectTo: 'v3.5', pathMatch: 'full' },
+  { path: 'v3.5', loadChildren: () => import('../v3-5/v3-5.module').then(m => m.V35Module) },
   { path: 'v3.0', loadChildren: () => import('../v3-0/v3-0.module').then(m => m.V30Module) },
   { path: 'v2.0', loadChildren: () => import('../v2-0/v2-0.module').then(m => m.V20Module) },
   { path: 'v1.0', loadChildren: () => import('../v1-0/v1-0.module').then(m => m.V10Module) },
@@ -23,7 +25,8 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   providers: [
     AppService

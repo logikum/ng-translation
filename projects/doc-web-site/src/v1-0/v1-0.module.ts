@@ -22,7 +22,7 @@ export class V10Module {
     router: Router,
     svcApp: AppService
   ) {
-    const menu: Menu = MenuFactory.create( VERSION.v1_0 );
+    const menu: Array<Menu> = MenuFactory.create( VERSION.v1_0 );
     svcApp.setMenu( menu );
 
     router.events.subscribe( event => {

@@ -18,6 +18,7 @@
     "title": "Stagioni",
     "components": "Prove dei componenti",
     "auxiliary": "Prove ausiliarie",
+    "l10n": "Prove di localizzazione",
     "currLang": "Lingua corrente:",
     "select": "Selezionare il mese:",
     "selectedIndex": "L'indice selezionato:",

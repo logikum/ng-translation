@@ -1,0 +1,6 @@
+class TranslatableOptionList {
+  constructor(translate: TranslationService, key: string)
+  items: Array<TranslatableOption>
+  selectedValue: string
+  destroy(): void
+}

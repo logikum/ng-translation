@@ -1,0 +1,68 @@
+{
+  "title": "Localization tests",
+  "number": {
+    "title": "Number formatting",
+    "basic": "Basic number format: {{ 0|number }}",
+    "minimumIntegerDigits": "Minimum integer digits: {{ 0|N:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Minimum fraction digits: {{ 0|N:minimumFractionDigits=5 }}",
+    "maximumFractionDigits": "Maximum fraction digits: {{ 0|N:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Minimum significant digits: {{ 0|N:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Maximum significant digits: {{ 0|N:maximumSignificantDigits=3 }}",
+    "combined": "With several options: {{ 0|N:minimumIntegerDigits=3;minimumFractionDigits=5 }}",
+    "useGrouping": "Without grouping: {{ 0|N:useGrouping=false }}",
+    "minid": "Minimum integer digits: {{ 0 | N : minid = 3 }}",
+    "minfd": "Minimum fraction digits: {{ 0 | N : minfd = 5 }}",
+    "maxfd": "Maximum fraction digits: {{ 0 | N : maxfd = 1 }}",
+    "minsd": "Minimum significant digits: {{ 0 | N : minsd = 3 }}",
+    "maxsd": "Maximum significant digits: {{ 0 | N : maxsd = 3 }}",
+    "mixed": "With several options: {{ 0 | N : minid = 3 ; minfd = 5 }}",
+    "ug": "Without grouping: {{ 0 | N : ug = false }}"
+  },
+  "percent": {
+    "title": "Percent formatting",
+    "basic": "Basic percent format: {{ 0|percent }}",
+    "minimumIntegerDigits": "Minimum integer digits: {{ 0|P:minimumIntegerDigits=3 }}",
+    "minimumFractionDigits": "Minimum fraction digits: {{ 0|P:minimumFractionDigits=3 }}",
+    "maximumFractionDigits": "Maximum fraction digits: {{ 0|P:maximumFractionDigits=1 }}",
+    "minimumSignificantDigits": "Minimum significant digits: {{ 0|P:minimumSignificantDigits=3 }}",
+    "maximumSignificantDigits": "Maximum significant digits: {{ 0|P:maximumSignificantDigits=3 }}",
+    "combined": "With several options: {{ 0|P:minimumIntegerDigits=3;minimumFractionDigits=5 }}",
+    "useGrouping": "Without grouping: {{ 0|P:useGrouping=false }}",
+    "minid": "Minimum integer digits: {{ 0 | P : minid = 3 }}",
+    "minfd": "Minimum fraction digits: {{ 0 | P : minfd = 3 }}",
+    "maxfd": "Maximum fraction digits: {{ 0 | P : maxfd=1 }}",
+    "minsd": "Minimum significant digits: {{ 0 | P : minsd = 3 }}",
+    "maxsd": "Maximum significant digits: {{ 0 | P : maxsd = 3 }}",
+    "mixed": "With several options: {{ 0 | P : minid = 3 ; minfd = 5 }}",
+    "ug": "Without grouping: {{ 0 | P : ug = false }}"
+  },
+  "currency": {
+    "title": "Currency formatting",
+    "default": "Default currency format: {{ price|currency }}",
+    "code": "Currency code format: {{ 0|C:currencyDisplay=code }}",
+    "name": "Currency name format: {{ 0|C:currencyDisplay=name }}",
+    "symbol": "Currency symbol format: {{ 0|C:currencyDisplay=symbol }}",
+    "_default": "{{ price | C }}",
+    "_code": "{{ 0 | C : cd = code }}",
+    "_name": "{{ 0 | C : cd = name }}",
+    "_symbol": "{{ 0 | C : cd = symbol }}"
+  },
+  "datetime": {
+    "title": "Date and time formatting",
+    "default": "Default date format: {{ 0|datetime }}",
+    "short": "Short date and time: {{ 0|D:dateStyle=short;timeStyle=short;hour12=false }}",
+    "medium": "Medium date and time: {{ 0|D:dateStyle=medium;timeStyle=medium }}",
+    "long": "Long date and time: {{ 0|D:dateStyle=long;timeStyle=long }}",
+    "full": "Full date and time: {{ 0|D:dateStyle=full;timeStyle=full;hour12=true }}",
+    "_default": "Default date format: {{ 0 | D }}",
+    "_short": "Short date and time: {{ 0| D : ds = short; ts = short; h12 = false }}",
+    "_medium": "Medium date and time: {{ 0 | D : ds = medium; ts = medium }}",
+    "_long": "Long date and time: {{ 0 | D : ds = long; ts = long }}",
+    "_full": "Full date and time: {{ 0 | D : ds = full; ts = full; h12 = true }}",
+    "fractional": "Fractional second digits: {{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}"
+  },
+  "plural": {
+    "title": "Plural rules",
+    "updated": "This page has been updated {{ 0 | plural : 0=just now; 1=one minute ago; 2-10=# minutes ago; other=formerly }}."
+  }
+}

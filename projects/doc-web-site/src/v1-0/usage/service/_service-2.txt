@@ -1,0 +1,7 @@
+ngOnInit() {
+  const title = this.translate.get( 'app.home.title' );
+  const promo = this.translate.get(
+    'app.promotions.daily',
+    { product: 'CPG34500', discount: 15 }
+  );
+}

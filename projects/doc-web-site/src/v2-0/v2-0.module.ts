@@ -21,7 +21,7 @@ export class V20Module {
     router: Router,
     svcApp: AppService
   ) {
-    const menu: Menu = MenuFactory.create( VERSION.v2_0 );
+    const menu: Array<Menu> = MenuFactory.create( VERSION.v2_0 );
     svcApp.setMenu( menu );
 
     router.events.subscribe( event => {

@@ -18,6 +18,7 @@
     "title": "Évszakok",
     "components": "Komponens tesztek",
     "auxiliary": "Kiegészítő tesztek",
+    "l10n": "Lokalizációs tesztek",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
     "selectedIndex": "A választott index:",

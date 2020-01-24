@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { Menu } from '../shared';
-
-import { AppService } from './services/app.service';
-import { VersionFactory } from '../shared';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { VERSION } from '../shared';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,37 +10,18 @@ import { VersionFactory } from '../shared';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  @ViewChild('version', { static: true }) versionSelect;
-
-  versions$ = VersionFactory.create();
-  menu: Menu;
-
-  get menu$(): Observable<Menu> {
-    return this.svcApp.menu$;
-  }
+  useHeader$ = new BehaviorSubject<boolean>(true);
 
   constructor(
-    private router: Router,
-    private svcApp: AppService
+    private router: Router
   ) {
-    this.svcApp.menu$.subscribe( menu => {
-      this.menu = menu;
-    } );
-    this.svcApp.version$.subscribe( url => {
-      this.versionSelect.nativeElement.value = url;
-      this.router.navigateByUrl( url );
-    } );
-  }
-
-  ngOnInit(): void {
-    this.versions$ = VersionFactory.create();
-  }
-
-  versionChange(
-    event: any
-  ): void {
-    this.router.navigateByUrl( event.target.value );
+    router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe((e: NavigationEnd) => {
+      const useHeader = e.url === '/' || e.url.startsWith( VERSION.v3_5 );
+      this.useHeader$.next( useHeader );
+    });
   }
 }

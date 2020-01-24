@@ -15,6 +15,7 @@ Features:
 * Uses attribute directive in views
 * Uses service in code
 * Supports parameter interpolation
+* Supports parameter localization
 * Provides component to collect multiple texts
 * Provides component to support selection lists
 
@@ -22,6 +23,6 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
-* NgTranslation v3 for Angular 8
-* NgTranslation v2 for Angular 7
-* NgTranslation v1 for Angular 6
+* NgTranslation v3.x for Angular 8
+* NgTranslation v2.x for Angular 7
+* NgTranslation v1.x for Angular 6

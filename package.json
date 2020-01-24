@@ -2,7 +2,7 @@
   "name": "ng-translation",
   "version": "3.5.0",
   "description": "NgTranslation is an internationalization package for Angular 6, 7 & 8 applications.",
-  "keywords": [ "Angular", "internationalization", "localization" ],
+  "keywords": [ "Angular", "i18n", "internationalization", "l10n", "localization" ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000",

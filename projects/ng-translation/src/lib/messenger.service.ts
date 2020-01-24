@@ -8,9 +8,10 @@ const prefix = 'NG-TRANSLATION * ';
 })
 export class MessengerService {
 
+  private isEnabled = false;
   private disableWarnings = false;
 
-  initialize(
+  setup(
     config: TranslationConfig
   ): void {
 
@@ -19,11 +20,15 @@ export class MessengerService {
     }
   }
 
+  start(): void {
+    this.isEnabled = !this.disableWarnings;
+  }
+
   info(
     message: string
   ): void {
 
-    if (!this.disableWarnings) {
+    if (this.isEnabled) {
       console.log( prefix + message );
     }
   }
@@ -32,7 +37,7 @@ export class MessengerService {
     message: string
   ): void {
 
-    if (!this.disableWarnings) {
+    if (this.isEnabled) {
       console.warn( prefix + message );
     }
   }
@@ -41,9 +46,7 @@ export class MessengerService {
     message: string
   ): void {
 
-    if (!this.disableWarnings) {
-      console.error( prefix + message );
-    }
+    console.error( prefix + message );
   }
 
   formatError(
@@ -94,6 +97,16 @@ export class MessengerService {
     this.display( key, optionValue,
       'Not supported time style value:',
       'Missing time style value.' );
+  }
+
+  pluralError(
+    key: string,
+    optionName: string
+  ): void {
+
+    this.display( key, optionName,
+      'Option must be a number, a range or "other":',
+      'Missing plural option.' );
   }
 
   private display(

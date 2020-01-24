@@ -5,7 +5,7 @@ const INTL_SEP = '|';
 const PATTERN_SEP = ':';
 const OPTION_SEP = ';';
 const VALUE_SEP = '=';
-const RANGE_SEP = '-';
+const RANGE_SEP = '~';
 const VALUE_PH = '#';
 
 @Injectable({
@@ -179,7 +179,8 @@ export class TranspilerService {
         switch (optionName) {
           case 'cd':
           case 'currencyDisplay':
-            options.currencyDisplay = optionValue;
+            options.currencyDisplay = this.checkMember( key, optionValue,
+              ['symbol', 'code', 'name'] );
             break;
           case 'minid':
           case 'minimumIntegerDigits':
@@ -208,7 +209,8 @@ export class TranspilerService {
             break;
           case 'lm':
           case 'localeMatcher':
-            options.localeMatcher = optionValue;
+            options.localeMatcher = this.checkMember( key, optionValue,
+              ['lookup', 'best fit'] );
             break;
           default:
             this.messenger.optionNameError( key, optionName );
@@ -297,38 +299,42 @@ export class TranspilerService {
               break;
             case 'wd':
             case 'weekday':
-              options.weekday = optionValue;
+              options.weekday = this.checkMember( key, optionValue,
+                ['long', 'short', 'narrow'] );
               break;
             case 'era':
-              options.era = optionValue;
+              options.era = this.checkMember( key, optionValue,
+                ['long', 'short', 'narrow'] );
               break;
             case 'y':
             case 'year':
-              options.year = optionValue;
+              options.year = this.checkMember( key, optionValue,
+                ['numeric', '2-digit'] );
               break;
             case 'M':
             case 'month':
-              options.month = optionValue;
+              options.month = this.checkMember( key, optionValue,
+                ['numeric', '2-digit', 'long', 'short', 'narrow'] );
               break;
             case 'd':
             case 'day':
-              options.day = optionValue;
+              options.day = this.checkMember( key, optionValue,
+                ['numeric', '2-digit'] );
               break;
             case 'h':
             case 'hour':
-              options.hour = optionValue;
-              break;
-            case 'h12':
-            case 'hour12':
-              options.hour12 = optionValue.toLowerCase() === 'true';
+              options.hour = this.checkMember( key, optionValue,
+                ['numeric', '2-digit'] );
               break;
             case 'm':
             case 'minute':
-              options.minute = optionValue;
+              options.minute = this.checkMember( key, optionValue,
+                ['numeric', '2-digit'] );
               break;
             case 's':
             case 'second':
-              options[ 'second' ] = optionValue;
+              options.second = this.checkMember( key, optionValue,
+                ['numeric', '2-digit'] );
               break;
             case 'tz':
             case 'timeZone':
@@ -336,15 +342,22 @@ export class TranspilerService {
               break;
             case 'tzn':
             case 'timeZoneName':
-              options.timeZoneName = optionValue;
+              options.timeZoneName = this.checkMember( key, optionValue,
+                ['long', 'short'] );
+              break;
+            case 'h12':
+            case 'hour12':
+              options.hour12 = optionValue.toLowerCase() === 'true';
               break;
             case 'lm':
             case 'localeMatcher':
-              options.localeMatcher = optionValue;
+              options.localeMatcher = this.checkMember( key, optionValue,
+                ['lookup', 'best fit'] );
               break;
             case 'fm':
             case 'formatMatcher':
-              options.formatMatcher = optionValue;
+              options.formatMatcher = this.checkMember( key, optionValue,
+                ['basic', 'best fit'] );
               break;
             default:
               this.messenger.optionNameError( key, optionName );
@@ -381,7 +394,7 @@ export class TranspilerService {
             const from = parseInt( range[ 0 ], 10 );
             const to = parseInt( range[ 1 ], 10 );
             if (isNaN( from ) || isNaN( to )) {
-              this.messenger.warn( `[${ key }] Option must be a number, a range or "other": ${ optionName }` );
+              this.messenger.pluralError( key, optionName );
             } else {
               if (from > to) {
                 for (let i = to; i <= from; i++) {
@@ -396,14 +409,14 @@ export class TranspilerService {
           } else {
             const i = parseInt( optionName, 10 );
             if (isNaN( i )) {
-              this.messenger.warn( `[${ key }] Option must be a number, a range or "other": ${ optionName }` );
+              this.messenger.pluralError( key, optionName );
             } else {
               options.set( i, optionValue );
             }
           }
         }
       } else if (parts.length > 2) {
-        this.messenger.warn( `[${ key }] Missing or invalid option value: ${ item }` );
+        this.messenger.optionValueError( key, item );
       }
     } );
     const pluralized = options.has( value ) ? options.get( value ) : options.get( 'other' ) || '';
@@ -421,5 +434,18 @@ export class TranspilerService {
       return undefined;
     }
     return num;
+  }
+
+  checkMember(
+    key: string,
+    member: string,
+    list: Array<string>
+  ): string {
+
+    if (list.indexOf( member ) < 0) {
+      this.messenger.optionValueError( key, member );
+      return undefined;
+    }
+    return member;
   }
 }

@@ -34,7 +34,7 @@ export class TranslationService {
 
       this.config = config;
       this.active = config.defaultLanguage;
-      this.messenger.initialize( config );
+      this.messenger.setup( config );
 
       const languages: string[] = [ config.defaultLanguage ];
       if (navigator.language && navigator.language !== config.defaultLanguage ) {
@@ -48,9 +48,11 @@ export class TranslationService {
 
       Promise.all( promises )
         .then( () => {
+          this.messenger.start();
           resolve( this.browserLanguageSupported() );
         } )
         .catch( error => {
+          this.messenger.start();
           reject( error );
         } );
     } );

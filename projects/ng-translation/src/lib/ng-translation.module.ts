@@ -1,38 +1,12 @@
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslationConfig } from './translation-config.model';
-import { TranslatePipe } from './translate.pipe';
-import { TranslationService } from './translation.service';
-import { TranslateDirective } from './translate.directive';
-import { TranslateParamsDirective } from './translate-params.directive';
-import { TranspilerService } from './transpiler.service';
-import { MessengerService } from './messenger.service';
 
-export function initializerFactory(
-  service: TranslationService,
-  config: TranslationConfig
-): () => void {
-
-  function initializer() {
-    service.initializeApp( config )
-      .then( browserLanguageSupported => {
-        service.changeLanguage(
-          browserLanguageSupported ?
-            navigator.language :
-            config.defaultLanguage
-        );
-      } );
-  }
-  return initializer;
-}
-
-export function serviceFactory(
-  http: HttpClient
-): TranslationService {
-
-  const messenger = new MessengerService();
-  return new TranslationService( http, messenger, new TranspilerService( messenger ) );
-}
+import { TranslateDirective, TranslateParamsDirective } from './directives';
+import { TRANSLATION_CONFIG, TranslationConfig } from './models';
+import { TranslatePipe } from './pipes';
+import { TranslationService } from './services';
+import { initializerFactory } from './initializer.factory';
+import { serviceFactory } from './service.factory';
 
 @NgModule({
   imports: [
@@ -60,18 +34,17 @@ export class NgTranslationModule {
         {
           provide: APP_INITIALIZER,
           useFactory: initializerFactory,
-          multi: true,
-          deps: [ TranslationService, TranslationConfig ]
+          deps: [ TranslationService, TRANSLATION_CONFIG ],
+          multi: true
         },
         {
           provide: TranslationService,
           useFactory: serviceFactory,
-          deps: [ HttpClient ]
+          deps: [ HttpClient, TRANSLATION_CONFIG ]
         },
         {
-          provide: TranslationConfig,
-          useValue: config,
-          multi: false
+          provide: TRANSLATION_CONFIG,
+          useValue: config
         }
       ]
     };

@@ -1,7 +1,8 @@
 import { OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TranslationService } from './translation.service';
+
+import { TranslationService } from '../services';
 
 export class TranslatableTextList implements OnDestroy {
 

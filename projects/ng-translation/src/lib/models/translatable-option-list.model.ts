@@ -1,8 +1,9 @@
 import { OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 import { TranslatableOption } from './translatable-option.model';
-import { TranslationService } from './translation.service';
+import { TranslationService } from '../services';
 
 export class TranslatableOptionList implements IterableIterator<TranslatableOption>, OnDestroy {
 

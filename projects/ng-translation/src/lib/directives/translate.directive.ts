@@ -2,7 +2,7 @@ import {
   Directive, Input, OnChanges, OnInit, Optional, SimpleChanges, TemplateRef, ViewContainerRef
 } from '@angular/core';
 
-import { TranslationService } from './translation.service';
+import { TranslationService } from '../services';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

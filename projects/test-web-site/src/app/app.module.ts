@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { NgTranslationModule, LoadTranslationsGuard } from 'ng-translation';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
@@ -57,8 +58,8 @@ const routes: Routes = [
       translationUrl: '/assets/i18n/{ language }/{ section }.json',
       // translationUrl: '/assets/i18n/{section}.{language}.json',
       sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
-      defaultLanguage: 'en',
-      disableWarnings: false
+      defaultLanguage: environment.defaultLanguage,
+      disableWarnings: environment.disableWarnings
     } ),
     SpringModule
   ],

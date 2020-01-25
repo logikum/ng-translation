@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TranslationConfig } from './translation-config.model';
+import { Inject, Injectable } from '@angular/core';
+
+import { TRANSLATION_CONFIG, TranslationConfig } from '../models';
 
 const prefix = 'NG-TRANSLATION * ';
 
@@ -11,10 +12,9 @@ export class MessengerService {
   private isEnabled = false;
   private disableWarnings = false;
 
-  setup(
-    config: TranslationConfig
-  ): void {
-
+  constructor(
+    @Inject( TRANSLATION_CONFIG ) config: TranslationConfig
+  ) {
     if (config && config.disableWarnings === true) {
       this.disableWarnings = true;
     }

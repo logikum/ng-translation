@@ -1,9 +1,9 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
-import { Locale } from './locale.model';
+
+import { Locale, TRANSLATION_CONFIG, TranslationConfig } from '../models';
 import { MessengerService } from './messenger.service';
-import { TranslationConfig } from './translation-config.model';
 import { TranspilerService } from './transpiler.service';
 
 @Injectable({
@@ -11,7 +11,6 @@ import { TranspilerService } from './transpiler.service';
 })
 export class TranslationService {
 
-  private config: TranslationConfig;
   private active: string;
   private translations: object = { };
   private sections: Array<string> = [ ];
@@ -21,23 +20,20 @@ export class TranslationService {
   get activeLanguage(): string { return this.active; }
 
   constructor(
+    @Inject( TRANSLATION_CONFIG ) private config: TranslationConfig,
     private http: HttpClient,
     private messenger: MessengerService,
     private transpile: TranspilerService
   ) { }
 
-  initializeApp(
-    config: TranslationConfig
-  ): Promise<boolean> {
+  initializeApp(): Promise<boolean> {
 
     return new Promise((resolve, reject) => {
 
-      this.config = config;
-      this.active = config.defaultLanguage;
-      this.messenger.setup( config );
+      this.active = this.config.defaultLanguage;
 
-      const languages: string[] = [ config.defaultLanguage ];
-      if (navigator.language && navigator.language !== config.defaultLanguage ) {
+      const languages: string[] = [ this.config.defaultLanguage ];
+      if (navigator.language && navigator.language !== this.config.defaultLanguage ) {
         languages.push( navigator.language );
       }
       const sections: string[] = this.config.sections

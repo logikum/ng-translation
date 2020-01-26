@@ -16,7 +16,7 @@ const routes: Routes = [
     CommonModule,
     MatCardModule,
     RouterModule.forChild( routes ),
-    NgTranslationModule.forChild()
+    NgTranslationModule
   ],
   declarations: [
     IndexComponent

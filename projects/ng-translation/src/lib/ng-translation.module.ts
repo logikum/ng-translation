@@ -49,11 +49,4 @@ export class NgTranslationModule {
       ]
     };
   }
-
-  static forChild(): ModuleWithProviders<NgTranslationModule> {
-    return {
-      ngModule: NgTranslationModule,
-      providers: [ ]
-    };
-  }
 }

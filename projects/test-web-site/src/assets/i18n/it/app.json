@@ -42,7 +42,7 @@
   },
   "shop": {
     "offer": "Offerta del giorno: acquista {{buy}} paga {{pay}}!",
-    "special": "Ogni {{0}} film ha uno sconto del {{1}}%!",
-    "sale": "La vendita dura ancora per {{0}} giorni."
+    "special": "Ogni {{0 }} film ha uno sconto del {{1 }}%!",
+    "sale": "La vendita dura ancora per {{0 }} giorni."
   }
 }

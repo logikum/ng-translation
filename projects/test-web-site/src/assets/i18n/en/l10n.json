@@ -1,5 +1,6 @@
 {
   "title": "Localization tests",
+  "subtitle": "The diffusion of the Arabic numbers started only in the {{ 0 | roman }}. century.",
   "number": {
     "title": "Number formatting",
     "basic": "Basic number format: {{ 0|number }}",

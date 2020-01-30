@@ -1,6 +1,6 @@
 export interface TranslatableOption {
 
-  value: string;
-  text: string;
+  readonly value: string;
+  readonly text: string;
   selected: boolean;
 }

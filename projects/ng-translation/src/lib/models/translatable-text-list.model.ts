@@ -6,13 +6,13 @@ import { TranslationService } from '../services';
 
 export class TranslatableTextList implements OnDestroy {
 
-  private names = new Map();
-  private texts = new Map();
-  private onDestroy: Subject<void> = new Subject();
+  private readonly onDestroy: Subject<void> = new Subject();
+  private readonly names = new Map();
+  private readonly texts = new Map();
 
   constructor(
-    private translate: TranslationService,
-    private keyList: string | Array<string> | object
+    private readonly translate: TranslationService,
+    private readonly keyList: string | Array<string> | object
   ) {
     if (typeof this.keyList === 'string') {
 

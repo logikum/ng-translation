@@ -7,10 +7,10 @@ import { TranslationService } from '../services';
 
 export class TranslatableOptionList implements IterableIterator<TranslatableOption>, OnDestroy {
 
+  private readonly onDestroy: Subject<void> = new Subject();
+  private readonly items: Array<TranslatableOption> = [];
   private currentIndex = -1;
-  private items: Array<TranslatableOption> = [];
-  private index = 0;
-  private onDestroy: Subject<void> = new Subject();
+  private iteratorIndex = 0;
 
   get selectedIndex(): number {
     return this.currentIndex;
@@ -43,8 +43,8 @@ export class TranslatableOptionList implements IterableIterator<TranslatableOpti
   }
 
   constructor(
-    private translate: TranslationService,
-    private key: string
+    private readonly translate: TranslationService,
+    private readonly key: string
   ) {
     this.translate.languageChanged
       .pipe( takeUntil( this.onDestroy ) )
@@ -79,13 +79,13 @@ export class TranslatableOptionList implements IterableIterator<TranslatableOpti
 
   next(): IteratorResult<TranslatableOption> {
 
-    if (this.index < this.items.length) {
+    if (this.iteratorIndex < this.items.length) {
       return {
-        value: this.items[ this.index++ ],
+        value: this.items[ this.iteratorIndex++ ],
         done: false
       };
     } else {
-      this.index = 0;
+      this.iteratorIndex = 0;
       return { value: undefined, done: true };
     }
   }

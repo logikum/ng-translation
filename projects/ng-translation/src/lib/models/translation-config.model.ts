@@ -2,12 +2,12 @@ import { InjectionToken } from '@angular/core';
 
 export interface TranslationConfig {
 
-  translationUrl: string;
-  sections: Array<string>;
-  defaultLanguage: string;
-  disableWarnings?: boolean;
+  readonly translationUrl: string;
+  readonly sections: Array<string>;
+  readonly defaultLanguage: string;
+  readonly disableWarnings?: boolean;
 }
 
-export const TRANSLATION_CONFIG = new InjectionToken<TranslationConfig>(
-  'TRANSLATION_CONFIG'
+export const NGT_CONFIGURATION = new InjectionToken<TranslationConfig>(
+  'NGT_CONFIGURATION'
 );

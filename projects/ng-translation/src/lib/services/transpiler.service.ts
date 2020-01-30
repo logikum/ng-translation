@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
+import { FormatData, NGT_TRANSPILER, TranspileData, TranspileExtender } from '../models';
 import { MessengerService } from './messenger.service';
 
 const INTL_SEP = '|';
@@ -14,18 +15,18 @@ const VALUE_PH = '#';
 })
 export class TranspilerService {
 
+  extender: TranspileExtender;
+
   constructor(
-    private messenger: MessengerService
+    private readonly messenger: MessengerService
   ) { }
 
   insert(
-    key: string,
-    locale: string,
-    text: string,
+    data: TranspileData,
     args?: any
   ): string {
 
-    if (text && args !== undefined) {
+    if (data.text && args !== undefined) {
       if (args === null) {
         args = 'null';
       }
@@ -37,9 +38,9 @@ export class TranspilerService {
         // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
         let index = 0;
         args.forEach( arg => {
-          const re = new RegExp( `\\{\\{\\s*${ index++ }([^\}]+)?\\}\\}` );
+          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*([^\}]+)?\\}\\}` );
           if (re) {
-            text = this.replace( key, locale, text, re, arg );
+            data.text = this.replace( data, re, arg );
           }
         } );
       } else if (typeof args === 'object') {
@@ -47,28 +48,26 @@ export class TranspilerService {
         // Replace named parameters: 'xxxxxx{{name-A}}xxxxxxxx{{name-B}}xxxxxx'
         const names = Object.getOwnPropertyNames( args );
         names.forEach( name => {
-          const re = new RegExp( `\\{\\{\\s*${ name }([^\}]+)?\\}\\}` );
+          const re = new RegExp( `\\{\\{\\s*${ name }\\s*([^\}]+)?\\}\\}` );
           if (re) {
-            text = this.replace( key, locale, text, re, args[ name ] );
+            data.text = this.replace( data, re, args[ name ] );
           }
         } );
       } else {
-        this.messenger.warn( `[${ key }] Not supported argument type: ${ typeof args }` );
+        this.messenger.warn( `[${ data.key }] Not supported argument type: ${ typeof args }` );
       }
     }
-    return text;
+    return data.text;
   }
 
   private replace(
-    key: string,
-    locale: string,
-    text: string,
+    tdata: TranspileData,
     re: RegExp,
     value: any
   ): string {
 
-    let localized = value;
-    const result = text.match( re );
+    let localized = value ? value.toString() : '';
+    const result = tdata.text.match( re );
     if (result && result[ 1 ]) {
       const group = result[ 1 ].trim();
       if (group.startsWith( INTL_SEP )) {
@@ -81,97 +80,99 @@ export class TranspilerService {
           format = format.substr( 0, pos );
         }
         format = format.trim();
-
+        const fdata: FormatData = {
+          key: tdata.key,
+          locale: tdata.locale,
+          params: params,
+          value: value
+        };
         switch (format) {
           case 'N':
           case 'number':
-            localized = this.numberFormat( key, locale, params, value );
+            localized = this.numberFormat( fdata );
             break;
           case 'P':
           case 'percent':
-            localized = this.percentFormat( key, locale, params, value );
+            localized = this.percentFormat( fdata );
             break;
           case 'C':
           case 'currency':
-            localized = this.currencyFormat( key, locale, params, value );
+            localized = this.currencyFormat( fdata );
             break;
           case 'D':
           case 'datetime':
-            localized = this.datetimeFormat( key, locale, params, value );
+            localized = this.datetimeFormat( fdata );
             break;
           case 'R':
           case 'plural':
-            localized = this.pluralFormat( key, params, value );
+            localized = this.pluralFormat( fdata );
             break;
           default:
-            this.messenger.formatError( key, format );
+            const transpiled = this.extender.transpile( format, fdata );
+            if (transpiled) {
+              localized = transpiled;
+            } else {
+              this.messenger.formatError( tdata.key, format );
+            }
             break;
         }
       }
-      return text.replace( result[ 0 ], localized );
     }
-    return value ? value.toString() : '';
+    return result ? tdata.text.replace( result[ 0 ], localized ) : tdata.text;
   }
 
   private numberFormat(
-    key: string,
-    locale: string,
-    params: string,
-    value: any
+    data: FormatData
   ): string {
 
     const options: Intl.NumberFormatOptions = this.extendOptions(
-      key, { style: 'decimal' }, params
+      data.key, data.params, { style: 'decimal' }
     );
-    return new Intl.NumberFormat( locale, options ).format( value );
+    return new Intl.NumberFormat( data.locale, options ).format( data.value );
   }
 
   private percentFormat(
-    key: string,
-    locale: string,
-    params: string,
-    value: any
+    data: FormatData
   ): string {
 
     const options: Intl.NumberFormatOptions = this.extendOptions(
-      key, { style: 'percent' }, params
+      data.key, data.params, { style: 'percent' }
     );
-    return new Intl.NumberFormat( locale, options ).format( value );
+    return new Intl.NumberFormat( data.locale, options ).format( data.value );
   }
 
   private currencyFormat(
-    key: string,
-    locale: string,
-    params: string,
-    value: any
+    data: FormatData
   ): string {
 
     let worth;
     let currency = 'XXX';
-    if (Array.isArray( value ) && value.length > 0) {
-      worth = value[ 0 ];
-      if (value.length > 1) {
-        currency = value[ 1 ];
+
+    if (Array.isArray( data.value ) && data.value.length > 0) {
+      worth = data.value[ 0 ];
+      if (data.value.length > 1) {
+        currency = data.value[ 1 ];
       }
     } else {
-      worth = value;
+      worth = data.value;
     }
     const options: Intl.NumberFormatOptions = this.extendOptions(
-      key, { style: 'currency', currency: currency }, params
+      data.key, data.params, { style: 'currency', currency: currency }
     );
-    return new Intl.NumberFormat( locale, options ).format( worth );
+    return new Intl.NumberFormat( data.locale, options ).format( worth );
   }
 
   private extendOptions(
     key: string,
-    options: Intl.NumberFormatOptions,
-    params: string
+    params: string,
+    options: Intl.NumberFormatOptions
   ): Intl.NumberFormatOptions {
 
     if (params.trim().length === 0) {
       return options;
     }
     const items = params.split( OPTION_SEP );
+
     items.forEach( item => {
       const parts = item.split( VALUE_SEP );
       if (parts.length === 2) {
@@ -225,15 +226,12 @@ export class TranspilerService {
   }
 
   private datetimeFormat(
-    key: string,
-    locale: string,
-    params: string,
-    value: any
+    data: FormatData
   ): string {
 
     const options: Intl.DateTimeFormatOptions = { };
-    if (params.trim().length > 0) {
-      const items = params.split( OPTION_SEP );
+    if (data.params.trim().length > 0) {
+      const items = data.params.split( OPTION_SEP );
       items.forEach( item => {
         const parts = item.split( VALUE_SEP );
         if (parts.length === 2) {
@@ -265,7 +263,7 @@ export class TranspilerService {
                   options.weekday = 'long';
                   break;
                 default:
-                  this.messenger.dateStyleError( key, optionValue );
+                  this.messenger.dateStyleError( data.key, optionValue );
                   break;
               }
               break;
@@ -294,47 +292,47 @@ export class TranspilerService {
                   options.timeZoneName = 'long';
                   break;
                 default:
-                  this.messenger.timeStyleError( key, optionValue );
+                  this.messenger.timeStyleError( data.key, optionValue );
                   break;
               }
               break;
             case 'wd':
             case 'weekday':
-              options.weekday = this.checkMember( key, optionValue,
+              options.weekday = this.checkMember( data.key, optionValue,
                 ['long', 'short', 'narrow'] );
               break;
             case 'era':
-              options.era = this.checkMember( key, optionValue,
+              options.era = this.checkMember( data.key, optionValue,
                 ['long', 'short', 'narrow'] );
               break;
             case 'y':
             case 'year':
-              options.year = this.checkMember( key, optionValue,
+              options.year = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit'] );
               break;
             case 'M':
             case 'month':
-              options.month = this.checkMember( key, optionValue,
+              options.month = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit', 'long', 'short', 'narrow'] );
               break;
             case 'd':
             case 'day':
-              options.day = this.checkMember( key, optionValue,
+              options.day = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit'] );
               break;
             case 'h':
             case 'hour':
-              options.hour = this.checkMember( key, optionValue,
+              options.hour = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit'] );
               break;
             case 'm':
             case 'minute':
-              options.minute = this.checkMember( key, optionValue,
+              options.minute = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit'] );
               break;
             case 's':
             case 'second':
-              options.second = this.checkMember( key, optionValue,
+              options.second = this.checkMember( data.key, optionValue,
                 ['numeric', '2-digit'] );
               break;
             case 'tz':
@@ -343,7 +341,7 @@ export class TranspilerService {
               break;
             case 'tzn':
             case 'timeZoneName':
-              options.timeZoneName = this.checkMember( key, optionValue,
+              options.timeZoneName = this.checkMember( data.key, optionValue,
                 ['long', 'short'] );
               break;
             case 'h12':
@@ -352,34 +350,33 @@ export class TranspilerService {
               break;
             case 'lm':
             case 'localeMatcher':
-              options.localeMatcher = this.checkMember( key, optionValue,
+              options.localeMatcher = this.checkMember( data.key, optionValue,
                 ['lookup', 'best fit'] );
               break;
             case 'fm':
             case 'formatMatcher':
-              options.formatMatcher = this.checkMember( key, optionValue,
+              options.formatMatcher = this.checkMember( data.key, optionValue,
                 ['basic', 'best fit'] );
               break;
             default:
-              this.messenger.optionNameError( key, optionName );
+              this.messenger.optionNameError( data.key, optionName );
               break;
           }
         } else if (parts.length > 2) {
-          this.messenger.optionValueError( key, parts.length === 1 ? '' : item );
+          this.messenger.optionValueError( data.key, parts.length === 1 ? '' : item );
         }
       } );
     }
-    return new Intl.DateTimeFormat( locale, options ).format( value );
+    return new Intl.DateTimeFormat( data.locale, options ).format( data.value );
   }
 
   private pluralFormat(
-    key: string,
-    params: string,
-    value: number
+    data: FormatData
   ): string {
 
     const options = new Map();
-    const items = params.split( OPTION_SEP );
+    const items = data.params.split( OPTION_SEP );
+
     items.forEach( item => {
       const parts = item.split( VALUE_SEP );
       if (parts.length === 2) {
@@ -395,7 +392,7 @@ export class TranspilerService {
             const from = parseInt( range[ 0 ], 10 );
             const to = parseInt( range[ 1 ], 10 );
             if (isNaN( from ) || isNaN( to )) {
-              this.messenger.pluralError( key, optionName );
+              this.messenger.pluralError( data.key, optionName );
             } else {
               if (from > to) {
                 for (let i = to; i <= from; i++) {
@@ -410,18 +407,18 @@ export class TranspilerService {
           } else {
             const i = parseInt( optionName, 10 );
             if (isNaN( i )) {
-              this.messenger.pluralError( key, optionName );
+              this.messenger.pluralError( data.key, optionName );
             } else {
               options.set( i, optionValue );
             }
           }
         }
       } else if (parts.length > 2) {
-        this.messenger.optionValueError( key, item );
+        this.messenger.optionValueError( data.key, item );
       }
     } );
-    const pluralized = options.has( value ) ? options.get( value ) : options.get( 'other' ) || '';
-    return pluralized.replace( VALUE_PH , value );
+    const pluralized = options.has( data.value ) ? options.get( data.value ) : options.get( 'other' ) || '';
+    return pluralized.replace( VALUE_PH , data.value );
   }
 
   private getInt(

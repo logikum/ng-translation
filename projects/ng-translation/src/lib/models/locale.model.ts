@@ -1,8 +1,8 @@
 export class Locale {
 
-  name: string;
-  neutral: string;
-  hasRegion: boolean;
+  readonly name: string;
+  readonly neutral: string;
+  readonly hasRegion: boolean;
 
   constructor(
     language: string

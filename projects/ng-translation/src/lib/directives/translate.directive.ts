@@ -15,9 +15,9 @@ export class TranslateDirective implements OnInit, OnChanges {
   @Input('translateNode') node: string | undefined;
 
   constructor(
-    private container: ViewContainerRef,
+    private readonly container: ViewContainerRef,
     @Optional() private template: TemplateRef<{ $implicit: (key: string, params?: any) => any }>,
-    private translate: TranslationService
+    private readonly translate: TranslationService
   ) { }
 
   ngOnInit(): void {

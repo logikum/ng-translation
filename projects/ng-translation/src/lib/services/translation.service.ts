@@ -2,7 +2,9 @@ import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 
-import { Locale, TRANSLATION_CONFIG, TranslationConfig } from '../models';
+import {
+  Locale, NGT_TRANSPILER, NGT_CONFIGURATION, TranslationConfig, TranspileExtender
+} from '../models';
 import { MessengerService } from './messenger.service';
 import { TranspilerService } from './transpiler.service';
 
@@ -12,19 +14,22 @@ import { TranspilerService } from './transpiler.service';
 export class TranslationService {
 
   private active: string;
-  private translations: object = { };
-  private sections: Array<string> = [ ];
+  private readonly translations: object = { };
+  private readonly sections: Array<string> = [ ];
 
-  @Output() languageChanged = new EventEmitter<string>();
+  @Output() readonly languageChanged = new EventEmitter<string>();
 
   get activeLanguage(): string { return this.active; }
 
   constructor(
-    @Inject( TRANSLATION_CONFIG ) private config: TranslationConfig,
-    private http: HttpClient,
-    private messenger: MessengerService,
-    private transpile: TranspilerService
-  ) { }
+    private readonly http: HttpClient,
+    private readonly transpile: TranspilerService,
+    private readonly messenger: MessengerService,
+    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
+    @Inject( NGT_TRANSPILER ) extender: TranspileExtender,
+  ) {
+    this.transpile.extender = extender;
+  }
 
   initializeApp(): Promise<boolean> {
 
@@ -315,7 +320,14 @@ export class TranslationService {
     args?: any
   ): string {
 
-    return this.transpile.insert( key, this.active, text, args );
+    return this.transpile.insert(
+      {
+        key: key,
+        locale: this.active,
+        text: text
+      },
+      args
+    );
   }
 
   getGroup(

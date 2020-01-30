@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { NgTranslationModule, LoadTranslationsGuard } from 'ng-translation';
+import { LoadTranslationsGuard, NGT_TRANSPILER, NgTranslationModule } from 'ng-translation';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { LocalizationComponent } from './localization/localization.component';
 import { RefreshTranslationComponent } from './refresh-translation/refresh-translation.component';
+import { CustomTranspileExtender } from './custom-transpile-extender';
 
 import { SpringModule } from './spring/spring.module';
 
@@ -63,7 +64,12 @@ const routes: Routes = [
     } ),
     SpringModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NGT_TRANSPILER,
+      useClass: CustomTranspileExtender
+    }
+  ],
   bootstrap: [
     AppComponent
   ]

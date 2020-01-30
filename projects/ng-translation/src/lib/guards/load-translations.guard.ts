@@ -9,7 +9,7 @@ import { TranslationService } from '../services';
 export class LoadTranslationsGuard implements CanLoad {
 
   constructor(
-    private translationService: TranslationService
+    private readonly translationService: TranslationService
   ) { }
 
   canLoad(

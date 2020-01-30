@@ -8,7 +8,7 @@ import { TranslationService } from '../services';
 export class TranslatePipe implements PipeTransform  {
 
   constructor(
-    private translation: TranslationService
+    private readonly translation: TranslationService
   ) { }
 
   transform(

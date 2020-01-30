@@ -1,5 +1,6 @@
 {
   "title": "Prove di localizzazione",
+  "subtitle": "La diffusione dei numeri arabi inizio solo nel {{ 0 | roman }}. secolo.",
   "number": {
     "title": "Formattazione numerica",
     "basic": "Formato numerico di base: {{ 0|number }}",

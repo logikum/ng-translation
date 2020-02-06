@@ -116,10 +116,18 @@ export class MessengerService {
     missing: string
   ): void {
 
-    if (value) {
-      this.warn( `[${ key }] ${ wrong } ${ value }` );
+    if (key) {
+      if (value) {
+        this.warn( `[${ key }] ${ wrong } ${ value }` );
+      } else {
+        this.warn( `[${ key }] ${ missing }` );
+      }
     } else {
-      this.warn( `[${ key }] ${ missing }` );
+      if (value) {
+        this.warn( `${ wrong } ${ value }` );
+      } else {
+        this.warn( `${ missing }` );
+      }
     }
   }
 }

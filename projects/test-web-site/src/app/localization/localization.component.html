@@ -101,4 +101,10 @@
   <div>{{ t( 'plural.updated', 5) }}</div>
   <div>{{ t( 'plural.updated', 20) }}</div>
 
+  <h3>Localization</h3>
+  <div>Number: {{ longNumber | toNumber:'maxfd=2' }}</div>
+  <div>Percent: {{ shortPercent | toPercent:'minfd=1' }}</div>
+  <div>Currency: {{ priceE.price | toCurrency }}</div>
+  <div>Date & time: {{ now | toDatetime:'ds=medium;ts=medium' }}</div>
+
 </ng-container>

@@ -16,7 +16,7 @@ export class ToDatetimePipe implements PipeTransform {
   transform(
     value: Date,
     args?: string
-  ): any {
+  ): string {
 
     const fdata: FormatData = {
       key: undefined,
@@ -24,7 +24,6 @@ export class ToDatetimePipe implements PipeTransform {
       params: args || '',
       value: value
     };
-
     return this.localization.datetimeFormat( fdata );
   }
 }

@@ -16,7 +16,7 @@ export class ToPercentPipe implements PipeTransform {
   transform(
     value: number,
     args?: string
-  ): any {
+  ): string {
 
     const fdata: FormatData = {
       key: undefined,
@@ -24,7 +24,6 @@ export class ToPercentPipe implements PipeTransform {
       params: args || '',
       value: value
     };
-
     return this.localization.percentFormat( fdata );
   }
 }

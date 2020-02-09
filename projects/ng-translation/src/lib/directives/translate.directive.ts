@@ -1,8 +1,13 @@
 import {
-  Directive, Input, OnChanges, OnInit, Optional, SimpleChanges, TemplateRef, ViewContainerRef
+  Directive, Input, OnChanges, OnInit, Optional, SimpleChanges,
+  TemplateRef, ViewContainerRef
 } from '@angular/core';
 
 import { TranslationService } from '../services';
+
+interface ViewContext {
+  $implicit: (key: string, params?: any) => any;
+}
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -16,7 +21,7 @@ export class TranslateDirective implements OnInit, OnChanges {
 
   constructor(
     private readonly container: ViewContainerRef,
-    @Optional() private template: TemplateRef<{ $implicit: (key: string, params?: any) => any }>,
+    @Optional() private template: TemplateRef<ViewContext>,
     private readonly translate: TranslationService
   ) { }
 
@@ -41,17 +46,17 @@ export class TranslateDirective implements OnInit, OnChanges {
     } else {
       // Structural directive.
       const service = this.translate;
+      const keyRoot = this.node;
       const context = {
-        keyRoot: this.node,
         $implicit: function (
           key: string,
           args?: any
         ): string {
-          if (this.keyRoot) {
+          if (keyRoot) {
             if (key.startsWith( '/' )) {
               return service.get( key.substr( 1 ), args );
             } else {
-              return service.get( `${ this.keyRoot }.${ key }`, args );
+              return service.get( `${ keyRoot }.${ key }`, args );
             }
           } else {
             if (key.startsWith( '/' )) {

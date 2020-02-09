@@ -3,11 +3,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { LoadTranslationsGuard, NGT_TRANSPILER, NgTranslationModule } from 'ng-translation';
+import {
+  LoadTranslationsGuard,
+  NGT_TRANSPILER,
+  NgTranslationModule,
+  TranslationConfig
+} from 'ng-translation';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -38,6 +43,18 @@ const routes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
+const routerConfig: ExtraOptions = {
+  onSameUrlNavigation: 'reload'
+};
+
+const ngtConfig: TranslationConfig = {
+  translationUrl: '/assets/i18n/{ language }/{ section }.json',
+  // translationUrl: '/assets/i18n/{section}.{language}.json',
+  sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
+  defaultLanguage: environment.defaultLanguage,
+  disableWarnings: environment.disableWarnings
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,16 +69,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
-    RouterModule.forRoot( routes, { onSameUrlNavigation: 'reload' } ),
+    RouterModule.forRoot( routes, routerConfig ),
     MatToolbarModule,
     MatCardModule,
-    NgTranslationModule.forRoot( {
-      translationUrl: '/assets/i18n/{ language }/{ section }.json',
-      // translationUrl: '/assets/i18n/{section}.{language}.json',
-      sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
-      defaultLanguage: environment.defaultLanguage,
-      disableWarnings: environment.disableWarnings
-    } ),
+    NgTranslationModule.forRoot( ngtConfig ),
     SpringModule
   ],
   providers: [

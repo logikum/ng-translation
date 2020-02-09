@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { FormatData, TranspileExtender } from 'ng-translation';
 
 function integerToRoman(
@@ -18,6 +19,7 @@ function integerToRoman(
   return Array(+digits.join('') + 1).join('M') + roman;
 }
 
+@Injectable()
 export class CustomTranspileExtender implements TranspileExtender {
 
   transpile(

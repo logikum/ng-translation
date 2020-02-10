@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 
 import {
-  Locale, NGT_TRANSPILER, NGT_CONFIGURATION, TranslationConfig, TranspileExtender
+  Locale, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig, TranspileExtender
 } from '../models';
 import { MessengerService } from './messenger.service';
 import { TranspilerService } from './transpiler.service';
@@ -26,7 +26,7 @@ export class TranslationService {
     private readonly transpile: TranspilerService,
     private readonly messenger: MessengerService,
     @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
-    @Inject( NGT_TRANSPILER ) extender: TranspileExtender,
+    @Inject( NGT_TRANSPILE_EXTENDER ) extender: TranspileExtender,
   ) {
     this.transpile.extender = extender;
   }

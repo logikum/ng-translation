@@ -10,6 +10,6 @@ export interface TranspileExtender {
   ): string | undefined;
 }
 
-export const NGT_TRANSPILER = new InjectionToken<TranspileExtender>(
-  'NGT_TRANSPILER'
+export const NGT_TRANSPILE_EXTENDER = new InjectionToken<TranspileExtender>(
+  'NGT_TRANSPILE_EXTENDER'
 );

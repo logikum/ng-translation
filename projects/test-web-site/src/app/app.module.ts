@@ -8,10 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import {
-  LoadTranslationsGuard,
-  NGT_TRANSPILER,
-  NgTranslationModule,
-  TranslationConfig
+  LoadTranslationsGuard, NGT_TRANSPILE_EXTENDER, NgTranslationModule, TranslationConfig
 } from 'ng-translation';
 
 import { environment } from '../environments/environment';
@@ -77,7 +74,7 @@ const ngtConfig: TranslationConfig = {
   ],
   providers: [
     {
-      provide: NGT_TRANSPILER,
+      provide: NGT_TRANSPILE_EXTENDER,
       useClass: CustomTranspileExtender
     }
   ],

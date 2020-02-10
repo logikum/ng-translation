@@ -2,7 +2,7 @@ import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { TranslateDirective, TranslateParamsDirective } from './directives';
-import { NGT_TRANSPILER, NGT_CONFIGURATION, TranslationConfig } from './models';
+import { NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig } from './models';
 import {
   ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
 } from './pipes';
@@ -53,7 +53,7 @@ export class NgTranslationModule {
           provide: NGT_CONFIGURATION,
           useValue: config
         }, {
-          provide: NGT_TRANSPILER,
+          provide: NGT_TRANSPILE_EXTENDER,
           useClass: DefaultTranspileExtender
         }, {
           provide: MessengerService,
@@ -70,7 +70,7 @@ export class NgTranslationModule {
         }, {
           provide: TranslationService,
           useFactory: translationServiceFactory,
-          deps: [ HttpClient, TranspilerService, MessengerService, NGT_CONFIGURATION, NGT_TRANSPILER ]
+          deps: [ HttpClient, TranspilerService, MessengerService, NGT_CONFIGURATION, NGT_TRANSPILE_EXTENDER ]
         }, {
           provide: APP_INITIALIZER,
           useFactory: initializerFactory,

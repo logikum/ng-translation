@@ -1,5 +1,13 @@
 # Changes
 
+### v4.0.0
+_Published on ?/?/2020._
+
+* Update to Angular 9.
+* Use interface for configuration.
+* Add custome transpile extender.
+* Add localization pipes.
+
 ### v3.5.0
 _Published on 1/24/2020._
 

@@ -16,7 +16,7 @@ export class ToCurrencyPipe implements PipeTransform {
   transform(
     value: any,
     args?: string
-  ): any {
+  ): string {
 
     const fdata: FormatData = {
       key: undefined,
@@ -24,7 +24,6 @@ export class ToCurrencyPipe implements PipeTransform {
       params: args || '',
       value: value
     };
-
     return this.localization.currencyFormat( fdata );
   }
 }

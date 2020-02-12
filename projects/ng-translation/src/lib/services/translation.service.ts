@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 
 import {
-  Locale, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig, TranspileExtender
+  Locale, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig,
+  TranspileExtender, ResourceList, Resource
 } from '../models';
 import { MessengerService } from './messenger.service';
 import { TranspilerService } from './transpiler.service';
@@ -15,7 +16,7 @@ export class TranslationService {
 
   private active: string;
   private readonly translations: object = { };
-  private readonly sections: Array<string> = [ ];
+  private resourceList: ResourceList;
 
   @Output() readonly languageChanged = new EventEmitter<string>();
 
@@ -41,12 +42,12 @@ export class TranslationService {
       if (navigator.language && navigator.language !== this.config.defaultLanguage ) {
         languages.push( navigator.language );
       }
-      const sections: string[] = this.config.sections
-        .filter( section =>  section.indexOf( ':' ) < 0 );
+      this.resourceList = new ResourceList( this.config );
 
-      const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
-      this.sections.push( ...sections );
-
+      const promises: Promise<object>[] = this.getDownloadPromises(
+        languages,
+        this.resourceList.getResources( '' )
+      );
       Promise.all( promises )
         .then( () => {
           this.messenger.start();
@@ -84,15 +85,11 @@ export class TranslationService {
       const prefix = route.data && route.data.sectionPrefix ?
         route.data.sectionPrefix :
         route.path;
-
       const languages: string[] = Object.getOwnPropertyNames( this.translations );
-      const sections: string[] = this.config.sections
-        .filter( section => section.startsWith( prefix + ':' ) )
-        .map( section => section.split( ':' )[ 1 ] );
-
-      const promises: Promise<object>[] = this.getDownloadPromises( languages, sections );
-      this.sections.push( ...sections );
-
+      const promises: Promise<object>[] = this.getDownloadPromises(
+        languages,
+        this.resourceList.getResources( prefix )
+      );
       Promise.all( promises )
         .then( () => {
           resolve( true );
@@ -123,7 +120,8 @@ export class TranslationService {
 
       } else {
         const promises: Promise<object>[] = this.getDownloadPromises(
-          [ locale.name ], this.sections
+          [ locale.name ],
+          this.resourceList.getResourcesInUse()
         );
         Promise.all( promises )
           .then( () => {
@@ -139,16 +137,17 @@ export class TranslationService {
   }
 
   private getDownloadPromises(
-    languages: string[],
-    sections: string[]
-  ): Promise<object>[] {
+    languages: Array<string>,
+    // sections: string[]
+    resources: Array<Resource>
+  ): Array<Promise<object>> {
 
     const promises: Promise<object>[] = [];
 
     languages.forEach( language => {
-      sections.forEach( section => {
+      resources.forEach( resource => {
         promises.push(
-          this.getDownloadPromise( language, section )
+          this.getDownloadPromise( language, resource )
         );
       } );
     } );
@@ -158,21 +157,19 @@ export class TranslationService {
 
   private getDownloadPromise(
     language: string,
-    section: string
+    resource: Resource
   ): Promise<object> {
 
     const locale = new Locale( language );
     return new Promise((resolve, reject) => {
 
-      const url = this.buildUrl( locale.name, section );
+      // const url = this.buildUrl( locale.name, section );
+      const url = this.buildUrl( locale.name, resource );
       this.http.get( url )
         .toPromise()
         .then( sectionTranslations => {
 
-          if (!this.translations[ locale.name ]) {
-            this.translations[ locale.name ] = { };
-          }
-          this.storeTranslations( locale.name, section, sectionTranslations );
+          this.storeTranslations( locale.name, resource.alias, sectionTranslations );
           resolve();
         } )
         .catch( error => {
@@ -180,28 +177,24 @@ export class TranslationService {
           if (locale.hasRegion) {
             this.messenger.info( `Using alternative: ${ locale.neutral }` );
 
-            const url2 = this.buildUrl( locale.neutral, section );
+            const url2 = this.buildUrl( locale.neutral, resource );
             this.http.get( url2 )
               .toPromise()
               .then( sectionTranslations => {
-
-                if (!this.translations[ locale.neutral ]) {
-                  this.translations[ locale.neutral ] = { };
-                }
-                this.storeTranslations( locale.neutral, section, sectionTranslations );
+                this.storeTranslations( locale.neutral, resource.alias, sectionTranslations );
                 resolve();
               } )
              .catch( error2 => {
                this.handleError( error );
                // reject();
-               this.storeTranslations( locale.name, section, { } );
+               this.storeTranslations( locale.name, resource.alias, { } );
                resolve();
              } );
 
           } else {
             this.handleError( error );
             // reject();
-            this.storeTranslations( locale.name, section, { } );
+            this.storeTranslations( locale.name, resource.alias, { } );
             resolve();
           }
         } );
@@ -210,13 +203,13 @@ export class TranslationService {
 
   private buildUrl(
     language: string,
-    section: string
+    resource: Resource
   ): string {
 
-    return this.config.translationUrl
+    return resource.url
       .replace(/{\s*language\s*}/gi, language)
-      .replace(/{\s*section\s*}/gi, section)
-    ;
+      .replace(/{\s*section\s*}/gi, resource.name)
+      ;
   }
 
   private storeTranslations(
@@ -232,7 +225,7 @@ export class TranslationService {
     let target = this.translations[ language ];
 
     // Check section properties.
-    const path: string[] = section.split( '.' );
+    const path: Array<string> = section.split( '.' );
     for (let i = 0; i < path.length; i++) {
       if (target[ path[ i ] ] === undefined) {
         target[ path[ i ] ] = i === path.length - 1 ? sectionTranslations : { };

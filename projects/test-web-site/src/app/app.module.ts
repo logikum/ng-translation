@@ -44,10 +44,22 @@ const routerConfig: ExtraOptions = {
   onSameUrlNavigation: 'reload'
 };
 
+// const ngtConfig: TranslationConfig = {
+//   translationUrl: '/assets/i18n/{ language }/{ section }.json',
+//   // translationUrl: '/assets/i18n/{section}.{language}.json',
+//   sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
+//   defaultLanguage: environment.defaultLanguage,
+//   disableWarnings: environment.disableWarnings
+// };
 const ngtConfig: TranslationConfig = {
   translationUrl: '/assets/i18n/{ language }/{ section }.json',
   // translationUrl: '/assets/i18n/{section}.{language}.json',
-  sections: [ 'app', 'l10n', 'spring', 'summer:summer', 'autumn:fall', 'frosty:winter' ],
+  sections: [
+    'app', 'l10n', { name: 'spring' },
+    { group: 'summer', items: [ 'summer' ] },
+    { group: 'autumn', items: [ 'fall' ] },
+    { group: 'frosty', items: [ { name: 'winter' } ] }
+  ],
   defaultLanguage: environment.defaultLanguage,
   disableWarnings: environment.disableWarnings
 };

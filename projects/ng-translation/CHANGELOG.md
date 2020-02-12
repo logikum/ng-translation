@@ -4,8 +4,8 @@
 _Published on ?/?/2020._
 
 * Update to Angular 9.
-* Use interface for configuration.
-* Add custome transpile extender.
+* Use new configuration model.
+* Add custom transpile extender.
 * Add localization pipes.
 
 ### v3.5.0

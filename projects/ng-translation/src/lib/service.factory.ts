@@ -9,7 +9,7 @@ export function messengerServiceFactory(
   config: TranslationConfig
 ): MessengerService {
 
-  return new MessengerService( config );
+  return new MessengerService();
 }
 
 export function localizationServiceFactory(

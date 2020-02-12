@@ -15,8 +15,9 @@ import { TranspilerService } from './transpiler.service';
 export class TranslationService {
 
   private active: string;
-  private readonly translations: object = { };
+  private defaultLanguage: string;
   private resourceList: ResourceList;
+  private readonly translations: object = { };
 
   @Output() readonly languageChanged = new EventEmitter<string>();
 
@@ -26,24 +27,29 @@ export class TranslationService {
     private readonly http: HttpClient,
     private readonly transpile: TranspilerService,
     private readonly messenger: MessengerService,
-    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
+    @Inject( NGT_CONFIGURATION ) config: TranslationConfig,
     @Inject( NGT_TRANSPILE_EXTENDER ) extender: TranspileExtender,
   ) {
+    this.defaultLanguage = config.defaultLanguage;
+    this.messenger.disableWarnings = config.disableWarnings;
     this.transpile.extender = extender;
+    this.resourceList = new ResourceList(
+      config.sections,
+      config.translationUrl,
+      config.translationFormat
+    );
   }
 
   initializeApp(): Promise<boolean> {
 
     return new Promise((resolve, reject) => {
 
-      this.active = this.config.defaultLanguage;
+      this.active = this.defaultLanguage;
 
-      const languages: string[] = [ this.config.defaultLanguage ];
-      if (navigator.language && navigator.language !== this.config.defaultLanguage ) {
+      const languages: string[] = [ this.defaultLanguage ];
+      if (navigator.language && navigator.language !== this.defaultLanguage ) {
         languages.push( navigator.language );
       }
-      this.resourceList = new ResourceList( this.config );
-
       const promises: Promise<object>[] = this.getDownloadPromises(
         languages,
         this.resourceList.getResources( '' )
@@ -135,6 +141,8 @@ export class TranslationService {
       }
     } );
   }
+
+  // region Helper methods
 
   private getDownloadPromises(
     languages: Array<string>,
@@ -245,6 +253,9 @@ export class TranslationService {
       ;
     this.messenger.error( message );
   }
+  // endregion
+
+  // region Get translation item
 
   get(
     key: string,
@@ -277,7 +288,7 @@ export class TranslationService {
       this.messenger.warn( `Missing translation text: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
-      locale = new Locale( this.config.defaultLanguage );
+      locale = new Locale( this.defaultLanguage );
       translation = this.find( locale.name, key );
 
       // If not found still try invariant neutral culture.
@@ -322,6 +333,9 @@ export class TranslationService {
       args
     );
   }
+  // endregion
+
+  // region Get translation group
 
   getGroup(
     key: string
@@ -344,7 +358,7 @@ export class TranslationService {
       this.messenger.warn( `Missing translation group: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
-      locale = new Locale( this.config.defaultLanguage );
+      locale = new Locale( this.defaultLanguage );
       group = this.findGroup( locale.name, key );
 
       // If not found still try invariant neutral culture.
@@ -372,4 +386,5 @@ export class TranslationService {
     }
     return result || null;
   }
+  // endregion
 }

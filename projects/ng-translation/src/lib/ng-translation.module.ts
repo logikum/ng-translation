@@ -57,8 +57,7 @@ export class NgTranslationModule {
           useClass: DefaultTranspileExtender
         }, {
           provide: MessengerService,
-          useFactory: messengerServiceFactory,
-          deps: [ NGT_CONFIGURATION ]
+          useFactory: messengerServiceFactory
         }, {
           provide: LocalizationService,
           useFactory: localizationServiceFactory,

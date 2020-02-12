@@ -1,6 +1,4 @@
-import {
-  Section, SectionGroup, SectionItem, TranslationConfig
-} from './translation-config.model';
+import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
 
 export interface Resource {
 
@@ -16,19 +14,21 @@ export class ResourceList {
   private readonly store: Map<string, Array<Resource>> = new Map<string, Array<Resource>>();
 
   constructor(
-    config: TranslationConfig
+    sections: SectionList,
+    translationUrl: string,
+    translationFormat: string = 'JSON'
   ) {
     const defaultName = '';
     const defaultResources: Array<Resource> = [ ];
 
-    config.sections.forEach( (item: SectionItem) => {
+    sections.forEach( (item: SectionItem) => {
 
       if (typeof item === 'string') {
         defaultResources.push( {
           name: item,
           alias: item,
-          url: config.translationUrl,
-          format: config.translationFormat ?? 'JSON',
+          url: translationUrl,
+          format: translationFormat,
           inUse: false
         } );
 
@@ -37,8 +37,8 @@ export class ResourceList {
         defaultResources.push( {
           name: section.name,
           alias: section.alias ?? section.name,
-          url: section.url ?? config.translationUrl,
-          format: section.format ?? config.translationFormat ?? 'JSON',
+          url: section.url ?? translationUrl,
+          format: section.format ?? translationFormat,
           inUse: false
         } );
 
@@ -53,8 +53,8 @@ export class ResourceList {
             resources.push( {
               name: groupItem,
               alias: groupItem,
-              url: group.url ?? config.translationUrl,
-              format: group.format ?? config.translationFormat ?? 'JSON',
+              url: group.url ?? translationUrl,
+              format: group.format ?? translationFormat,
               inUse: false
             } );
 
@@ -62,8 +62,8 @@ export class ResourceList {
             resources.push( {
               name: groupItem.name,
               alias: groupItem.alias ?? groupItem.name,
-              url: groupItem.url ?? group.url ?? config.translationUrl,
-              format: groupItem.format ?? group.format ?? config.translationFormat ?? 'JSON',
+              url: groupItem.url ?? group.url ?? translationUrl,
+              format: groupItem.format ?? group.format ?? translationFormat,
               inUse: false
             } );
           }

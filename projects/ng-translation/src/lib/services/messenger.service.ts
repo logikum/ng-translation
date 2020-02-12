@@ -10,13 +10,15 @@ const prefix = 'NG-TRANSLATION * ';
 export class MessengerService {
 
   private isEnabled = false;
-  private disableWarnings = false;
-
-  constructor(
-    @Inject( NGT_CONFIGURATION ) readonly config: TranslationConfig
+  private _disableWarnings = false;
+  get disableWarnings(): boolean {
+    return this._disableWarnings;
+  }
+  set disableWarnings(
+    value: boolean
   ) {
-    if (config && config.disableWarnings === true) {
-      this.disableWarnings = true;
+    if (value === true) {
+      this._disableWarnings = true;
     }
   }
 

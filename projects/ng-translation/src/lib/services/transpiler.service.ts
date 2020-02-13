@@ -171,6 +171,12 @@ export class TranspilerService {
       }
     } );
     const pluralized = options.has( data.value ) ? options.get( data.value ) : options.get( 'other' ) || '';
-    return pluralized.replace( VALUE_PH , data.value );
+    const value = this.localization.numberFormat( {
+      key: undefined,
+      locale: data.locale,
+      params: '',
+      value: data.value
+    } );
+    return pluralized.replace( VALUE_PH, value );
   }
 }

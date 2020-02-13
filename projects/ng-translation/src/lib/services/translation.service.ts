@@ -56,11 +56,9 @@ export class TranslationService {
       );
       Promise.all( promises )
         .then( () => {
-          this.messenger.start();
           resolve( this.browserLanguageSupported() );
         } )
         .catch( error => {
-          this.messenger.start();
           reject( error );
         } );
     } );

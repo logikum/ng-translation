@@ -1,7 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { NGT_CONFIGURATION, TranslationConfig } from '../models';
-
 const prefix = 'NG-TRANSLATION * ';
 
 @Injectable({
@@ -10,21 +8,8 @@ const prefix = 'NG-TRANSLATION * ';
 export class MessengerService {
 
   private isEnabled = false;
-  private _disableWarnings = false;
-  get disableWarnings(): boolean {
-    return this._disableWarnings;
-  }
-  set disableWarnings(
-    value: boolean
-  ) {
-    if (value === true) {
-      this._disableWarnings = true;
-    }
-  }
-
-  start(): void {
-    this.isEnabled = !this.disableWarnings;
-  }
+  get disableWarnings(): boolean { return !this.isEnabled; }
+  set disableWarnings( value: boolean ) { this.isEnabled = value !== true; }
 
   info(
     message: string

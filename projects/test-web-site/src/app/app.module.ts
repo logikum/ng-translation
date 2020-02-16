@@ -41,7 +41,8 @@ const routes: Routes = [
 ];
 
 const routerConfig: ExtraOptions = {
-  onSameUrlNavigation: 'reload'
+  onSameUrlNavigation: 'reload',
+  enableTracing: false
 };
 
 const ngtConfig: TranslationConfig = {

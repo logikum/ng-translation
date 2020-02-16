@@ -6,6 +6,22 @@ import { MessengerService } from './messenger.service';
 const OPTION_SEP = ';';
 const VALUE_SEP = '=';
 
+export type CurrencyValue = [ number, string ];
+
+function createFormatData(
+  locale: string,
+  value: number | CurrencyValue | Date | string,
+  args: string
+): FormatData {
+
+  return {
+    key: undefined,
+    locale: locale,
+    params: args || '',
+    value: value
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +30,14 @@ export class LocalizationService {
   constructor(
     private readonly messenger: MessengerService
   ) { }
+
+  number(
+    locale: string,
+    value: number,
+    args: string
+  ): string {
+    return  this.numberFormat( createFormatData( locale, value, args ) );
+  }
 
   numberFormat(
     data: FormatData
@@ -25,6 +49,14 @@ export class LocalizationService {
     return new Intl.NumberFormat( data.locale, options ).format( data.value );
   }
 
+  percent(
+    locale: string,
+    value: number,
+    args: string
+  ): string {
+    return  this.percentFormat( createFormatData( locale, value, args ) );
+  }
+
   percentFormat(
     data: FormatData
   ): string {
@@ -33,6 +65,14 @@ export class LocalizationService {
       data.key, data.params, { style: 'percent' }
     );
     return new Intl.NumberFormat( data.locale, options ).format( data.value );
+  }
+
+  currency(
+    locale: string,
+    value: CurrencyValue,
+    args: string
+  ): string {
+    return  this.currencyFormat( createFormatData( locale, value, args ) );
   }
 
   currencyFormat(
@@ -117,6 +157,14 @@ export class LocalizationService {
       }
     } );
     return options;
+  }
+
+  datetime(
+    locale: string,
+    value: Date | number | string,
+    args: string
+  ): string {
+    return  this.datetimeFormat( createFormatData( locale, value, args ) );
   }
 
   datetimeFormat(
@@ -261,7 +309,8 @@ export class LocalizationService {
         }
       } );
     }
-    return new Intl.DateTimeFormat( data.locale, options ).format( data.value );
+    const value: Date = data.value instanceof Date ? data.value : new Date( data.value );
+    return new Intl.DateTimeFormat( data.locale, options ).format( value );
   }
 
   private getInt(

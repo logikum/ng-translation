@@ -51,21 +51,20 @@ export class TranslatableOptionList implements IterableIterator<TranslatableOpti
       .subscribe( language => {
         this.getItems();
       } );
-    this.getItems();
   }
 
   private getItems(): void {
 
     const previousIndex = this.currentIndex;
-    this.items.length = 0;
     this.currentIndex = -1;
+    this.items.length = 0;
 
     const optionGroup = this.translate.getGroup( this.key );
     if (optionGroup) {
       const optionValues = Object.getOwnPropertyNames( optionGroup );
       if (optionValues.length) {
         this.currentIndex = -1 < previousIndex && previousIndex < optionValues.length ?
-          optionValues.length : 0;
+          previousIndex : 0;
         for (let i = 0; i < optionValues.length; i++) {
           this.items.push( {
             value: optionValues[ i ],

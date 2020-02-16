@@ -1,14 +1,15 @@
-<ng-container *translate="let t">
 
   <mat-toolbar color="primary">
     <div class="app-header">
 
+      <ng-container *translate="let t">
       <a routerLink="" class="title">{{ t( 'app.shared.title' ) }}</a>
       <a *ngFor="let item of menu" routerLink="{{ item.value }}">{{ item.text }}</a>
 
       <span class="fill-remaining-space"></span>
 
       <label class="curr-language">{{ t( 'app.shared.currLang' ) }}</label>
+      </ng-container>
       <select (change)="changeLanguage( $event )">
         <option *ngFor="let language of languages"
                 value="{{ language.value }}"
@@ -24,6 +25,7 @@
     <router-outlet></router-outlet>
   </div>
 
+  <ng-container *translate="let t">
   <div class="app-footer">
     <p>
       <a routerLink="components">{{ t( 'app.shared.components' ) }}</a> |
@@ -31,5 +33,4 @@
       <a routerLink="l10n">{{ t( 'app.shared.l10n' ) }}</a>
     </p>
   </div>
-
-</ng-container>
+  </ng-container>

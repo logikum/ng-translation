@@ -14,6 +14,7 @@ import { TranspilerService } from './transpiler.service';
 })
 export class TranslationService {
 
+  private isLoading = true;
   private active: string;
   private defaultLanguage: string;
   private resourceList: ResourceList;
@@ -22,6 +23,7 @@ export class TranslationService {
   @Output() readonly languageChanged = new EventEmitter<string>();
 
   get activeLanguage(): string { return this.active; }
+  get isDownloading(): boolean { return this.isLoading; }
 
   constructor(
     private readonly http: HttpClient,
@@ -56,34 +58,23 @@ export class TranslationService {
       );
       Promise.all( promises )
         .then( () => {
+          this.isLoading = false;
           resolve( this.browserLanguageSupported() );
         } )
         .catch( error => {
+          this.isLoading = false;
           reject( error );
         } );
     } );
-  }
-
-  private browserLanguageSupported(): boolean {
-
-    let isSupported = false;
-
-    if (navigator.language) {
-      const locale = new Locale( navigator.language );
-
-      if (this.translations[ locale.name ]) {
-        isSupported = true;
-      } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
-        isSupported = true;
-      }
-    }
-    return isSupported;
   }
 
   initializeSection(
     route: Route
   ): Promise<boolean> {
 
+    if (this.isLoading) {
+      return Promise.reject( false );
+    }
     return new Promise((resolve, reject) => {
 
       const prefix = route.data && route.data.sectionPrefix ?
@@ -94,11 +85,14 @@ export class TranslationService {
         languages,
         this.resourceList.getResources( prefix )
       );
+      this.isLoading = true;
       Promise.all( promises )
         .then( () => {
+          this.isLoading = false;
           resolve( true );
         } )
         .catch( error => {
+          this.isLoading = false;
           reject( error );
         } );
     } );
@@ -142,9 +136,24 @@ export class TranslationService {
 
   // region Helper methods
 
+  private browserLanguageSupported(): boolean {
+
+    let isSupported = false;
+
+    if (navigator.language) {
+      const locale = new Locale( navigator.language );
+
+      if (this.translations[ locale.name ]) {
+        isSupported = true;
+      } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
+        isSupported = true;
+      }
+    }
+    return isSupported;
+  }
+
   private getDownloadPromises(
     languages: Array<string>,
-    // sections: string[]
     resources: Array<Resource>
   ): Array<Promise<object>> {
 
@@ -260,7 +269,7 @@ export class TranslationService {
     args?: any
   ): string {
 
-    return this.translate( this.active, key, args );
+    return this.isLoading ? '' : this.translate( this.active, key, args );
   }
 
   private translate(
@@ -339,6 +348,9 @@ export class TranslationService {
     key: string
   ): object {
 
+    if (this.isLoading) {
+      return null;
+    }
     let locale = new Locale( this.active );
 
     // Try the requested (eventual specific) culture (language).

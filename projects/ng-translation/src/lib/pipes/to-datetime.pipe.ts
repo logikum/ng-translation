@@ -1,29 +1,46 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { FormatData } from '../models';
 import { LocalizationService, TranslationService } from '../services';
 
 @Pipe({
-  name: 'toDatetime'
+  name: 'toDatetime',
+  pure: false
 })
-export class ToDatetimePipe implements PipeTransform {
+export class ToDatetimePipe implements PipeTransform, OnDestroy {
+
+  private readonly onDestroy: Subject<void> = new Subject();
+  private isValid = false;
+  private localized: string;
 
   constructor(
     private readonly translation: TranslationService,
     private readonly localization: LocalizationService
-  ) { }
+  ) {
+    this.translation.languageChanged
+      .pipe( takeUntil( this.onDestroy ) )
+      .subscribe( language => {
+        this.isValid = false;
+      } );
+  }
 
   transform(
-    value: Date,
+    value: Date | number | string,
     args?: string
   ): string {
 
-    const fdata: FormatData = {
-      key: undefined,
-      locale: this.translation.activeLanguage,
-      params: args || '',
-      value: value
-    };
-    return this.localization.datetimeFormat( fdata );
+    if (!this.isValid) {
+      this.localized = this.localization.datetime(
+        this.translation.activeLanguage, value, args
+      );
+      this.isValid = true;
+    }
+    return this.localized;
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 }

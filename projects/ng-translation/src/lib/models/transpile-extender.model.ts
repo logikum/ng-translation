@@ -1,5 +1,7 @@
+/* 3rd party libraries */
 import { InjectionToken } from '@angular/core';
 
+/* locally accessible feature module code, always use relative path */
 import { FormatData } from './format-data.model';
 
 export interface TranspileExtender {

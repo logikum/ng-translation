@@ -1,13 +1,15 @@
+/* 3rd party libraries */
 import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 
+/* locally accessible feature module code, always use relative path */
 import {
   Locale, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig,
   TranspileExtender, ResourceList, Resource
 } from '../models';
-import { MessengerService } from './messenger.service';
 import { TranspilerService } from './transpiler.service';
+import { MessengerService } from './messenger.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,9 @@
+/* 3rd party libraries */
 import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+/* locally accessible feature module code, always use relative path */
 import { LocalizationService, TranslationService } from '../services';
 
 @Pipe({

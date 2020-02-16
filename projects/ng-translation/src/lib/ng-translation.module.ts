@@ -1,6 +1,8 @@
+/* 3rd party libraries */
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+/* locally accessible feature module code, always use relative path */
 import { TranslateDirective, TranslateParamsDirective } from './directives';
 import { NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig } from './models';
 import {

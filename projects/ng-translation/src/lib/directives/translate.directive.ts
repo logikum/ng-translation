@@ -1,3 +1,4 @@
+/* 3rd party libraries */
 import {
   ChangeDetectorRef, Directive, Input, OnChanges, OnDestroy, OnInit,
   Optional, SimpleChanges, TemplateRef, ViewContainerRef
@@ -5,6 +6,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+/* locally accessible feature module code, always use relative path */
 import { CurrencyValue, LocalizationService, TranslationService } from '../services';
 
 interface ViewContext {

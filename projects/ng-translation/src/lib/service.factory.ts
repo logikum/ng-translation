@@ -1,5 +1,7 @@
+/* 3rd party libraries */
 import { HttpClient } from '@angular/common/http';
 
+/* locally accessible feature module code, always use relative path */
 import { TranslationConfig, TranspileExtender } from './models';
 import {
   LocalizationService, MessengerService, TranslationService, TranspilerService

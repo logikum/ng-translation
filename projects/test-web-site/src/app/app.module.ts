@@ -17,7 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { LocalizationComponent } from './localization/localization.component';
-import { RefreshTranslationComponent } from './refresh-translation/refresh-translation.component';
 import { CustomTranspileExtender } from './custom-transpile-extender';
 
 import { SpringModule } from './spring/spring.module';
@@ -25,7 +24,6 @@ import { SpringModule } from './spring/spring.module';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'refresh-translation', component: RefreshTranslationComponent },
   { path: 'spring', loadChildren: () => import('./spring/spring.module').then(m => m.SpringModule) },
   { path: 'summer', loadChildren: () => import('./summer/summer.module').then(m => m.SummerModule),
                     canLoad: [ LoadTranslationsGuard ] },
@@ -64,8 +62,7 @@ const ngtConfig: TranslationConfig = {
     HomeComponent,
     ComponentsComponent,
     AuxiliaryComponent,
-    LocalizationComponent,
-    RefreshTranslationComponent
+    LocalizationComponent
   ],
   imports: [
     BrowserModule,

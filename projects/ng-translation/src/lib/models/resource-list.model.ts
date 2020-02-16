@@ -1,3 +1,6 @@
+/* 3rd party libraries */
+
+/* locally accessible feature module code, always use relative path */
 import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
 
 export interface Resource {

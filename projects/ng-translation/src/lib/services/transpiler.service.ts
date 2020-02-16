@@ -1,8 +1,10 @@
+/* 3rd party libraries */
 import { Inject, Injectable } from '@angular/core';
 
+/* locally accessible feature module code, always use relative path */
 import { FormatData, TranspileData, TranspileExtender } from '../models';
-import { MessengerService } from './messenger.service';
 import { LocalizationService } from './localization.service';
+import { MessengerService } from './messenger.service';
 
 const INTL_SEP = '|';
 const PATTERN_SEP = ':';

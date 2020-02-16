@@ -143,33 +143,6 @@
         }
       }
     },
-    "test-web-site-e2e": {
-      "root": "projects/test-web-site-e2e/",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/test-web-site-e2e/protractor.conf.js",
-            "devServerTarget": "test-web-site:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "test-web-site:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "projects/test-web-site-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "doc-web-site": {
       "root": "projects/doc-web-site/",
       "sourceRoot": "projects/doc-web-site/src",

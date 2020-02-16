@@ -1,4 +1,7 @@
+/* 3rd party libraries */
 import { Inject, Injectable } from '@angular/core';
+
+/* locally accessible feature module code, always use relative path */
 
 const prefix = 'NG-TRANSLATION * ';
 

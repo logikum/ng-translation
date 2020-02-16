@@ -1,7 +1,9 @@
+/* 3rd party libraries */
 import { OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+/* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';
 import { TranslationService } from '../services';
 
@@ -51,6 +53,7 @@ export class TranslatableOptionList implements IterableIterator<TranslatableOpti
       .subscribe( language => {
         this.getItems();
       } );
+    this.getItems();
   }
 
   private getItems(): void {

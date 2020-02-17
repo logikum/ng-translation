@@ -5,8 +5,8 @@ import { Route } from '@angular/router';
 
 /* locally accessible feature module code, always use relative path */
 import {
-  Locale, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig,
-  TranspileExtender, ResourceList, Resource
+  Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
+  Resource, ResourceList, TranslationConfig, TranslationConverter, TranspileExtender
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
@@ -32,7 +32,8 @@ export class TranslationService {
     private readonly transpile: TranspilerService,
     private readonly messenger: MessengerService,
     @Inject( NGT_CONFIGURATION ) config: TranslationConfig,
-    @Inject( NGT_TRANSPILE_EXTENDER ) extender: TranspileExtender,
+    @Inject( NGT_TRANSLATION_CONVERTER ) private converter: TranslationConverter,
+    @Inject( NGT_TRANSPILE_EXTENDER ) extender: TranspileExtender
   ) {
     this.defaultLanguage = config.defaultLanguage;
     this.messenger.disableWarnings = config.disableWarnings;
@@ -186,7 +187,7 @@ export class TranslationService {
         .toPromise()
         .then( sectionTranslations => {
 
-          this.storeTranslations( locale.name, resource.alias, sectionTranslations );
+          this.storeTranslations( locale.name, resource, sectionTranslations );
           resolve();
         } )
         .catch( error => {
@@ -198,20 +199,20 @@ export class TranslationService {
             this.http.get( url2 )
               .toPromise()
               .then( sectionTranslations => {
-                this.storeTranslations( locale.neutral, resource.alias, sectionTranslations );
+                this.storeTranslations( locale.neutral, resource, sectionTranslations );
                 resolve();
               } )
              .catch( error2 => {
                this.handleError( error );
                // reject();
-               this.storeTranslations( locale.name, resource.alias, { } );
+               this.storeTranslations( locale.name, resource, { } );
                resolve();
              } );
 
           } else {
             this.handleError( error );
             // reject();
-            this.storeTranslations( locale.name, resource.alias, { } );
+            this.storeTranslations( locale.name, resource, { } );
             resolve();
           }
         } );
@@ -231,9 +232,14 @@ export class TranslationService {
 
   private storeTranslations(
     language: string,
-    section: string,
-    sectionTranslations: object
+    resource: Resource,
+    translations: object
   ): void {
+
+    // Convert non=JSON formats.
+    const jsonTranslations = resource.format === 'JSON' ?
+      translations :
+      this.converter.convert( language, resource, translations );
 
     // Check language property.
     if (this.translations[ language ] === undefined) {
@@ -242,10 +248,10 @@ export class TranslationService {
     let target = this.translations[ language ];
 
     // Check section properties.
-    const path: Array<string> = section.split( '.' );
+    const path: Array<string> = resource.alias.split( '.' );
     for (let i = 0; i < path.length; i++) {
       if (target[ path[ i ] ] === undefined) {
-        target[ path[ i ] ] = i === path.length - 1 ? sectionTranslations : { };
+        target[ path[ i ] ] = i === path.length - 1 ? translations : { };
       }
       target = target[ path[ i ] ];
     }

@@ -17,8 +17,10 @@ export { CurrencyValue } from './lib/services/localization.service';
 export * from './lib/services/translation.service';
 
 export * from './lib/models/format-data.model';
+export * from './lib/models/resource.model';
 export * from './lib/models/translatable-text-list.model';
 export * from './lib/models/translatable-option-list.model';
 export * from './lib/models/translatable-option.model';
 export * from './lib/models/translation-config.model';
+export * from './lib/models/translation-converter.model';
 export * from './lib/models/transpile-extender.model';

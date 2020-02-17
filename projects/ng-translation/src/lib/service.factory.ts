@@ -2,7 +2,9 @@
 import { HttpClient } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
-import { TranslationConfig, TranspileExtender } from './models';
+import {
+  TranslationConfig, TranslationConverter, TranspileExtender
+} from './models';
 import {
   LocalizationService, MessengerService, TranslationService, TranspilerService
 } from './services';
@@ -34,8 +36,11 @@ export function translationServiceFactory(
   transpiler: TranspilerService,
   messenger: MessengerService,
   config: TranslationConfig,
+  converter: TranslationConverter,
   extender: TranspileExtender
 ): TranslationService {
 
-  return new TranslationService( http, transpiler, messenger, config, extender );
+  return new TranslationService(
+    http, transpiler, messenger, config, converter, extender
+  );
 }

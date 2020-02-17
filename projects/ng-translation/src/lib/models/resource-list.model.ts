@@ -1,16 +1,8 @@
 /* 3rd party libraries */
 
 /* locally accessible feature module code, always use relative path */
+import { Resource } from './resource.model';
 import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
-
-export interface Resource {
-
-  name: string;
-  alias: string;
-  url: string;
-  format: string;
-  inUse: boolean;
-}
 
 export class ResourceList {
 

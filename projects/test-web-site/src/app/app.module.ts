@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import {
-  LoadTranslationsGuard, NGT_TRANSPILE_EXTENDER, NgTranslationModule, TranslationConfig
+  LoadTranslationsGuard, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
+  NgTranslationModule, TranslationConfig
 } from 'ng-translation';
 
 import { environment } from '../environments/environment';
@@ -17,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { LocalizationComponent } from './localization/localization.component';
+import { CustpmTranslationConverter } from './custom-translation-converter';
 import { CustomTranspileExtender } from './custom-transpile-extender';
 
 import { SpringModule } from './spring/spring.module';
@@ -35,6 +37,8 @@ const routes: Routes = [
   { path: 'components', component: ComponentsComponent },
   { path: 'auxiliary', component: AuxiliaryComponent },
   { path: 'l10n', component: LocalizationComponent },
+  { path: 'conversion', loadChildren: () => import('./conversion/conversion.module').then(m => m.ConversionModule),
+                    canLoad: [ LoadTranslationsGuard ] },
   { path: '**', redirectTo: 'home' }
 ];
 
@@ -50,7 +54,13 @@ const ngtConfig: TranslationConfig = {
     'app', 'l10n', { name: 'spring' },
     { group: 'summer', items: [ 'summer' ] },
     { group: 'autumn', items: [ 'fall' ] },
-    { group: 'frosty', items: [ { name: 'winter' } ] }
+    { group: 'frosty', items: [ { name: 'winter' } ] },
+    {
+      group: 'conversion',
+      url: '/assets/po-files/{section}.{language}.po',
+      format: 'po',
+      items: [ { name: 'conversion' } ]
+    }
   ],
   defaultLanguage: environment.defaultLanguage,
   disableWarnings: environment.disableWarnings
@@ -77,6 +87,9 @@ const ngtConfig: TranslationConfig = {
   ],
   providers: [
     {
+      provide: NGT_TRANSLATION_CONVERTER,
+      useClass: CustpmTranslationConverter
+    }, {
       provide: NGT_TRANSPILE_EXTENDER,
       useClass: CustomTranspileExtender
     }

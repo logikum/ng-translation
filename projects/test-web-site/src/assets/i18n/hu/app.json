@@ -19,6 +19,7 @@
     "components": "Komponens tesztek",
     "auxiliary": "Kiegészítő tesztek",
     "l10n": "Lokalizációs tesztek",
+    "conversion": "Konvertálási tesztek",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
     "selectedIndex": "A választott index:",

@@ -19,6 +19,7 @@
     "components": "Prove dei componenti",
     "auxiliary": "Prove ausiliarie",
     "l10n": "Prove di localizzazione",
+    "conversion": "Prove di conversione",
     "currLang": "Lingua corrente:",
     "select": "Selezionare il mese:",
     "selectedIndex": "L'indice selezionato:",

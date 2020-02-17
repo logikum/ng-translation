@@ -7,6 +7,7 @@ _Published on ?/?/2020._
 * Use new configuration model.
 * Add custom transpile extender.
 * Add localization pipes.
+* Update translations immediately after language change.
 
 ### v3.5.0
 _Published on 1/24/2020._

@@ -4,7 +4,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslateDirective, TranslateParamsDirective } from './directives';
-import { NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION, TranslationConfig } from './models';
+import {
+  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
+  TranslationConfig
+} from './models';
 import {
   ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
 } from './pipes';
@@ -16,6 +19,7 @@ import {
   localizationServiceFactory, messengerServiceFactory,
   translationServiceFactory, transpilerServiceFactory
 } from './service.factory';
+import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultTranspileExtender } from './default-transpile.extender';
 
 @NgModule({
@@ -55,6 +59,9 @@ export class NgTranslationModule {
           provide: NGT_CONFIGURATION,
           useValue: config
         }, {
+          provide: NGT_TRANSLATION_CONVERTER,
+          useClass: DefaultTranslationConverter
+        }, {
           provide: NGT_TRANSPILE_EXTENDER,
           useClass: DefaultTranspileExtender
         }, {
@@ -71,7 +78,10 @@ export class NgTranslationModule {
         }, {
           provide: TranslationService,
           useFactory: translationServiceFactory,
-          deps: [ HttpClient, TranspilerService, MessengerService, NGT_CONFIGURATION, NGT_TRANSPILE_EXTENDER ]
+          deps: [
+            HttpClient, TranspilerService, MessengerService,
+            NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
+          ]
         }, {
           provide: APP_INITIALIZER,
           useFactory: initializerFactory,

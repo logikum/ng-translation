@@ -59,7 +59,7 @@ const ngtConfig: TranslationConfig = {
       group: 'conversion',
       url: '/assets/po-files/{section}.{language}.po',
       format: 'po',
-      items: [ { name: 'conversion' } ]
+      items: [ { name: 'autumn', alias: 'verse' } ]
     }
   ],
   defaultLanguage: environment.defaultLanguage,

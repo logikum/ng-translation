@@ -9,6 +9,7 @@ export interface Section {
   alias?: string;
   url?: string;
   format?: string;
+  type?: 'json' | 'text';
 }
 
 export interface SectionGroup {
@@ -16,6 +17,7 @@ export interface SectionGroup {
   group: string;
   url?: string;
   format?: string;
+  type?: 'json' | 'text';
   items: Array<string | Section>;
 }
 

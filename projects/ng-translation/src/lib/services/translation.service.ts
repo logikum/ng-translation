@@ -120,7 +120,7 @@ export class TranslationService {
         resolve();
 
       } else {
-        const promises: Promise<object>[] = this.getDownloadPromises(
+        const promises: Promise<any>[] = this.getDownloadPromises(
           [ locale.name ],
           this.resourceList.getResourcesInUse()
         );
@@ -158,14 +158,16 @@ export class TranslationService {
   private getDownloadPromises(
     languages: Array<string>,
     resources: Array<Resource>
-  ): Array<Promise<object>> {
+  ): Array<Promise<any>> {
 
-    const promises: Promise<object>[] = [];
+    const promises: Promise<any>[] = [];
 
     languages.forEach( language => {
       resources.forEach( resource => {
         promises.push(
-          this.getDownloadPromise( language, resource )
+          resource.type === 'text' ?
+            this.getTextPromise( language, resource ) :
+            this.getJsonPromise( language, resource )
         );
       } );
     } );
@@ -173,21 +175,20 @@ export class TranslationService {
     return promises;
   }
 
-  private getDownloadPromise(
+  private getJsonPromise(
     language: string,
     resource: Resource
   ): Promise<object> {
 
     const locale = new Locale( language );
-    return new Promise((resolve, reject) => {
+    return new Promise<object>((resolve, reject) => {
 
-      // const url = this.buildUrl( locale.name, section );
       const url = this.buildUrl( locale.name, resource );
-      this.http.get( url )
+      this.http.get( url, { responseType: 'json' } )
         .toPromise()
-        .then( sectionTranslations => {
+        .then( translations => {
 
-          this.storeTranslations( locale.name, resource, sectionTranslations );
+          this.storeTranslations( locale.name, resource, translations );
           resolve();
         } )
         .catch( error => {
@@ -196,10 +197,10 @@ export class TranslationService {
             this.messenger.info( `Using alternative: ${ locale.neutral }` );
 
             const url2 = this.buildUrl( locale.neutral, resource );
-            this.http.get( url2 )
+            this.http.get( url2, { responseType: 'json' } )
               .toPromise()
-              .then( sectionTranslations => {
-                this.storeTranslations( locale.neutral, resource, sectionTranslations );
+              .then( translations => {
+                this.storeTranslations( locale.neutral, resource, translations );
                 resolve();
               } )
              .catch( error2 => {
@@ -213,6 +214,51 @@ export class TranslationService {
             this.handleError( error );
             // reject();
             this.storeTranslations( locale.name, resource, { } );
+            resolve();
+          }
+        } );
+    } );
+  }
+
+  private getTextPromise(
+    language: string,
+    resource: Resource
+  ): Promise<string> {
+
+    const locale = new Locale( language );
+    return new Promise<string>((resolve, reject) => {
+
+      const url = this.buildUrl( locale.name, resource );
+      this.http.get( url, { responseType: 'text' } )
+        .toPromise()
+        .then( translations => {
+
+          this.storeTranslations( locale.name, resource, translations );
+          resolve();
+        } )
+        .catch( error => {
+
+          if (locale.hasRegion) {
+            this.messenger.info( `Using alternative: ${ locale.neutral }` );
+
+            const url2 = this.buildUrl( locale.neutral, resource );
+            this.http.get( url2, { responseType: 'text' } )
+              .toPromise()
+              .then( translations => {
+                this.storeTranslations( locale.neutral, resource, translations );
+                resolve();
+              } )
+              .catch( error2 => {
+                this.handleError( error );
+                // reject();
+                this.storeTranslations( locale.name, resource, '' );
+                resolve();
+              } );
+
+          } else {
+            this.handleError( error );
+            // reject();
+            this.storeTranslations( locale.name, resource, '' );
             resolve();
           }
         } );
@@ -233,11 +279,11 @@ export class TranslationService {
   private storeTranslations(
     language: string,
     resource: Resource,
-    translations: object
+    translations: any
   ): void {
 
     // Convert non=JSON formats.
-    const jsonTranslations = resource.format === 'JSON' ?
+    const jsonTranslations: object = resource.format === 'JSON' ?
       translations :
       this.converter.convert( language, resource, translations );
 
@@ -251,7 +297,7 @@ export class TranslationService {
     const path: Array<string> = resource.alias.split( '.' );
     for (let i = 0; i < path.length; i++) {
       if (target[ path[ i ] ] === undefined) {
-        target[ path[ i ] ] = i === path.length - 1 ? translations : { };
+        target[ path[ i ] ] = i === path.length - 1 ? jsonTranslations : { };
       }
       target = target[ path[ i ] ];
     }

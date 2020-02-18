@@ -9,7 +9,7 @@ export interface TranslationConverter {
   convert(
     language: string,
     resource: Resource,
-    translations: object
+    translations: any
   ): object;
 }
 

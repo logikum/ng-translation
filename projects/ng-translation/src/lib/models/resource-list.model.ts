@@ -24,6 +24,7 @@ export class ResourceList {
           alias: item,
           url: translationUrl,
           format: translationFormat,
+          type: 'json',
           inUse: false
         } );
 
@@ -34,6 +35,7 @@ export class ResourceList {
           alias: section.alias ?? section.name,
           url: section.url ?? translationUrl,
           format: section.format ?? translationFormat,
+          type: section.type ?? 'json',
           inUse: false
         } );
 
@@ -50,6 +52,7 @@ export class ResourceList {
               alias: groupItem,
               url: group.url ?? translationUrl,
               format: group.format ?? translationFormat,
+              type: group.type ?? 'json',
               inUse: false
             } );
 
@@ -59,6 +62,7 @@ export class ResourceList {
               alias: groupItem.alias ?? groupItem.name,
               url: groupItem.url ?? group.url ?? translationUrl,
               format: groupItem.format ?? group.format ?? translationFormat,
+              type: groupItem.type ?? group.type ?? 'json',
               inUse: false
             } );
           }

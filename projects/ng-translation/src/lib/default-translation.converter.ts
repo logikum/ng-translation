@@ -8,9 +8,9 @@ export class DefaultTranslationConverter implements TranslationConverter {
   convert(
     language: string,
     resource: Resource,
-    translations: object
+    translations: any
   ): object {
 
-    return translations;
+    return typeof translations === 'object' ? translations : { };
   }
 }

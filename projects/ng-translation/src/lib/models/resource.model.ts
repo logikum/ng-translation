@@ -8,5 +8,6 @@ export interface Resource {
   alias: string;
   url: string;
   format: string;
+  type: 'json' | 'text';
   inUse: boolean;
 }

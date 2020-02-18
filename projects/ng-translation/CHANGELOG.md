@@ -5,8 +5,9 @@ _Published on ?/?/2020._
 
 * Update to Angular 9.
 * Use new configuration model.
+* Add custom translation converter.
 * Add custom transpile extender.
-* Add localization pipes.
+* Add localization methods and pipes.
 * Update translations immediately after language change.
 
 ### v3.5.0

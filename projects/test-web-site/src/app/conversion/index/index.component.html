@@ -1,1 +1,43 @@
-<p>Conversion works!</p>
+<ng-container *translate="let t">
+
+  <h1>{{ t('verse.index.title') }}</h1>
+
+  <div class="center">
+    <mat-card>
+
+      <h3> Allegro </h3>
+
+      <p>
+        {{ t('verse.index.line_1_1') }}<br>
+        {{ t('verse.index.line_1_2') }}<br>
+        {{ t('verse.index.line_1_3') }}<br>
+        {{ t('verse.index.line_1_4') }}
+      </p>
+
+      <h3> Adagio molto </h3>
+
+      <p>
+        {{ t('verse.index.line_2_1') }}<br>
+        {{ t('verse.index.line_2_2') }}<br>
+        {{ t('verse.index.line_2_3') }}<br>
+        {{ t('verse.index.line_2_4') }}
+      </p>
+
+      <h3> Allegro </h3>
+
+      <p>
+        {{ t('verse.index.line_3_1') }}<br>
+        {{ t('verse.index.line_3_2') }}<br>
+        {{ t('verse.index.line_3_3') }}
+      </p>
+
+      <p>
+        {{ t('verse.index.line_4_1') }}<br>
+        {{ t('verse.index.line_4_2') }}<br>
+        {{ t('verse.index.line_4_3') }}
+      </p>
+
+    </mat-card>
+  </div>
+
+</ng-container>

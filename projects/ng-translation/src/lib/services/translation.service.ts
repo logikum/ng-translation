@@ -6,10 +6,12 @@ import { Route } from '@angular/router';
 /* locally accessible feature module code, always use relative path */
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
-  Resource, ResourceList, TranslationConfig, TranslationConverter, TranspileExtender
+  Resource, ResourceList, ResourceLoader, TranslationConfig,
+  TranslationConverter, TranspileExtender
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
+import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader } from '../loaders';
 
 @Injectable({
   providedIn: 'root'
@@ -164,116 +166,36 @@ export class TranslationService {
 
     languages.forEach( language => {
       resources.forEach( resource => {
-        promises.push(
-          resource.type === 'text' ?
-            this.getTextPromise( language, resource ) :
-            this.getJsonPromise( language, resource )
+        let loader: ResourceLoader;
+
+        switch (resource.type) {
+          case 'text':
+            loader = new TextLoader( this.http, this.messenger );
+            break;
+          case 'blob':
+            loader = new BlobLoader( this.http, this.messenger );
+            break;
+          case 'arraybuffer':
+            loader = new ArrayBufferLoader( this.http, this.messenger );
+            break;
+          case 'json':
+          default:
+            loader = new JsonLoader( this.http, this.messenger );
+            break;
+        }
+        promises.push( loader.load( language, resource )
+          .then( translations => {
+            this.storeTranslations( language, resource, translations );
+          } )
+          .catch( error => {
+            this.handleError( error );
+            this.storeTranslations( language, resource, { } );
+          } )
         );
       } );
     } );
 
     return promises;
-  }
-
-  private getJsonPromise(
-    language: string,
-    resource: Resource
-  ): Promise<object> {
-
-    const locale = new Locale( language );
-    return new Promise<object>((resolve, reject) => {
-
-      const url = this.buildUrl( locale.name, resource );
-      this.http.get( url, { responseType: 'json' } )
-        .toPromise()
-        .then( translations => {
-
-          this.storeTranslations( locale.name, resource, translations );
-          resolve();
-        } )
-        .catch( error => {
-
-          if (locale.hasRegion) {
-            this.messenger.info( `Using alternative: ${ locale.neutral }` );
-
-            const url2 = this.buildUrl( locale.neutral, resource );
-            this.http.get( url2, { responseType: 'json' } )
-              .toPromise()
-              .then( translations => {
-                this.storeTranslations( locale.neutral, resource, translations );
-                resolve();
-              } )
-             .catch( error2 => {
-               this.handleError( error );
-               // reject();
-               this.storeTranslations( locale.name, resource, { } );
-               resolve();
-             } );
-
-          } else {
-            this.handleError( error );
-            // reject();
-            this.storeTranslations( locale.name, resource, { } );
-            resolve();
-          }
-        } );
-    } );
-  }
-
-  private getTextPromise(
-    language: string,
-    resource: Resource
-  ): Promise<string> {
-
-    const locale = new Locale( language );
-    return new Promise<string>((resolve, reject) => {
-
-      const url = this.buildUrl( locale.name, resource );
-      this.http.get( url, { responseType: 'text' } )
-        .toPromise()
-        .then( translations => {
-
-          this.storeTranslations( locale.name, resource, translations );
-          resolve();
-        } )
-        .catch( error => {
-
-          if (locale.hasRegion) {
-            this.messenger.info( `Using alternative: ${ locale.neutral }` );
-
-            const url2 = this.buildUrl( locale.neutral, resource );
-            this.http.get( url2, { responseType: 'text' } )
-              .toPromise()
-              .then( translations => {
-                this.storeTranslations( locale.neutral, resource, translations );
-                resolve();
-              } )
-              .catch( error2 => {
-                this.handleError( error );
-                // reject();
-                this.storeTranslations( locale.name, resource, '' );
-                resolve();
-              } );
-
-          } else {
-            this.handleError( error );
-            // reject();
-            this.storeTranslations( locale.name, resource, '' );
-            resolve();
-          }
-        } );
-    } );
-  }
-
-  private buildUrl(
-    language: string,
-    resource: Resource
-  ): string {
-
-    return resource.url
-      .replace(/{\s*language\s*}/gi, language)
-      .replace(/{\s*section\s*}/gi, resource.name)
-      ;
   }
 
   private storeTranslations(

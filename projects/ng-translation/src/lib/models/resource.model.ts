@@ -8,6 +8,6 @@ export interface Resource {
   alias: string;
   url: string;
   format: string;
-  type: 'json' | 'text';
+  type: 'json' | 'text' | 'blob' | 'arraybuffer';
   inUse: boolean;
 }

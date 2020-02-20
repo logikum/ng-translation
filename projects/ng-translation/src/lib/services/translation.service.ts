@@ -82,8 +82,8 @@ export class TranslationService {
     }
     return new Promise((resolve, reject) => {
 
-      const prefix = route.data && route.data.sectionPrefix ?
-        route.data.sectionPrefix :
+      const prefix = route.data && route.data.translationGroup ?
+        route.data.translationGroup :
         route.path;
       const languages: string[] = Object.getOwnPropertyNames( this.translations );
       const promises: Promise<object>[] = this.getDownloadPromises(

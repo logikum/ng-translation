@@ -33,7 +33,7 @@ const routes: Routes = [
                     canLoad: [ LoadTranslationsGuard ] },
   { path: 'winter', loadChildren: () => import('./winter/winter.module').then(m => m.WinterModule),
                     canLoad: [ LoadTranslationsGuard ],
-                    data: { sectionPrefix: 'frosty' } },
+                    data: { translationGroup: 'frosty' } },
   { path: 'components', component: ComponentsComponent },
   { path: 'auxiliary', component: AuxiliaryComponent },
   { path: 'l10n', component: LocalizationComponent },

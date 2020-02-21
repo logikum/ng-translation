@@ -3,8 +3,9 @@
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
 import { TranslatableSelect } from './translatable-select.model';
+import { Locale } from './locale.model';
 
-export class TranslatableOptionList extends TranslatableSelect {
+export class TranslatableLanguageList extends TranslatableSelect {
 
   constructor(
     readonly translate: TranslationService,
@@ -20,6 +21,11 @@ export class TranslatableOptionList extends TranslatableSelect {
     return this.getSelectedValue();
   }
   set selectedValue( value: string ) {
-    this.setSelectedValue( value );
+    if (!this.setSelectedValue( value )) {
+      const locale = new Locale( value );
+      if (locale.hasRegion) {
+        this.setSelectedValue( locale.neutral );
+      }
+    }
   }
 }

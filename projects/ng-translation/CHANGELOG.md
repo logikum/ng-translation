@@ -9,6 +9,7 @@ _Published on ?/?/2020._
 * Add custom translation converter.
 * Add custom transpile extender.
 * Add localization methods and pipes.
+* Add TranslatableLanguageList component.
 * Update translations immediately after language change.
 * Rename translation group on route data.
 

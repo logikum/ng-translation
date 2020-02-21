@@ -4,7 +4,9 @@ import {
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TranslatableOptionList, TranslationService } from 'ng-translation';
+import {
+  TranslatableLanguageList, TranslatableOptionList, TranslationService
+} from 'ng-translation';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +19,14 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly onDestroy: Subject<void> = new Subject();
 
   menu: TranslatableOptionList;
-  languages: TranslatableOptionList;
+  languages: TranslatableLanguageList;
 
   constructor(
     private router: Router,
     private translate: TranslationService
   ) {
     this.menu = new TranslatableOptionList( this.translate, 'app.menu' );
-    this.languages = new TranslatableOptionList( this.translate, 'app.languages' );
+    this.languages = new TranslatableLanguageList( this.translate, 'app.languages' );
   }
 
   ngOnInit(): void {

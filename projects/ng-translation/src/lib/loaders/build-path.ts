@@ -3,7 +3,7 @@
 /* locally accessible feature module code, always use relative path */
 import { Resource } from '../models';
 
-export function buildUrl(
+export function buildPath(
   language: string,
   resource: Resource
 ): string {

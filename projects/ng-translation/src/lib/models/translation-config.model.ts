@@ -7,7 +7,7 @@ export interface Section {
 
   name: string;
   alias?: string;
-  url?: string;
+  path?: string;
   format?: string;
   type?: 'json' | 'text';
 }
@@ -15,7 +15,7 @@ export interface Section {
 export interface SectionGroup {
 
   group: string;
-  url?: string;
+  path?: string;
   format?: string;
   type?: 'json' | 'text';
   items: Array<string | Section>;
@@ -26,7 +26,7 @@ export type SectionList = Array<SectionItem>;
 
 export interface TranslationConfig {
 
-  readonly translationUrl: string;
+  readonly translationPath: string;
   readonly translationFormat?: string;
   readonly sections: SectionList;
   readonly defaultLanguage: string;

@@ -6,8 +6,13 @@ export interface Resource {
 
   name: string;
   alias: string;
-  url: string;
+  path: string;
   format: string;
   type: 'json' | 'text' | 'blob' | 'arraybuffer';
   inUse: boolean;
+}
+
+export interface ResourceLoader {
+
+  load( language: string, resource: Resource): Promise<any>;
 }

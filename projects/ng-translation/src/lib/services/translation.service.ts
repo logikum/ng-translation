@@ -42,7 +42,7 @@ export class TranslationService {
     this.transpile.extender = extender;
     this.resourceList = new ResourceList(
       config.sections,
-      config.translationUrl,
+      config.translationPath,
       config.translationFormat
     );
   }

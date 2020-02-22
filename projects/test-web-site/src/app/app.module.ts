@@ -48,8 +48,8 @@ const routerConfig: ExtraOptions = {
 };
 
 const ngtConfig: TranslationConfig = {
-  translationUrl: '/assets/i18n/{ language }/{ section }.json',
-  // translationUrl: '/assets/i18n/{section}.{language}.json',
+  translationPath: '/assets/i18n/{ language }/{ section }.json',
+  // translationPath: '/assets/i18n/{section}.{language}.json',
   sections: [
     'app', 'l10n', { name: 'spring' },
     { group: 'summer', items: [ 'summer' ] },
@@ -57,7 +57,7 @@ const ngtConfig: TranslationConfig = {
     { group: 'frosty', items: [ { name: 'winter' } ] },
     {
       group: 'conversion',
-      url: '/assets/po-files/{section}.{language}.po',
+      path: '/assets/po-files/{section}.{language}.po',
       format: 'po',
       type: 'text',
       items: [ { name: 'autumn', alias: 'verse' } ]

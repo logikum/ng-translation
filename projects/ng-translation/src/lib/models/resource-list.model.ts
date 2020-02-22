@@ -10,8 +10,8 @@ export class ResourceList {
 
   constructor(
     sections: SectionList,
-    translationUrl: string,
-    translationFormat: string = 'JSON'
+    defaultPath: string,
+    defaultFormat: string = 'JSON'
   ) {
     const defaultName = '';
     const defaultResources: Array<Resource> = [ ];
@@ -22,8 +22,8 @@ export class ResourceList {
         defaultResources.push( {
           name: item,
           alias: item,
-          url: translationUrl,
-          format: translationFormat,
+          path: defaultPath,
+          format: defaultFormat,
           type: 'json',
           inUse: false
         } );
@@ -33,8 +33,8 @@ export class ResourceList {
         defaultResources.push( {
           name: section.name,
           alias: section.alias ?? section.name,
-          url: section.url ?? translationUrl,
-          format: section.format ?? translationFormat,
+          path: section.path ?? defaultPath,
+          format: section.format ?? defaultFormat,
           type: section.type ?? 'json',
           inUse: false
         } );
@@ -50,8 +50,8 @@ export class ResourceList {
             resources.push( {
               name: groupItem,
               alias: groupItem,
-              url: group.url ?? translationUrl,
-              format: group.format ?? translationFormat,
+              path: group.path ?? defaultPath,
+              format: group.format ?? defaultFormat,
               type: group.type ?? 'json',
               inUse: false
             } );
@@ -60,8 +60,8 @@ export class ResourceList {
             resources.push( {
               name: groupItem.name,
               alias: groupItem.alias ?? groupItem.name,
-              url: groupItem.url ?? group.url ?? translationUrl,
-              format: groupItem.format ?? group.format ?? translationFormat,
+              path: groupItem.path ?? group.path ?? defaultPath,
+              format: groupItem.format ?? group.format ?? defaultFormat,
               type: groupItem.type ?? group.type ?? 'json',
               inUse: false
             } );

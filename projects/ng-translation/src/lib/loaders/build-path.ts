@@ -8,7 +8,7 @@ export function buildUrl(
   resource: Resource
 ): string {
 
-  return resource.url
+  return resource.path
     .replace(/{\s*language\s*}/gi, language)
     .replace(/{\s*section\s*}/gi, resource.name)
     ;

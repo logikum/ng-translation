@@ -1,6 +1,6 @@
 {
   "name": "ng-translation",
-  "version": "3.5.0",
+  "version": "4.0.0",
   "description": "NgTranslation is an internationalization package for Angular 6, 7 & 8 applications.",
   "keywords": [
     "Angular",
@@ -9,6 +9,10 @@
     "l10n",
     "localization"
   ],
+  "homepage": "https://ngt.logikum.hu",
+  "bugs": { "url" : "https://github.com/logikum/ng-translation/issues" },
+  "license" : "MIT",
+  "author": { "name": "Mármarosi József", "email" : "marmarosi@logikum.hu" },
   "scripts": {
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000",

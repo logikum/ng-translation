@@ -1,5 +1,6 @@
 {
   "title": "Prove di localizzazione",
+  "subtitle": "La diffusione dei numeri arabi inizio solo nel {{ 0 | roman }}. secolo.",
   "number": {
     "title": "Formattazione numerica",
     "basic": "Formato numerico di base: {{ 0|number }}",
@@ -64,5 +65,12 @@
   "plural": {
     "title": "Regole plurali",
     "updated": "Questa pagina è stata aggiornata {{ 0 | plural : 0=proprio ora; 1=un minuto fa; 2-10=# minuti fa; other=in precedenza }}."
+  },
+  "local": {
+    "title": "Localizzazione",
+    "number": "Numero:",
+    "percent": "Per cento:",
+    "currency": "Moneta:",
+    "datetime": "Appuntamento:"
   }
 }

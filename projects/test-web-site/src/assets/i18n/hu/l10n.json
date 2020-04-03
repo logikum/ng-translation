@@ -1,5 +1,6 @@
 {
   "title": "Lokalizációs tesztek",
+  "subtitle": "Az arab számok elterjedése csupán a {{ 0 | roman }}. századtól számítható.",
   "number": {
     "title": "Szám formázása",
     "basic": "Alap számformátum: {{ 0|number }}",
@@ -64,5 +65,12 @@
   "plural": {
     "title": "Többes számú szabályok",
     "updated": "Ezt az oldalt {{ 0 | plural : 0=most; 1~5=# perccel ezelőtt; other=nem régen }} frissítették."
+  },
+  "local": {
+    "title": "Lokalizáció",
+    "number": "Szám:",
+    "percent": "Százalék:",
+    "currency": "Deviza:",
+    "datetime": "Dátum és idő:"
   }
 }

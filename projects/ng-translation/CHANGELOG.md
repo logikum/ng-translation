@@ -1,5 +1,18 @@
 # Changes
 
+### v4.0.0
+_Published on 4/3/2020._
+
+* Update to Angular 9.
+* Use new configuration model.
+* Add translation loaders.
+* Add custom translation converter.
+* Add custom transpile extender.
+* Add localization methods and pipes.
+* Add TranslatableLanguageList component.
+* Update translations immediately after language change.
+* Rename translation group on route data.
+
 ### v3.5.0
 _Published on 1/24/2020._
 

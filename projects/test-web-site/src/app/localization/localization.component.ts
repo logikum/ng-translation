@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 
+import { CurrencyValue } from 'ng-translation';
+
+interface Price {
+  price: CurrencyValue;
+}
+type Currency = Array<CurrencyValue>;
+
 @Component({
   selector: 'app-localization',
   templateUrl: './localization.component.html',
@@ -11,11 +18,11 @@ export class LocalizationComponent {
   shortNumber = 1.2;
   longPercent = 12.34567;
   shortPercent = .12345;
-  priceU = { price: [ 1234.567, 'USD' ] };
-  priceE = { price: [ 1234.567, 'EUR' ] };
-  priceF = { price: [ 1234.567, 'HUF' ] };
-  currencyU = [[ 1234.567, 'USD' ]];
-  currencyE = [[ 1234.567, 'EUR' ]];
-  currencyF = [[ 1234.567, 'HUF' ]];
+  priceU: Price = { price: [ 1234.567, 'USD' ] };
+  priceE: Price = { price: [ 1234.567, 'EUR' ] };
+  priceF: Price = { price: [ 1234.567, 'HUF' ] };
+  currencyU: Currency = [[ 1234.567, 'USD' ]];
+  currencyE: Currency = [[ 1234.567, 'EUR' ]];
+  currencyF: Currency = [[ 1234.567, 'HUF' ]];
   now = Date.now();
 }

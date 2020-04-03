@@ -1,7 +1,7 @@
 # Changes
 
 ### v4.0.0
-_Published on ?/?/2020._
+_Published on 4/3/2020._
 
 * Update to Angular 9.
 * Use new configuration model.

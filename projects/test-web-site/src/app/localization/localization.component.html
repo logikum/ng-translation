@@ -1,6 +1,8 @@
-<ng-container *translate="let t; node: 'l10n'">
+<ng-container *translate="let t; let l = localize; node: 'l10n'">
 
   <h1>{{ t('title') }}</h1>
+
+  <p>{{ t('subtitle', 12) }}</p>
 
   <h3>{{ t('number.title') }}</h3>
   <table>
@@ -97,6 +99,30 @@
   <div>{{ t( 'plural.updated', 0) }}</div>
   <div>{{ t( 'plural.updated', 1) }}</div>
   <div>{{ t( 'plural.updated', 5) }}</div>
-  <div>{{ t( 'plural.updated', 20) }}</div>
+  <div>{{ t( 'plural.updated', 1973) }}</div>
+
+  <h3>{{ 'l10n.local.title' | translate }}</h3>
+  <table>
+    <tr>
+      <td>{{ 'l10n.local.number' | translate }}</td>
+      <td>{{ longNumber | toNumber:'maxfd=2' }}</td>
+      <td>{{ l.number( longNumber, 'maxfd=2' ) }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'l10n.local.percent' | translate }}</td>
+      <td>{{ shortPercent | toPercent:'minfd=1' }}</td>
+      <td>{{ l.percent( shortPercent, 'minfd=1' ) }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'l10n.local.currency' | translate }}</td>
+      <td>{{ priceE.price | toCurrency }}</td>
+      <td>{{ l.currency( priceE.price ) }}</td>
+    </tr>
+    <tr>
+      <td>{{ 'l10n.local.datetime' | translate }}</td>
+      <td>{{ now | toDatetime:'ds=medium;ts=medium' }}</td>
+      <td>{{ l.datetime( now, 'ds=medium;ts=medium' ) }}</td>
+    </tr>
+  </table>
 
 </ng-container>

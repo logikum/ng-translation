@@ -1,49 +1,45 @@
+/* 3rd party libraries */
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslationConfig } from './translation-config.model';
-import { TranslatePipe } from './translate.pipe';
-import { TranslationService } from './translation.service';
-import { TranslateDirective } from './translate.directive';
-import { TranslateParamsDirective } from './translate-params.directive';
-import { TranspilerService } from './transpiler.service';
-import { MessengerService } from './messenger.service';
 
-export function initializerFactory(
-  service: TranslationService,
-  config: TranslationConfig
-): () => void {
-
-  function initializer() {
-    service.initializeApp( config )
-      .then( browserLanguageSupported => {
-        service.changeLanguage(
-          browserLanguageSupported ?
-            navigator.language :
-            config.defaultLanguage
-        );
-      } );
-  }
-  return initializer;
-}
-
-export function serviceFactory(
-  http: HttpClient
-): TranslationService {
-
-  const messenger = new MessengerService();
-  return new TranslationService( http, messenger, new TranspilerService( messenger ) );
-}
+/* locally accessible feature module code, always use relative path */
+import { TranslateDirective, TranslateParamsDirective } from './directives';
+import {
+  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
+  TranslationConfig
+} from './models';
+import {
+  ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
+} from './pipes';
+import {
+  LocalizationService, MessengerService, TranslationService, TranspilerService
+} from './services';
+import { initializerFactory } from './initializer.factory';
+import {
+  localizationServiceFactory, messengerServiceFactory,
+  translationServiceFactory, transpilerServiceFactory
+} from './service.factory';
+import { DefaultTranslationConverter } from './default-translation.converter';
+import { DefaultTranspileExtender } from './default-transpile.extender';
 
 @NgModule({
   imports: [
     HttpClientModule
   ],
   declarations: [
+    ToCurrencyPipe,
+    ToDatetimePipe,
+    ToNumberPipe,
+    ToPercentPipe,
     TranslatePipe,
     TranslateDirective,
     TranslateParamsDirective
   ],
   exports: [
+    ToCurrencyPipe,
+    ToDatetimePipe,
+    ToNumberPipe,
+    ToPercentPipe,
     TranslatePipe,
     TranslateDirective,
     TranslateParamsDirective
@@ -54,33 +50,45 @@ export class NgTranslationModule {
   static forRoot(
     config: TranslationConfig
   ): ModuleWithProviders<NgTranslationModule> {
+
+    const extender = new DefaultTranspileExtender();
     return {
       ngModule: NgTranslationModule,
       providers: [
         {
+          provide: NGT_CONFIGURATION,
+          useValue: config
+        }, {
+          provide: NGT_TRANSLATION_CONVERTER,
+          useClass: DefaultTranslationConverter
+        }, {
+          provide: NGT_TRANSPILE_EXTENDER,
+          useClass: DefaultTranspileExtender
+        }, {
+          provide: MessengerService,
+          useFactory: messengerServiceFactory
+        }, {
+          provide: LocalizationService,
+          useFactory: localizationServiceFactory,
+          deps: [ MessengerService ]
+        }, {
+          provide: TranspilerService,
+          useFactory: transpilerServiceFactory,
+          deps: [ LocalizationService, MessengerService ]
+        }, {
+          provide: TranslationService,
+          useFactory: translationServiceFactory,
+          deps: [
+            HttpClient, TranspilerService, MessengerService,
+            NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
+          ]
+        }, {
           provide: APP_INITIALIZER,
           useFactory: initializerFactory,
-          multi: true,
-          deps: [ TranslationService, TranslationConfig ]
-        },
-        {
-          provide: TranslationService,
-          useFactory: serviceFactory,
-          deps: [ HttpClient ]
-        },
-        {
-          provide: TranslationConfig,
-          useValue: config,
-          multi: false
+          deps: [ TranslationService, NGT_CONFIGURATION ],
+          multi: true
         }
       ]
-    };
-  }
-
-  static forChild(): ModuleWithProviders<NgTranslationModule> {
-    return {
-      ngModule: NgTranslationModule,
-      providers: [ ]
     };
   }
 }

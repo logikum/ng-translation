@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, OnDestroy, OnInit
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslatableOptionList, TranslationService } from 'ng-translation';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import {
+  TranslatableLanguageList, TranslatableOptionList, TranslationService
+} from 'ng-translation';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +14,29 @@ import { TranslatableOptionList, TranslationService } from 'ng-translation';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+
+  private readonly onDestroy: Subject<void> = new Subject();
 
   menu: TranslatableOptionList;
-  languages: TranslatableOptionList;
+  languages: TranslatableLanguageList;
 
   constructor(
     private router: Router,
     private translate: TranslationService
   ) {
     this.menu = new TranslatableOptionList( this.translate, 'app.menu' );
-    this.languages = new TranslatableOptionList( this.translate, 'app.languages' );
+    this.languages = new TranslatableLanguageList( this.translate, 'app.languages' );
   }
 
   ngOnInit(): void {
 
-    this.translate.languageChanged.subscribe( language => {
-      this.reloadPage( language );
-    } );
+    const s = this.translate.languageChanged
+      .pipe( takeUntil( this.onDestroy ) )
+      .subscribe( language => {
+        this.languages.selectedValue = language;
+        s.unsubscribe();
+      } );
   }
 
   changeLanguage(
@@ -33,15 +44,12 @@ export class AppComponent implements OnInit {
   ): void {
 
     const language = event.target.value;
+    this.languages.selectedValue = language;
     this.translate.changeLanguage( language );
   }
 
-  private reloadPage(
-    language: string
-  ): void {
-
-    this.languages.selectedValue = language;
-    const url = this.router.routerState.snapshot.url;
-    this.router.navigateByUrl( `refresh-translation?url=${ url }` );
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 }

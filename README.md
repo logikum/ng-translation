@@ -1,6 +1,7 @@
 # NgTranslation
 
-NgTranslation is an internationalization package for Angular 6, 7 & 8 applications.
+NgTranslation is an internationalization and localization package for
+Angular applications.
 
 See documentation: [NgTranslation](https://ngt.logikum.hu/)
 

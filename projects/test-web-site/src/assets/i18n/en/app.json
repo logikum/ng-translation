@@ -19,6 +19,7 @@
     "components": "Component Tests",
     "auxiliary": "Auxiliary Tests",
     "l10n": "Localization Tests",
+    "conversion": "Conversion Tests",
     "currLang": "Current language:",
     "select": "Select month:",
     "selectedIndex": "The selected index:",

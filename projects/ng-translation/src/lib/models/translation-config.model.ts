@@ -9,7 +9,7 @@ export interface Section {
   alias?: string;
   path?: string;
   format?: string;
-  type?: 'json' | 'text';
+  type?: 'json' | 'text' | 'blob' | 'arraybuffer';
 }
 
 export interface SectionGroup {
@@ -17,7 +17,7 @@ export interface SectionGroup {
   group: string;
   path?: string;
   format?: string;
-  type?: 'json' | 'text';
+  type?: 'json' | 'text' | 'blob' | 'arraybuffer';
   items: Array<string | Section>;
 }
 

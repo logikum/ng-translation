@@ -25,7 +25,10 @@ export class TranslatableLanguageList extends TranslatableSelect {
       const locale = new Locale( value );
       if (locale.hasRegion) {
         this.setSelectedValue( locale.neutral );
+        this.translate.changeLanguage( locale.neutral );
       }
+    } else {
+      this.translate.changeLanguage( value );
     }
   }
 }

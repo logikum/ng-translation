@@ -2,13 +2,12 @@
 import { Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
+import { CurrencyValue } from '../currency-value';
 import { FormatData } from '../models';
 import { MessengerService } from './messenger.service';
 
 const OPTION_SEP = ';';
 const VALUE_SEP = '=';
-
-export type CurrencyValue = [ number, string ];
 
 function createFormatData(
   locale: string,

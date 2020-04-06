@@ -3,7 +3,7 @@
 /* locally accessible feature module code, always use relative path */
 import { Resource, TranslationConverter } from 'ng-translation';
 
-export class CustpmTranslationConverter implements TranslationConverter {
+export class CustomTranslationConverter implements TranslationConverter {
 
   convert(
     language: string,

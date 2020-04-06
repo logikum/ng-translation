@@ -18,7 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { LocalizationComponent } from './localization/localization.component';
-import { CustpmTranslationConverter } from './custom-translation-converter';
+import { CustomTranslationConverter } from './custom-translation-converter';
 import { CustomTranspileExtender } from './custom-transpile-extender';
 
 import { SpringModule } from './spring/spring.module';
@@ -91,7 +91,7 @@ const ngtConfig: TranslationConfig = {
   providers: [
     {
       provide: NGT_TRANSLATION_CONVERTER,
-      useClass: CustpmTranslationConverter
+      useClass: CustomTranslationConverter
     }, {
       provide: NGT_TRANSPILE_EXTENDER,
       useClass: CustomTranspileExtender

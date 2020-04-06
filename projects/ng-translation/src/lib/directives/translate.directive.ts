@@ -7,7 +7,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue, LocalizationService, TranslationService } from '../services';
+import { CurrencyValue } from '../currency-value';
+import { LocalizationService, TranslationService } from '../services';
 
 interface ViewContext {
   $implicit: (key: string, params?: any) => any;

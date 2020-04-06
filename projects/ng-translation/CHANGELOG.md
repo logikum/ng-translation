@@ -1,5 +1,10 @@
 # Changes
 
+### v4.0.1
+_Published on 4/6/2020._
+
+* Fix a bug in TranslatableLanguageList.
+
 ### v4.0.0
 _Published on 4/3/2020._
 

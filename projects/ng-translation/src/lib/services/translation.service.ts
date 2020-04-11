@@ -43,7 +43,8 @@ export class TranslationService {
     this.resourceList = new ResourceList(
       config.sections,
       config.translationPath,
-      config.translationFormat
+      config.translationFormat,
+      config.loaderType
     );
   }
 
@@ -234,6 +235,13 @@ export class TranslationService {
         (error.message ? error.message : error.toString()) :
         'An error occurred while downloading a translation file.'
       ;
+    this.messenger.error( message );
+  }
+
+  showError(
+    message: string
+  ): void {
+
     this.messenger.error( message );
   }
   // endregion

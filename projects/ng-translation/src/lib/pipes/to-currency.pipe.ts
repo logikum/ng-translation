@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../currency-value';
+import { CurrencyValue } from '../types';
 import { LocalizationService, TranslationService } from '../services';
 
 @Pipe({

@@ -7,12 +7,9 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../currency-value';
+import { CurrencyValue } from '../types';
+import { TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
-
-interface ViewContext {
-  $implicit: (key: string, params?: any) => any;
-}
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -28,7 +25,7 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private readonly container: ViewContainerRef,
-    @Optional() private template: TemplateRef<ViewContext>,
+    @Optional() private template: TemplateRef<TranslateContext>,
     private readonly cdRef: ChangeDetectorRef,
     private readonly translate: TranslationService,
     private readonly localization: LocalizationService
@@ -69,7 +66,7 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
       const service = this.translate;
       const localize = this.localization;
       const keyRoot = this.node;
-      const context = {
+      const context: TranslateContext = {
         $implicit: function (
           key: string,
           args?: any

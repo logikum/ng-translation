@@ -1,5 +1,12 @@
 # Changes
 
+### v4.0.2
+_Published on 4/11/2020._
+
+* Update to Angular 9.1.
+* Add loaderType to configuration.
+* Fix a bug in TranslatableLanguageList.
+
 ### v4.0.1
 _Published on 4/6/2020._
 

@@ -24,20 +24,6 @@ Run this command to build the localization package:
 ```
 ng build --prod ng-translation
 ```
-### Documentation
-
-Run this command to start the documentation site in development mode:
-```
-ng serve doc-web-site
-```
-Run this command to build the documentation site:
-```
-ng build --prod doc-web-site
-```
-Run this command to start the documentation site in production mode:
-```
-NODE_ENV=production PORT=3000 node server
-```
 ### Test
 
 Run this command to start the test site in development mode:

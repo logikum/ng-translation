@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../currency-value';
+import { CurrencyValue } from '../types';
 import { FormatData } from '../models';
 import { MessengerService } from './messenger.service';
 

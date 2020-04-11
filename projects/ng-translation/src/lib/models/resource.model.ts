@@ -1,6 +1,7 @@
 /* 3rd party libraries */
 
 /* locally accessible feature module code, always use relative path */
+import { LoaderType } from '../types';
 
 export interface Resource {
 
@@ -8,7 +9,7 @@ export interface Resource {
   alias: string;
   path: string;
   format: string;
-  type: 'json' | 'text' | 'blob' | 'arraybuffer';
+  type: LoaderType;
   inUse: boolean;
 }
 

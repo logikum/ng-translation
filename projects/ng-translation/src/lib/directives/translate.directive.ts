@@ -7,14 +7,9 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../currency-value';
-import { LocalizeContext, TranslateContext } from '../models';
+import { CurrencyValue } from '../types';
+import { TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
-
-// interface ViewContext {
-//   $implicit: (key: string, params?: any) => any;
-//   readonly localize: LocalizeContext;
-// }
 
 @Directive({
   // tslint:disable-next-line:directive-selector

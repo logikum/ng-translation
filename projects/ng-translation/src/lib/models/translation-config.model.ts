@@ -2,23 +2,24 @@
 import { InjectionToken } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
+import { LoaderType } from '../types';
 
 export interface Section {
 
-  name: string;
-  alias?: string;
-  path?: string;
-  format?: string;
-  type?: 'json' | 'text' | 'blob' | 'arraybuffer';
+  readonly name: string;
+  readonly alias?: string;
+  readonly path?: string;
+  readonly format?: string;
+  readonly type?: LoaderType;
 }
 
 export interface SectionGroup {
 
-  group: string;
-  path?: string;
-  format?: string;
-  type?: 'json' | 'text' | 'blob' | 'arraybuffer';
-  items: Array<string | Section>;
+  readonly group: string;
+  readonly path?: string;
+  readonly format?: string;
+  readonly type?: LoaderType;
+  readonly items: Array<string | Section>;
 }
 
 export type SectionItem = string | Section | SectionGroup;
@@ -28,6 +29,7 @@ export interface TranslationConfig {
 
   readonly translationPath: string;
   readonly translationFormat?: string;
+  readonly loaderType?: LoaderType;
   readonly sections: SectionList;
   readonly defaultLanguage: string;
   readonly disableWarnings?: boolean;

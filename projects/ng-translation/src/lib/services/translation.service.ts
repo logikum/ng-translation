@@ -43,7 +43,8 @@ export class TranslationService {
     this.resourceList = new ResourceList(
       config.sections,
       config.translationPath,
-      config.translationFormat
+      config.translationFormat,
+      config.loaderType
     );
   }
 

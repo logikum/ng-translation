@@ -1,6 +1,7 @@
 /* 3rd party libraries */
 
 /* locally accessible feature module code, always use relative path */
+import { LoaderType } from '../types';
 import { Resource } from './resource.model';
 import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
 
@@ -11,7 +12,8 @@ export class ResourceList {
   constructor(
     sections: SectionList,
     defaultPath: string,
-    defaultFormat: string = 'JSON'
+    defaultFormat: string = 'JSON',
+    defaultType: LoaderType = 'json'
   ) {
     const defaultName = '';
     const defaultResources: Array<Resource> = [ ];
@@ -24,7 +26,7 @@ export class ResourceList {
           alias: item,
           path: defaultPath,
           format: defaultFormat,
-          type: 'json',
+          type: defaultType,
           inUse: false
         } );
 
@@ -35,7 +37,7 @@ export class ResourceList {
           alias: section.alias ?? section.name,
           path: section.path ?? defaultPath,
           format: section.format ?? defaultFormat,
-          type: section.type ?? 'json',
+          type: section.type ?? defaultType,
           inUse: false
         } );
 
@@ -52,7 +54,7 @@ export class ResourceList {
               alias: groupItem,
               path: group.path ?? defaultPath,
               format: group.format ?? defaultFormat,
-              type: group.type ?? 'json',
+              type: group.type ?? defaultType,
               inUse: false
             } );
 
@@ -62,7 +64,7 @@ export class ResourceList {
               alias: groupItem.alias ?? groupItem.name,
               path: groupItem.path ?? group.path ?? defaultPath,
               format: groupItem.format ?? group.format ?? defaultFormat,
-              type: groupItem.type ?? group.type ?? 'json',
+              type: groupItem.type ?? group.type ?? defaultType,
               inUse: false
             } );
           }

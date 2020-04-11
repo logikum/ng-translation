@@ -1,5 +1,5 @@
 {
-  "name": "ng-translation",
+  "name": "@logikum/ng-translation",
   "version": "4.0.2",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
   "keywords": [
@@ -14,10 +14,7 @@
     "url": "https://github.com/logikum/ng-translation/issues"
   },
   "license": "MIT",
-  "author": {
-    "name": "Mármarosi József",
-    "email": "marmarosi@logikum.hu"
-  },
+  "author": "Mármarosi József <marmarosi@logikum.hu>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000",
@@ -26,7 +23,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~9.1.1",
     "@angular/cdk": "~9.2.0",
@@ -72,5 +69,10 @@
     "ts-node": "~5.0.1",
     "tslint": "~5.11.0",
     "typescript": "~3.7.5"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logikum/ng-translation.git"
   }
 }

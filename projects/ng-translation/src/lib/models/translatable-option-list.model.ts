@@ -11,8 +11,8 @@ export class TranslatableOptionList extends TranslatableSelect {
     readonly key: string
   ) {
     super();
-    this.translate = translate;
-    this.key = key;
+    // this.translate = translate;
+    // this.key = key;
     this.initialize();
   }
 

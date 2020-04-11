@@ -237,6 +237,13 @@ export class TranslationService {
       ;
     this.messenger.error( message );
   }
+
+  showError(
+    message: string
+  ): void {
+
+    this.messenger.error( message );
+  }
   // endregion
 
   // region Get translation item

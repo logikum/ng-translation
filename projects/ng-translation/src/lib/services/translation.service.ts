@@ -6,7 +6,7 @@ import { Route } from '@angular/router';
 /* locally accessible feature module code, always use relative path */
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
-  Resource, ResourceList, ResourceLoader, TranslationConfig,
+  Resource, ResourceList, ResourceLoader, TranslationChange, TranslationConfig,
   TranslationConverter, TranspileExtender
 } from '../models';
 import { TranspilerService } from './transpiler.service';
@@ -25,6 +25,7 @@ export class TranslationService {
   private readonly translations: object = { };
 
   @Output() readonly languageChanged = new EventEmitter<string>();
+  @Output() readonly statusChange = new EventEmitter<TranslationChange>();
 
   get activeLanguage(): string { return this.active; }
   get isDownloading(): boolean { return this.isLoading; }
@@ -50,6 +51,7 @@ export class TranslationService {
 
   initializeApp(): Promise<boolean> {
 
+    this.statusChange.emit( TranslationChange.event( 'app', 'start' ) );
     return new Promise((resolve, reject) => {
 
       this.active = this.defaultLanguage;
@@ -65,40 +67,46 @@ export class TranslationService {
       Promise.all( promises )
         .then( () => {
           this.isLoading = false;
+          this.statusChange.emit( TranslationChange.event( 'app', 'finish' ) );
           resolve( this.browserLanguageSupported() );
         } )
         .catch( error => {
           this.isLoading = false;
+          this.statusChange.emit( TranslationChange.event( 'app', 'finish' ) );
           reject( error );
         } );
     } );
   }
 
-  initializeSection(
+  initializeModule(
     route: Route
   ): Promise<boolean> {
 
     if (this.isLoading) {
       return Promise.reject( false );
     }
+    const module = route.data && route.data.translationGroup ?
+      route.data.translationGroup :
+      route.path;
+    this.statusChange.emit( TranslationChange.event( 'module', 'start', module ) );
+
     return new Promise((resolve, reject) => {
 
-      const prefix = route.data && route.data.translationGroup ?
-        route.data.translationGroup :
-        route.path;
       const languages: string[] = Object.getOwnPropertyNames( this.translations );
       const promises: Promise<object>[] = this.getDownloadPromises(
         languages,
-        this.resourceList.getResources( prefix )
+        this.resourceList.getResources( module )
       );
       this.isLoading = true;
       Promise.all( promises )
         .then( () => {
           this.isLoading = false;
+          this.statusChange.emit( TranslationChange.event( 'module', 'finish', module ) );
           resolve( true );
         } )
         .catch( error => {
           this.isLoading = false;
+          this.statusChange.emit( TranslationChange.event( 'module', 'finish', module ) );
           reject( error );
         } );
     } );
@@ -123,6 +131,8 @@ export class TranslationService {
         resolve();
 
       } else {
+        this.statusChange.emit( TranslationChange.event( 'language', 'start', language ) );
+
         const promises: Promise<any>[] = this.getDownloadPromises(
           [ locale.name ],
           this.resourceList.getResourcesInUse()
@@ -131,9 +141,11 @@ export class TranslationService {
           .then( () => {
             this.active = this.translations[ locale.name ] ? locale.name : locale.neutral;
             this.languageChanged.emit( language );
+            this.statusChange.emit( TranslationChange.event( 'language', 'finish', language ) );
             resolve();
           } )
           .catch( error => {
+            this.statusChange.emit( TranslationChange.event( 'language', 'finish', language ) );
             reject( error );
           } );
       }

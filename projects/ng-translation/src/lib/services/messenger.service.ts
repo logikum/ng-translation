@@ -2,8 +2,7 @@
 import { Inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-
-const prefix = 'NG-TRANSLATION * ';
+import { MSG_PREFIX } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class MessengerService {
   ): void {
 
     if (this.isEnabled) {
-      console.log( prefix + message );
+      console.log( MSG_PREFIX + message );
     }
   }
 
@@ -28,7 +27,7 @@ export class MessengerService {
   ): void {
 
     if (this.isEnabled) {
-      console.warn( prefix + message );
+      console.warn( MSG_PREFIX + message );
     }
   }
 
@@ -36,7 +35,7 @@ export class MessengerService {
     message: string
   ): void {
 
-    console.error( prefix + message );
+    console.error( MSG_PREFIX + message );
   }
 
   formatError(

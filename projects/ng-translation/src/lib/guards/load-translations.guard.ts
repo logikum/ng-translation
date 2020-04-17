@@ -18,6 +18,6 @@ export class LoadTranslationsGuard implements CanLoad {
     route: Route
   ): Promise<boolean> {
 
-    return this.translationService.initializeSection( route );
+    return this.translationService.initializeModule( route );
   }
 }

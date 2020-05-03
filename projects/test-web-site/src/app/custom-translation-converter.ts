@@ -2,6 +2,8 @@
 
 /* locally accessible feature module code, always use relative path */
 import { Resource, TranslationConverter } from 'ng-translation';
+import {from} from 'rxjs';
+import {pluck} from 'rxjs/operators';
 
 export class CustomTranslationConverter implements TranslationConverter {
 
@@ -14,6 +16,8 @@ export class CustomTranslationConverter implements TranslationConverter {
     switch (resource.format) {
       case 'po':
         return po2object( language, resource, translations );
+      case 'ts':
+        return ts2object( language, resource, translations );
       default:
         return translations;
     }
@@ -70,5 +74,23 @@ function po2object(
       }
     }
   } );
+  return result;
+}
+
+function ts2object(
+  language: string,
+  resource: Resource,
+  translations: string
+): object {
+
+  const url = `http://localhost:4200/assets/i18n/${language}/typings.ts`;
+  const result: object = from(import( url ))
+    .pipe(
+      pluck('default')
+    );
+  // const result: object = from(import(translations))
+  //   .pipe(
+  //     pluck('default')
+  //   );
   return result;
 }

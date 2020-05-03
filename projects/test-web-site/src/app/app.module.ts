@@ -26,6 +26,7 @@ import { SpringModule } from './spring/spring.module';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'typings', loadChildren: () => import('./typings/typings.module').then(m => m.TypingsModule) },
   { path: 'spring', loadChildren: () => import('./spring/spring.module').then(m => m.SpringModule) },
   { path: 'summer', loadChildren: () => import('./summer/summer.module').then(m => m.SummerModule),
                     canLoad: [ LoadTranslationsGuard ] },
@@ -52,6 +53,12 @@ const ngtConfig: TranslationConfig = {
   // translationPath: '/assets/i18n/{section}.{language}.json',
   sections: [
     'app', 'l10n', { name: 'spring' },
+    {
+      name: 'typings',
+      path: '/assets/i18n/{language}/{section}.ts',
+      format: 'ts',
+      type: 'text'
+    },
     { group: 'summer', items: [ 'summer' ] },
     { group: 'autumn', items: [ 'fall' ] },
     { group: 'frosty', items: [ { name: 'winter' } ] },

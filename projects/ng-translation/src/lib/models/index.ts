@@ -1,3 +1,4 @@
+export * from './constants';
 export * from './format-data.model';
 export * from './locale.model';
 export * from './localize-context.model';
@@ -8,6 +9,7 @@ export * from './translatable-option.model';
 export * from './translatable-option-list.model';
 export * from './translatable-text-list.model';
 export * from './translate-context.model';
+export * from './translation-change.model';
 export * from './translation-config.model';
 export * from './translation-converter.model';
 export * from './transpile-data.model';

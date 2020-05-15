@@ -24,6 +24,7 @@ export * from './lib/models/translatable-option-list.model';
 export * from './lib/models/translatable-option.model';
 export * from './lib/models/translatable-language-list.model';
 export * from './lib/models/translate-context.model';
+export * from './lib/models/translation-change.model';
 export * from './lib/models/translation-config.model';
 export * from './lib/models/translation-converter.model';
 export * from './lib/models/transpile-extender.model';

@@ -1,5 +1,10 @@
 # Changes
 
+### v4.1.1
+_Published on 5/26/2020._
+
+* Add statusChange events to TranslationService.
+
 ### v4.0.3
 _Published on 4/11/2020._
 

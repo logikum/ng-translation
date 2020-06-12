@@ -1,0 +1,6 @@
+git checkout master
+ng build --prod ng-translation
+cd dist/ng-translation
+npm login
+npm init --scope=@logikum
+npm publish

@@ -1,5 +1,10 @@
 # Changes
 
+### v4.1.2
+_Published on 6/12/2020._
+
+* Fix a bug in TranslatableTextList.
+
 ### v4.1.1
 _Published on 5/26/2020._
 

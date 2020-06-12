@@ -9,6 +9,8 @@ import { TranslatableOptionList, TranslatableTextList, TranslationService } from
 })
 export class ComponentsComponent implements OnInit {
 
+  private spring: TranslatableTextList;
+
   months: TranslatableOptionList;
   seasons: TranslatableOptionList;
   texts: TranslatableTextList;
@@ -19,6 +21,10 @@ export class ComponentsComponent implements OnInit {
   get selectedSeason(): string {
     return JSON.stringify( this.seasons.selectedItem );
   }
+  get line1(): string { return this.spring.get( 'line_1_1' ); }
+  get line2(): string { return this.spring.get( 'line_1_2' ); }
+  get line3(): string { return this.spring.get( 'line_1_3' ); }
+  get line4(): string { return this.spring.get( 'line_1_4' ); }
 
   constructor(
     private translate: TranslationService
@@ -37,6 +43,7 @@ export class ComponentsComponent implements OnInit {
         'app.languages': 'lng'
       }
     );
+    this.spring = new TranslatableTextList( translate, 'spring.index' );
   }
 
   ngOnInit() {

@@ -18,7 +18,7 @@ export class TranslatableTextList implements OnDestroy {
   ) {
     if (typeof this.keyList === 'string') {
 
-      this.names.set( this.keyList, this.keyList );
+      this.names.set( this.keyList, '' );
 
     } else if (this.keyList instanceof Array) {
 

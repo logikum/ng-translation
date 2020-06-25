@@ -70,7 +70,7 @@ export class TranspilerService {
     value: any
   ): string {
 
-    let localized = value ? value.toString() : '';
+    let localized = value === undefined ? '' : value === null ? 'null' : value.toString();
     const result = tdata.text.match( re );
     if (result && result[ 1 ]) {
       const group = result[ 1 ].trim();

@@ -5,6 +5,7 @@ export * from './localize-context.model';
 export * from './resource.model';
 export * from './resource-list.model';
 export * from './translatable-language-list.model';
+export * from './translatable-multiple-choice.model';
 export * from './translatable-option.model';
 export * from './translatable-option-list.model';
 export * from './translatable-text-list.model';

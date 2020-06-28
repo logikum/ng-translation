@@ -21,11 +21,21 @@
     "l10n": "Prove di localizzazione",
     "conversion": "Prove di conversione",
     "currLang": "Lingua corrente:",
-    "select": "Selezionare il mese:",
+    "select": "Seleziona il mese:",
     "selectedIndex": "L'indice selezionato:",
     "selectedValue": "Il valore selezionato:",
     "selectedText": "Il testo selezionato:",
     "selectedItem": "L'articolo selezionato:"
+  },
+  "multiple": {
+    "select": "Seleziona alcuni mesi:",
+    "all": "Tutti",
+    "none": "Niente di loro",
+    "selectedCount": "Conteggio degli elementi selezionati:",
+    "selectedIndeces": "Gli indici selezionati:",
+    "selectedValues": "I valori selezionati:",
+    "selectedTexts": "I testi selezionati:",
+    "selectedItems": "Gli articoli selezionati:"
   },
   "month": {
     "jan": "gennaio",

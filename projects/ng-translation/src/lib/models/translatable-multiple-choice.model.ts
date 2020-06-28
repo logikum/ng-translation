@@ -11,13 +11,12 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
 
   private readonly onDestroy: Subject<void> = new Subject();
   private readonly items: Array<TranslatableOption> = [];
-  // private currentIndex = -1;
   private iteratorIndex = 0;
 
   get selectedIndeces(): Array<number> {
     return this.items
-      .filter( item => item.selected )
-      .map( (item, index) => index );
+      .map( (item, index) => item.selected ? index : -1 )
+      .filter( item => item > -1 );
   }
   set selectedIndeces( indeces: Array<number> ) {
     this.items.forEach( item => {
@@ -91,6 +90,35 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
         }
       }
     }
+  }
+
+  setState(
+    value: string,
+    selected: boolean
+  ): void {
+
+    const match = this.items.find( item => item.value === value );
+    if (match) {
+      match.selected = selected;
+    }
+  }
+
+  get selectedCount(): number {
+    return this.items
+      .filter( item => item.selected )
+      .length;
+  }
+
+  selectAll(): void {
+    this.items.forEach( item => {
+      item.selected = true;
+    } );
+  }
+
+  deselectAll(): void {
+    this.items.forEach( item => {
+      item.selected = false;
+    } );
   }
 
   next(): IteratorResult<TranslatableOption> {

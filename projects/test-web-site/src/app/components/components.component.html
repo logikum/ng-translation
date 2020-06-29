@@ -84,41 +84,41 @@
   <div>{{ line4 }}</div>
 
   <h3>TranslatableMultipleChoice</h3>
-  <div>{{ t('app.multiple.select') }}</div>
+  <div>{{ t( 'app.multiple.select' ) }}</div>
   <p>
     <ng-container *ngFor="let period of periods; let i = index">
       <label>
         <input type="checkbox" name="period" [value]="period.value"
                [checked]="period.selected"
-               (change)="periodChange( $event)">
+               (change)="periodChange( $event )">
         {{ period.text }}
       </label>
       <br *ngIf="i === 5">
     </ng-container>
   </p>
   <div>
-    <button (click)="all()">{{ t('app.multiple.all') }}</button>
-    <button (click)="none()">{{ t('app.multiple.none') }}</button>
+    <button (click)="periods.selectAll()">{{ t( 'app.multiple.all' ) }}</button>
+    <button (click)="periods.deselectAll()">{{ t( 'app.multiple.none' ) }}</button>
   </div>
   <table>
     <tr>
-      <td><label>{{ 'app.multiple.selectedCount' | translate }}</label></td>
+      <td><label>{{ t( 'app.multiple.selectedCount' ) }}</label></td>
       <td>{{ periods.selectedCount }}</td>
     </tr>
     <tr>
-      <td><label>{{ 'app.multiple.selectedIndeces' | translate }}</label></td>
+      <td><label>{{ t( 'app.multiple.selectedIndeces' ) }}</label></td>
       <td>{{ periods.selectedIndeces.join(', ') }}</td>
     </tr>
     <tr>
-      <td><label>{{ 'app.multiple.selectedValues' | translate }}</label></td>
+      <td><label>{{ t( 'app.multiple.selectedValues' ) }}</label></td>
       <td>{{ periods.selectedValues.join(', ') }}</td>
     </tr>
     <tr>
-      <td><label>{{ 'app.multiple.selectedTexts' | translate }}</label></td>
+      <td><label>{{ t( 'app.multiple.selectedTexts' ) }}</label></td>
       <td>{{ periods.selectedTexts.join(', ') }}</td>
     </tr>
     <tr>
-      <td><label>{{ 'app.multiple.selectedItems' | translate }}</label></td>
+      <td><label>{{ t( 'app.multiple.selectedItems' ) }}</label></td>
       <td [innerHTML]="selectedPeriods"></td>
     </tr>
   </table>

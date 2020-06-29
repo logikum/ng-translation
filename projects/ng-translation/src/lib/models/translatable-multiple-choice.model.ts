@@ -13,6 +13,11 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
   private readonly items: Array<TranslatableOption> = [];
   private iteratorIndex = 0;
 
+  get selectedCount(): number {
+    return this.items
+      .filter( item => item.selected )
+      .length;
+  }
   get selectedIndeces(): Array<number> {
     return this.items
       .map( (item, index) => item.selected ? index : -1 )
@@ -101,12 +106,6 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
     if (match) {
       match.selected = selected;
     }
-  }
-
-  get selectedCount(): number {
-    return this.items
-      .filter( item => item.selected )
-      .length;
   }
 
   selectAll(): void {

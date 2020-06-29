@@ -79,12 +79,4 @@ export class ComponentsComponent implements OnInit {
   ): void {
     this.periods.setState( event.target.value, event.target.checked );
   }
-
-  all(): void {
-    this.periods.selectAll();
-  }
-
-  none(): void {
-    this.periods.deselectAll();
-  }
 }

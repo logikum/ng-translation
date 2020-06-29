@@ -27,6 +27,16 @@
     "selectedText": "A választott szöveg:",
     "selectedItem": "A választott elem:"
   },
+  "multiple": {
+    "select": "Válassz néhány hónapot:",
+    "all": "Összes",
+    "none": "Egyik sem",
+    "selectedCount": "A választott elemek száma:",
+    "selectedIndeces": "A választott indexek:",
+    "selectedValues": "A választott értékek:",
+    "selectedTexts": "A választott szövegek:",
+    "selectedItems": "A választott elemek:"
+  },
   "month": {
     "jan": "január",
     "feb": "február",

@@ -19,7 +19,8 @@ Features:
 * Supports parameter localization
 * Provides localization methods in code
 * Provides component to collect multiple texts
-* Provides component to support selection lists
+* Provides component to support selection lists with single choice
+* Provides component to support selection lists with multiple choice
 * Provides component to select language
 * Provides several translation loaders
 * Supports translation converters to use custom formats

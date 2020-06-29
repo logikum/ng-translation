@@ -27,6 +27,16 @@
     "selectedText": "The selected text:",
     "selectedItem": "The selected item:"
   },
+  "multiple": {
+    "select": "Select some months:",
+    "all": "Select all",
+    "none": "Deselect all",
+    "selectedCount": "Count of the selected items:",
+    "selectedIndeces": "The selected indeces:",
+    "selectedValues": "The selected values:",
+    "selectedTexts": "The selected texts:",
+    "selectedItems": "The selected items:"
+  },
   "month": {
     "jan": "January",
     "feb": "February",

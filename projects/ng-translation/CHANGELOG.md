@@ -1,5 +1,10 @@
 # Changes
 
+### v4.2.0
+_Published on 6/29/2020._
+
+* Add TranslatableMutipleChoice component.
+
 ### v4.1.3
 _Published on 6/25/2020._
 

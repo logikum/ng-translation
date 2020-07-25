@@ -15,5 +15,5 @@ export interface Resource {
 
 export interface ResourceLoader {
 
-  load( language: string, resource: Resource): Promise<any>;
+  load( language: string, resource: Resource ): Promise<any>;
 }

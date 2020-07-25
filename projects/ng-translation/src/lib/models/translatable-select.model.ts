@@ -20,6 +20,7 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
   get selectedIndex(): number {
     return this.currentIndex;
   }
+
   set selectedIndex( index: number ) {
     const ix = Math.round( index );
     this.currentIndex = -1 < ix && ix < this.items.length ? ix : -1;
@@ -27,9 +28,11 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
       this.items[ i ].selected = i === this.currentIndex;
     }
   }
+
   get selectedText(): string {
     return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ].text;
   }
+
   get selectedItem(): TranslatableOption {
     return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ];
   }
@@ -79,13 +82,14 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
     }
   }
 
-  [Symbol.iterator](): IterableIterator<TranslatableOption> {
+  [ Symbol.iterator ](): IterableIterator<TranslatableOption> {
     return this;
   }
 
   protected getSelectedValue(): string {
     return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ].value;
   }
+
   protected setSelectedValue(
     value: string
   ): boolean {

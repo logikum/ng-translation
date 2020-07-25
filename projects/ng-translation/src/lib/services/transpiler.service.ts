@@ -13,9 +13,9 @@ const VALUE_SEP = '=';
 const RANGE_SEP = '~';
 const VALUE_PH = '#';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class TranspilerService {
 
   extender: TranspileExtender;

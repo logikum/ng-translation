@@ -5,6 +5,6 @@ import { LocalizeContext } from './localize-context.model';
 
 export interface TranslateContext {
 
-  $implicit: (key: string, params?: any) => any;
+  $implicit: ( key: string, params?: any ) => any;
   readonly localize: LocalizeContext;
 }

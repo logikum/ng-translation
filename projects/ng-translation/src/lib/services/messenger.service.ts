@@ -4,14 +4,20 @@ import { Inject, Injectable } from '@angular/core';
 /* locally accessible feature module code, always use relative path */
 import { MSG_PREFIX } from '../models';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class MessengerService {
 
   private isEnabled = false;
-  get disableWarnings(): boolean { return !this.isEnabled; }
-  set disableWarnings( value: boolean ) { this.isEnabled = value !== true; }
+
+  get disableWarnings(): boolean {
+    return !this.isEnabled;
+  }
+
+  set disableWarnings( value: boolean ) {
+    this.isEnabled = value !== true;
+  }
 
   info(
     message: string
@@ -45,7 +51,8 @@ export class MessengerService {
 
     this.display( key, format,
       'Not supported format:',
-      'Missing format.' );
+      'Missing format.'
+    );
   }
 
   optionNameError(
@@ -55,7 +62,8 @@ export class MessengerService {
 
     this.display( key, optionName,
       'Not supported option:',
-      'Missing option name.' );
+      'Missing option name.'
+    );
   }
 
   optionValueError(
@@ -65,7 +73,8 @@ export class MessengerService {
 
     this.display( key, optionValue,
       'Invalid option value:',
-      'Missing option value.' );
+      'Missing option value.'
+    );
   }
 
   dateStyleError(
@@ -75,7 +84,8 @@ export class MessengerService {
 
     this.display( key, optionValue,
       'Not supported date style value:',
-      'Missing date style value.' );
+      'Missing date style value.'
+    );
   }
 
   timeStyleError(
@@ -85,7 +95,8 @@ export class MessengerService {
 
     this.display( key, optionValue,
       'Not supported time style value:',
-      'Missing time style value.' );
+      'Missing time style value.'
+    );
   }
 
   pluralError(
@@ -95,7 +106,8 @@ export class MessengerService {
 
     this.display( key, optionName,
       'Option must be a number, a range or "other":',
-      'Missing plural option.' );
+      'Missing plural option.'
+    );
   }
 
   private display(

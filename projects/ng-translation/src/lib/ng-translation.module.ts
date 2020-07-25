@@ -22,7 +22,7 @@ import {
 import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultTranspileExtender } from './default-transpile.extender';
 
-@NgModule({
+@NgModule( {
   imports: [
     HttpClientModule
   ],
@@ -44,7 +44,7 @@ import { DefaultTranspileExtender } from './default-transpile.extender';
     TranslateDirective,
     TranslateParamsDirective
   ]
-})
+} )
 export class NgTranslationModule {
 
   static forRoot(

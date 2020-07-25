@@ -20,7 +20,7 @@ export class ResourceList {
     const defaultName = '';
     const defaultResources: Array<Resource> = [ ];
 
-    sections.forEach( (item: SectionItem) => {
+    sections.forEach( ( item: SectionItem ) => {
 
       if (typeof item === 'string') {
         defaultResources.push( {
@@ -48,7 +48,7 @@ export class ResourceList {
         const groupName = group.group;
         const resources: Array<Resource> = [ ];
 
-        group.items.forEach( (groupItem: Section) => {
+        group.items.forEach( ( groupItem: Section ) => {
 
           if (typeof groupItem === 'string') {
             resources.push( {
@@ -89,7 +89,7 @@ export class ResourceList {
     groupName: string
   ): Array<Resource> {
 
-    const resources = this.store.get( groupName ) || [ ];
+    const resources = this.store.get( groupName ) || [];
     if (resources.length) {
       resources.forEach( resource => {
         resource.inUse = true;

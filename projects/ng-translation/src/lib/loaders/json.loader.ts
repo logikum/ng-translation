@@ -19,7 +19,7 @@ export class JsonLoader implements ResourceLoader {
   ): Promise<object> {
 
     const locale = new Locale( language );
-    return new Promise<object>((resolve, reject) => {
+    return new Promise<object>( ( resolve, reject ) => {
 
       let url = buildPath( locale.name, resource );
       this.http.get( url, { responseType: 'json' } )

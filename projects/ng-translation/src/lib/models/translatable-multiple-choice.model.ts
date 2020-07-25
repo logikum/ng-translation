@@ -18,11 +18,13 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
       .filter( item => item.selected )
       .length;
   }
+
   get selectedIndeces(): Array<number> {
     return this.items
-      .map( (item, index) => item.selected ? index : -1 )
+      .map( ( item, index ) => item.selected ? index : -1 )
       .filter( item => item > -1 );
   }
+
   set selectedIndeces( indeces: Array<number> ) {
     this.items.forEach( item => {
       item.selected = false;
@@ -35,19 +37,23 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
       } );
     }
   }
+
   get selectedTexts(): Array<string> {
     return this.items
       .filter( item => item.selected )
       .map( item => item.text );
   }
+
   get selectedItems(): Array<TranslatableOption> {
     return this.items.filter( item => item.selected );
   }
+
   get selectedValues(): Array<string> {
     return this.items
       .filter( item => item.selected )
       .map( item => item.value );
   }
+
   set selectedValues(
     values: Array<string>
   ) {
@@ -133,7 +139,7 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
     }
   }
 
-  [Symbol.iterator](): IterableIterator<TranslatableOption> {
+  [ Symbol.iterator ](): IterableIterator<TranslatableOption> {
     return this;
   }
 

@@ -17,6 +17,7 @@ export class TranslatableOptionList extends TranslatableSelect {
   get selectedValue(): string {
     return this.getSelectedValue();
   }
+
   set selectedValue( value: string ) {
     this.setSelectedValue( value );
   }

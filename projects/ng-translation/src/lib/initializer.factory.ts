@@ -19,5 +19,6 @@ export function initializerFactory(
         );
       } );
   }
+
   return initializer;
 }

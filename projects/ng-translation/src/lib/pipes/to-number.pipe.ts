@@ -6,10 +6,10 @@ import { takeUntil } from 'rxjs/operators';
 /* locally accessible feature module code, always use relative path */
 import { LocalizationService, TranslationService } from '../services';
 
-@Pipe({
+@Pipe( {
   name: 'toNumber',
   pure: false
-})
+} )
 export class ToNumberPipe implements PipeTransform, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();

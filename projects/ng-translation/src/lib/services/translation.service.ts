@@ -13,9 +13,9 @@ import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
 import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader } from '../loaders';
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
+} )
 export class TranslationService {
 
   private isLoading = true;
@@ -27,8 +27,13 @@ export class TranslationService {
   @Output() readonly languageChanged = new EventEmitter<string>();
   @Output() readonly statusChange = new EventEmitter<TranslationChange>();
 
-  get activeLanguage(): string { return this.active; }
-  get isDownloading(): boolean { return this.isLoading; }
+  get activeLanguage(): string {
+    return this.active;
+  }
+
+  get isDownloading(): boolean {
+    return this.isLoading;
+  }
 
   constructor(
     private readonly http: HttpClient,
@@ -53,12 +58,12 @@ export class TranslationService {
   initializeApp(): Promise<boolean> {
 
     this.statusChange.emit( TranslationChange.event( 'app', 'start' ) );
-    return new Promise((resolve, reject) => {
+    return new Promise( ( resolve, reject ) => {
 
       this.active = this.defaultLanguage;
 
       const languages: string[] = [ this.defaultLanguage ];
-      if (navigator.language && navigator.language !== this.defaultLanguage ) {
+      if (navigator.language && navigator.language !== this.defaultLanguage) {
         languages.push( navigator.language );
       }
       const promises: Promise<object>[] = this.getDownloadPromises(
@@ -91,7 +96,7 @@ export class TranslationService {
       route.path;
     this.statusChange.emit( TranslationChange.event( 'module', 'start', module ) );
 
-    return new Promise((resolve, reject) => {
+    return new Promise( ( resolve, reject ) => {
 
       const languages: string[] = Object.getOwnPropertyNames( this.translations );
       const promises: Promise<object>[] = this.getDownloadPromises(
@@ -117,7 +122,7 @@ export class TranslationService {
     language: string
   ): Promise<any> {
 
-    return new Promise((resolve, reject) => {
+    return new Promise( ( resolve, reject ) => {
 
       const locale = new Locale( language );
 
@@ -243,11 +248,10 @@ export class TranslationService {
     error: any
   ): void {
 
-    const message =
-      error ?
-        (error.message ? error.message : error.toString()) :
-        'An error occurred while downloading a translation file.'
-      ;
+    const message = error ?
+      (error.message ? error.message : error.toString()) :
+      'An error occurred while downloading a translation file.'
+    ;
     this.messenger.error( message );
   }
 
@@ -257,6 +261,7 @@ export class TranslationService {
 
     this.messenger.error( message );
   }
+
   // endregion
 
   // region Get translation item
@@ -337,6 +342,7 @@ export class TranslationService {
       args
     );
   }
+
   // endregion
 
   // region Get translation group
@@ -393,5 +399,6 @@ export class TranslationService {
     }
     return result || null;
   }
+
   // endregion
 }

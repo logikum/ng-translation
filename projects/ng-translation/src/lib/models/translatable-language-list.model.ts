@@ -20,6 +20,7 @@ export class TranslatableLanguageList extends TranslatableSelect {
   get selectedValue(): string {
     return this.getSelectedValue();
   }
+
   set selectedValue( value: string ) {
 
     if (!this.changeInProgress) {

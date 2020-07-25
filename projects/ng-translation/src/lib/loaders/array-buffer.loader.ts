@@ -19,7 +19,7 @@ export class ArrayBufferLoader implements ResourceLoader {
   ): Promise<ArrayBuffer> {
 
     const locale = new Locale( language );
-    return new Promise<ArrayBuffer>((resolve, reject) => {
+    return new Promise<ArrayBuffer>( ( resolve, reject ) => {
 
       let url = buildPath( locale.name, resource );
       this.http.get( url, { responseType: 'arraybuffer' } )

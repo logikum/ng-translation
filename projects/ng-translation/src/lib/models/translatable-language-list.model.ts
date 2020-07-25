@@ -10,18 +10,17 @@ export class TranslatableLanguageList extends TranslatableSelect {
   private changeInProgress = false;
 
   constructor(
-    readonly translate: TranslationService,
-    readonly key: string
+    protected readonly translate: TranslationService,
+    protected readonly key: string
   ) {
     super();
-    // this.translate = translate;
-    // this.key = key;
     this.initialize();
   }
 
   get selectedValue(): string {
     return this.getSelectedValue();
   }
+
   set selectedValue( value: string ) {
 
     if (!this.changeInProgress) {

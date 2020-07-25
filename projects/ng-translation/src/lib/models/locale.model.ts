@@ -9,7 +9,7 @@ export class Locale {
   readonly hasRegion: boolean;
 
   constructor(
-    language: string
+    readonly language: string
   ) {
     const pos = language.indexOf( '-' );
 

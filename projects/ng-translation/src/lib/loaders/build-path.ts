@@ -9,7 +9,7 @@ export function buildPath(
 ): string {
 
   return resource.path
-    .replace(/{\s*language\s*}/gi, language)
-    .replace(/{\s*section\s*}/gi, resource.name)
+    .replace( /{\s*language\s*}/gi, language )
+    .replace( /{\s*section\s*}/gi, resource.name )
     ;
 }

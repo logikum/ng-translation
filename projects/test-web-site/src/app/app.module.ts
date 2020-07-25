@@ -84,9 +84,7 @@ const ngtConfig: TranslationConfig = {
     MatToolbarModule,
     MatCardModule,
     NgTranslationModule.forRoot( ngtConfig ),
-    SpringModule,
-    NgTranslationModule,
-    NgTranslationModule
+    SpringModule
   ],
   providers: [
     {

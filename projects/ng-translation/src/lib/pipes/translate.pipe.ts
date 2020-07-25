@@ -6,11 +6,11 @@ import { takeUntil } from 'rxjs/operators';
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
 
-@Pipe({
+@Pipe( {
   name: 'translate',
   pure: false
-})
-export class TranslatePipe implements PipeTransform, OnDestroy  {
+} )
+export class TranslatePipe implements PipeTransform, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();
   private isValid = false;

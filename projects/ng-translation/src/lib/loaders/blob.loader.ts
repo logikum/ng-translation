@@ -19,7 +19,7 @@ export class BlobLoader implements ResourceLoader {
   ): Promise<Blob> {
 
     const locale = new Locale( language );
-    return new Promise<Blob>((resolve, reject) => {
+    return new Promise<Blob>( ( resolve, reject ) => {
 
       let url = buildPath( locale.name, resource );
       this.http.get( url, { responseType: 'blob' } )

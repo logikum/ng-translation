@@ -11,17 +11,17 @@ import { CurrencyValue } from '../types';
 import { TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
 
-@Directive({
+@Directive( {
   // tslint:disable-next-line:directive-selector
   selector: '[translate]'
-})
+} )
 export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();
 
-  @Input('translate') key: string | undefined;
-  @Input('translateParams') params: any | undefined;
-  @Input('translateNode') node: string | undefined;
+  @Input( 'translate' ) key: string | undefined;
+  @Input( 'translateParams' ) params: any | undefined;
+  @Input( 'translateNode' ) node: string | undefined;
 
   constructor(
     private readonly container: ViewContainerRef,
@@ -40,7 +40,7 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
           // Structural directive.
           this.cdRef.markForCheck();
         }
-    } );
+      } );
   }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(
     changes: SimpleChanges
   ): void {
-    const isUpdate = Object.keys(changes).some(p => changes[p].firstChange === false);
+    const isUpdate = Object.keys( changes ).some( p => changes[ p ].firstChange === false );
     if (isUpdate) {
       this.initialize();
     }

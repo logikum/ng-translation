@@ -43,7 +43,7 @@ export class TranslatableTextList implements OnDestroy {
 
   private translateTexts(): void {
     this.texts.clear();
-    this.names.forEach( (value, key) => {
+    this.names.forEach( ( value, key ) => {
       const result = this.translate.get( key );
 
       if (typeof result === 'object') {

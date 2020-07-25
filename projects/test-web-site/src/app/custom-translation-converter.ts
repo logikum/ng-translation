@@ -2,7 +2,9 @@
 
 /* locally accessible feature module code, always use relative path */
 import { Resource, TranslationConverter } from 'ng-translation';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class CustomTranslationConverter implements TranslationConverter {
 
   convert(

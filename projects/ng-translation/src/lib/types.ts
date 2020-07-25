@@ -4,3 +4,4 @@
 
 export type CurrencyValue = [ number, string ];
 export type LoaderType = 'json' | 'text' | 'blob' | 'arraybuffer';
+export type TextListKeys = string | Array<string> | object;

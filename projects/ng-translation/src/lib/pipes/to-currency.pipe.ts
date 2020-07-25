@@ -7,10 +7,10 @@ import { takeUntil } from 'rxjs/operators';
 import { CurrencyValue } from '../types';
 import { LocalizationService, TranslationService } from '../services';
 
-@Pipe({
+@Pipe( {
   name: 'toCurrency',
   pure: false
-})
+} )
 export class ToCurrencyPipe implements PipeTransform, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();

@@ -1,5 +1,10 @@
 # Changes
 
+### v4.2.1
+_Published on 7/25/2020._
+
+* Fix the bug of loading undefined resources.
+
 ### v4.2.0
 _Published on 6/29/2020._
 

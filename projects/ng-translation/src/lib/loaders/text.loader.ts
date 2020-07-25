@@ -19,7 +19,7 @@ export class TextLoader implements ResourceLoader {
   ): Promise<string> {
 
     const locale = new Locale( language );
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<string>( ( resolve, reject ) => {
 
       let url = buildPath( locale.name, resource );
       this.http.get( url, { responseType: 'text' } )

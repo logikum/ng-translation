@@ -1,11 +1,14 @@
 /* 3rd party libraries */
-import { OnDestroy } from '@angular/core';
+import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
+import { TextListKeys } from '../types';
 import { TranslationService } from '../services';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TranslatableTextList implements OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();
@@ -14,7 +17,7 @@ export class TranslatableTextList implements OnDestroy {
 
   constructor(
     private readonly translate: TranslationService,
-    private readonly keyList: string | Array<string> | object
+    private readonly keyList: TextListKeys
   ) {
     if (typeof this.keyList === 'string') {
 

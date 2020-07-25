@@ -3,7 +3,7 @@
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
 import { TranslatableSelect } from './translatable-select.model';
-import { Locale } from './locale.model';
+import { Locale } from '../models';
 
 export class TranslatableLanguageList extends TranslatableSelect {
 

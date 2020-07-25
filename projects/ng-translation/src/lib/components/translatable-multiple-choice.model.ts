@@ -1,12 +1,14 @@
 /* 3rd party libraries */
-import { OnDestroy } from '@angular/core';
+import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
-import { TranslatableOption } from './translatable-option.model';
+import { TranslatableOption } from '../models';
 import { TranslationService } from '../services';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export class TranslatableMultipleChoice implements IterableIterator<TranslatableOption>, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();

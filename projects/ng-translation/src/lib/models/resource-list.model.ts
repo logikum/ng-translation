@@ -1,6 +1,7 @@
 /* 3rd party libraries */
 
 /* locally accessible feature module code, always use relative path */
+import { MessengerService } from '../services';
 import { LoaderType } from '../types';
 import { Resource } from './resource.model';
 import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
@@ -10,10 +11,11 @@ export class ResourceList {
   private readonly store: Map<string, Array<Resource>> = new Map<string, Array<Resource>>();
 
   constructor(
-    sections: SectionList,
-    defaultPath: string,
-    defaultFormat: string = 'JSON',
-    defaultType: LoaderType = 'json'
+    private readonly messenger: MessengerService,
+    private readonly sections: SectionList,
+    private readonly defaultPath: string,
+    private readonly defaultFormat: string = 'JSON',
+    private readonly defaultType: LoaderType = 'json'
   ) {
     const defaultName = '';
     const defaultResources: Array<Resource> = [ ];
@@ -87,10 +89,17 @@ export class ResourceList {
     groupName: string
   ): Array<Resource> {
 
-    const resources = this.store.get( groupName );
-    resources.forEach( resource => {
-      resource.inUse = true;
-    } );
+    const resources = this.store.get( groupName ) || [ ];
+    if (resources.length) {
+      resources.forEach( resource => {
+        resource.inUse = true;
+      } );
+    } else {
+      this.messenger.error( groupName === '' ?
+        'No translation resources are defined for the application.' :
+        `No resources are defined for translation group '${ groupName }'.`
+      );
+    }
     return resources;
   }
 

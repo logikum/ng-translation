@@ -27,9 +27,6 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
       this.items[ i ].selected = i === this.currentIndex;
     }
   }
-  // get selectedValue(): string {
-  //   return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ].value;
-  // }
   get selectedText(): string {
     return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ].text;
   }

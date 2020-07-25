@@ -7,12 +7,10 @@ import { TranslatableSelect } from './translatable-select.model';
 export class TranslatableOptionList extends TranslatableSelect {
 
   constructor(
-    readonly translate: TranslationService,
-    readonly key: string
+    protected readonly translate: TranslationService,
+    protected readonly key: string
   ) {
     super();
-    // this.translate = translate;
-    // this.key = key;
     this.initialize();
   }
 

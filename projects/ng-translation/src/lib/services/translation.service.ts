@@ -20,8 +20,8 @@ export class TranslationService {
 
   private isLoading = true;
   private active: string;
-  private defaultLanguage: string;
-  private resourceList: ResourceList;
+  private readonly defaultLanguage: string;
+  private readonly resourceList: ResourceList;
   private readonly translations: object = { };
 
   @Output() readonly languageChanged = new EventEmitter<string>();
@@ -34,14 +34,15 @@ export class TranslationService {
     private readonly http: HttpClient,
     private readonly transpile: TranspilerService,
     private readonly messenger: MessengerService,
-    @Inject( NGT_CONFIGURATION ) config: TranslationConfig,
-    @Inject( NGT_TRANSLATION_CONVERTER ) private converter: TranslationConverter,
-    @Inject( NGT_TRANSPILE_EXTENDER ) extender: TranspileExtender
+    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
+    @Inject( NGT_TRANSLATION_CONVERTER ) private readonly converter: TranslationConverter,
+    @Inject( NGT_TRANSPILE_EXTENDER ) private readonly extender: TranspileExtender
   ) {
     this.defaultLanguage = config.defaultLanguage;
     this.messenger.disableWarnings = config.disableWarnings;
     this.transpile.extender = extender;
     this.resourceList = new ResourceList(
+      messenger,
       config.sections,
       config.translationPath,
       config.translationFormat,

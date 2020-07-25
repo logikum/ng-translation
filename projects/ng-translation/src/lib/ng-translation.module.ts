@@ -51,7 +51,6 @@ export class NgTranslationModule {
     config: TranslationConfig
   ): ModuleWithProviders<NgTranslationModule> {
 
-    const extender = new DefaultTranspileExtender();
     return {
       ngModule: NgTranslationModule,
       providers: [

@@ -30,6 +30,7 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
+* NgTranslation v5.x for Angular 10
 * NgTranslation v4.x for Angular 9
 * NgTranslation v3.x for Angular 8
 * NgTranslation v2.x for Angular 7

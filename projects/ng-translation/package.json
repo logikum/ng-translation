@@ -1,6 +1,6 @@
 {
   "name": "ng-translation",
-  "version": "4.2.1",
+  "version": "5.0.0",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
   "keywords": [
     "Angular",
@@ -19,9 +19,13 @@
     "email" : "marmarosi@logikum.hu"
   },
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
-    "@angular/router": "^9.0.0",
-    "rxjs": "^6.5.4"
+    "@angular/common": "~10.0.0",
+    "@angular/core": "~10.0.0",
+    "@angular/router": "~10.0.0",
+    "rxjs": "^6.6.0"
+  }
+,
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }

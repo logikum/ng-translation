@@ -20,7 +20,9 @@ export class TranslationService {
 
   private isLoading = true;
   private active: string;
+  private browserLanguageIsSupported = false;
   private readonly defaultLanguage: string;
+  private readonly allowedLanguages: Array<string>;
   private readonly resourceList: ResourceList;
   private readonly translations: object = { };
 
@@ -53,6 +55,12 @@ export class TranslationService {
       config.translationFormat,
       config.loaderType
     );
+    if (config.allowedLanguages && config.allowedLanguages.length) {
+      this.allowedLanguages = config.allowedLanguages;
+      if (this.allowedLanguages.indexOf( config.defaultLanguage ) < 0) {
+        this.allowedLanguages.push( config.defaultLanguage );
+      }
+    }
   }
 
   initializeApp(): Promise<boolean> {
@@ -60,13 +68,9 @@ export class TranslationService {
     this.statusChange.emit( TranslationChange.event( 'app', 'start' ) );
     return new Promise( ( resolve, reject ) => {
 
-      this.active = this.defaultLanguage;
+      const languages: Array<string> = this.getInitialLanguages();
 
-      const languages: string[] = [ this.defaultLanguage ];
-      if (navigator.language && navigator.language !== this.defaultLanguage) {
-        languages.push( navigator.language );
-      }
-      const promises: Promise<object>[] = this.getDownloadPromises(
+      const promises: Array<Promise<object>> = this.getDownloadPromises(
         languages,
         this.resourceList.getResources( '' )
       );
@@ -74,7 +78,7 @@ export class TranslationService {
         .then( () => {
           this.isLoading = false;
           this.statusChange.emit( TranslationChange.event( 'app', 'finish' ) );
-          resolve( this.browserLanguageSupported() );
+          resolve( this.browserLanguageIsSupported );
         } )
         .catch( error => {
           this.isLoading = false;
@@ -98,8 +102,8 @@ export class TranslationService {
 
     return new Promise( ( resolve, reject ) => {
 
-      const languages: string[] = Object.getOwnPropertyNames( this.translations );
-      const promises: Promise<object>[] = this.getDownloadPromises(
+      const languages: Array<string> = Object.getOwnPropertyNames( this.translations );
+      const promises: Array<Promise<object>> = this.getDownloadPromises(
         languages,
         this.resourceList.getResources( module )
       );
@@ -137,7 +141,14 @@ export class TranslationService {
         resolve();
 
       } else {
-        this.statusChange.emit( TranslationChange.event( 'language', 'start', language ) );
+        const safeLanguage = this.getAllowedLanguage( language );
+        if (!safeLanguage) {
+          this.messenger.warn( `Language '${ language }' is not allowed.` );
+          resolve();
+          return;
+        }
+
+        this.statusChange.emit( TranslationChange.event( 'language', 'start', safeLanguage ) );
 
         const promises: Promise<any>[] = this.getDownloadPromises(
           [ locale.name ],
@@ -146,12 +157,12 @@ export class TranslationService {
         Promise.all( promises )
           .then( () => {
             this.active = this.translations[ locale.name ] ? locale.name : locale.neutral;
-            this.languageChanged.emit( language );
-            this.statusChange.emit( TranslationChange.event( 'language', 'finish', language ) );
+            this.languageChanged.emit( safeLanguage );
+            this.statusChange.emit( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             resolve();
           } )
           .catch( error => {
-            this.statusChange.emit( TranslationChange.event( 'language', 'finish', language ) );
+            this.statusChange.emit( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             reject( error );
           } );
       }
@@ -160,20 +171,38 @@ export class TranslationService {
 
   // region Helper methods
 
-  private browserLanguageSupported(): boolean {
+  private getInitialLanguages(): Array<string> {
 
-    let isSupported = false;
+    this.active = this.defaultLanguage;
+    const languages: Array<string> = [ this.defaultLanguage ];
 
-    if (navigator.language) {
-      const locale = new Locale( navigator.language );
-
-      if (this.translations[ locale.name ]) {
-        isSupported = true;
-      } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
-        isSupported = true;
+    if (navigator.language && navigator.language !== this.defaultLanguage) {
+      const browserLanguage = this.getAllowedLanguage( navigator.language );
+      if (browserLanguage) {
+        this.active = browserLanguage;
+        this.browserLanguageIsSupported = true;
+        languages.push( browserLanguage );
       }
     }
-    return isSupported;
+    return languages;
+  }
+
+  private getAllowedLanguage(
+    language: string
+  ): string {
+
+    if (this.allowedLanguages) {
+      const locale = new Locale( language );
+
+      if (this.allowedLanguages.indexOf( locale.name ) !== -1) {
+        return locale.name;
+      } else if (locale.hasRegion && this.allowedLanguages.indexOf( locale.neutral ) !== -1) {
+        return locale.neutral;
+      }
+    } else {
+      return language;
+    }
+    return '';
   }
 
   private getDownloadPromises(

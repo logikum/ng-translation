@@ -64,6 +64,7 @@ const ngtConfig: TranslationConfig = {
     }
   ],
   defaultLanguage: environment.defaultLanguage,
+  allowedLanguages: environment.allowedLanguages,
   disableWarnings: environment.disableWarnings
 };
 

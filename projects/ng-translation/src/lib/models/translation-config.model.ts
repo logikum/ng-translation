@@ -32,6 +32,7 @@ export interface TranslationConfig {
   readonly loaderType?: LoaderType;
   readonly sections: SectionList;
   readonly defaultLanguage: string;
+  readonly allowedLanguages?: Array<string>;
   readonly disableWarnings?: boolean;
 }
 

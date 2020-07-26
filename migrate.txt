@@ -1,3 +1,0 @@
-Migration can be rerun with:
-
-ng update @angular/core --migrate-only migration-v9-undecorated-classes-with-di

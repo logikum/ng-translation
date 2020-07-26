@@ -1,5 +1,11 @@
 # Changes
 
+### v5.0.0
+_Published on 7/26/2020._
+
+* Update to Angular 10.
+* Add optional list of allowed languages to the configuration.
+
 ### v4.2.1
 _Published on 7/25/2020._
 

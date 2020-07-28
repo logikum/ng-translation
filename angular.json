@@ -242,6 +242,46 @@
           }
         }
       }
+    },
+    "ng-translatable": {
+      "projectType": "library",
+      "root": "projects/ng-translatable",
+      "sourceRoot": "projects/ng-translatable/src",
+      "prefix": "ngt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-translatable/tsconfig.lib.json",
+            "project": "projects/ng-translatable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-translatable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-translatable/src/test.ts",
+            "tsConfig": "projects/ng-translatable/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-translatable/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-translatable/tsconfig.lib.json",
+              "projects/ng-translatable/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   }
 }

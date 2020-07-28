@@ -1,9 +1,11 @@
 /* 3rd party libraries */
 
+/* globally accessible app code in every feature module */
+import { Locale, TranslationService } from 'ng-translation';
+
 /* locally accessible feature module code, always use relative path */
-import { TranslationService } from '../services';
 import { TranslatableSelect } from './translatable-select.model';
-import { Locale } from '../models';
+// import { Locale } from '../models';
 
 export class TranslatableLanguageList extends TranslatableSelect {
 

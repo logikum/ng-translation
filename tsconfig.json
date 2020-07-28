@@ -24,6 +24,12 @@
     },
     {
       "path": "./projects/doc-web-site/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-translatable/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-translatable/tsconfig.spec.json"
     }
   ]
 }

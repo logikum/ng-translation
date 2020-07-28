@@ -24,6 +24,10 @@
       ],
       "ng-translation/*": [
         "dist/ng-translation/*"
+      ],
+      "ng-translatable": [
+        "dist/ng-translatable/ng-translatable",
+        "dist/ng-translatable"
       ]
     }
   }

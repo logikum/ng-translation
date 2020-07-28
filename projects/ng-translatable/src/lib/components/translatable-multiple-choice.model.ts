@@ -3,9 +3,11 @@ import { Directive, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+/* globally accessible app code in every feature module */
+import { TranslationService } from 'ng-translation';
+
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from '../models';
-import { TranslationService } from '../services';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix

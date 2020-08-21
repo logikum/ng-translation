@@ -57,5 +57,14 @@
     "offer": "Offer of the day: buy {{ buy }} pay {{ pay }}!",
     "special": "Every {{0}} film is {{1}}% off!",
     "sale": "The sale still lasts for {{0}} days."
+  },
+  "null": {
+    "text": "{{0}}",
+    "number": "{{0|N}}",
+    "percent": "{{0|P}}",
+    "currency": "{{0|C}}",
+    "datetime": "{{0|D}}",
+    "plural": "{{0|R:0=zero;1-5=some;other=many}}",
+    "boolean": "{{0}}"
   }
 }

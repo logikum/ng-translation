@@ -8,6 +8,5 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NullComponent {
 
-  // today = new Date( Date.now() );
-  today = Date.now();
+  today = new Date( Date.now() );
 }

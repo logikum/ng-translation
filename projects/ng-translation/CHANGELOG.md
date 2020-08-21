@@ -1,5 +1,10 @@
 # Changes
 
+### v5.0.1
+_Published on ?/?/2020._
+
+* Fix null and undefined values in localization.
+
 ### v5.0.0
 _Published on 7/26/2020._
 

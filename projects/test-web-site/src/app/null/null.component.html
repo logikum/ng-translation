@@ -1,0 +1,128 @@
+<ng-container *translate="let t; let l = localize">
+
+  <h1>{{ t('app.shared.null') }}</h1>
+
+  <h3>Translation string</h3>
+
+  <table>
+    <tr>
+      <th>Data type</th>
+      <th>Value</th>
+      <th>Null</th>
+      <th>Undefined</th>
+    </tr>
+    <tr>
+      <td>Text</td>
+      <td>{{ t( 'app.null.text', 'NgTranslation' ) }}</td>
+      <td>{{ t( 'app.null.text', null ) }}</td>
+      <td>{{ t( 'app.null.text' ) }}</td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>{{ t( 'app.null.number', 1234 ) }}</td>
+      <td>{{ t( 'app.null.number', null ) }}</td>
+      <td>{{ t( 'app.null.number' ) }}</td>
+    </tr>
+    <tr>
+      <td>Percent</td>
+      <td>{{ t( 'app.null.percent', .1234 ) }}</td>
+      <td>{{ t( 'app.null.percent', null ) }}</td>
+      <td>{{ t( 'app.null.percent' ) }}</td>
+    </tr>
+    <tr>
+      <td>Currency</td>
+      <td>{{ t( 'app.null.currency', [ 500, 'HUF' ] ) }}</td>
+      <td>{{ t( 'app.null.currency', [ null, 'HUF' ] ) }}</td>
+      <td>{{ t( 'app.null.currency', [ undefined, 'HUF' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>Datetime</td>
+      <td>{{ t( 'app.null.datetime', today ) }}</td>
+      <td>{{ t( 'app.null.datetime', today ) }}</td>
+      <td>{{ t( 'app.null.datetime' ) }}</td>
+    </tr>
+    <tr>
+      <td>Plural</td>
+      <td>{{ t( 'app.null.plural', .2 ) }}</td>
+      <td>{{ t( 'app.null.plural', null ) }}</td>
+      <td>{{ t( 'app.null.plural' ) }}</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>{{ t( 'app.null.boolean', true ) }}</td>
+      <td>{{ t( 'app.null.boolean', null ) }}</td>
+      <td>{{ t( 'app.null.boolean' ) }}</td>
+    </tr>
+  </table>
+
+  <h3>Localization pipe</h3>
+
+  <table>
+    <tr>
+      <th>Data type</th>
+      <th>Value</th>
+      <th>Null</th>
+      <th>Undefined</th>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>{{ 1234 | toNumber }}</td>
+      <td>{{ null | toNumber }}</td>
+      <td>{{ undefined | toNumber }}</td>
+    </tr>
+    <tr>
+      <td>Percent</td>
+      <td>{{ .1234 | toPercent }}</td>
+      <td>{{ null | toPercent }}</td>
+      <td>{{ undefined | toPercent }}</td>
+    </tr>
+    <tr>
+      <td>Currency</td>
+      <td>{{ [ 500, 'HUF' ] | toCurrency }}</td>
+      <td>{{ [ null, 'HUF' ] | toCurrency }}</td>
+      <td>{{ [ undefined, 'HUF' ] | toCurrency }}</td>
+    </tr>
+    <tr>
+      <td>Datetime</td>
+      <td>{{ today | toDatetime }}</td>
+      <td>{{ null | toDatetime }}</td>
+      <td>{{ undefined | toDatetime }}</td>
+    </tr>
+  </table>
+
+  <h3>Localization method</h3>
+
+  <table>
+    <tr>
+      <th>Data type</th>
+      <th>Value</th>
+      <th>Null</th>
+      <th>Undefined</th>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>{{ l.number( 1234 ) }}</td>
+      <td>{{ l.number( null ) }}</td>
+      <td>{{ l.number( undefined ) }}</td>
+    </tr>
+    <tr>
+      <td>Percent</td>
+      <td>{{ l.percent( .1234 ) }}</td>
+      <td>{{ l.percent( null ) }}</td>
+      <td>{{ l.percent( undefined ) }}</td>
+    </tr>
+    <tr>
+      <td>Currency</td>
+      <td>{{ l.currency( [ 500, 'HUF' ] ) }}</td>
+      <td>{{ l.currency( [ null, 'HUF' ] ) }}</td>
+      <td>{{ l.currency( [ undefined, 'HUF' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>Datetime</td>
+      <td>{{ l.datetime( today ) }}</td>
+      <td>{{ l.datetime( null ) }}</td>
+      <td>{{ l.datetime( undefined ) }}</td>
+    </tr>
+  </table>
+
+</ng-container>

@@ -23,6 +23,13 @@ function createFormatData(
   };
 }
 
+function missing(
+  value: any
+): boolean {
+
+  return value === null || value === undefined;
+}
+
 @Injectable( {
   providedIn: 'root'
 } )
@@ -44,6 +51,9 @@ export class LocalizationService {
     data: FormatData
   ): string {
 
+    if (missing( data.value )) {
+      return '';
+    }
     const options: Intl.NumberFormatOptions = this.extendOptions(
       data.key, data.params, { style: 'decimal' }
     );
@@ -62,6 +72,9 @@ export class LocalizationService {
     data: FormatData
   ): string {
 
+    if (missing( data.value )) {
+      return '';
+    }
     const options: Intl.NumberFormatOptions = this.extendOptions(
       data.key, data.params, { style: 'percent' }
     );
@@ -90,6 +103,9 @@ export class LocalizationService {
       }
     } else {
       worth = data.value;
+    }
+    if (missing( worth )) {
+      return '';
     }
     const options: Intl.NumberFormatOptions = this.extendOptions(
       data.key, data.params, { style: 'currency', currency: currency }
@@ -174,6 +190,9 @@ export class LocalizationService {
     data: FormatData
   ): string {
 
+    if (missing( data.value )) {
+      return '';
+    }
     const options: Intl.DateTimeFormatOptions = { };
     if (data.params.trim().length > 0) {
       const items = data.params.split( OPTION_SEP );

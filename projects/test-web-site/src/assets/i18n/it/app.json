@@ -21,6 +21,7 @@
     "auxiliary": "Prove ausiliarie",
     "l10n": "Prove di localizzazione",
     "conversion": "Prove di conversione",
+    "null": "Prove di NULL",
     "currLang": "Lingua corrente:",
     "select": "Seleziona il mese:",
     "selectedIndex": "L'indice selezionato:",

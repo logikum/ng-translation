@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
 import { LocalizationComponent } from './localization/localization.component';
+import { NullComponent } from './null/null.component';
+
 import { CustomTranslationConverter } from './custom-translation-converter';
 import { CustomTranspileExtender } from './custom-transpile-extender';
 
@@ -37,6 +39,7 @@ const routes: Routes = [
   { path: 'components', component: ComponentsComponent },
   { path: 'auxiliary', component: AuxiliaryComponent },
   { path: 'l10n', component: LocalizationComponent },
+  { path: 'null', component: NullComponent },
   { path: 'conversion', loadChildren: () => import('./conversion/conversion.module').then(m => m.ConversionModule),
                     canLoad: [ LoadTranslationsGuard ] },
   { path: '**', redirectTo: 'home' }
@@ -74,7 +77,8 @@ const ngtConfig: TranslationConfig = {
     HomeComponent,
     ComponentsComponent,
     AuxiliaryComponent,
-    LocalizationComponent
+    LocalizationComponent,
+    NullComponent
   ],
   imports: [
     BrowserModule,

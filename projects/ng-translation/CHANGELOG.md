@@ -1,7 +1,7 @@
 # Changes
 
 ### v5.0.1
-_Published on ?/?/2020._
+_Published on 8/23/2020._
 
 * Fix Date and currency values in interpolation.
 * Fix null and undefined values in interpolation.

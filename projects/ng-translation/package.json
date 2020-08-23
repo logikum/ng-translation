@@ -9,22 +9,25 @@
     "l10n",
     "localization"
   ],
-  "homepage": "https://ngt.logikum.hu",
-  "bugs": {
-    "url" : "https://github.com/logikum/ng-translation/issues"
-  },
   "license" : "MIT",
   "author": {
     "name": "Mármarosi József",
     "email" : "marmarosi@logikum.hu"
+  },
+  "homepage": "https://ngt.logikum.hu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logikum/ng-translation.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/logikum/ng-translation/issues"
   },
   "peerDependencies": {
     "@angular/common": "~10.0.0",
     "@angular/core": "~10.0.0",
     "@angular/router": "~10.0.0",
     "rxjs": "^6.6.0"
-  }
-,
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   }

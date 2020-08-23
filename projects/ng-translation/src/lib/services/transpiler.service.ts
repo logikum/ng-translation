@@ -30,14 +30,22 @@ export class TranspilerService {
     args?: any
   ): string {
 
-    if (data.text && args !== undefined) {
-      if (args === null) {
-        args = 'null';
-      }
-      if (typeof args === 'string' || typeof args === 'number' || typeof args === 'boolean') {
+    if (data.text) {
+      if (args === null || args === undefined ||
+        typeof args === 'string' || typeof args === 'number' ||
+        typeof args === 'boolean' || args instanceof Date
+      ) {
         args = [ args ];
       }
       if (args instanceof Array) {
+
+        // Check currency data type.
+        if (args.length === 2 &&
+          typeof args[0] === 'number' &&
+          typeof args[1] === 'string' && args[1].length === 3
+        ) {
+          args = [ args ];
+        }
 
         // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
         let index = 0;
@@ -70,7 +78,7 @@ export class TranspilerService {
     value: any
   ): string {
 
-    let localized = value === undefined ? '' : value === null ? 'null' : value.toString();
+    let localized = (value === undefined || value === null) ? '' : value.toString();
     const result = tdata.text.match( re );
     if (result && result[ 1 ]) {
       const group = result[ 1 ].trim();
@@ -129,6 +137,9 @@ export class TranspilerService {
     data: FormatData
   ): string {
 
+    if (data.value === null || data.value === undefined) {
+      return '';
+    }
     const options = new Map();
     const items = data.params.split( OPTION_SEP );
 

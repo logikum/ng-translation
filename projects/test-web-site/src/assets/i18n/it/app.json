@@ -21,6 +21,7 @@
     "auxiliary": "Prove ausiliarie",
     "l10n": "Prove di localizzazione",
     "conversion": "Prove di conversione",
+    "null": "Prove di NULL",
     "currLang": "Lingua corrente:",
     "select": "Seleziona il mese:",
     "selectedIndex": "L'indice selezionato:",
@@ -56,5 +57,14 @@
     "offer": "Offerta del giorno: acquista {{buy}} paga {{pay}}!",
     "special": "Ogni {{0 }} film ha uno sconto del {{1 }}%!",
     "sale": "La vendita dura ancora per {{0 }} giorni."
+  },
+  "null": {
+    "text": "{{0}}",
+    "number": "{{0|N}}",
+    "percent": "{{0|P}}",
+    "currency": "{{0|C}}",
+    "datetime": "{{0|D}}",
+    "plural": "{{0|R:0=zero;1-5=alcuni;other=molti}}",
+    "boolean": "{{0}}"
   }
 }

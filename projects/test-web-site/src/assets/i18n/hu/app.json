@@ -21,6 +21,7 @@
     "auxiliary": "Kiegészítő tesztek",
     "l10n": "Lokalizációs tesztek",
     "conversion": "Konvertálási tesztek",
+    "null": "NULL tesztek",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
     "selectedIndex": "A választott index:",
@@ -56,5 +57,14 @@
     "offer": "Napi ajánlat: {{ buy }} film {{ pay }} áráért!",
     "special": "Minden {{0}} film {{1}}% kedvezménnyel!",
     "sale": "Az akció még {{0}} napig tart."
+  },
+  "null": {
+    "text": "{{0}}",
+    "number": "{{0|N}}",
+    "percent": "{{0|P}}",
+    "currency": "{{0|C}}",
+    "datetime": "{{0|D}}",
+    "plural": "{{0|R:0=zéró;1-5=néhány;other=sok}}",
+    "boolean": "{{0}}"
   }
 }

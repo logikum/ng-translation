@@ -1,5 +1,10 @@
 # Changes
 
+### v5.1.0
+_Published on 8/24/2020._
+
+* Add configuration property to add default options for currencies.
+
 ### v5.0.1
 _Published on 8/23/2020._
 

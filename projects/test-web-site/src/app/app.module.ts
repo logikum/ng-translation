@@ -68,7 +68,8 @@ const ngtConfig: TranslationConfig = {
   ],
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
-  disableWarnings: environment.disableWarnings
+  disableWarnings: environment.disableWarnings,
+  currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' }
 };
 
 @NgModule({

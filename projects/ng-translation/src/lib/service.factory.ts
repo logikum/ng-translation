@@ -17,10 +17,11 @@ export function messengerServiceFactory(
 }
 
 export function localizationServiceFactory(
-  messenger: MessengerService
+  messenger: MessengerService,
+  config: TranslationConfig
 ): LocalizationService {
 
-  return new LocalizationService( messenger );
+  return new LocalizationService( messenger, config );
 }
 
 export function transpilerServiceFactory(

@@ -34,6 +34,7 @@ export interface TranslationConfig {
   readonly defaultLanguage: string;
   readonly allowedLanguages?: Array<string>;
   readonly disableWarnings?: boolean;
+  readonly currencyDefaultOptions?: object;
 }
 
 export const NGT_CONFIGURATION = new InjectionToken<TranslationConfig>(

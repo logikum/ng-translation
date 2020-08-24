@@ -1,9 +1,9 @@
 /* 3rd party libraries */
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
 import { CurrencyValue } from '../types';
-import { FormatData } from '../models';
+import { FormatData, NGT_CONFIGURATION, TranslationConfig } from '../models';
 import { MessengerService } from './messenger.service';
 
 const OPTION_SEP = ';';
@@ -36,7 +36,8 @@ function missing(
 export class LocalizationService {
 
   constructor(
-    private readonly messenger: MessengerService
+    private readonly messenger: MessengerService,
+    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
   ) { }
 
   number(
@@ -96,6 +97,7 @@ export class LocalizationService {
     let worth;
     let currency = 'XXX';
 
+    // Determine the value and the currency code.
     if (Array.isArray( data.value ) && data.value.length > 0) {
       worth = data.value[ 0 ];
       if (data.value.length > 1) {
@@ -107,9 +109,20 @@ export class LocalizationService {
     if (missing( worth )) {
       return '';
     }
-    const options: Intl.NumberFormatOptions = this.extendOptions(
-      data.key, data.params, { style: 'currency', currency: currency }
-    );
+
+    // Determine the currency options.
+    let options: Intl.NumberFormatOptions = { };
+    // Add eventual custom default options.
+    if (this.config.currencyDefaultOptions) {
+      const cdo = this.config.currencyDefaultOptions[ currency ] || '';
+      options = this.extendOptions( data.key, cdo, options );
+    }
+    // Add fix options.
+    options = Object.assign( options, { style: 'currency', currency: currency } );
+    // Add user options.
+    options = this.extendOptions( data.key, data.params, options );
+
+    // Return the formatted currency value as string.
     return new Intl.NumberFormat( data.locale, options ).format( worth );
   }
 

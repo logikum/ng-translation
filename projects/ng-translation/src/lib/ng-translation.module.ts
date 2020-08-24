@@ -69,7 +69,7 @@ export class NgTranslationModule {
         }, {
           provide: LocalizationService,
           useFactory: localizationServiceFactory,
-          deps: [ MessengerService ]
+          deps: [ MessengerService, NGT_CONFIGURATION ]
         }, {
           provide: TranspilerService,
           useFactory: transpilerServiceFactory,

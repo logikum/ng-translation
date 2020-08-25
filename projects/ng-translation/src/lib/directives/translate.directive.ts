@@ -100,6 +100,13 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
           ): string {
             return localize.currency( service.activeLanguage, value, args );
           },
+          ccy(
+            value: number,
+            currency: string,
+            args: string
+          ): string {
+            return localize.currency( service.activeLanguage, [ value, currency ], args );
+          },
           datetime(
             value: Date | number | string,
             args: string

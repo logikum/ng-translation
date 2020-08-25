@@ -9,7 +9,7 @@ import {
   TranslationConfig
 } from './models';
 import {
-  ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
+  ToCcyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
 } from './pipes';
 import {
   LocalizationService, MessengerService, TranslationService, TranspilerService
@@ -27,6 +27,7 @@ import { DefaultTranspileExtender } from './default-transpile.extender';
     HttpClientModule
   ],
   declarations: [
+    ToCcyPipe,
     ToCurrencyPipe,
     ToDatetimePipe,
     ToNumberPipe,
@@ -36,6 +37,7 @@ import { DefaultTranspileExtender } from './default-transpile.extender';
     TranslateParamsDirective
   ],
   exports: [
+    ToCcyPipe,
     ToCurrencyPipe,
     ToDatetimePipe,
     ToNumberPipe,

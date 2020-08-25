@@ -71,6 +71,7 @@
     "number": "Szám:",
     "percent": "Százalék:",
     "currency": "Deviza:",
+    "ccy": "Deviza (2):",
     "datetime": "Dátum és idő:"
   }
 }

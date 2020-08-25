@@ -8,6 +8,7 @@ export * from './lib/guards/load-translations.guard';
 export * from './lib/directives/translate.directive';
 export * from './lib/directives/translate-params.directive';
 
+export * from './lib/pipes/to-ccy.pipe';
 export * from './lib/pipes/to-currency.pipe';
 export * from './lib/pipes/to-datetime.pipe';
 export * from './lib/pipes/to-number.pipe';

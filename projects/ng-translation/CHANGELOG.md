@@ -1,5 +1,10 @@
 # Changes
 
+### v5.1.1
+_Published on 8/25/2020._
+
+* Fix the wrong attempt to transpile a node.
+
 ### v5.1.0
 _Published on 8/24/2020._
 

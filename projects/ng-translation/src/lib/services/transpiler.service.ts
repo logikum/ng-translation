@@ -30,7 +30,7 @@ export class TranspilerService {
     args?: any
   ): string {
 
-    if (data.text) {
+    if (data.text && typeof data.text === 'string') {
       if (args === null || args === undefined ||
         typeof args === 'string' || typeof args === 'number' ||
         typeof args === 'boolean' || args instanceof Date

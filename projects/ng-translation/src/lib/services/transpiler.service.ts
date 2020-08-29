@@ -194,7 +194,7 @@ export class TranspilerService {
     return pluralized.replace( VALUE_PH, value );
   }
 
-  //region LocalizeContext
+  //region Localization methods
 
   number(
     locale: string,

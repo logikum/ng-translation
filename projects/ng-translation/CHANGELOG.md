@@ -1,5 +1,11 @@
 # Changes
 
+### v5.2.0
+_Published on 8/29/2020._
+
+* Add toCcy pipe and ccy localization method.
+* Add helper localization methods to TranslationService.
+
 ### v5.1.1
 _Published on 8/25/2020._
 

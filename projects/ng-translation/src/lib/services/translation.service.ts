@@ -432,7 +432,7 @@ export class TranslationService implements LocalizeContext {
 
   // endregion
 
-  //region LocalizeContext
+  //region Implement LocalizeContext
 
   number(
     value: number,

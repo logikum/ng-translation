@@ -5,6 +5,7 @@ import { Inject, Injectable } from '@angular/core';
 import { FormatData, TranspileData, TranspileExtender } from '../models';
 import { LocalizationService } from './localization.service';
 import { MessengerService } from './messenger.service';
+import { CurrencyValue } from '../types';
 
 const INTL_SEP = '|';
 const PATTERN_SEP = ':';
@@ -192,4 +193,54 @@ export class TranspilerService {
     } );
     return pluralized.replace( VALUE_PH, value );
   }
+
+  //region Localization methods
+
+  number(
+    locale: string,
+    value: number,
+    args?: string
+  ): string {
+
+    return this.localization.number( locale, value, args );
+  }
+
+  percent(
+    locale: string,
+    value: number,
+    args?: string
+  ): string {
+
+    return this.localization.percent( locale, value, args );
+  }
+
+  currency(
+    locale: string,
+    value: CurrencyValue,
+    args?: string
+  ): string {
+
+    return this.localization.currency( locale, value, args );
+  }
+
+  ccy(
+    locale: string,
+    value: number,
+    currency: string,
+    args?: string
+  ): string {
+
+    return this.localization.currency( locale, [ value, currency ], args );
+  }
+
+  datetime(
+    locale: string,
+    value: Date | number | string,
+    args?: string
+  ): string {
+
+    return this.localization.datetime( locale, value, args );
+  }
+
+  //endregion
 }

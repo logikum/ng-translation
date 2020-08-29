@@ -7,16 +7,17 @@ import { Route } from '@angular/router';
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
   Resource, ResourceList, ResourceLoader, TranslationChange, TranslationConfig,
-  TranslationConverter, TranspileExtender
+  TranslationConverter, TranspileExtender, LocalizeContext
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
 import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader } from '../loaders';
+import { CurrencyValue } from '../types';
 
 @Injectable( {
   providedIn: 'root'
 } )
-export class TranslationService {
+export class TranslationService implements LocalizeContext {
 
   private isLoading = true;
   private active: string;
@@ -430,4 +431,49 @@ export class TranslationService {
   }
 
   // endregion
+
+  //region Implement LocalizeContext
+
+  number(
+    value: number,
+    args?: string
+  ): string {
+
+    return this.transpile.number( this.activeLanguage, value, args );
+  }
+
+  percent(
+    value: number,
+    args?: string
+  ): string {
+
+    return this.transpile.percent( this.activeLanguage, value, args );
+  }
+
+  currency(
+    value: CurrencyValue,
+    args?: string
+  ): string {
+
+    return this.transpile.currency( this.activeLanguage, value, args );
+  }
+
+  ccy(
+    value: number,
+    currency: string,
+    args?: string
+  ): string {
+
+    return this.transpile.ccy( this.activeLanguage, value, currency, args );
+  }
+
+  datetime(
+    value: Date | number | string,
+    args?: string
+  ): string {
+
+    return this.transpile.datetime( this.activeLanguage, value, args );
+  }
+
+  //endregion
 }

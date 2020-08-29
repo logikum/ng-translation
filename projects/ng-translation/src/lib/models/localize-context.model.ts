@@ -10,6 +10,7 @@ export interface LocalizeContext {
   percent( value: number, args?: string ): string;
 
   currency( value: CurrencyValue, args?: string ): string;
+  ccy( value: number, currency: string, args?: string ): string;
 
   datetime( value: Date | number | string, args?: string ): string;
 }

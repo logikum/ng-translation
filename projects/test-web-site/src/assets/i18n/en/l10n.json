@@ -71,6 +71,7 @@
     "number": "Number:",
     "percent": "Percent:",
     "currency": "Currency:",
+    "ccy": "Currency (2):",
     "datetime": "Date & time:"
   }
 }

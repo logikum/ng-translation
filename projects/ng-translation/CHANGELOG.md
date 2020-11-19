@@ -1,5 +1,10 @@
 # Changes
 
+### v5.2.1
+_Published on 1119/2020._
+
+* Fix the dependency versions.
+
 ### v5.2.0
 _Published on 8/29/2020._
 

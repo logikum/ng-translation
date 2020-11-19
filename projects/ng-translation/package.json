@@ -1,6 +1,6 @@
 {
   "name": "ng-translation",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
   "keywords": [
     "Angular",
@@ -23,12 +23,12 @@
     "url" : "https://github.com/logikum/ng-translation/issues"
   },
   "peerDependencies": {
-    "@angular/common": "~10.0.0",
-    "@angular/core": "~10.0.0",
-    "@angular/router": "~10.0.0",
-    "rxjs": "^6.6.0"
+    "@angular/common": ">=10.0.0",
+    "@angular/core": ">=10.0.0",
+    "@angular/router": ">=10.0.0",
+    "rxjs": ">=6.6.0"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": ">=2.0.0"
   }
 }

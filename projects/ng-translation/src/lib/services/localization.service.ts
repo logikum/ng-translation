@@ -95,7 +95,7 @@ export class LocalizationService {
   ): string {
 
     let worth;
-    let currency = 'XXX';
+    let currency = null;
 
     // Determine the value and the currency code.
     if (Array.isArray( data.value ) && data.value.length > 0) {
@@ -112,13 +112,16 @@ export class LocalizationService {
 
     // Determine the currency options.
     let options: Intl.NumberFormatOptions = { };
-    // Add eventual custom default options.
-    if (this.config.currencyDefaultOptions) {
-      const cdo = this.config.currencyDefaultOptions[ currency ] || '';
-      options = this.extendOptions( data.key, cdo, options );
+
+    if (!missing( currency ) && currency.toString().trim() !== '') {
+      // Add eventual custom default options.
+      if (this.config.currencyDefaultOptions) {
+        const cdo = this.config.currencyDefaultOptions[ currency ] || '';
+        options = this.extendOptions( data.key, cdo, options );
+      }
+      // Add fix options.
+      options = Object.assign( options, { style: 'currency', currency: currency } );
     }
-    // Add fix options.
-    options = Object.assign( options, { style: 'currency', currency: currency } );
     // Add user options.
     options = this.extendOptions( data.key, data.params, options );
 

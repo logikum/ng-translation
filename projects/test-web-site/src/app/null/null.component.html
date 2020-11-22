@@ -125,4 +125,41 @@
     </tr>
   </table>
 
+  <h3>Currency codes</h3>
+
+  <table style="width: 53%">
+    <tr>
+      <th>Code</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>undefined</td>
+      <td>{{ l.currency( [ 123, undefined ] ) }}</td>
+    </tr>
+    <tr>
+      <td>null</td>
+      <td>{{ l.currency( [ 123, null ] ) }}</td>
+    </tr>
+    <tr>
+      <td>empty</td>
+      <td>{{ l.currency( [ 123, '' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>test</td>
+      <td>{{ l.currency( [ 123, 'XTS' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>no currency</td>
+      <td>{{ l.currency( [ 123, 'XXX' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>lilangeni</td>
+      <td>{{ l.currency( [ 123, 'SZL' ] ) }}</td>
+    </tr>
+    <tr>
+      <td>invalid</td>
+      <td>{{ l.currency( [ 123, 'ABC' ] ) }}</td>
+    </tr>
+  </table>
+
 </ng-container>

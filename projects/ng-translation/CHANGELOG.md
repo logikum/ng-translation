@@ -1,7 +1,12 @@
 # Changes
 
+### v5.2.2
+_Published on 11/22/2020._
+
+* Handle missing currency codes.
+
 ### v5.2.1
-_Published on 1119/2020._
+_Published on 11/19/2020._
 
 * Fix the dependency versions.
 

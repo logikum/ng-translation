@@ -6,7 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateDirective, TranslateParamsDirective } from './directives';
 import {
   NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
-  TranslationConfig
+  TranslationConfig, NGT_INLINE_LOADER
 } from './models';
 import {
   ToCcyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
@@ -60,6 +60,9 @@ export class NgTranslationModule {
           provide: NGT_CONFIGURATION,
           useValue: config
         }, {
+          provide: NGT_INLINE_LOADER,
+          useValue: { }
+        }, {
           provide: NGT_TRANSLATION_CONVERTER,
           useClass: DefaultTranslationConverter
         }, {
@@ -81,7 +84,8 @@ export class NgTranslationModule {
           useFactory: translationServiceFactory,
           deps: [
             HttpClient, TranspilerService, MessengerService,
-            NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
+            NGT_CONFIGURATION, NGT_INLINE_LOADER,
+            NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
           ]
         }, {
           provide: APP_INITIALIZER,

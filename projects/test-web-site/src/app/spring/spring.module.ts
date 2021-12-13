@@ -8,7 +8,7 @@ import { NgTranslationModule } from 'ng-translation';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
-  { path: 'spring', component: IndexComponent }
+  { path: '', component: IndexComponent }
 ];
 
 @NgModule({

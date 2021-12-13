@@ -3,13 +3,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import {
-  LoadTranslationsGuard, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
-  NgTranslationModule, NGT_INLINE_LOADER, InlineLoaderMap, getModuleItems
+  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NgTranslationModule,
+  NGT_INLINE_LOADER, InlineLoaderMap
 } from 'ng-translation';
 
 import { translationConfig } from './translation.config';
@@ -34,37 +33,21 @@ export function getInlineLoaders(): InlineLoaderMap {
   return loaders;
 }
 
-const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'spring',
-    loadChildren: () => import('./spring/spring.module').then(m => m.SpringModule) },
-  { path: 'summer',
-    loadChildren: () => import('./summer/summer.module').then(m => m.SummerModule),
-    canLoad: [ LoadTranslationsGuard ] },
-  { path: 'autumn',
-    loadChildren: () => import('./autumn/autumn.module').then(m => m.AutumnModule),
-    canLoad: [ LoadTranslationsGuard ] },
-  { path: 'winter',
-    loadChildren: () => import('./winter/winter.module').then(m => m.WinterModule),
-    canLoad: [ LoadTranslationsGuard ],
-    data: { translationGroup: 'frosty' } },
-  { path: 'components', component: ComponentsComponent },
-  { path: 'auxiliary', component: AuxiliaryComponent },
-  { path: 'l10n', component: LocalizationComponent },
-  { path: 'null', component: NullComponent },
-  { path: 'conversion',
-    loadChildren: () => import('./conversion/conversion.module').then(m => m.ConversionModule),
-    canLoad: [ LoadTranslationsGuard ] },
-  { path: '**', redirectTo: 'home' }
-];
-
-const routerConfig: ExtraOptions = {
-  onSameUrlNavigation: 'reload',
-  enableTracing: false
-};
-
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatCardModule,
+    NgTranslationModule.forRoot( translationConfig ),
+    SpringModule,
+    AppRouting
+  ],
+  exports: [
+    HttpClientModule,
+  ],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -72,18 +55,6 @@ const routerConfig: ExtraOptions = {
     AuxiliaryComponent,
     LocalizationComponent,
     NullComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    HttpClientModule,
-    RouterModule.forRoot( routes, routerConfig ),
-    MatToolbarModule,
-    MatCardModule,
-    NgTranslationModule.forRoot( translationConfig ),
-    // AppRouting,
-    SpringModule
   ],
   providers: [
     {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 
 import { LoadTranslationsGuard } from 'ng-translation';
 
@@ -8,7 +8,6 @@ import { ComponentsComponent } from './components/components.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LocalizationComponent } from './localization/localization.component';
 import { NullComponent } from './null/null.component';
-// import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,17 +34,17 @@ const routes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
+const routerConfig: ExtraOptions = {
+  onSameUrlNavigation: 'reload',
+  enableTracing: false
+};
+
 @NgModule( {
   imports: [
-    RouterModule.forChild( routes )
+    RouterModule.forRoot( routes, routerConfig )
   ],
-  // declarations: [
-  //   // AppComponent,
-  //   HomeComponent,
-  //   ComponentsComponent,
-  //   AuxiliaryComponent,
-  //   LocalizationComponent,
-  //   NullComponent
-  // ]
+  exports: [
+    RouterModule
+  ]
 } )
 export class AppRouting { }

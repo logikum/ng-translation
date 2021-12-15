@@ -1,5 +1,10 @@
 # Changes
 
+### v6.0.0
+_Published on 12/15/2021._
+
+* Add inline loader.
+
 ### v5.2.0
 _Published on 8/29/2020._
 

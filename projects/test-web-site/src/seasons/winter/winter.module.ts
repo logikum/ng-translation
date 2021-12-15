@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: IndexComponent }
 ];
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     MatCardModule,
@@ -21,5 +21,5 @@ const routes: Routes = [
   declarations: [
     IndexComponent
   ]
-})
-export class SummerModule { }
+} )
+export class WinterModule { }

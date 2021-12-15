@@ -1,4 +1,4 @@
-import { TranslationConfig, Section } from 'ng-translation';
+import { TranslationConfig} from 'ng-translation';
 
 import { environment } from '../environments/environment';
 

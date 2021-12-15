@@ -15,25 +15,22 @@ import { translationConfig } from './translation.config';
 import { AppRouting } from './app.routing';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
-import { ComponentsComponent } from './components/components.component';
-import { LocalizationComponent } from './localization/localization.component';
-import { NullComponent } from './null/null.component';
 
 import { CustomTranslationConverter } from './custom-translation-converter';
 import { CustomTranspileExtender } from './custom-transpile-extender';
 
-import { SpringModule } from './spring/spring.module';
-import { addAutumnLoaders } from './autumn/add-autumn-loaders';
+import { SpringModule } from '../seasons/spring/spring.module';
+import { addAutumnLoaders } from '../seasons/autumn/add-autumn-loaders';
+import { TestsModule } from '../tests/tests.module';
 
 export function getInlineLoaders(): InlineLoaderMap {
 
-  const loaders: InlineLoaderMap = { };
+  const loaders: InlineLoaderMap = {};
   addAutumnLoaders( loaders, translationConfig );
   return loaders;
 }
 
-@NgModule({
+@NgModule( {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -42,19 +39,16 @@ export function getInlineLoaders(): InlineLoaderMap {
     MatToolbarModule,
     MatCardModule,
     NgTranslationModule.forRoot( translationConfig ),
+    AppRouting,
     SpringModule,
-    AppRouting
+    TestsModule
   ],
   exports: [
     HttpClientModule,
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    ComponentsComponent,
-    AuxiliaryComponent,
-    LocalizationComponent,
-    NullComponent
+    HomeComponent
   ],
   providers: [
     {
@@ -71,5 +65,5 @@ export function getInlineLoaders(): InlineLoaderMap {
   bootstrap: [
     AppComponent
   ]
-})
+} )
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-@Component({
+@Component( {
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css'],
+  styleUrls: [ './index.component.css' ],
   changeDetection: ChangeDetectionStrategy.OnPush
-})
+} )
 export class IndexComponent { }

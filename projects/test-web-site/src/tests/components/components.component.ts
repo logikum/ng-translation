@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
-  TranslatableMultipleChoice, TranslatableOptionList, TranslatableTextList, TranslationService
+  TranslatableMultipleChoice, TranslatableOptionList, TranslatableTextList,
+  TranslationService
 } from 'ng-translation';
 
-@Component({
+@Component( {
   selector: 'app-components',
   templateUrl: './components.component.html',
-  styleUrls: ['./components.component.css'],
+  styleUrls: [ './components.component.css' ],
   changeDetection: ChangeDetectionStrategy.OnPush
-})
+} )
 export class ComponentsComponent implements OnInit {
 
   private spring: TranslatableTextList;
@@ -21,20 +22,34 @@ export class ComponentsComponent implements OnInit {
   get selectedMonth(): string {
     return JSON.stringify( this.months.selectedItem );
   }
+
   get selectedSeason(): string {
     return JSON.stringify( this.seasons.selectedItem );
   }
-  get line1(): string { return this.spring.get( 'line_1_1' ); }
-  get line2(): string { return this.spring.get( 'line_1_2' ); }
-  get line3(): string { return this.spring.get( 'line_1_3' ); }
-  get line4(): string { return this.spring.get( 'line_1_4' ); }
+
+  get line1(): string {
+    return this.spring.get( 'line_1_1' );
+  }
+
+  get line2(): string {
+    return this.spring.get( 'line_1_2' );
+  }
+
+  get line3(): string {
+    return this.spring.get( 'line_1_3' );
+  }
+
+  get line4(): string {
+    return this.spring.get( 'line_1_4' );
+  }
+
   get selectedPeriods(): string {
     return this.periods.selectedCount === 0 ? '' :
       JSON.stringify( this.periods.selectedItems )
-      .replace( '[', '[<br>')
-      .replace( ']', '<br>]')
-      .split( '},{' ).join( '},<br>{' )
-      .split( '{' ).join( '&nbsp;&nbsp;&nbsp;&nbsp;{' );
+        .replace( '[', '[<br>' )
+        .replace( ']', '<br>]' )
+        .split( '},{' ).join( '},<br>{' )
+        .split( '{' ).join( '&nbsp;&nbsp;&nbsp;&nbsp;{' );
   }
 
   constructor(

@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslatableTextList, TranslationService } from 'ng-translation';
 
-@Component({
+@Component( {
   selector: 'app-auxiliary',
   templateUrl: './auxiliary.component.html',
-  styleUrls: ['./auxiliary.component.css'],
+  styleUrls: [ './auxiliary.component.css' ],
   changeDetection: ChangeDetectionStrategy.OnPush
-})
+} )
 export class AuxiliaryComponent {
 
   texts: TranslatableTextList;
@@ -17,9 +17,11 @@ export class AuxiliaryComponent {
   get dailyOffer(): string {
     return this.texts.get( 'offer', this.dailyData );
   }
+
   get specialOffer(): string {
     return this.texts.get( 'special', this.specialData );
   }
+
   get specialLasts(): string {
     return this.texts.get( 'lasts', this.period );
   }

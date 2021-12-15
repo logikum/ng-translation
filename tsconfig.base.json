@@ -25,6 +25,7 @@
       "ng-translation/*": [
         "dist/ng-translation/*"
       ]
-    }
+    },
+    "resolveJsonModule": true
   }
 }

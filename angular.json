@@ -29,18 +29,6 @@
             "tsConfig": "projects/ng-translation/tsconfig.spec.json",
             "karmaConfig": "projects/ng-translation/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ng-translation/tsconfig.lib.json",
-              "projects/ng-translation/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -130,18 +118,6 @@
             "assets": [
               "projects/test-web-site/src/favicon.ico",
               "projects/test-web-site/src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/test-web-site/tsconfig.app.json",
-              "projects/test-web-site/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
             ]
           }
         }
@@ -234,18 +210,6 @@
             "assets": [
               "projects/doc-web-site/src/favicon.ico",
               "projects/doc-web-site/src/assets"
-            ]
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/doc-web-site/tsconfig.app.json",
-              "projects/doc-web-site/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
             ]
           }
         }

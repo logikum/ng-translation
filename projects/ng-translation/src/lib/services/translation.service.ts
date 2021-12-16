@@ -128,7 +128,7 @@ export class TranslationService implements LocalizeContext {
     language: string
   ): Promise<any> {
 
-    return new Promise( ( resolve, reject ) => {
+    return new Promise<void>( ( resolve, reject ) => {
 
       const locale = new Locale( language );
 

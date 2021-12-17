@@ -1,1 +1,0 @@
-translationUrl: '/translations/{ section }.{ language }.json'

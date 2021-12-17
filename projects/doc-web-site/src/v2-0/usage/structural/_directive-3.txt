@@ -1,3 +1,0 @@
-&lt;ng-container *translate="let t"&gt;
-  &lt;div&gt;{{ t( 'app.home.welcome', { name: 'John' } ) }}&lt;/div&gt;
-&lt;/ng-container&gt;

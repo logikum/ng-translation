@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { TranslationService } from 'ng-translation';
 import {
-  TranslatableMultipleChoice, TranslatableOptionList, TranslatableTextList,
-  TranslationService
-} from 'ng-translation';
+  TranslatableMultipleChoice, TranslatableOptionList, TranslatableTextList
+} from 'ng-translatable';
 
 @Component( {
   selector: 'app-components',

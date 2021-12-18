@@ -3,7 +3,7 @@ export * from './locale.model';
 export * from './localize-context.model';
 export * from './resource.model';
 export * from './resource-list.model';
-export * from './translatable-option.model';
+// export * from './translatable-option.model';
 export * from './translate-context.model';
 export * from './translation-change.model';
 export * from './translation-config.model';

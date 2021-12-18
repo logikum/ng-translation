@@ -17,8 +17,11 @@
   "author": "Mármarosi József <marmarosi@logikum.hu>",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve test-web-site --port=3000",
-    "build": "ng build ng-translation --configuration production",
+    "start": "ng serve test-web-site --port=3000 --open",
+    "build:ngt": "ng build ng-translation --configuration production",
+    "build:ngm": "ng build ng-translatable --configuration production",
+    "build:tws": "ng build test-web-site --configuration production",
+    "build:all": "npm run build:ngt && npm run build:ngm && npm run build:tws",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

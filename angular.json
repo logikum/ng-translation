@@ -4,23 +4,25 @@
   "newProjectRoot": "projects",
   "projects": {
     "ng-translation": {
+      "projectType": "library",
       "root": "projects/ng-translation",
       "sourceRoot": "projects/ng-translation/src",
-      "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ng-translation/tsconfig.lib.json",
             "project": "projects/ng-translation/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/ng-translation/ng-package.prod.json",
               "tsConfig": "projects/ng-translation/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-translation/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -32,12 +34,50 @@
         }
       }
     },
+    "ng-translatable": {
+      "projectType": "library",
+      "root": "projects/ng-translatable",
+      "sourceRoot": "projects/ng-translatable/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-translatable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-translatable/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-translatable/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-translatable/src/test.ts",
+            "tsConfig": "projects/ng-translatable/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-translatable/karma.conf.js"
+          }
+        }
+      }
+    },
     "test-web-site": {
-      "root": "projects/test-web-site/",
-      "sourceRoot": "projects/test-web-site/src",
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/test-web-site",
+      "sourceRoot": "projects/test-web-site/src",
       "prefix": "app",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -47,6 +87,7 @@
             "main": "projects/test-web-site/src/main.ts",
             "polyfills": "projects/test-web-site/src/polyfills.ts",
             "tsConfig": "projects/test-web-site/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/test-web-site/src/favicon.ico",
               "projects/test-web-site/src/assets"
@@ -54,20 +95,20 @@
             "styles": [
               "projects/test-web-site/src/styles.css"
             ],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "fileReplacements": [
@@ -76,27 +117,30 @@
                   "with": "projects/test-web-site/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "test-web-site:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "test-web-site:build:production"
+            },
+            "development": {
+              "browserTarget": "test-web-site:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -111,17 +155,18 @@
             "polyfills": "projects/test-web-site/src/polyfills.ts",
             "tsConfig": "projects/test-web-site/tsconfig.spec.json",
             "karmaConfig": "projects/test-web-site/karma.conf.js",
-            "styles": [
-              "projects/test-web-site/src/styles.css"
-            ],
-            "scripts": [],
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/test-web-site/src/favicon.ico",
               "projects/test-web-site/src/assets"
-            ]
+            ],
+            "styles": [
+              "projects/test-web-site/src/styles.scss"
+            ],
+            "scripts": []
           }
         }
       }
-    },
+    }
   }
 }

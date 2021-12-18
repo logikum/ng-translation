@@ -1,5 +1,5 @@
-import { Resource, TranslationConverter } from 'ng-translation';
 import { Injectable } from '@angular/core';
+import { Resource, TranslationConverter } from 'ng-translation';
 
 @Injectable()
 export class CustomTranslationConverter implements TranslationConverter {

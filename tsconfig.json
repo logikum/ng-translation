@@ -18,6 +18,10 @@
       "dom"
     ],
     "paths": {
+      "ng-translatable": [
+        "dist/ng-translatable/ng-translatable",
+        "dist/ng-translatable"
+      ],
       "ng-translation": [
         "dist/ng-translation"
       ],

@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit
 } from '@angular/core';
-import {
-  TranslationChange, TranslatableLanguageList, TranslatableOptionList,
-  TranslationService
-} from 'ng-translation';
+import { TranslationChange, TranslationService } from 'ng-translation';
+import { TranslatableLanguageList, TranslatableOptionList } from 'ng-translatable';
 
 @Component( {
   selector: 'app-root',

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TranslatableTextList, TranslationService } from 'ng-translation';
+import { TranslationService } from 'ng-translation';
+import { TranslatableTextList } from 'ng-translatable';
 
 @Component( {
   selector: 'app-auxiliary',

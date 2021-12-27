@@ -1,9 +1,31 @@
 {
   "name": "ng-translatable",
-  "version": "0.0.1",
+  "version": "6.0.0",
+  "description": "Supplementary package for NgTranslation; provides data models for translatable UI components.",
+  "keywords": [
+    "Angular",
+    "i18n",
+    "internationalization",
+    "l10n",
+    "localization"
+  ],
+  "license" : "MIT",
+  "author": {
+    "name": "Mármarosi József",
+    "email" : "marmarosi@logikum.hu"
+  },
+  "homepage": "https://ngt.logikum.hu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logikum/ng-translation.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/logikum/ng-translation/issues"
+  },
   "peerDependencies": {
-    "@angular/common": "^13.1.0",
-    "@angular/core": "^13.1.0"
+    "@angular/common": "^13.1.1",
+    "@angular/core": "^13.1.1",
+    "@logikum/ng-translation": "6.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

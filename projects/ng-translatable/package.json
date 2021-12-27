@@ -1,6 +1,6 @@
 {
   "name": "ng-translatable",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Supplementary package for NgTranslation; provides data models for translatable UI components.",
   "keywords": [
     "Angular",

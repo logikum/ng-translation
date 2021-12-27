@@ -1,7 +1,7 @@
 /* 3rd party libraries */
+import { Locale, TranslationService } from '@logikum/ng-translation';
 
 /* globally accessible app code in every feature module */
-import { Locale, TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableSelect } from './translatable-select.model';

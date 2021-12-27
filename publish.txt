@@ -13,7 +13,7 @@ ng build ng-translatable
 cd dist/ng-translation
 npm login
 npm init --scope=@logikum
-npm publish --access=public
+npm publish --access=public --otp=<code>
 cd ../ng-translatable
 npm init --scope=@logikum
-npm publish --access=public
+npm publish --access=public --otp=<code>

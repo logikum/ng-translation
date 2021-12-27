@@ -1,8 +1,5 @@
-/* 3rd party libraries */
-
-/* locally accessible feature module code, always use relative path */
+import { Injectable } from '@angular/core';
 import { Resource, TranslationConverter } from 'ng-translation';
-import { Injectable } from "@angular/core";
 
 @Injectable()
 export class CustomTranslationConverter implements TranslationConverter {
@@ -28,8 +25,8 @@ function po2object(
   translations: string
 ): object {
 
-  const result: object = { };
-  const lines: Array<string> = translations.match(/^.*((\r\n|\n|\r)|$)/gm);
+  const result: object = {};
+  const lines: Array<string> = translations.match( /^.*((\r\n|\n|\r)|$)/gm );
   let isHeader = true;
   let key = '';
   let text = '';
@@ -62,7 +59,7 @@ function po2object(
           const path: Array<string> = key.split( '.' );
           for (let i = 0; i < path.length; i++) {
             if (target[ path[ i ] ] === undefined) {
-              target[ path[ i ] ] = i === path.length - 1 ? text : { };
+              target[ path[ i ] ] = i === path.length - 1 ? text : {};
             }
             target = target[ path[ i ] ];
           }

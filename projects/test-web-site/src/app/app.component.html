@@ -4,7 +4,7 @@
     <div class="app-header">
 
       <ng-container *translate="let t">
-        <a routerLink="" class="title">{{ t( 'app.shared.title' ) }}</a>
+        <a routerLink="home" class="title">{{ t( 'app.shared.title' ) }}</a>
         <a *ngFor="let item of menu" routerLink="{{ item.value }}">{{ item.text }}</a>
 
         <span class="fill-remaining-space"></span>
@@ -29,11 +29,11 @@
   <ng-container *translate="let t">
     <div class="app-footer">
       <p>
-        <a routerLink="components">{{ t( 'app.shared.components' ) }}</a> |
-        <a routerLink="auxiliary">{{ t( 'app.shared.auxiliary' ) }}</a> |
-        <a routerLink="l10n">{{ t( 'app.shared.l10n' ) }}</a> |
-        <a routerLink="conversion">{{ t( 'app.shared.conversion' ) }}</a> |
-        <a routerLink="null">{{ t( 'app.shared.null' ) }}</a>
+        <a routerLink="test/components">{{ t( 'app.shared.components' ) }}</a> |
+        <a routerLink="test/auxiliary">{{ t( 'app.shared.auxiliary' ) }}</a> |
+        <a routerLink="test/l10n">{{ t( 'app.shared.l10n' ) }}</a> |
+        <a routerLink="test/conversion">{{ t( 'app.shared.conversion' ) }}</a> |
+        <a routerLink="test/null">{{ t( 'app.shared.null' ) }}</a>
       </p>
     </div>
   </ng-container>

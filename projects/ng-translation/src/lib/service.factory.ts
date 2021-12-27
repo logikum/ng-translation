@@ -8,6 +8,7 @@ import {
 import {
   LocalizationService, MessengerService, TranslationService, TranspilerService
 } from './services';
+import { InlineLoaderMap } from './types';
 
 export function messengerServiceFactory(
   config: TranslationConfig
@@ -37,11 +38,12 @@ export function translationServiceFactory(
   transpiler: TranspilerService,
   messenger: MessengerService,
   config: TranslationConfig,
+  loaders: InlineLoaderMap,
   converter: TranslationConverter,
   extender: TranspileExtender
 ): TranslationService {
 
   return new TranslationService(
-    http, transpiler, messenger, config, converter, extender
+    http, transpiler, messenger, config, loaders, converter, extender
   );
 }

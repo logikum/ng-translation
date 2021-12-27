@@ -1,7 +1,8 @@
 /* 3rd party libraries */
+import { InjectionToken } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { LoaderType } from '../types';
+import { InlineLoaderMap, LoaderType } from '../types';
 
 export interface Resource {
 
@@ -17,3 +18,7 @@ export interface ResourceLoader {
 
   load( language: string, resource: Resource ): Promise<any>;
 }
+
+export const NGT_INLINE_LOADER = new InjectionToken<InlineLoaderMap>(
+  'NGT_INLINE_LOADER'
+);

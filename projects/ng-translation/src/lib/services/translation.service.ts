@@ -7,12 +7,12 @@ import { Route } from '@angular/router';
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
   Resource, ResourceList, ResourceLoader, TranslationChange, TranslationConfig,
-  TranslationConverter, TranspileExtender, LocalizeContext
+  TranslationConverter, TranspileExtender, LocalizeContext, NGT_INLINE_LOADER
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
-import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader } from '../loaders';
-import { CurrencyValue } from '../types';
+import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader } from '../loaders';
+import { CurrencyValue, InlineLoaderMap } from '../types';
 
 @Injectable( {
   providedIn: 'root'
@@ -43,6 +43,7 @@ export class TranslationService implements LocalizeContext {
     private readonly transpile: TranspilerService,
     private readonly messenger: MessengerService,
     @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
+    @Inject( NGT_INLINE_LOADER ) private readonly loaders: InlineLoaderMap,
     @Inject( NGT_TRANSLATION_CONVERTER ) private readonly converter: TranslationConverter,
     @Inject( NGT_TRANSPILE_EXTENDER ) private readonly extender: TranspileExtender
   ) {
@@ -127,7 +128,7 @@ export class TranslationService implements LocalizeContext {
     language: string
   ): Promise<any> {
 
-    return new Promise( ( resolve, reject ) => {
+    return new Promise<void>( ( resolve, reject ) => {
 
       const locale = new Locale( language );
 
@@ -226,6 +227,9 @@ export class TranslationService implements LocalizeContext {
             break;
           case 'arraybuffer':
             loader = new ArrayBufferLoader( this.http, this.messenger );
+            break;
+          case 'inline':
+            loader = new InlineLoader( this.loaders, this.messenger );
             break;
           case 'json':
           default:

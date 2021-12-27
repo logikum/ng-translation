@@ -18,11 +18,9 @@ Features:
 * Supports parameter interpolation
 * Supports parameter localization
 * Provides localization methods in code
-* Provides component to collect multiple texts
-* Provides component to support selection lists with single choice
-* Provides component to support selection lists with multiple choice
-* Provides component to select language
-* Provides several translation loaders
+* Provides data models for translatable UI components in separate package
+  (@logikum/ng-translatable)
+* Provides several translation loaders (including inline loader)
 * Supports translation converters to use custom formats
 * Supports transpile extenders to use custom localization
 
@@ -30,6 +28,7 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
+* NgTranslation v6.x for Angular 13 (Ivy package)
 * NgTranslation v5.x for Angular 10
 * NgTranslation v4.x for Angular 9
 * NgTranslation v3.x for Angular 8

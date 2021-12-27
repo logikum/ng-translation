@@ -280,48 +280,48 @@ export class LocalizationService {
             case 'weekday':
               options.weekday = this.checkMember(
                 data.key, optionValue, [ 'long', 'short', 'narrow' ]
-              );
+              ) as 'long' | 'short' | 'narrow';
               break;
             case 'era':
               options.era = this.checkMember(
                 data.key, optionValue, [ 'long', 'short', 'narrow' ]
-              );
+              ) as 'long' | 'short' | 'narrow';
               break;
             case 'y':
             case 'year':
               options.year = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit' ]
-              );
+              ) as 'numeric' | '2-digit';
               break;
             case 'M':
             case 'month':
               options.month = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit', 'long', 'short', 'narrow' ]
-              );
+              ) as 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
               break;
             case 'd':
             case 'day':
               options.day = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit' ]
-              );
+              ) as 'numeric' | '2-digit';
               break;
             case 'h':
             case 'hour':
               options.hour = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit' ]
-              );
+              ) as 'numeric' | '2-digit';
               break;
             case 'm':
             case 'minute':
               options.minute = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit' ]
-              );
+              ) as 'numeric' | '2-digit';
               break;
             case 's':
             case 'second':
               options.second = this.checkMember(
                 data.key, optionValue, [ 'numeric', '2-digit' ]
-              );
+              ) as 'numeric' | '2-digit';
               break;
             case 'tz':
             case 'timeZone':
@@ -331,7 +331,7 @@ export class LocalizationService {
             case 'timeZoneName':
               options.timeZoneName = this.checkMember(
                 data.key, optionValue, [ 'long', 'short' ]
-              );
+              ) as 'long' | 'short';
               break;
             case 'h12':
             case 'hour12':
@@ -341,13 +341,13 @@ export class LocalizationService {
             case 'localeMatcher':
               options.localeMatcher = this.checkMember(
                 data.key, optionValue, [ 'lookup', 'best fit' ]
-              );
+              ) as 'lookup' | 'best fit';
               break;
             case 'fm':
             case 'formatMatcher':
               options.formatMatcher = this.checkMember(
                 data.key, optionValue, [ 'basic', 'best fit' ]
-              );
+              ) as 'basic' | 'best fit';
               break;
             default:
               this.messenger.optionNameError( data.key, optionName );

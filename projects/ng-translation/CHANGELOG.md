@@ -1,5 +1,12 @@
 # Changes
 
+### v6.0.0
+_Published on 12/27/2021._
+
+* Update to Angular 13.
+* Add inline loader.
+* Move the models of localizable UI elements into @logikum/ng-translatable package.
+
 ### v5.2.2
 _Published on 11/22/2020._
 

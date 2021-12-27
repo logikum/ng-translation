@@ -10,6 +10,7 @@ See documentation: [NgTranslation](https://ngt.logikum.hu/)
 Run this command to use the localization library:
 ```
 npm install @logikum/ng-translation --save
+npm install @logikum/ng-translatable --save
 ```
 ### Install
 
@@ -22,11 +23,17 @@ npm install
 
 Run this command to build the localization package:
 ```
-ng build --prod ng-translation
+npm run build:ngt    // localization library
+npm run build:ngm    // model library for localizable UI elements
+npm run build:tws    // test web site
+```
+or
+```
+npm run build:all
 ```
 ### Test
 
 Run this command to start the test site in development mode:
 ```
-ng serve test-web-site
+npm start
 ```

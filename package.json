@@ -1,6 +1,6 @@
 {
   "name": "@logikum/ng-translation",
-  "version": "5.2.2",
+  "version": "6.0.0",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
   "keywords": [
     "Angular",
@@ -18,9 +18,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000 --open",
-    "build:ngt": "ng build ng-translation --configuration production",
-    "build:ngm": "ng build ng-translatable --configuration production",
-    "build:tws": "ng build test-web-site --configuration production",
+    "build:ngt": "ng build ng-translation",
+    "build:ngm": "ng build ng-translatable",
+    "build:tws": "ng build test-web-site",
     "build:all": "npm run build:ngt && npm run build:ngm && npm run build:tws",
     "test": "ng test",
     "lint": "ng lint",

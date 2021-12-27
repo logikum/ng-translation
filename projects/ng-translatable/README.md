@@ -1,24 +1,19 @@
 # NgTranslatable
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0.
+NgTranslatable provides data models for translatable UI components.
+It is a supplementary package for NgTranslation package.
 
-## Code scaffolding
+See documentation: [NgTranslation](https://ngt.logikum.hu/)
 
-Run `ng generate component component-name --project ng-translatable` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-translatable`.
-> Note: Don't forget to add `--project ng-translatable` or else it will be added to the default project in your `angular.json` file. 
+Features:
 
-## Build
+* Provides data model to collect multiple texts for general usage
+* Provides data model to support selection lists with single choice
+* Provides data model to support selection lists with multiple choice
+* Provides data model to select language
 
-Run `ng build ng-translatable` to build the project. The build artifacts will be stored in the `dist/` directory.
+Source code: [GitHub](https://github.com/logikum/ng-translation)
 
-## Publishing
+Version map:
 
-After building your library with `ng build ng-translatable`, go to the dist folder `cd dist/ng-translatable` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ng-translatable` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* NgTranslatable v6.x for Angular 13 (Ivy package)

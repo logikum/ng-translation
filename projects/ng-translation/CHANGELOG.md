@@ -1,7 +1,7 @@
 # Changes
 
 ### v6.0.0
-_Published on 12/18/2021._
+_Published on 12/27/2021._
 
 * Update to Angular 13.
 * Add inline loader.

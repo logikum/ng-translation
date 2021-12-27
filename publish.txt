@@ -1,12 +1,19 @@
 Version in:
     package.json
     projects/ng-translation/package.json
+    projects/ng-translatable/package.json
 Description:
     projects/ng-translation/CHANGELOG.md
     projects/ng-translation/README.md
+    projects/ng-translatable/CHANGELOG.md
+    projects/ng-translatable/README.md
 git checkout master
-ng build --prod ng-translation
+ng build ng-translation
+ng build ng-translatable
 cd dist/ng-translation
 npm login
+npm init --scope=@logikum
+npm publish --access=public
+cd ../ng-translatable
 npm init --scope=@logikum
 npm publish --access=public

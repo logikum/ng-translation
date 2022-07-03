@@ -146,12 +146,12 @@ export class LocalizationService {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
         switch (optionName) {
-          case 'cd':
-          case 'currencyDisplay':
-            options.currencyDisplay = this.checkMember(
-              key, optionValue, [ 'symbol', 'code', 'name' ]
-            );
-            break;
+          // case 'cd':
+          // case 'currencyDisplay':
+          //   options.currencyDisplay = this.checkMember(
+          //     key, optionValue, [ 'symbol', 'code', 'name' ]
+          //   );
+          //   break;
           case 'minid':
           case 'minimumIntegerDigits':
             options.minimumIntegerDigits = this.getInt( key, optionValue );

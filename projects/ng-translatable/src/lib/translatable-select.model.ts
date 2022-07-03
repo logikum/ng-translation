@@ -1,11 +1,11 @@
 /* 3rd party libraries */
 import { Directive, OnDestroy } from '@angular/core';
-import { TranslationService } from '@logikum/ng-translation';
+// import { TranslationService } from '@logikum/ng-translation';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
-// import { Locale, TranslationService } from 'ng-translation';
+import { TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';

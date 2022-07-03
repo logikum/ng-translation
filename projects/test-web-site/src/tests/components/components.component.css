@@ -7,3 +7,12 @@ button {
   color: white;
   padding: .5rem 1rem;
 }
+.pull-right {
+  float: right;
+}
+.filter {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 11pt;
+  padding: 5px 10px;
+  width: 80px;
+}

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
+// import { Locale, TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';
@@ -16,6 +17,9 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
   private readonly onDestroy: Subject<void> = new Subject();
   private readonly items: Array<TranslatableOption> = [];
   private iteratorIndex = 0;
+  private filter = ( value: string, text: string ): boolean => {
+    return true;
+  }
 
   get selectedCount(): number {
     return this.items
@@ -76,13 +80,17 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
 
   constructor(
     private readonly translate: TranslationService,
-    private readonly key: string
+    private readonly key: string,
+    filter?: ( value: string, text: string ) => boolean
   ) {
     this.translate.languageChanged
       .pipe( takeUntil( this.onDestroy ) )
       .subscribe( language => {
         this.getItems();
       } );
+    if (filter) {
+      this.filter = filter;
+    }
     this.getItems();
   }
 
@@ -96,12 +104,15 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
       const optionValues = Object.getOwnPropertyNames( optionGroup );
       if (optionValues.length) {
         for (let i = 0; i < optionValues.length; i++) {
-          this.items.push( {
-            value: optionValues[ i ],
-            text: optionGroup[ optionValues[ i ] ],
-            // selected: previousIndeces.includes( i )
-            selected: -1 < previousIndeces.indexOf( i )
-          } );
+          const value = optionValues[ i ];
+          const text = optionGroup[ value ];
+          if (this.filter( value, text )) {
+            this.items.push( {
+              value,
+              text,
+              selected: previousIndeces.includes( i )
+            } );
+          }
         }
       }
     }

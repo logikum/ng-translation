@@ -3,6 +3,12 @@
   <h1> {{ t('app.shared.components') }} </h1>
 
   <h3>TranslatableOptionList</h3>
+  <div class="pull-right">
+    {{ t( 'app.shared.filter' ) }}
+    <input type="text" class="filter"
+           [(ngModel)]="textFilterBy"
+           (change)="textFilterChange()">
+  </div>
   <p>
     <label>{{ t('app.shared.select') }}</label>
     <select (change)="monthChange( $event )">
@@ -84,8 +90,15 @@
   <div>{{ line4 }}</div>
 
   <h3>TranslatableMultipleChoice</h3>
-  <div>{{ t( 'app.multiple.select' ) }}</div>
+  <div class="pull-right">
+    {{ t( 'app.multiple.filter' ) }}
+    <input type="number" class="filter"
+           [(ngModel)]="lengthFilterBy"
+           (change)="lengthFilterChange()">
+  </div>
   <p>
+    <label>{{ t( 'app.multiple.select' ) }}</label>
+    <br><br>
     <ng-container *ngFor="let period of periods; let i = index">
       <label>
         <input type="checkbox" name="period" [value]="period.value"

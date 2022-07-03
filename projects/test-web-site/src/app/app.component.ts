@@ -21,8 +21,8 @@ export class AppComponent implements OnInit {
     private translate: TranslationService
   ) {
     this.translate.statusChange.subscribe( this.ngtChanges.bind( this ) );
-    this.menu = new TranslatableOptionList( this.translate, 'app.menu' );
-    this.languages = new TranslatableLanguageList( this.translate, 'app.languages' );
+    this.menu = new TranslatableOptionList( translate, 'app.menu' );
+    this.languages = new TranslatableLanguageList( translate, 'app.languages' );
   }
 
   ngOnInit(): void {

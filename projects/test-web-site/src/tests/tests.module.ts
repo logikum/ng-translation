@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { NgTranslationModule } from 'ng-translation';
 
@@ -14,7 +15,8 @@ import { NullComponent } from './null/null.component';
   imports: [
     CommonModule,
     NgTranslationModule,
-    TestsRoutingModule
+    TestsRoutingModule,
+    FormsModule
   ],
   declarations: [
     ComponentsComponent,

@@ -1,5 +1,11 @@
 # Changes
 
+### v6.1.0
+_Published on 7/3/2022._
+
+* Update to Angular 14.
+* Remove currency display from number format options.
+
 ### v6.0.0
 _Published on 12/27/2021._
 

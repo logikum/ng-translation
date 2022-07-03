@@ -27,7 +27,8 @@
     "selectedIndex": "The selected index:",
     "selectedValue": "The selected value:",
     "selectedText": "The selected text:",
-    "selectedItem": "The selected item:"
+    "selectedItem": "The selected item:",
+    "filter": "Filter by containing:"
   },
   "multiple": {
     "select": "Select some months:",
@@ -37,7 +38,8 @@
     "selectedIndeces": "The selected indeces:",
     "selectedValues": "The selected values:",
     "selectedTexts": "The selected texts:",
-    "selectedItems": "The selected items:"
+    "selectedItems": "The selected items:",
+    "filter": "Filter by maximum length:"
   },
   "month": {
     "jan": "January",

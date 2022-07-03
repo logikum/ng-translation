@@ -27,7 +27,8 @@
     "selectedIndex": "A választott index:",
     "selectedValue": "A választott érték:",
     "selectedText": "A választott szöveg:",
-    "selectedItem": "A választott elem:"
+    "selectedItem": "A választott elem:",
+    "filter": "Szűrés tartalom szerint:"
   },
   "multiple": {
     "select": "Válassz néhány hónapot:",
@@ -37,7 +38,8 @@
     "selectedIndeces": "A választott indexek:",
     "selectedValues": "A választott értékek:",
     "selectedTexts": "A választott szövegek:",
-    "selectedItems": "A választott elemek:"
+    "selectedItems": "A választott elemek:",
+    "filter": "Szűrés maximális hossz szerint:"
   },
   "month": {
     "jan": "január",

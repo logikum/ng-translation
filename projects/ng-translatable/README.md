@@ -16,4 +16,4 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
-* NgTranslatable v6.x for Angular 13 (Ivy package)
+* NgTranslatable v6.x for Angular 13-14 (Ivy package)

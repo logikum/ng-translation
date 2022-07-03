@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
+// import { Locale, TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';
@@ -20,6 +21,9 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
   private readonly items: Array<TranslatableOption> = [];
   private currentIndex = -1;
   private iteratorIndex = 0;
+  protected filter = ( value: string, text: string ): boolean => {
+    return true;
+  };
 
   get selectedIndex(): number {
     return this.currentIndex;
@@ -42,6 +46,7 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
   }
 
   protected initialize() {
+
     this.translate.languageChanged
       .pipe( takeUntil( this.onDestroy ) )
       .subscribe( language => {
@@ -60,14 +65,18 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
     if (optionGroup) {
       const optionValues = Object.getOwnPropertyNames( optionGroup );
       if (optionValues.length) {
-        this.currentIndex = -1 < previousIndex && previousIndex < optionValues.length ?
-          previousIndex : 0;
+        this.currentIndex = -1 < previousIndex && previousIndex < optionValues.length
+          ? previousIndex : 0;
         for (let i = 0; i < optionValues.length; i++) {
-          this.items.push( {
-            value: optionValues[ i ],
-            text: optionGroup[ optionValues[ i ] ],
-            selected: i === this.currentIndex
-          } );
+          const value = optionValues[ i ];
+          const text = optionGroup[ value ];
+          if (this.filter( value, text )) {
+            this.items.push( {
+              value: value,
+              text: optionGroup[ value ],
+              selected: i === this.currentIndex
+            } );
+          }
         }
       }
     }

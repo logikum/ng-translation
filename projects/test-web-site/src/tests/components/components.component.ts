@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import { TranslationService } from 'ng-translation';
 import {
   TranslatableMultipleChoice, TranslatableOptionList, TranslatableTextList
@@ -18,6 +23,8 @@ export class ComponentsComponent implements OnInit {
   seasons: TranslatableOptionList;
   texts: TranslatableTextList;
   periods: TranslatableMultipleChoice;
+  textFilterBy = '';
+  lengthFilterBy = 0;
 
   get selectedMonth(): string {
     return JSON.stringify( this.months.selectedItem );
@@ -53,11 +60,18 @@ export class ComponentsComponent implements OnInit {
   }
 
   constructor(
-    private translate: TranslationService
+    private readonly translate: TranslationService,
+    protected readonly cdRef: ChangeDetectorRef
   ) {
-    this.months = new TranslatableOptionList( translate, 'app.month' );
+    this.months = new TranslatableOptionList(
+      translate, 'app.month',
+      this.textFilter.bind( this )
+    );
     this.seasons = new TranslatableOptionList( translate, 'app.menu' );
-    this.periods = new TranslatableMultipleChoice( translate, 'app.month' );
+    this.periods = new TranslatableMultipleChoice(
+      translate, 'app.month',
+      this.lengthFilter.bind( this )
+    );
 
     this.texts = new TranslatableTextList(
       translate,
@@ -77,6 +91,28 @@ export class ComponentsComponent implements OnInit {
     this.months.selectedIndex = new Date( Date.now() ).getMonth();
   }
 
+  textFilter(
+    value: string,
+    text: string
+  ): boolean {
+
+    if (this.textFilterBy) {
+      return text.includes( this.textFilterBy );
+    }
+    return true;
+  }
+
+  lengthFilter(
+    value: string,
+    text: string
+  ): boolean {
+
+    if (this.lengthFilterBy > 0) {
+      return text.length <= this.lengthFilterBy;
+    }
+    return true;
+  }
+
   monthChange(
     event: any
   ): void {
@@ -93,5 +129,23 @@ export class ComponentsComponent implements OnInit {
     event: any
   ): void {
     this.periods.setState( event.target.value, event.target.checked );
+  }
+
+  textFilterChange(): void {
+
+    this.months = new TranslatableOptionList(
+      this.translate, 'app.month',
+      this.textFilter.bind( this )
+    );
+    this.cdRef.checkNoChanges();
+  }
+
+  lengthFilterChange(): void {
+
+    this.periods = new TranslatableMultipleChoice(
+      this.translate, 'app.month',
+      this.lengthFilter.bind( this )
+    );
+    this.cdRef.checkNoChanges();
   }
 }

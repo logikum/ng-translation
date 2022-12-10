@@ -23,7 +23,7 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
   private iteratorIndex = 0;
   protected filter = ( value: string, text: string ): boolean => {
     return true;
-  };
+  }
 
   get selectedIndex(): number {
     return this.currentIndex;

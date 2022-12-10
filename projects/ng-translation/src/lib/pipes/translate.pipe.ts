@@ -1,29 +1,21 @@
 /* 3rd party libraries */
-import { OnDestroy, Pipe, PipeTransform } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
+import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
   name: 'translate',
   pure: false
 } )
-export class TranslatePipe implements PipeTransform, OnDestroy {
-
-  private readonly onDestroy: Subject<void> = new Subject();
-  private isValid = false;
-  private localized: string;
+export class TranslatePipe extends TranslationPipeBase implements PipeTransform {
 
   constructor(
-    private readonly translation: TranslationService
+    protected readonly cdRef: ChangeDetectorRef,
+    protected readonly translation: TranslationService
   ) {
-    this.translation.languageChanged
-      .pipe( takeUntil( this.onDestroy ) )
-      .subscribe( language => {
-        this.isValid = false;
-      } );
+    super( cdRef, translation );
   }
 
   transform(
@@ -36,10 +28,5 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
       this.isValid = true;
     }
     return this.localized;
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy.next();
-    this.onDestroy.complete();
   }
 }

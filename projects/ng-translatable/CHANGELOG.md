@@ -3,7 +3,7 @@
 ### v7.0.0
 _Published on 12/11/2022._
 
-* Update to NgTranslation v7.0.
+* Update to Angular 15 & NgTranslation v7.0.
 * Add detectChanges() method to TranslatableOptionList, TranslatableLanguageList
   & TranslatableMultipleChoice models to apply changes in filter.
 * Add selectedValue property to TranslatableOptionList and TranslatableLanguageList

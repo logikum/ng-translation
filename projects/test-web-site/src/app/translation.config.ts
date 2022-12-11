@@ -18,7 +18,7 @@ export const translationConfig: TranslationConfig = {
       type: 'text',
       items: [ { name: 'autumn', alias: 'verse' } ]
     },
-    { group: 'winter2', type: 'inline', items: [ 'winter' ] }
+    // { group: 'winter2', type: 'inline', items: [ 'winter' ] }
   ],
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,

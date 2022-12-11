@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { NgTranslationModule } from 'ng-translation';
 
-import { TestsRoutingModule } from './tests-routing.module';
+import { TestsRouting } from './tests.routing';
 
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { ComponentsComponent } from './components/components.component';
@@ -15,7 +15,7 @@ import { NullComponent } from './null/null.component';
   imports: [
     CommonModule,
     NgTranslationModule,
-    TestsRoutingModule,
+    TestsRouting,
     FormsModule
   ],
   declarations: [

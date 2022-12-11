@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
-// import { Locale, TranslationService } from 'ng-translation';
+// import { TextListKeys, TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 
@@ -49,7 +49,7 @@ export class TranslatableTextList implements OnDestroy {
   private translateTexts(): void {
     this.texts.clear();
     this.names.forEach( ( value, key ) => {
-      const result = this.translate.get( key );
+      const result = this.translate.get( key ) || { };
 
       if (typeof result === 'object') {
         const names = Object.getOwnPropertyNames( result );

@@ -1,5 +1,11 @@
 # Changes
 
+### v7.0.0
+_Published on 12/11/2022._
+
+* Update to Angular 15.
+* Fix localization pipes to refresh on language change.
+
 ### v6.1.0
 _Published on 7/3/2022._
 

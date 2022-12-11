@@ -5,13 +5,12 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
-// import { Locale, TranslationService } from 'ng-translation';
+// import { TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class TranslatableMultipleChoice implements IterableIterator<TranslatableOption>, OnDestroy {
 
   private readonly onDestroy: Subject<void> = new Subject();
@@ -46,16 +45,6 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
     }
   }
 
-  get selectedTexts(): Array<string> {
-    return this.items
-      .filter( item => item.selected )
-      .map( item => item.text );
-  }
-
-  get selectedItems(): Array<TranslatableOption> {
-    return this.items.filter( item => item.selected );
-  }
-
   get selectedValues(): Array<string> {
     return this.items
       .filter( item => item.selected )
@@ -78,6 +67,16 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
     }
   }
 
+  get selectedTexts(): Array<string> {
+    return this.items
+      .filter( item => item.selected )
+      .map( item => item.text );
+  }
+
+  get selectedItems(): Array<TranslatableOption> {
+    return this.items.filter( item => item.selected );
+  }
+
   constructor(
     private readonly translate: TranslationService,
     private readonly key: string,
@@ -94,24 +93,29 @@ export class TranslatableMultipleChoice implements IterableIterator<Translatable
     this.getItems();
   }
 
+  detectChanges(): void {
+    this.getItems();
+  }
+
   private getItems(): void {
 
-    const previousIndeces = this.selectedIndeces;
+    const currentValues = this.selectedValues;
+    this.selectedIndeces = [ ];
     this.items.length = 0;
 
     const optionGroup = this.translate.getGroup( this.key );
     if (optionGroup) {
       const optionValues = Object.getOwnPropertyNames( optionGroup );
       if (optionValues.length) {
+        let itemIndex = -1;
+
         for (let i = 0; i < optionValues.length; i++) {
           const value = optionValues[ i ];
           const text = optionGroup[ value ];
           if (this.filter( value, text )) {
-            this.items.push( {
-              value,
-              text,
-              selected: previousIndeces.includes( i )
-            } );
+            itemIndex++;
+            const selected = currentValues.includes( value );
+            this.items.push( { value, text, selected } );
           }
         }
       }

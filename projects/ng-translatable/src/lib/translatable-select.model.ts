@@ -5,13 +5,12 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 /* globally accessible app code in every feature module */
-// import { Locale, TranslationService } from 'ng-translation';
+// import { TranslationService } from 'ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslatableOption } from './translatable-option.model';
 
 @Directive()
-// tslint:disable-next-line:directive-class-suffix
 export class TranslatableSelect implements IterableIterator<TranslatableOption>, OnDestroy {
 
   protected translate: TranslationService;
@@ -23,17 +22,33 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
   private iteratorIndex = 0;
   protected filter = ( value: string, text: string ): boolean => {
     return true;
-  };
+  }
 
   get selectedIndex(): number {
     return this.currentIndex;
   }
 
   set selectedIndex( index: number ) {
+
     const ix = Math.round( index );
     this.currentIndex = -1 < ix && ix < this.items.length ? ix : -1;
     for (let i = 0; i < this.items.length; i++) {
       this.items[ i ].selected = i === this.currentIndex;
+    }
+  }
+
+  get selectedValue(): string {
+    return this.currentIndex < 0 ? undefined : this.items[ this.currentIndex ].value;
+  }
+
+  set selectedValue( value: string ) {
+
+    this.currentIndex = -1;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[ i ].value === value) {
+        this.items[ i ].selected = true;
+        this.currentIndex = i;
+      }
     }
   }
 
@@ -55,28 +70,37 @@ export class TranslatableSelect implements IterableIterator<TranslatableOption>,
     this.getItems();
   }
 
+  detectChanges(): void {
+    this.getItems();
+  }
+
   private getItems(): void {
 
-    const previousIndex = this.currentIndex;
+    const currentValue = this.selectedValue;
     this.currentIndex = -1;
     this.items.length = 0;
 
     const optionGroup = this.translate.getGroup( this.key );
     if (optionGroup) {
       const optionValues = Object.getOwnPropertyNames( optionGroup );
+
       if (optionValues.length) {
-        this.currentIndex = -1 < previousIndex && previousIndex < optionValues.length
-          ? previousIndex : 0;
+        let itemIndex = -1;
+
         for (let i = 0; i < optionValues.length; i++) {
           const value = optionValues[ i ];
           const text = optionGroup[ value ];
           if (this.filter( value, text )) {
-            this.items.push( {
-              value: value,
-              text: optionGroup[ value ],
-              selected: i === this.currentIndex
-            } );
+            itemIndex++;
+            const selected = value === currentValue;
+            this.items.push( { value, text, selected } );
+            if (selected) {
+              this.currentIndex = itemIndex;
+            }
           }
+        }
+        if (this.currentIndex < 0 && this.items.length) {
+          this.currentIndex = 0;
         }
       }
     }

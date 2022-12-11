@@ -133,19 +133,13 @@ export class ComponentsComponent implements OnInit {
 
   textFilterChange(): void {
 
-    this.months = new TranslatableOptionList(
-      this.translate, 'app.month',
-      this.textFilter.bind( this )
-    );
-    this.cdRef.checkNoChanges();
+    this.months.detectChanges();
+    this.cdRef.detectChanges();
   }
 
   lengthFilterChange(): void {
 
-    this.periods = new TranslatableMultipleChoice(
-      this.translate, 'app.month',
-      this.lengthFilter.bind( this )
-    );
-    this.cdRef.checkNoChanges();
+    this.periods.detectChanges();
+    this.cdRef.detectChanges();
   }
 }

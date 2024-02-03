@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Injectable } from '@angular/core';
-import { CanLoad, Route } from '@angular/router';
+import { Route } from '@angular/router';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
@@ -8,7 +8,7 @@ import { TranslationService } from '../services';
 @Injectable( {
   providedIn: 'root'
 } )
-export class LoadTranslationsGuard implements CanLoad {
+export class LoadTranslationsGuard  {
 
   constructor(
     private readonly translationService: TranslationService

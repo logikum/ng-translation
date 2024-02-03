@@ -1,5 +1,11 @@
 # Changes
 
+### v8.0.0
+_Published on 2/3/2024._
+
+* Update to Angular 16.
+* Replace LoadTranslationsGuard with loadTranslations (canMatch).
+
 ### v7.0.0
 _Published on 12/11/2022._
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoadTranslationsGuard } from 'ng-translation';
+import { loadTranslations } from 'ng-translation';
 
 import { ComponentsComponent } from './components/components.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'null', component: NullComponent },
   {
     path: 'conversion',
-    loadChildren: () => import('./conversion/conversion.module').then( m => m.ConversionModule ),
-    canLoad: [ LoadTranslationsGuard ]
+    canMatch: [ loadTranslations ],
+    loadChildren: () => import('./conversion/conversion.module').then( m => m.ConversionModule )
   }
 ];
 

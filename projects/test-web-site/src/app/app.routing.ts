@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 
-import { LoadTranslationsGuard } from 'ng-translation';
+import { loadTranslations } from 'ng-translation';
 
 import { HomeComponent } from './home/home.component';
 
@@ -12,17 +12,17 @@ const routes: Routes = [
     loadChildren: () => import('../seasons/spring/spring.module')
       .then(m => m.SpringModule) },
   { path: 'summer',
+    canMatch: [ loadTranslations ],
     loadChildren: () => import('../seasons/summer/summer.module')
-      .then(m => m.SummerModule),
-    canLoad: [ LoadTranslationsGuard ] },
+      .then(m => m.SummerModule) },
   { path: 'autumn',
+    canMatch: [ loadTranslations ],
     loadChildren: () => import('../seasons/autumn/autumn.module')
-      .then(m => m.AutumnModule),
-    canLoad: [ LoadTranslationsGuard ] },
+      .then(m => m.AutumnModule) },
   { path: 'winter',
     loadChildren: () => import('../seasons/winter/winter.module')
       .then(m => m.WinterModule),
-    canLoad: [ LoadTranslationsGuard ],
+    canMatch: [ loadTranslations ],
     data: { translationGroup: 'frosty' } },
   { path: 'test',
     loadChildren: () => import('../tests/tests.module').then(m => m.TestsModule) },

@@ -1,5 +1,10 @@
 # Changes
 
+### v9.0.0
+_Published on 2/4/2024._
+
+* Update to Angular 17.
+
 ### v8.0.0
 _Published on 2/3/2024._
 

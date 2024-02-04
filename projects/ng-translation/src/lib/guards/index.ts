@@ -1,1 +1,1 @@
-export * from './load-translations.guard';
+export * from './load-translations';

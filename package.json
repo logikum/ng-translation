@@ -1,6 +1,6 @@
 {
   "name": "@logikum/ng-translation",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
   "keywords": [
     "Angular",

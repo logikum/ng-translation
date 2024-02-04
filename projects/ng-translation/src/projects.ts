@@ -5,7 +5,7 @@ export * from './lib/ng-translation.module';
 export * from './lib/get-module-items';
 export * from './lib/types';
 
-export * from './lib/guards/load-translations.guard';
+export * from './lib/guards/load-translations';
 export * from './lib/directives/translate.directive';
 export * from './lib/directives/translate-params.directive';
 

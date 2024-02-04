@@ -1,6 +1,6 @@
 {
   "name": "ng-translatable",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "Supplementary package for NgTranslation; provides data models for translatable UI components.",
   "keywords": [
     "Angular",
@@ -23,11 +23,11 @@
     "url" : "https://github.com/logikum/ng-translation/issues"
   },
   "peerDependencies": {
-    "@angular/common": ">=16.2.0",
-    "@angular/core": ">=16.2.0",
-    "@logikum/ng-translation": "8.x"
+    "@angular/common": ">=17.1.0",
+    "@angular/core": ">=17.1.0",
+    "@logikum/ng-translation": "9.x"
   },
   "dependencies": {
-    "tslib": ">=2.3.0"
+    "tslib": ">=2.6.2"
   }
 }

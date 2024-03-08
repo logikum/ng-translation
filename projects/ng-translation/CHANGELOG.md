@@ -1,5 +1,10 @@
 # Changes
 
+### v9.1.0
+_Published on 3/9/2024._
+
+* Add filenameToCamelCase property to TranslationConfig.
+
 ### v9.0.0
 _Published on 2/4/2024._
 

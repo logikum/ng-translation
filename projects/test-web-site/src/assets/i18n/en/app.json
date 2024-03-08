@@ -22,6 +22,7 @@
     "l10n": "Localization Tests",
     "conversion": "Conversion Tests",
     "null": "NULL Tests",
+    "camel": "Camel-case test",
     "currLang": "Current language:",
     "select": "Select month:",
     "selectedIndex": "The selected index:",

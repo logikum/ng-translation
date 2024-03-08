@@ -6,7 +6,7 @@ export const translationConfig: TranslationConfig = {
   translationPath: '/assets/i18n/{ language }/{ section }.json',
   // translationPath: '/assets/i18n/{section}.{language}.json',
   sections: [
-    'app', 'l10n',
+    'app', 'l10n', 'mit-license',
     { name: 'spring' },
     { group: 'summer', items: [ 'summer' ] },
     { group: 'autumn', type: 'inline', items: [ 'fall' ] },
@@ -23,5 +23,6 @@ export const translationConfig: TranslationConfig = {
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
   disableWarnings: environment.disableWarnings,
-  currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' }
+  currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' },
+  filenameToCamelCase: true
 };

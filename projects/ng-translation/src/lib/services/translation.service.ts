@@ -11,7 +11,9 @@ import {
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
-import { ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader } from '../loaders';
+import {
+  ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
+} from '../loaders';
 import { CurrencyValue, InlineLoaderMap } from '../types';
 
 @Injectable( {
@@ -57,7 +59,7 @@ export class TranslationService implements LocalizeContext {
       config.translationFormat,
       config.loaderType
     );
-    if (config.allowedLanguages && config.allowedLanguages.length) {
+    if (config.allowedLanguages?.length) {
       this.allowedLanguages = config.allowedLanguages;
       if (this.allowedLanguages.indexOf( config.defaultLanguage ) < 0) {
         this.allowedLanguages.push( config.defaultLanguage );
@@ -270,12 +272,23 @@ export class TranslationService implements LocalizeContext {
 
     // Check section properties.
     const path: Array<string> = resource.alias.split( '.' );
+    if (this.config.filenameToCamelCase) {
+      path[ 0 ] = this.toCamelCase( path[ 0 ] );
+    }
     for (let i = 0; i < path.length; i++) {
       if (target[ path[ i ] ] === undefined) {
         target[ path[ i ] ] = i === path.length - 1 ? jsonTranslations : { };
       }
       target = target[ path[ i ] ];
     }
+  }
+
+  private toCamelCase(
+    str: string
+  ): string {
+
+    const camel = str.replace( /-./g, c => c.substring( 1 ).toUpperCase() );
+    return camel.charAt( 0 ).toLowerCase() + camel.slice( 1 );
   }
 
   private handleError(

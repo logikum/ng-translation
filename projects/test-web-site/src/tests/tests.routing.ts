@@ -7,6 +7,7 @@ import { ComponentsComponent } from './components/components.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LocalizationComponent } from './localization/localization.component';
 import { NullComponent } from './null/null.component';
+import { CamelCaseComponent } from './camel-case/camel-case.component';
 
 const routes: Routes = [
   { path: 'components', component: ComponentsComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     path: 'conversion',
     canMatch: [ loadTranslations ],
     loadChildren: () => import('./conversion/conversion.module').then( m => m.ConversionModule )
-  }
+  },
+  { path: 'camel-case', component: CamelCaseComponent }
 ];
 
 @NgModule( {

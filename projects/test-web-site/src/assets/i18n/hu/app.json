@@ -22,6 +22,7 @@
     "l10n": "Lokalizációs tesztek",
     "conversion": "Konvertálási tesztek",
     "null": "NULL tesztek",
+    "camel": "Camel-case teszt",
     "currLang": "Jelenlegi nyelv:",
     "select": "Válassz hónapot:",
     "selectedIndex": "A választott index:",

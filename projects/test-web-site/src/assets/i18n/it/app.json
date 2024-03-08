@@ -22,6 +22,7 @@
     "l10n": "Prove di localizzazione",
     "conversion": "Prove di conversione",
     "null": "Prove di NULL",
+    "camel": "Test del caso del cammello",
     "currLang": "Lingua corrente:",
     "select": "Seleziona il mese:",
     "selectedIndex": "L'indice selezionato:",

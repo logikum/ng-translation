@@ -35,6 +35,7 @@ export interface TranslationConfig {
   readonly allowedLanguages?: Array<string>;
   readonly disableWarnings?: boolean;
   readonly currencyDefaultOptions?: object;
+  readonly filenameToCamelCase?: boolean;
 }
 
 export const NGT_CONFIGURATION = new InjectionToken<TranslationConfig>(

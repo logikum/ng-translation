@@ -1,5 +1,10 @@
 # Changes
 
+### v9.1.1
+_Published on 3/11/2024._
+
+* Fix Angular references.
+
 ### v9.1.0
 _Published on 3/9/2024._
 

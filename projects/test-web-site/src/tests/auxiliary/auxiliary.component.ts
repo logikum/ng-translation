@@ -3,10 +3,11 @@ import { TranslationService } from 'ng-translation';
 import { TranslatableTextList } from 'ng-translatable';
 
 @Component( {
-  selector: 'app-auxiliary',
-  templateUrl: './auxiliary.component.html',
-  styleUrls: [ './auxiliary.component.css' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-auxiliary',
+    templateUrl: './auxiliary.component.html',
+    styleUrls: ['./auxiliary.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 } )
 export class AuxiliaryComponent {
 

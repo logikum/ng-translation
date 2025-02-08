@@ -12,8 +12,9 @@ import { TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
 
 @Directive( {
-  // tslint:disable-next-line:directive-selector
-  selector: '[translate]'
+    // tslint:disable-next-line:directive-selector
+    selector: '[translate]',
+    standalone: false
 } )
 export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
 

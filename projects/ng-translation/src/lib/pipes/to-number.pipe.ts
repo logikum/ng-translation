@@ -6,8 +6,9 @@ import { LocalizationService, TranslationService } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
-  name: 'toNumber',
-  pure: false
+    name: 'toNumber',
+    pure: false,
+    standalone: false
 } )
 export class ToNumberPipe extends TranslationPipeBase implements PipeTransform {
 

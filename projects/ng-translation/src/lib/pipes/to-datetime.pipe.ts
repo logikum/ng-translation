@@ -6,8 +6,9 @@ import { LocalizationService, TranslationService } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
-  name: 'toDatetime',
-  pure: false
+    name: 'toDatetime',
+    pure: false,
+    standalone: false
 } )
 export class ToDatetimePipe extends TranslationPipeBase implements PipeTransform {
 

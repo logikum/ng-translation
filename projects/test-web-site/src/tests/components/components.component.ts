@@ -10,10 +10,11 @@ import {
 } from 'ng-translatable';
 
 @Component( {
-  selector: 'app-components',
-  templateUrl: './components.component.html',
-  styleUrls: [ './components.component.css' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-components',
+    templateUrl: './components.component.html',
+    styleUrls: ['./components.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 } )
 export class ComponentsComponent implements OnInit {
 

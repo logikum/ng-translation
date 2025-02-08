@@ -5,10 +5,11 @@ import { TranslationChange, TranslationService } from 'ng-translation';
 import { TranslatableLanguageList, TranslatableOptionList } from 'ng-translatable';
 
 @Component( {
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 } )
 export class AppComponent implements OnInit {
 

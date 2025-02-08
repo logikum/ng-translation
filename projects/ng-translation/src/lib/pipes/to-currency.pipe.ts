@@ -7,8 +7,9 @@ import { LocalizationService, TranslationService } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
-  name: 'toCurrency',
-  pure: false
+    name: 'toCurrency',
+    pure: false,
+    standalone: false
 } )
 export class ToCurrencyPipe extends TranslationPipeBase implements PipeTransform {
 

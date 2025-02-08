@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, inject, provideAppInitializer } from '@angular/core';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
@@ -82,12 +82,10 @@ export class NgTranslationModule {
             NGT_CONFIGURATION, NGT_INLINE_LOADER,
             NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
           ]
-        }, {
-          provide: APP_INITIALIZER,
-          useFactory: initializerFactory,
-          deps: [ TranslationService, NGT_CONFIGURATION ],
-          multi: true
-        }
+        }, provideAppInitializer(() => {
+        const initializerFn = (initializerFactory)(inject(TranslationService), inject(NGT_CONFIGURATION));
+        return initializerFn();
+      })
       ]
     };
   }

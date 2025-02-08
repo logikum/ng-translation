@@ -9,9 +9,10 @@ interface Price {
 type Currency = Array<CurrencyValue>;
 
 @Component( {
-  selector: 'app-localization',
-  templateUrl: './localization.component.html',
-  styleUrls: [ './localization.component.css' ]
+    selector: 'app-localization',
+    templateUrl: './localization.component.html',
+    styleUrls: ['./localization.component.css'],
+    standalone: false
 } )
 export class LocalizationComponent {
 

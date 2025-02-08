@@ -7,7 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 import { TranslationService } from '../services';
 
 @Component( {
-  template: ''
+    template: '',
+    standalone: false
 } )
 export abstract class TranslationPipeBase implements OnDestroy {
 

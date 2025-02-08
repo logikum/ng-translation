@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -30,40 +30,34 @@ export function getInlineLoaders(): InlineLoaderMap {
   return loaders;
 }
 
-@NgModule( {
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatCardModule,
-    NgTranslationModule.forRoot( translationConfig ),
-    AppRouting,
-    SpringModule,
-    TestsModule
-  ],
-  exports: [
-    HttpClientModule,
-  ],
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
-  providers: [
-    {
-      provide: NGT_INLINE_LOADER,
-      useFactory: getInlineLoaders
-    }, {
-      provide: NGT_TRANSLATION_CONVERTER,
-      useClass: CustomTranslationConverter
-    }, {
-      provide: NGT_TRANSPILE_EXTENDER,
-      useClass: CustomTranspileExtender
-    }
-  ],
-  bootstrap: [
-    AppComponent
-  ]
-} )
+@NgModule( { exports: [
+        HttpClientModule,
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent
+    ],
+    bootstrap: [
+        AppComponent
+    ], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatToolbarModule,
+        MatCardModule,
+        NgTranslationModule.forRoot(translationConfig),
+        AppRouting,
+        SpringModule,
+        TestsModule], providers: [
+        {
+            provide: NGT_INLINE_LOADER,
+            useFactory: getInlineLoaders
+        }, {
+            provide: NGT_TRANSLATION_CONVERTER,
+            useClass: CustomTranslationConverter
+        }, {
+            provide: NGT_TRANSPILE_EXTENDER,
+            useClass: CustomTranspileExtender
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] } )
 export class AppModule { }

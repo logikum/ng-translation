@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslateDirective, TranslateParamsDirective } from './directives';
@@ -22,31 +22,26 @@ import {
 import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultTranspileExtender } from './default-transpile.extender';
 
-@NgModule( {
-  imports: [
-    HttpClientModule
-  ],
-  declarations: [
-    ToCcyPipe,
-    ToCurrencyPipe,
-    ToDatetimePipe,
-    ToNumberPipe,
-    ToPercentPipe,
-    TranslatePipe,
-    TranslateDirective,
-    TranslateParamsDirective
-  ],
-  exports: [
-    ToCcyPipe,
-    ToCurrencyPipe,
-    ToDatetimePipe,
-    ToNumberPipe,
-    ToPercentPipe,
-    TranslatePipe,
-    TranslateDirective,
-    TranslateParamsDirective
-  ]
-} )
+@NgModule( { declarations: [
+        ToCcyPipe,
+        ToCurrencyPipe,
+        ToDatetimePipe,
+        ToNumberPipe,
+        ToPercentPipe,
+        TranslatePipe,
+        TranslateDirective,
+        TranslateParamsDirective
+    ],
+    exports: [
+        ToCcyPipe,
+        ToCurrencyPipe,
+        ToDatetimePipe,
+        ToNumberPipe,
+        ToPercentPipe,
+        TranslatePipe,
+        TranslateDirective,
+        TranslateParamsDirective
+    ], imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] } )
 export class NgTranslationModule {
 
   static forRoot(

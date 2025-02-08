@@ -1,5 +1,4 @@
-import { InlineLoaderMap } from 'ng-translation';
-import { getModuleItems, TranslationConfig } from 'ng-translation';
+import { InlineLoaderMap, getModuleItems, TranslationConfig } from 'ng-translation';
 
 export function addAutumnLoaders(
   loaders: InlineLoaderMap,

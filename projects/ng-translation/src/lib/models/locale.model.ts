@@ -9,12 +9,14 @@ export class Locale {
   readonly hasRegion: boolean;
 
   constructor(
-    readonly language: string
+    readonly baseName: string
   ) {
-    const pos = language.indexOf( '-' );
 
-    this.name = language;
-    this.neutral = pos > 0 ? language.substr( 0, pos ) : language;
-    this.hasRegion = pos > 0;
+    // @ts-ignore
+    const locale = new Intl.Locale( baseName );
+
+    this.name = locale.baseName;
+    this.neutral = locale.language;
+    this.hasRegion = !!locale.region;
   }
 }

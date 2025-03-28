@@ -1,0 +1,2 @@
+[provide-initializer] Replaces `APP_INITIALIZER`, `ENVIRONMENT_INITIALIZER` & `PLATFORM_INITIALIZER` respectively
+with `provideAppInitializer`, `provideEnvironmentInitializer` & `providePlatformInitializer`.

@@ -5,14 +5,14 @@ import { takeUntil } from 'rxjs/operators';
 
 /* locally accessible feature module code, always use relative path */
 import { TranslationService } from '../services';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component( {
     template: '',
     standalone: false
 } )
-export abstract class TranslationPipeBase implements OnDestroy {
+export abstract class TranslationPipeBase {
 
-  private readonly onDestroy: Subject<void> = new Subject();
   protected isValid = false;
   protected localized: string;
 
@@ -21,15 +21,10 @@ export abstract class TranslationPipeBase implements OnDestroy {
     protected readonly translation: TranslationService
   ) {
     this.translation.languageChanged
-      .pipe( takeUntil( this.onDestroy ) )
+      .pipe( takeUntilDestroyed() )
       .subscribe( language => {
         this.isValid = false;
         this.cdRef.markForCheck();
       } );
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy.next();
-    this.onDestroy.complete();
   }
 }

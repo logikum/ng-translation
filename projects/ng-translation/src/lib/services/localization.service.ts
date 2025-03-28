@@ -181,7 +181,7 @@ export class LocalizationService {
           case 'localeMatcher':
             options.localeMatcher = this.checkMember(
               key, optionValue, [ 'lookup', 'best fit' ]
-            );
+            ) as 'lookup' | 'best fit';
             break;
           default:
             this.messenger.optionNameError( key, optionName );

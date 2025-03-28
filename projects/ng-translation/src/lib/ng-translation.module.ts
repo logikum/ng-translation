@@ -3,7 +3,16 @@ import { NgModule, ModuleWithProviders, inject, provideAppInitializer } from '@a
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
-import { TranslateDirective, TranslateParamsDirective } from './directives';
+import {
+  NgtContextDirective,
+  NgtHtmlDirective,
+  NgtTextDirective,
+  Translate2Directive,
+  TranslateDirective,
+  TranslateHtmlDirective,
+  TranslateParamsDirective,
+  TranslationDirective
+} from './directives';
 import {
   NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
   TranslationConfig, NGT_INLINE_LOADER
@@ -22,26 +31,41 @@ import {
 import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultTranspileExtender } from './default-transpile.extender';
 
-@NgModule( { declarations: [
-        ToCcyPipe,
-        ToCurrencyPipe,
-        ToDatetimePipe,
-        ToNumberPipe,
-        ToPercentPipe,
-        TranslatePipe,
-        TranslateDirective,
-        TranslateParamsDirective
-    ],
-    exports: [
-        ToCcyPipe,
-        ToCurrencyPipe,
-        ToDatetimePipe,
-        ToNumberPipe,
-        ToPercentPipe,
-        TranslatePipe,
-        TranslateDirective,
-        TranslateParamsDirective
-    ], imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] } )
+@NgModule( {
+  declarations: [
+    ToCcyPipe,
+    ToCurrencyPipe,
+    ToDatetimePipe,
+    ToNumberPipe,
+    ToPercentPipe,
+    TranslatePipe,
+    NgtContextDirective,
+    NgtHtmlDirective,
+    NgtTextDirective,
+    TranslateDirective, Translate2Directive,
+    TranslateHtmlDirective,
+    TranslateParamsDirective,
+    TranslationDirective
+  ],
+  exports: [
+    ToCcyPipe,
+    ToCurrencyPipe,
+    ToDatetimePipe,
+    ToNumberPipe,
+    ToPercentPipe,
+    TranslatePipe,
+    NgtContextDirective,
+    NgtHtmlDirective,
+    NgtTextDirective,
+    TranslateDirective, Translate2Directive,
+    TranslateHtmlDirective,
+    TranslateParamsDirective,
+    TranslationDirective
+  ],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+} )
 export class NgTranslationModule {
 
   static forRoot(
@@ -82,10 +106,13 @@ export class NgTranslationModule {
             NGT_CONFIGURATION, NGT_INLINE_LOADER,
             NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
           ]
-        }, provideAppInitializer(() => {
-        const initializerFn = (initializerFactory)(inject(TranslationService), inject(NGT_CONFIGURATION));
-        return initializerFn();
-      })
+        },
+        provideAppInitializer(() => {
+          const initializerFn = initializerFactory(
+            inject(TranslationService), inject(NGT_CONFIGURATION)
+          );
+          return initializerFn();
+        })
       ]
     };
   }

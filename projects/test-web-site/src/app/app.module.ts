@@ -30,34 +30,35 @@ export function getInlineLoaders(): InlineLoaderMap {
   return loaders;
 }
 
-@NgModule( { exports: [
-        HttpClientModule,
-    ],
-    declarations: [
-        AppComponent,
-        HomeComponent
-    ],
-    bootstrap: [
-        AppComponent
-    ], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        MatToolbarModule,
-        MatCardModule,
-        NgTranslationModule.forRoot(translationConfig),
-        AppRouting,
-        SpringModule,
-        TestsModule], providers: [
-        {
-            provide: NGT_INLINE_LOADER,
-            useFactory: getInlineLoaders
-        }, {
-            provide: NGT_TRANSLATION_CONVERTER,
-            useClass: CustomTranslationConverter
-        }, {
-            provide: NGT_TRANSPILE_EXTENDER,
-            useClass: CustomTranspileExtender
-        },
-        provideHttpClient(withInterceptorsFromDi())
-    ] } )
+@NgModule( {
+  declarations: [
+    AppComponent,
+    HomeComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    MatToolbarModule,
+    MatCardModule,
+    NgTranslationModule.forRoot(translationConfig),
+    AppRouting,
+    SpringModule,
+    TestsModule], providers: [
+    {
+      provide: NGT_INLINE_LOADER,
+      useFactory: getInlineLoaders
+    }, {
+      provide: NGT_TRANSLATION_CONVERTER,
+      useClass: CustomTranslationConverter
+    }, {
+      provide: NGT_TRANSPILE_EXTENDER,
+      useClass: CustomTranspileExtender
+    },
+    provideHttpClient( withInterceptorsFromDi() )
+  ]
+} )
 export class AppModule { }

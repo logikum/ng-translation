@@ -12,7 +12,6 @@ import { TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
 
 @Directive( {
-    // tslint:disable-next-line:directive-selector
     selector: '[translate]',
     standalone: false
 } )
@@ -36,7 +35,8 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
       .subscribe( language => {
         if (this.key) {
           // Attribute directive.
-          this.container.element.nativeElement.innerText = this.translate.get( this.key, this.params );
+          this.container.element.nativeElement.innerText =
+            this.translate.get( this.key, this.params );
         } else {
           // Structural directive.
           this.cdRef.markForCheck();
@@ -51,7 +51,8 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(
     changes: SimpleChanges
   ): void {
-    const isUpdate = Object.keys( changes ).some( p => changes[ p ].firstChange === false );
+    const isUpdate = Object.keys( changes )
+      .some( p => changes[ p ].firstChange === false );
     if (isUpdate) {
       this.initialize();
     }
@@ -61,7 +62,8 @@ export class TranslateDirective implements OnInit, OnChanges, OnDestroy {
 
     if (this.key) {
       // Attribute directive.
-      this.container.element.nativeElement.innerText = this.translate.get( this.key, this.params );
+      this.container.element.nativeElement.innerText =
+        this.translate.get( this.key, this.params );
     } else {
       // Structural directive.
       const service = this.translate;

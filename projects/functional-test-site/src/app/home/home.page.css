@@ -1,0 +1,18 @@
+.board {
+  margin: 6rem auto;
+  width: 30rem;
+  gap: .5rem;
+  .test {
+    padding: .125rem;
+    border: 1px solid var(--main-color-700);
+    width: 100%;
+    a {
+      text-decoration: none;
+      .test-content {
+        background-color: var(--main-color-900);
+        line-height: 2.5rem;
+        text-align: center;
+      }
+    }
+  }
+}

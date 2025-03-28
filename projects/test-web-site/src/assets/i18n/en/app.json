@@ -69,5 +69,9 @@
     "datetime": "{{0|D}}",
     "plural": "{{0|R:0=zero;1-5=some;other=many}}",
     "boolean": "{{0}}"
+  },
+  "html": {
+    "birth": "<i>Antonio Vivaldi</i> was born on <b>{{ birthDate | D: ds=long }}</b>, in Venice.",
+    "death": "<i>Antonio Vivaldi</i> died on <b>{{ deathDate | D: ds=long }}</b>, in Vienna."
   }
 }

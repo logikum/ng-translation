@@ -1,0 +1,107 @@
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-bg-color: white;
+  --main-fg-color: #202020;
+  --main-color-100: hsla(22, 35%, 22%);
+  --main-color-200: hsla(22, 35%, 30.5%);
+  --main-color-300: hsla(22, 35%, 39%);
+  --main-color-400: hsla(22, 35%, 47.5%);
+  --main-color-500: hsla(22, 35%, 56%);
+  --main-color-600: hsla(22, 35%, 64.5%);
+  --main-color-700: hsla(22, 35%, 73%);
+  --main-color-800: hsla(22, 35%, 81.5%);
+  --main-color-900: hsla(22, 35%, 90%);
+}
+body {
+  color: var(--main-fg-color);
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main-color-300);
+}
+
+/* flexbox */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+align-stretch {
+  align-items: stretch;
+}
+
+/* accordion */
+.accordion-content {
+  padding: .5rem 1rem;
+}

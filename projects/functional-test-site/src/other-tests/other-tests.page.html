@@ -1,0 +1,11 @@
+<ng-container *ngtContext="let t; node: 'other'">
+  <fts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('camelCase.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-camel-case></fts-camel-case>
+        </div>
+      </ng-template>
+    </div>
+  </fts-accordion>
+</ng-container>

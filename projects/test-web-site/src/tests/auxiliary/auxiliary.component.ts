@@ -15,6 +15,8 @@ export class AuxiliaryComponent {
   dailyData = { buy: 3, pay: 2 };
   specialData = [ 'Jackie Chan', 20 ];
   period = 4;
+  birthDate = new Date(1678, 2, 4);
+  deathDate = new Date(1741, 6, 28);
 
   get dailyOffer(): string {
     return this.texts.get( 'offer', this.dailyData );

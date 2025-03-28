@@ -16,13 +16,13 @@
   <table>
     <tr>
       <td>
-        <div>{{ t('/app.shared.title') }}</div>
+        <div>--- <i>Parameters from code:</i></div>
         <div>{{ t('offer', dailyData) }}</div>
         <div>{{ t('special', specialData) }}</div>
         <div>{{ t('sale', period) }}</div>
       </td>
       <td>
-        <div>{{ t('/app.shared.title') }}</div>
+        <div>--- <i>Parameters in view:</i></div>
         <div>{{ t('offer', { buy: 4, pay: 3 }) }}</div>
         <div>{{ t('special', [ 'Bruce Lee', 25 ]) }}</div>
         <div>{{ t('sale', 3) }}</div>
@@ -35,13 +35,13 @@
 <table>
   <tr>
     <td>
-      <div>{{ 'app.shared.title' | translate }}</div>
+      <div>--- <i>Parameters from code:</i></div>
       <div>{{ 'app.shop.offer' | translate:dailyData }}</div>
       <div>{{ 'app.shop.special' | translate:specialData }}</div>
       <div>{{ 'app.shop.sale' | translate:period }}</div>
     </td>
     <td>
-      <div>{{ 'app.shared.title' | translate }}</div>
+      <div>--- <i>Parameters in view:</i></div>
       <div>{{ 'app.shop.offer' | translate:{ buy: 4, pay: 3 } }}</div>
       <div>{{ 'app.shop.special' | translate:[ 'Bruce Lee', 25 ] }}</div>
       <div>{{ 'app.shop.sale' | translate:3 }}</div>
@@ -53,16 +53,16 @@
 <table>
   <tr>
     <td>
-      <div translate="app.shared.title"></div>
-      <div translate="app.shop.offer" [translateParams]="dailyData"></div>
-      <div translate="app.shop.special" [translateParams]="specialData"></div>
-      <div translate="app.shop.sale" [translateParams]="period"></div>
+      <div>--- <i>Parameters from code:</i></div>
+      <div translate2="app.shop.offer" [translateParams]="dailyData"></div>
+      <div translate2="app.shop.special" [translateParams]="specialData"></div>
+      <div translate2="app.shop.sale" [translateParams]="period"></div>
     </td>
     <td>
-      <div translate="app.shared.title"></div>
-      <div translate="app.shop.offer" [translateParams]="{ buy: 4, pay: 3 } "></div>
-      <div translate="app.shop.special" [translateParams]="[ 'Bruce Lee', 25 ]"></div>
-      <div translate="app.shop.sale" [translateParams]="3"></div>
+      <div>--- <i>Parameters in view:</i></div>
+      <div translate2="app.shop.offer" [translateParams]="{ buy: 4, pay: 3 } "></div>
+      <div translate2="app.shop.special" [translateParams]="[ 'Bruce Lee', 25 ]"></div>
+      <div translate2="app.shop.sale" [translateParams]="3"></div>
     </td>
   </tr>
 </table>
@@ -72,3 +72,5 @@
   <div [innerHTML]="t('app.home.subtitle')"></div>
 </ng-container>
 <div [innerHTML]="'app.home.subtitle' | translate"></div>
+<div translateHtml="app.html.birth" [translateParams]="{ birthDate }"></div>
+<div translateHtml="app.html.death" [translateParams]="{ deathDate }"></div>

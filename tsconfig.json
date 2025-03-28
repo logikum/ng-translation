@@ -18,9 +18,11 @@
       "dom"
     ],
     "paths": {
-      "ng-translatable": [
-        "dist/ng-translatable/ng-translatable",
+      "@logikum/ng-translatable": [
         "dist/ng-translatable"
+      ],
+      "@logikum/ng-translation": [
+        "dist/ng-translation"
       ],
       "ng-translation": [
         "dist/ng-translation"

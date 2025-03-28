@@ -69,5 +69,9 @@
     "datetime": "{{0|D}}",
     "plural": "{{0|R:0=zéró;1-5=néhány;other=sok}}",
     "boolean": "{{0}}"
+  },
+  "html": {
+    "birth": "<i>Antonio Vivaldi</i> <b>{{ birthDate | D: ds=long }}</b>-én született Velencében.",
+    "death": "<i>Antonio Vivaldi</i> <b>{{ deathDate | D: ds=long }}</b>-án halt meg Bécsben."
   }
 }

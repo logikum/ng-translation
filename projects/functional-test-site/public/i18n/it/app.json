@@ -1,0 +1,15 @@
+{
+  "languages": {
+    "en": "English",
+    "hu": "magyar",
+    "it": "italiano"
+  },
+  "name": "NgTranslation test",
+  "home": "Benvenuti al sito di test funzionali!",
+  "component": "Test dei componenti",
+  "translation": "Test di traduzione",
+  "localization": "Test di localizzazione",
+  "conversion": "Test di conversione",
+  "null": "Test di valore nullo",
+  "other": "Altri test"
+}

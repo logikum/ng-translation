@@ -2,6 +2,7 @@
 import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /* locally accessible feature module code, always use relative path */
 import {
@@ -21,6 +22,11 @@ import { CurrencyValue, InlineLoaderMap } from '../types';
 } )
 export class TranslationService implements LocalizeContext {
 
+  //region Properties
+
+  private isInitializedSubject = new BehaviorSubject(false);
+  private statusChangeSubject = new Subject<TranslationChange>();
+  private languageChangedSubject = new Subject<string>();
   private isLoading = true;
   private active: string;
   private browserLanguageIsSupported = false;
@@ -29,8 +35,19 @@ export class TranslationService implements LocalizeContext {
   private readonly resourceList: ResourceList;
   private readonly translations: object = { };
 
-  @Output() readonly languageChanged = new EventEmitter<string>();
-  @Output() readonly statusChange = new EventEmitter<TranslationChange>();
+  // @Output() readonly statusChange = new EventEmitter<TranslationChange>();
+
+  get isInitialized(): Observable<boolean> {
+    return this.isInitializedSubject.asObservable();
+  }
+
+  get statusChange(): Observable<TranslationChange> {
+    return this.statusChangeSubject.asObservable();
+  }
+
+  get languageChanged(): Observable<string> {
+    return this.languageChangedSubject.asObservable();
+  }
 
   get activeLanguage(): string {
     return this.active;
@@ -39,6 +56,10 @@ export class TranslationService implements LocalizeContext {
   get isDownloading(): boolean {
     return this.isLoading;
   }
+
+  //endregion
+
+  //region Initialization
 
   constructor(
     private readonly http: HttpClient,
@@ -65,11 +86,21 @@ export class TranslationService implements LocalizeContext {
         this.allowedLanguages.push( config.defaultLanguage );
       }
     }
+    this.statusChange.subscribe( this.watchInitializationEnd.bind( this ) );
+  }
+
+  private watchInitializationEnd(
+    change: TranslationChange
+  ): void {
+
+    if (change.context === 'app' && change.action === 'finish') {
+      this.isInitializedSubject.next(true);
+    }
   }
 
   initializeApp(): Promise<boolean> {
 
-    this.statusChange.emit( TranslationChange.event( 'app', 'start' ) );
+    this.statusChangeSubject.next( TranslationChange.event( 'app', 'start' ) );
     return new Promise( ( resolve, reject ) => {
 
       const languages: Array<string> = this.getInitialLanguages();
@@ -81,12 +112,12 @@ export class TranslationService implements LocalizeContext {
       Promise.all( promises )
         .then( () => {
           this.isLoading = false;
-          this.statusChange.emit( TranslationChange.event( 'app', 'finish' ) );
+          this.statusChangeSubject.next( TranslationChange.event( 'app', 'finish' ) );
           resolve( this.browserLanguageIsSupported );
         } )
         .catch( error => {
           this.isLoading = false;
-          this.statusChange.emit( TranslationChange.event( 'app', 'finish' ) );
+          this.statusChangeSubject.next( TranslationChange.event( 'app', 'finish' ) );
           reject( error );
         } );
     } );
@@ -102,7 +133,7 @@ export class TranslationService implements LocalizeContext {
     const module = route.data && route.data.translationGroup ?
       route.data.translationGroup :
       route.path;
-    this.statusChange.emit( TranslationChange.event( 'module', 'start', module ) );
+    this.statusChangeSubject.next( TranslationChange.event( 'module', 'start', module ) );
 
     return new Promise( ( resolve, reject ) => {
 
@@ -115,16 +146,20 @@ export class TranslationService implements LocalizeContext {
       Promise.all( promises )
         .then( () => {
           this.isLoading = false;
-          this.statusChange.emit( TranslationChange.event( 'module', 'finish', module ) );
+          this.statusChangeSubject.next( TranslationChange.event( 'module', 'finish', module ) );
           resolve( true );
         } )
         .catch( error => {
           this.isLoading = false;
-          this.statusChange.emit( TranslationChange.event( 'module', 'finish', module ) );
+          this.statusChangeSubject.next( TranslationChange.event( 'module', 'finish', module ) );
           reject( error );
         } );
     } );
   }
+
+  //endregion
+
+  //region Change language
 
   changeLanguage(
     language: string
@@ -136,12 +171,12 @@ export class TranslationService implements LocalizeContext {
 
       if (this.translations[ locale.name ]) {
         this.active = locale.name;
-        this.languageChanged.emit( locale.name );
+        this.languageChangedSubject.next( locale.name );
         resolve();
 
       } else if (locale.hasRegion && this.translations[ locale.neutral ]) {
         this.active = locale.neutral;
-        this.languageChanged.emit( locale.neutral );
+        this.languageChangedSubject.next( locale.neutral );
         resolve();
 
       } else {
@@ -152,7 +187,7 @@ export class TranslationService implements LocalizeContext {
           return;
         }
 
-        this.statusChange.emit( TranslationChange.event( 'language', 'start', safeLanguage ) );
+        this.statusChangeSubject.next( TranslationChange.event( 'language', 'start', safeLanguage ) );
 
         const promises: Promise<any>[] = this.getDownloadPromises(
           [ locale.name ],
@@ -161,17 +196,19 @@ export class TranslationService implements LocalizeContext {
         Promise.all( promises )
           .then( () => {
             this.active = this.translations[ locale.name ] ? locale.name : locale.neutral;
-            this.languageChanged.emit( safeLanguage );
-            this.statusChange.emit( TranslationChange.event( 'language', 'finish', safeLanguage ) );
+            this.languageChangedSubject.next( safeLanguage );
+            this.statusChangeSubject.next( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             resolve();
           } )
           .catch( error => {
-            this.statusChange.emit( TranslationChange.event( 'language', 'finish', safeLanguage ) );
+            this.statusChangeSubject.next( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             reject( error );
           } );
       }
     } );
   }
+
+  //endregion
 
   // region Helper methods
 

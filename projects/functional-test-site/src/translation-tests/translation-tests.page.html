@@ -1,0 +1,46 @@
+<ng-container *ngtContext="let t; node: 'translation'">
+  <fts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-interpolation></fts-interpolation>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-node></fts-node>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-structural></fts-structural>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-pipe></fts-pipe>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-attribute></fts-attribute>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-html></fts-html>
+        </div>
+      </ng-template>
+    </div>
+  </fts-accordion>
+</ng-container>

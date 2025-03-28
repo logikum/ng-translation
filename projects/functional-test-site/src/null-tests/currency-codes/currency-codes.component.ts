@@ -1,0 +1,17 @@
+/* 3rd party libraries */
+import { Component } from '@angular/core';
+import { NgTranslationModule } from 'ng-translation';
+
+/* locally accessible feature module code, always use relative path */
+
+@Component({
+  selector: 'fts-currency-codes',
+  imports: [
+    NgTranslationModule
+  ],
+  templateUrl: './currency-codes.component.html',
+  styleUrl: './currency-codes.component.css'
+})
+export class CurrencyCodesComponent {
+
+}

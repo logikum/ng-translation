@@ -1,0 +1,12 @@
+<ng-container *ngtContext="let t; node: 'app'">
+
+  <div class="board flex-col align-center">
+    @for (test of tests; track test) {
+      <div class="test">
+        <a [routerLink]="test">
+          <h3 class="test-content">{{ t(test) }}</h3>
+        </a>
+      </div>
+    }
+  </div>
+</ng-container>

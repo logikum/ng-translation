@@ -8,5 +8,6 @@ export * from './translate-context.model';
 export * from './translation-change.model';
 export * from './translation-config.model';
 export * from './translation-converter.model';
+export * from './translation-reader.model';
 export * from './transpile-data.model';
 export * from './transpile-extender.model';

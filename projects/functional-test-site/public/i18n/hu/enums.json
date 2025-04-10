@@ -1,0 +1,28 @@
+{
+  "logLevel": {
+    "info": "informció",
+    "success": "siker",
+    "warning": "figyelmeztetés",
+    "error": "hiba"
+  },
+  "season": {
+    "spring": "tavasz",
+    "summer": "nyár",
+    "autumn": "ősz",
+    "winter": "tél"
+  },
+  "month": {
+    "jan": "január",
+    "feb": "február",
+    "mar": "március",
+    "apr": "április",
+    "may": "május",
+    "jun": "június",
+    "jul": "július",
+    "aug": "augusztus",
+    "sep": "szeptember",
+    "oct": "október",
+    "nov": "november",
+    "dec": "december"
+  }
+}

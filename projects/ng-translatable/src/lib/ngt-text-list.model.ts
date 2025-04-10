@@ -21,7 +21,7 @@ export class NgtTextList {
 
     } else if (this.keyList instanceof Array) {
       this.keyList.forEach( key => {
-        this.names.set( key, key );
+        this.names.set( key, '' );
       } );
 
     } else {
@@ -41,20 +41,21 @@ export class NgtTextList {
   }
 
   private translateTexts(): void {
+
     this.texts.clear();
     this.names.forEach( ( value, key ) => {
-      const result = this.translation.get( key ) || { };
+      const result = this.translation.get( value || key ) || { };
 
       if (typeof result === 'object') {
         const names = Object.getOwnPropertyNames( result );
         names.forEach( name => {
           this.texts.set(
-            value ? `${ value }.${ name }` : name,
+            value ? name : `${ key }.${ name }`,
             result[ name ]
           );
         } );
       } else {
-        this.texts.set( value, result );
+        this.texts.set( key, result );
       }
     } );
   }

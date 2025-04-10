@@ -19,13 +19,15 @@
     "ng": "ng",
     "start": "ng serve test-web-site --port=3000 --open",
     "build:ngt": "ng build ng-translation",
-    "build:ngc": "ng build ng-translatable",
-    "build:tws": "ng build test-web-site",
-    "build:all": "npm run build:ngt && npm run build:ngm && npm run build:tws",
+    "build:ngm": "ng build ng-translatable",
+    "build:fts": "ng build functional-test-site",
+    "build:all": "npm run build:ngt && npm run build:ngm && npm run build:fts",
+    "watch:ngt": "ng build ng-translation --watch",
+    "watch:ngm": "ng build ng-translatable --watch",
     "serve:fts": "ng serve functional-test-site --port=4200 --open",
     "serve:std": "ng serve standalone-test-site --port=4200 --open",
     "serve:tws": "ng serve test-web-site --port=4200 --open",
-    "i18n": "node tools/i18n/server.mjs",
+    "i18n:fts": "node tools/i18n/server.mjs projects/functional-test-site/src projects/functional-test-site/public/i18n/en",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -44,6 +46,7 @@
     "@angular/router": "^19.1.5",
     "codelyzer": "^6.0.2",
     "initialize-css": "^1.4.0",
+    "rxjs": ">=7.4.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

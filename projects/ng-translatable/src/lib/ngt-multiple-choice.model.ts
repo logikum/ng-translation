@@ -22,22 +22,17 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
       .length;
   }
 
-  get selectedIndeces(): Array<number> {
+  get selectedIndexes(): Array<number> {
     return this.items
       .map( ( item, index ) => item.selected ? index : -1 )
       .filter( item => item > -1 );
   }
 
-  set selectedIndeces( indeces: Array<number> ) {
-    this.items.forEach( item => {
-      item.selected = false;
-    } );
-    if (indeces) {
-      indeces.forEach( index => {
-        if (-1 < index && index < this.items.length) {
-          this.items[ index ].selected = true;
-        }
-      } );
+  set selectedIndexes( indexes: Array<number> ) {
+    if (indexes) {
+      for ( let i = 0; i < this.items.length; i++ ) {
+        this.items[i].selected = indexes.includes( i );
+      }
     }
   }
 
@@ -50,16 +45,10 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
   set selectedValues(
     values: Array<string>
   ) {
-    this.items.forEach( item => {
-      item.selected = false;
-    } );
     if (values) {
-      values.forEach( value => {
-        const match = this.items.find( item => item.value === value );
-        if (match) {
-          match.selected = true;
-        }
-      } );
+      this.items.forEach( item => {
+        item.selected = values.includes( item.value );
+      });
     }
   }
 
@@ -96,7 +85,7 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
   private getItems(): void {
 
     const currentValues = this.selectedValues;
-    this.selectedIndeces = [ ];
+    this.selectedIndexes = [ ];
     this.items.length = 0;
 
     const optionGroup = this.translation.getGroup( this.key );
@@ -130,12 +119,14 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
   }
 
   selectAll(): void {
+
     this.items.forEach( item => {
       item.selected = true;
     } );
   }
 
   deselectAll(): void {
+
     this.items.forEach( item => {
       item.selected = false;
     } );

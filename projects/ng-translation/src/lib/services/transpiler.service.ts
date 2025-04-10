@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
 import { FormatData, TranspileData, TranspileExtender } from '../models';
@@ -122,7 +122,7 @@ export class TranspilerService {
             break;
           default:
             const transpiled = this.extender.transpile( format, fdata );
-            if (transpiled) {
+            if (transpiled !== undefined) {
               localized = transpiled;
             } else {
               this.messenger.formatError( tdata.key, format );

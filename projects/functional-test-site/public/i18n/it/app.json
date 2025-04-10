@@ -11,5 +11,12 @@
   "localization": "Test di localizzazione",
   "conversion": "Test di conversione",
   "null": "Test di valore nullo",
-  "other": "Altri test"
+  "other": "Altri test",
+  "enums": {
+    "appStatus": {
+      "construct": "in costruzione",
+      "operate": "in funzione",
+      "maintain": "in manutenzione"
+    }
+  }
 }

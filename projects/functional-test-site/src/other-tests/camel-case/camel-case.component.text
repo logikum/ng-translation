@@ -1,0 +1,15 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> other.camelCase
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+title: Sample Title
+description: Sample description of the section.
+
+share: Kizárólag osztalékért a szóban részvényeket még nem késő megvenni, főleg mert a végső szót kimondó közgyűlések még hátra vannak.
+law: A törvény ugyanis meglehetősen laza, megengedi, hogy másképp döntsenek a részvényesek.
+graphisoft: Kiemelkedik a Graphisoft Park osztaléka, amely a jelenlegi árfolyam alapján {{ 0 }} százalék hozamnak felel meg, ám euróban.
+lombik: Tavaly az újszülöttek {{0|N}} százaléka lombik beavatkozásból született, 2023-ban {{1|N}} százalék, 2021-ben pedig {{2|N}} százalék.
+report: A jelentés dátuma {{ 0 | D }}

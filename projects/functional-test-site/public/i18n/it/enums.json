@@ -1,0 +1,8 @@
+{
+  "logLevel": {
+    "info": "informazioni",
+    "success": "successo",
+    "warning": "avvertimento",
+    "error": "errore"
+  }
+}

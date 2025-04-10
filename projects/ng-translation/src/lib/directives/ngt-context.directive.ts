@@ -7,7 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use relative path */
 import { CurrencyValue } from '../types';
-import { TranslateContext } from '../models';
+import { FormatData, TranslateContext } from '../models';
 import { LocalizationService, TranslationService } from '../services';
 
 @Directive( {
@@ -52,6 +52,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
     const service = this.translate;
     const localize = this.localization;
     const keyRoot = this.ngtContextNode;
+    const self = this;
     const context: TranslateContext = {
       $implicit: function (
         key: string,
@@ -60,9 +61,9 @@ export class NgtContextDirective implements OnInit, OnChanges {
         if (service.isDownloading) {
           return '';
         } else if (key.startsWith( '/' )) {
-          return service.get( key.substr( 1 ), args );
+          return service.get( key.substring( 1 ), args );
         } else if (keyRoot) {
-          return service.get( `${ keyRoot }.${ key }`, args );
+          return service.get( self.merge( keyRoot, key ), args );
         } else {
           return service.get( key, args );
         }
@@ -101,7 +102,47 @@ export class NgtContextDirective implements OnInit, OnChanges {
         }
       }
     };
+    if (this.translate.formatNameExtensions.length) {
+      this.translate.formatNameExtensions.forEach( formatName => {
+
+        context.localize[formatName] = (value: any, params?: string): string => {
+          const formatData: FormatData = {
+            key: undefined,
+            locale: this.translate.activeLanguage,
+            params: params || '',
+            value: value
+          };
+          return this.translate.custom( formatName, formatData );
+        };
+      } );
+    }
     this.container.clear();
     this.container.createEmbeddedView( this.template, context );
+  }
+
+  private merge(
+    keyRoot: string,
+    key: string
+  ): string {
+
+    if (key.startsWith('../')) {
+
+      let head = keyRoot;
+      let tail = key;
+      do {
+        const nodes = head.split( '.' );
+        if (nodes.length > 1) {
+          nodes.splice( -1, 1 );
+          head = nodes.join('.');
+        } else {
+          head = '';
+        }
+        tail = tail.substring( 3 );
+      } while (tail.startsWith('../'));
+
+      return `${ head }.${ tail }`;
+    } else {
+      return `${ keyRoot }.${ key }`;
+    }
   }
 }

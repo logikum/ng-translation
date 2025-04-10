@@ -1,0 +1,12 @@
+{
+  "camelCase": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "title": "Sample Title",
+  "description": "Sample description of the section.",
+  "transpileExtender": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  }
+}

@@ -4,17 +4,43 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import {
+  InlineLoaderMap, NGT_INLINE_LOADER,
+  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
+  NgTranslationModule
+} from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { routes } from './app.routes';
 import { translationConfig } from './translation.config';
+import { CustomTranslationConverter } from './custom-translation-converter';
+import { CustomTranspileExtender } from './custom-transpile-extender';
+// import {
+//   addAutumnLoaders
+// } from '../../../test-web-site/src/seasons/autumn/add-autumn-loaders';
+
+export function getInlineLoaders(): InlineLoaderMap {
+
+  const loaders: InlineLoaderMap = {};
+  // addAutumnLoaders( loaders, translationConfig );
+  return loaders;
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimations(),
-    importProvidersFrom( NgTranslationModule.forRoot(translationConfig) )
+    importProvidersFrom( NgTranslationModule.forRoot(translationConfig) ),
+    {
+      provide: NGT_INLINE_LOADER,
+      useFactory: getInlineLoaders
+    }, {
+      provide: NGT_TRANSLATION_CONVERTER,
+      useClass: CustomTranslationConverter
+    }, {
+      provide: NGT_TRANSPILE_EXTENDER,
+      useClass: CustomTranspileExtender
+    }
   ]
 };

@@ -1,0 +1,30 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> enums
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+logLevel.info:      information
+logLevel.success:   success
+logLevel.warning:   warning
+logLevel.error:     error
+
+season.spring:  spring
+season.summer:  summer
+season.autumn:  autumn
+season.winter:  winter
+
+month.jan:  January
+month.feb:  February
+month.mar:  March
+month.apr:  April
+month.may:  May
+month.jun:  June
+month.jul:  July
+month.aug:  August
+month.sep:  September
+month.oct:  October
+month.nov:  November
+month.dec:  December

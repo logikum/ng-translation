@@ -1,3 +1,34 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "attribute": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "html": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "interpolation": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "pipe": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "structural": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "text": {
+    "title": "Text Translation",
+    "otherElements": "The other four elements in the movie The Fifth Element:",
+    "element": {
+      "earth": "earth",
+      "water": "water",
+      "wind": "wind",
+      "fire": "fire"
+    }
+  },
+  "title": "Sample Title",
+  "description": "Sample description of the section."
 }

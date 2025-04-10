@@ -8,7 +8,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
   Resource, ResourceList, ResourceLoader, TranslationChange, TranslationConfig,
-  TranslationConverter, TranspileExtender, LocalizeContext, NGT_INLINE_LOADER
+  TranslationConverter, TranspileExtender, LocalizeContext, NGT_INLINE_LOADER,
+  FormatData
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
@@ -24,9 +25,9 @@ export class TranslationService implements LocalizeContext {
 
   //region Properties
 
-  private isInitializedSubject = new BehaviorSubject(false);
-  private statusChangeSubject = new Subject<TranslationChange>();
-  private languageChangedSubject = new Subject<string>();
+  private readonly isInitializedSubject = new BehaviorSubject(false);
+  private readonly statusChangeSubject = new Subject<TranslationChange>();
+  private readonly languageChangedSubject = new Subject<string>();
   private isLoading = true;
   private active: string;
   private browserLanguageIsSupported = false;
@@ -34,8 +35,6 @@ export class TranslationService implements LocalizeContext {
   private readonly allowedLanguages: Array<string>;
   private readonly resourceList: ResourceList;
   private readonly translations: object = { };
-
-  // @Output() readonly statusChange = new EventEmitter<TranslationChange>();
 
   get isInitialized(): Observable<boolean> {
     return this.isInitializedSubject.asObservable();
@@ -57,6 +56,10 @@ export class TranslationService implements LocalizeContext {
     return this.isLoading;
   }
 
+  get formatNameExtensions(): string[] {
+    return this.extender.formatNames || [];
+  }
+
   //endregion
 
   //region Initialization
@@ -73,6 +76,7 @@ export class TranslationService implements LocalizeContext {
     this.defaultLanguage = config.defaultLanguage;
     this.messenger.disableWarnings = config.disableWarnings;
     this.transpile.extender = extender;
+    this.transpile.extender.translation = this;
     this.resourceList = new ResourceList(
       messenger,
       config.sections,
@@ -527,6 +531,14 @@ export class TranslationService implements LocalizeContext {
   ): string {
 
     return this.transpile.datetime( this.activeLanguage, value, args );
+  }
+
+  custom(
+    format: string,
+    formatData: FormatData
+  ): string {
+
+    return this.extender.transpile( format, formatData );
   }
 
   //endregion

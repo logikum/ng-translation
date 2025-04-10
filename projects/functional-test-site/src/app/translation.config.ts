@@ -9,8 +9,8 @@ export const translationConfig: TranslationConfig = {
   translationPath: '/i18n/{ language }/{ section }.json',
   // translationPath: '/18n/{section}.{language}.json',
   sections: [
-    'app',
-    { group: 'component', items: [ 'component' ] },
+    'app', 'enums',
+    { group: 'model', items: [ 'model' ] },
     { group: 'translation', items: [ 'translation' ] },
     { group: 'localization', items: [ 'localization' ] },
     { group: 'conversion', items: [ 'conversion' ] },

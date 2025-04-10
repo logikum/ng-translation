@@ -1,1 +1,14 @@
-<p>camel-case works!</p>
+<ng-container *ngtContext="let t; node: 'other'; let l = localize">
+  <p>camel-case works!</p>
+<!--  <p>Status: {{ status | enum }}</p>-->
+  <p>Log level: {{ l.logLevel( logLevel ) }}</p>
+  <p>App status: {{ l.appStatus( appStatus ) }}</p>
+</ng-container>
+<hr>
+<ng-container *ngtReader="let r; node: 'other.camelCase'; let l = localize">
+  <p>{{ r.share() }}</p>
+  <p>{{ r.law() }}</p>
+  <p>{{ r.graphisoft( l.number( 5.91 ) ) }}</p>
+  <p>{{ r.lombik( 3.2, 3.06, 2.38 ) }}</p>
+  <p>{{ r.report( date ) }}</p>
+</ng-container>

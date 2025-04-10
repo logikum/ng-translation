@@ -1,0 +1,20 @@
+{
+  "title": "Sample Title",
+  "description": "Sample description of the section.",
+  "localeList": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "multipleChoice": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "singleChoice": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  },
+  "textList": {
+    "title": "Sample Title",
+    "description": "Sample description of the section."
+  }
+}

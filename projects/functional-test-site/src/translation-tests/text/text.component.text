@@ -1,0 +1,14 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translation.text
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:          Text Translation
+otherElements:  The other four elements in the movie The Fifth Element:
+element.earth:  earth
+element.water:  water
+element.wind:   wind
+element.fire:   fire

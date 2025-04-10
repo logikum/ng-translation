@@ -3,6 +3,9 @@ import EventEmitter from 'node:events';
 import fsExtra from 'fs-extra';
 
 export default class Observer extends EventEmitter {
+
+  isInitialized = false;
+
   constructor() {
     super();
   }
@@ -27,12 +30,12 @@ export default class Observer extends EventEmitter {
         })
         .on('change', async filePath => {
           const relFilePath = filePath.substring(folder.length + 1);
-          this.log(filePath, 'changed');
+          this.log(relFilePath, 'changed');
           this.emit('file-changed', { filePath: relFilePath });
         })
         .on('unlink', async filePath => {
           const relFilePath = filePath.substring(folder.length + 1);
-          this.log(filePath, 'removed');
+          this.log(relFilePath, 'removed');
           this.emit('file-removed', { filePath: relFilePath });
         });
     } catch (error) {
@@ -41,6 +44,8 @@ export default class Observer extends EventEmitter {
   }
 
   log(filePath, event) {
-    console.log(`${filePath} has been ${event}.`);
+    if (this.isInitialized) {
+      console.log( `${filePath} => ${event}` );
+    }
   }
 }

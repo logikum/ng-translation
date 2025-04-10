@@ -11,7 +11,7 @@ const VALUE_SEP = '=';
 
 function createFormatData(
   locale: string,
-  value: number | CurrencyValue | Date | string,
+  value: string | number | Date | CurrencyValue,
   args: string
 ): FormatData {
 

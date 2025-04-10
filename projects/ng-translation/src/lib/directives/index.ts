@@ -1,5 +1,6 @@
 export * from './ngt-context.directive';
 export * from './ngt-html.directive';
+export * from './ngt-reader.directive';
 export * from './ngt-text.directive';
 export * from './translate.directive';
 export * from './translate2.directive';

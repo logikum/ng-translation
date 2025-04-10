@@ -47,7 +47,9 @@ export function getInlineLoaders(): InlineLoaderMap {
     NgTranslationModule.forRoot(translationConfig),
     AppRouting,
     SpringModule,
-    TestsModule], providers: [
+    TestsModule
+  ],
+  providers: [
     {
       provide: NGT_INLINE_LOADER,
       useFactory: getInlineLoaders

@@ -1,15 +1,23 @@
 {
-  "languages": {
-    "en": "English",
-    "hu": "magyar",
-    "it": "italiano"
-  },
-  "name": "NgTranslation Tests",
-  "home": "Welcome to Functional Test Site!",
-  "component": "Component Tests",
+  "model": "Model Tests",
   "translation": "Translation Tests",
   "localization": "Localization Tests",
   "conversion": "Conversion Tests",
   "null": "Null Value Tests",
-  "other": "Other Tests"
+  "other": "Other Tests",
+  "fourSeasons": "The four seasons:",
+  "enums": {
+    "appStatus": {
+      "construct": "under construction",
+      "operate": "in operation",
+      "maintain": "under maintenance"
+    }
+  },
+  "header": {
+    "name": "NgTranslation/NgTranslatable Tests"
+  },
+  "home": {
+    "title": "Welcome to Functional Test Site!"
+  },
+  "title": {}
 }

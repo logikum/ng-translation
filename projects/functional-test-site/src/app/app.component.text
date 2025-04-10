@@ -1,0 +1,17 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> app
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+model:          Model Tests
+translation:    Translation Tests
+localization:   Localization Tests
+conversion:     Conversion Tests
+null:           Null Value Tests
+other:          Other Tests
+
+# shared texts
+fourSeasons:    The four seasons:

@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> app.home
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Welcome to Functional Test Site!

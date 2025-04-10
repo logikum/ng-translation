@@ -6,8 +6,10 @@ export * from './lib/get-module-items';
 export * from './lib/types';
 
 export * from './lib/guards/load-translations';
+
 export * from './lib/directives/ngt-context.directive';
 export * from './lib/directives/ngt-html.directive';
+export * from './lib/directives/ngt-reader.directive';
 export * from './lib/directives/ngt-text.directive';
 export * from './lib/directives/translate.directive';
 export * from './lib/directives/translate2.directive';
@@ -32,4 +34,5 @@ export * from './lib/models/translate-context.model';
 export * from './lib/models/translation-change.model';
 export * from './lib/models/translation-config.model';
 export * from './lib/models/translation-converter.model';
+export * from './lib/models/translation-reader.model';
 export * from './lib/models/transpile-extender.model';

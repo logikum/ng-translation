@@ -1,0 +1,9 @@
+<p>transpile-extender works!</p>
+<ng-container *ngtContext="let t; node: 'other.transpileExtender'; let l = localize">
+  <p>8 = {{ t(format, 8) }}</p>
+  <p>Range = {{ l.roman(1) }} ... {{ l.roman(3399) }}</p>
+  <p>@for (one of ones; track one; let i = $index) {{{ l.roman(one) + separator(i) }}}</p>
+  <p>@for (ten of tens; track ten; let i = $index) {{{ l.roman(ten) + separator(i) }}}</p>
+  <p>@for (hundred of hundreds; track hundred; let i = $index) {{{ l.roman(hundred) + separator(i) }}}</p>
+  <p>@for (random of randoms; track random; let i = $index) {{{ l.roman(random) + separator(i) }}}</p>
+</ng-container>

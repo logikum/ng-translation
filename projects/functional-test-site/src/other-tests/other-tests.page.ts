@@ -6,13 +6,17 @@ import { NgTranslationModule } from 'ng-translation';
 import { ContentService } from '../shared/content.service';
 import { AccordionModule } from '../shared/accordion/accordion.module';
 import { CamelCaseComponent } from './camel-case/camel-case.component';
+import {
+  TranspileExtenderComponent
+} from './transpile-extender/transpile-extender.component';
 
 @Component({
   selector: 'fun-other-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,
-    CamelCaseComponent
+    CamelCaseComponent,
+    TranspileExtenderComponent
   ],
   templateUrl: './other-tests.page.html',
   styleUrl: './other-tests.page.css'

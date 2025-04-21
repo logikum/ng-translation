@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 /* locally accessible feature module code, always use relative path */
 import {
-  Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
+  Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_FORMAT_EXTENDER,
   NGT_INLINE_LOADER, Resource, ResourceList, ResourceLoader, TranslationChange,
   LocalizeContext, FormatData
 } from '../models';
@@ -28,7 +28,7 @@ export class TranslationService implements LocalizeContext {
   private readonly config = inject( NGT_CONFIGURATION );
   private readonly loaders = inject( NGT_INLINE_LOADER );
   private readonly converter = inject( NGT_TRANSLATION_CONVERTER );
-  private readonly extender = inject( NGT_TRANSPILE_EXTENDER );
+  private readonly extender = inject( NGT_FORMAT_EXTENDER );
   private readonly transpile = inject( TranspilerService );
   private readonly localize = inject( LocalizationRef );
   private readonly messenger = inject( MessengerService );

@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { FormatData, TranspileData, TranspileExtender } from '../models';
+import { FormatData, FormatExtender, TranspileData } from '../models';
 import { LocalizationService } from './localization.service';
 import { MessengerService } from './messenger.service';
 
@@ -21,7 +21,7 @@ export class TranspilerService {
   private readonly localization = inject( LocalizationService );
   private readonly messenger = inject( MessengerService );
 
-  extender: TranspileExtender;
+  extender: FormatExtender;
 
   insert(
     data: TranspileData,

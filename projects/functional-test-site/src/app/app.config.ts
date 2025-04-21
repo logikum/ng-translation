@@ -5,16 +5,15 @@ import {
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
-  InlineLoaderMap, NGT_INLINE_LOADER,
-  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
-  NgTranslationModule
+  InlineLoaderMap, NGT_INLINE_LOADER, NGT_TRANSLATION_CONVERTER,
+  NGT_FORMAT_EXTENDER, NgTranslationModule
 } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { routes } from './app.routes';
 import { translationConfig } from './translation.config';
 import { CustomTranslationConverter } from './custom-translation-converter';
-import { CustomTranspileExtender } from './custom-transpile-extender';
+import { CustomFormatExtender } from './custom-format-extender';
 // import {
 //   addAutumnLoaders
 // } from '../../../test-web-site/src/seasons/autumn/add-autumn-loaders';
@@ -39,8 +38,8 @@ export const appConfig: ApplicationConfig = {
       provide: NGT_TRANSLATION_CONVERTER,
       useClass: CustomTranslationConverter
     }, {
-      provide: NGT_TRANSPILE_EXTENDER,
-      useClass: CustomTranspileExtender
+      provide: NGT_FORMAT_EXTENDER,
+      useClass: CustomFormatExtender
     }
   ]
 };

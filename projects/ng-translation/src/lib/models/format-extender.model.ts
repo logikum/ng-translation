@@ -5,11 +5,11 @@ import { InjectionToken } from '@angular/core';
 import { TranslationService } from '../services';
 import { FormatData } from './format-data.model';
 
-export const NGT_TRANSPILE_EXTENDER = new InjectionToken<TranspileExtender>(
-  'NGT_TRANSPILE_EXTENDER'
+export const NGT_FORMAT_EXTENDER = new InjectionToken<FormatExtender>(
+  'NGT_FORMAT_EXTENDER'
 );
 
-export interface TranspileExtender {
+export interface FormatExtender {
 
   translation: TranslationService;
   readonly formatNames: Array<string>;
@@ -19,7 +19,7 @@ export interface TranspileExtender {
   ): string | undefined;
 }
 
-export abstract class TranspileExtenderBase implements TranspileExtender {
+export abstract class TranspileExtenderBase implements FormatExtender {
 
   translation: TranslationService;
   abstract readonly formatNames: Array<string>;

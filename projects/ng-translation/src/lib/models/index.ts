@@ -9,4 +9,4 @@ export * from './translation-config.model';
 export * from './translation-converter.model';
 export * from './translation-reader.model';
 export * from './transpile-data.model';
-export * from './transpile-extender.model';
+export * from './format-extender.model';

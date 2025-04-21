@@ -8,7 +8,7 @@ import {
   NgtTextDirective,
 } from './directives';
 import {
-  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
+  NGT_TRANSLATION_CONVERTER, NGT_FORMAT_EXTENDER, NGT_CONFIGURATION,
   NGT_INLINE_LOADER, TranslationConfig
 } from './models';
 import {
@@ -17,7 +17,7 @@ import {
 import { TranslationService } from './services';
 import { initializerFactory } from './initializer.factory';
 import { DefaultTranslationConverter } from './default-translation.converter';
-import { DefaultTranspileExtender } from './default-transpile.extender';
+import { DefaultFormatExtender } from './default-format.extender';
 
 @NgModule( {
   declarations: [
@@ -69,8 +69,8 @@ export class NgTranslationModule {
           provide: NGT_TRANSLATION_CONVERTER,
           useClass: DefaultTranslationConverter
         }, {
-          provide: NGT_TRANSPILE_EXTENDER,
-          useClass: DefaultTranspileExtender
+          provide: NGT_FORMAT_EXTENDER,
+          useClass: DefaultFormatExtender
         },
         provideAppInitializer(() => {
           const initializerFn = initializerFactory(

@@ -15,7 +15,7 @@ enum FormatName {
 }
 
 @Injectable()
-export class CustomTranspileExtender extends TranspileExtenderBase {
+export class CustomFormatExtender extends TranspileExtenderBase {
 
   readonly formatNames: Array<string> = [
     FormatName.roman,

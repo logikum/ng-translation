@@ -1,28 +1,28 @@
 {
   "logLevel": {
+    "error": "error",
     "info": "information",
     "success": "success",
-    "warning": "warning",
-    "error": "error"
-  },
-  "season": {
-    "spring": "spring",
-    "summer": "summer",
-    "autumn": "autumn",
-    "winter": "winter"
+    "warning": "warning"
   },
   "month": {
-    "jan": "January",
-    "feb": "February",
-    "mar": "March",
     "apr": "April",
-    "may": "May",
-    "jun": "June",
-    "jul": "July",
     "aug": "August",
-    "sep": "September",
-    "oct": "October",
+    "dec": "December",
+    "feb": "February",
+    "jan": "January",
+    "jul": "July",
+    "jun": "June",
+    "mar": "March",
+    "may": "May",
     "nov": "November",
-    "dec": "December"
+    "oct": "October",
+    "sep": "September"
+  },
+  "season": {
+    "autumn": "autumn",
+    "spring": "spring",
+    "summer": "summer",
+    "winter": "winter"
   }
 }

@@ -1,1 +1,48 @@
-<p>percent-format works!</p>
+<ng-container *ngtContext="let t; node: 'localization.percent'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ t('basic_l', shortPercent) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ t('minid_l', shortPercent) }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ t('minfd_l', shortPercent) }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ t('maxfd_l', shortPercent) }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ t('minsd_l', longPercent) }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ t('maxsd_l', longPercent) }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ t('mixed_l', shortPercent) }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ t('usegrp_l', longPercent) }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ t('basic_s', shortPercent) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ t('minid_s', shortPercent) }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ t('minfd_s', shortPercent) }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ t('maxfd_s', shortPercent) }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ t('minsd_s', longPercent) }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ t('maxsd_s', longPercent) }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ t('mixed_s', shortPercent) }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ t('usegrp_s', longPercent) }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

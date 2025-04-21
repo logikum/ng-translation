@@ -1,33 +1,21 @@
 /* 3rd party libraries */
 import { NgModule, ModuleWithProviders, inject, provideAppInitializer } from '@angular/core';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 /* locally accessible feature module code, always use relative path */
 import {
-  NgtContextDirective,
-  NgtHtmlDirective,
+  NgtContextDirective, NgtHtmlDirective, NgtParamsDirective, NgtReaderDirective,
   NgtTextDirective,
-  Translate2Directive,
-  TranslateDirective,
-  TranslateHtmlDirective,
-  TranslateParamsDirective,
-  TranslationDirective
 } from './directives';
 import {
   NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
-  TranslationConfig, NGT_INLINE_LOADER
+  NGT_INLINE_LOADER, TranslationConfig
 } from './models';
 import {
   ToCcyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
 } from './pipes';
-import {
-  LocalizationService, MessengerService, TranslationService, TranspilerService
-} from './services';
+import { TranslationService } from './services';
 import { initializerFactory } from './initializer.factory';
-import {
-  localizationServiceFactory, messengerServiceFactory,
-  translationServiceFactory, transpilerServiceFactory
-} from './service.factory';
 import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultTranspileExtender } from './default-transpile.extender';
 
@@ -41,11 +29,9 @@ import { DefaultTranspileExtender } from './default-transpile.extender';
     TranslatePipe,
     NgtContextDirective,
     NgtHtmlDirective,
-    NgtTextDirective,
-    TranslateDirective, Translate2Directive,
-    TranslateHtmlDirective,
-    TranslateParamsDirective,
-    TranslationDirective
+    NgtParamsDirective,
+    NgtReaderDirective,
+    NgtTextDirective
   ],
   exports: [
     ToCcyPipe,
@@ -56,11 +42,9 @@ import { DefaultTranspileExtender } from './default-transpile.extender';
     TranslatePipe,
     NgtContextDirective,
     NgtHtmlDirective,
-    NgtTextDirective,
-    TranslateDirective, Translate2Directive,
-    TranslateHtmlDirective,
-    TranslateParamsDirective,
-    TranslationDirective
+    NgtParamsDirective,
+    NgtReaderDirective,
+    NgtTextDirective
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi())
@@ -87,25 +71,6 @@ export class NgTranslationModule {
         }, {
           provide: NGT_TRANSPILE_EXTENDER,
           useClass: DefaultTranspileExtender
-        }, {
-          provide: MessengerService,
-          useFactory: messengerServiceFactory
-        }, {
-          provide: LocalizationService,
-          useFactory: localizationServiceFactory,
-          deps: [ MessengerService, NGT_CONFIGURATION ]
-        }, {
-          provide: TranspilerService,
-          useFactory: transpilerServiceFactory,
-          deps: [ LocalizationService, MessengerService ]
-        }, {
-          provide: TranslationService,
-          useFactory: translationServiceFactory,
-          deps: [
-            HttpClient, TranspilerService, MessengerService,
-            NGT_CONFIGURATION, NGT_INLINE_LOADER,
-            NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
-          ]
         },
         provideAppInitializer(() => {
           const initializerFn = initializerFactory(

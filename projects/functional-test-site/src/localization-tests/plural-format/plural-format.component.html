@@ -1,1 +1,8 @@
-<p>plural-format works!</p>
+<ng-container *ngtContext="let t; node: 'localization.plural'">
+
+  <div class="data">{{ t( 'updated', 0) }}</div>
+  <div class="data">{{ t( 'updated', 1) }}</div>
+  <div class="data">{{ t( 'updated', 5) }}</div>
+  <div class="data">{{ t( 'updated', 1973) }}</div>
+
+</ng-container>

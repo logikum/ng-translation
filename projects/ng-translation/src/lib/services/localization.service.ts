@@ -1,27 +1,12 @@
 /* 3rd party libraries */
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../types';
 import { FormatData, NGT_CONFIGURATION, TranslationConfig } from '../models';
 import { MessengerService } from './messenger.service';
 
 const OPTION_SEP = ';';
 const VALUE_SEP = '=';
-
-function createFormatData(
-  locale: string,
-  value: string | number | Date | CurrencyValue,
-  args: string
-): FormatData {
-
-  return {
-    key: undefined,
-    locale: locale,
-    params: args || '',
-    value: value
-  };
-}
 
 function missing(
   value: any
@@ -35,18 +20,8 @@ function missing(
 } )
 export class LocalizationService {
 
-  constructor(
-    private readonly messenger: MessengerService,
-    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
-  ) { }
-
-  number(
-    locale: string,
-    value: number,
-    args: string
-  ): string {
-    return this.numberFormat( createFormatData( locale, value, args ) );
-  }
+  private readonly messenger = inject( MessengerService );
+  private readonly config = inject( NGT_CONFIGURATION );
 
   numberFormat(
     data: FormatData
@@ -59,14 +34,6 @@ export class LocalizationService {
       data.key, data.params, { style: 'decimal' }
     );
     return new Intl.NumberFormat( data.locale, options ).format( data.value );
-  }
-
-  percent(
-    locale: string,
-    value: number,
-    args: string
-  ): string {
-    return this.percentFormat( createFormatData( locale, value, args ) );
   }
 
   percentFormat(
@@ -82,19 +49,11 @@ export class LocalizationService {
     return new Intl.NumberFormat( data.locale, options ).format( data.value );
   }
 
-  currency(
-    locale: string,
-    value: CurrencyValue,
-    args: string
-  ): string {
-    return this.currencyFormat( createFormatData( locale, value, args ) );
-  }
-
   currencyFormat(
     data: FormatData
   ): string {
 
-    let worth;
+    let worth: number;
     let currency = null;
 
     // Determine the value and the currency code.
@@ -111,16 +70,19 @@ export class LocalizationService {
     }
 
     // Determine the currency options.
-    let options: Intl.NumberFormatOptions = { };
+    let options: Intl.NumberFormatOptions = {};
 
-    if (!missing( currency ) && currency.toString().trim() !== '') {
+    if (!missing( currency ) && currency?.toString().trim() !== '') {
       // Add eventual custom default options.
       if (this.config.currencyDefaultOptions) {
         const cdo = this.config.currencyDefaultOptions[ currency ] || '';
         options = this.extendOptions( data.key, cdo, options );
       }
       // Add fix options.
-      options = Object.assign( options, { style: 'currency', currency: currency } );
+      options = Object.assign( options, {
+        style: 'currency',
+        currency: currency
+      } );
     }
     // Add user options.
     options = this.extendOptions( data.key, data.params, options );
@@ -146,12 +108,12 @@ export class LocalizationService {
         const optionName = parts[ 0 ].trim();
         const optionValue = parts[ 1 ].trim();
         switch (optionName) {
-          // case 'cd':
-          // case 'currencyDisplay':
-          //   options.currencyDisplay = this.checkMember(
-          //     key, optionValue, [ 'symbol', 'code', 'name' ]
-          //   );
-          //   break;
+          case 'cd':
+          case 'currencyDisplay':
+            options.currencyDisplay = this.checkMember(
+              key, optionValue, [ 'symbol', 'code', 'name' ]
+            ) as keyof Intl.NumberFormatOptionsCurrencyDisplayRegistry;
+            break;
           case 'minid':
           case 'minimumIntegerDigits':
             options.minimumIntegerDigits = this.getInt( key, optionValue );
@@ -194,14 +156,6 @@ export class LocalizationService {
     return options;
   }
 
-  datetime(
-    locale: string,
-    value: Date | number | string,
-    args: string
-  ): string {
-    return this.datetimeFormat( createFormatData( locale, value, args ) );
-  }
-
   datetimeFormat(
     data: FormatData
   ): string {
@@ -209,7 +163,7 @@ export class LocalizationService {
     if (missing( data.value )) {
       return '';
     }
-    const options: Intl.DateTimeFormatOptions = { };
+    const options: Intl.DateTimeFormatOptions = {};
     if (data.params.trim().length > 0) {
       const items = data.params.split( OPTION_SEP );
       items.forEach( item => {

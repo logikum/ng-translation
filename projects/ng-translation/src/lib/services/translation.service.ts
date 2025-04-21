@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -7,16 +7,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 /* locally accessible feature module code, always use relative path */
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER,
-  Resource, ResourceList, ResourceLoader, TranslationChange, TranslationConfig,
-  TranslationConverter, TranspileExtender, LocalizeContext, NGT_INLINE_LOADER,
-  FormatData
+  NGT_INLINE_LOADER, Resource, ResourceList, ResourceLoader, TranslationChange,
+  LocalizeContext, FormatData
 } from '../models';
 import { TranspilerService } from './transpiler.service';
 import { MessengerService } from './messenger.service';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
 } from '../loaders';
-import { CurrencyValue, InlineLoaderMap } from '../types';
+import { CurrencyValue } from '../types';
+import { LocalizationRef } from './localization-ref';
 
 @Injectable( {
   providedIn: 'root'
@@ -25,7 +25,16 @@ export class TranslationService implements LocalizeContext {
 
   //region Properties
 
-  private readonly isInitializedSubject = new BehaviorSubject(false);
+  private readonly config = inject( NGT_CONFIGURATION );
+  private readonly loaders = inject( NGT_INLINE_LOADER );
+  private readonly converter = inject( NGT_TRANSLATION_CONVERTER );
+  private readonly extender = inject( NGT_TRANSPILE_EXTENDER );
+  private readonly transpile = inject( TranspilerService );
+  private readonly localize = inject( LocalizationRef );
+  private readonly messenger = inject( MessengerService );
+  private readonly http = inject( HttpClient );
+
+  private readonly isInitializedSubject = new BehaviorSubject( false );
   private readonly statusChangeSubject = new Subject<TranslationChange>();
   private readonly languageChangedSubject = new Subject<string>();
   private isLoading = true;
@@ -34,7 +43,7 @@ export class TranslationService implements LocalizeContext {
   private readonly defaultLanguage: string;
   private readonly allowedLanguages: Array<string>;
   private readonly resourceList: ResourceList;
-  private readonly translations: object = { };
+  private readonly translations: object = {};
 
   get isInitialized(): Observable<boolean> {
     return this.isInitializedSubject.asObservable();
@@ -64,30 +73,23 @@ export class TranslationService implements LocalizeContext {
 
   //region Initialization
 
-  constructor(
-    private readonly http: HttpClient,
-    private readonly transpile: TranspilerService,
-    private readonly messenger: MessengerService,
-    @Inject( NGT_CONFIGURATION ) private readonly config: TranslationConfig,
-    @Inject( NGT_INLINE_LOADER ) private readonly loaders: InlineLoaderMap,
-    @Inject( NGT_TRANSLATION_CONVERTER ) private readonly converter: TranslationConverter,
-    @Inject( NGT_TRANSPILE_EXTENDER ) private readonly extender: TranspileExtender
-  ) {
-    this.defaultLanguage = config.defaultLanguage;
-    this.messenger.disableWarnings = config.disableWarnings;
-    this.transpile.extender = extender;
+  constructor() {
+
+    this.defaultLanguage = this.config.defaultLanguage;
+    this.messenger.disableWarnings = this.config.disableWarnings;
+    this.transpile.extender = this.extender;
     this.transpile.extender.translation = this;
     this.resourceList = new ResourceList(
-      messenger,
-      config.sections,
-      config.translationPath,
-      config.translationFormat,
-      config.loaderType
+      this.messenger,
+      this.config.sections,
+      this.config.translationPath,
+      this.config.translationFormat,
+      this.config.loaderType
     );
-    if (config.allowedLanguages?.length) {
-      this.allowedLanguages = config.allowedLanguages;
-      if (this.allowedLanguages.indexOf( config.defaultLanguage ) < 0) {
-        this.allowedLanguages.push( config.defaultLanguage );
+    if (this.config.allowedLanguages?.length) {
+      this.allowedLanguages = this.config.allowedLanguages;
+      if (this.allowedLanguages.indexOf( this.config.defaultLanguage ) < 0) {
+        this.allowedLanguages.push( this.config.defaultLanguage );
       }
     }
     this.statusChange.subscribe( this.watchInitializationEnd.bind( this ) );
@@ -98,7 +100,7 @@ export class TranslationService implements LocalizeContext {
   ): void {
 
     if (change.context === 'app' && change.action === 'finish') {
-      this.isInitializedSubject.next(true);
+      this.isInitializedSubject.next( true );
     }
   }
 
@@ -239,9 +241,9 @@ export class TranslationService implements LocalizeContext {
     if (this.allowedLanguages) {
       const locale = new Locale( language );
 
-      if (this.allowedLanguages.indexOf( locale.name ) !== -1) {
+      if (this.allowedLanguages.indexOf( locale.name ) > -1) {
         return locale.name;
-      } else if (locale.hasRegion && this.allowedLanguages.indexOf( locale.neutral ) !== -1) {
+      } else if (locale.hasRegion && this.allowedLanguages.indexOf( locale.neutral ) > -1) {
         return locale.neutral;
       }
     } else {
@@ -272,7 +274,7 @@ export class TranslationService implements LocalizeContext {
             loader = new ArrayBufferLoader( this.http, this.messenger );
             break;
           case 'inline':
-            loader = new InlineLoader( this.loaders, this.messenger );
+            loader = new InlineLoader( this.loaders );
             break;
           case 'json':
           default:
@@ -285,7 +287,7 @@ export class TranslationService implements LocalizeContext {
           } )
           .catch( error => {
             this.handleError( error );
-            this.storeTranslations( language, resource, { } );
+            this.storeTranslations( language, resource, {} );
           } )
         );
       } );
@@ -307,7 +309,7 @@ export class TranslationService implements LocalizeContext {
 
     // Check language property.
     if (this.translations[ language ] === undefined) {
-      this.translations[ language ] = { };
+      this.translations[ language ] = {};
     }
     let target = this.translations[ language ];
 
@@ -318,7 +320,7 @@ export class TranslationService implements LocalizeContext {
     }
     for (let i = 0; i < path.length; i++) {
       if (target[ path[ i ] ] === undefined) {
-        target[ path[ i ] ] = i === path.length - 1 ? jsonTranslations : { };
+        target[ path[ i ] ] = i === path.length - 1 ? jsonTranslations : {};
       }
       target = target[ path[ i ] ];
     }
@@ -381,7 +383,7 @@ export class TranslationService implements LocalizeContext {
     // Finally if not found...
     if (translation === key) {
 
-      // Warning of missing translation text.
+      // Warning of missing translation code.
       this.messenger.warn( `Missing translation text: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
@@ -455,7 +457,7 @@ export class TranslationService implements LocalizeContext {
     // Finally if not found...
     if (group === null) {
 
-      // Warning of missing translation text.
+      // Warning of missing translation code.
       this.messenger.warn( `Missing translation group: [${ locale.name }] ${ key }` );
 
       // ...try invariant culture (default language)
@@ -497,7 +499,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.transpile.number( this.activeLanguage, value, args );
+    return this.localize.number( this.activeLanguage, value, args );
   }
 
   percent(
@@ -505,7 +507,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.transpile.percent( this.activeLanguage, value, args );
+    return this.localize.percent( this.activeLanguage, value, args );
   }
 
   currency(
@@ -513,7 +515,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.transpile.currency( this.activeLanguage, value, args );
+    return this.localize.currency( this.activeLanguage, value, args );
   }
 
   ccy(
@@ -522,7 +524,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.transpile.ccy( this.activeLanguage, value, currency, args );
+    return this.localize.ccy( this.activeLanguage, value, currency, args );
   }
 
   datetime(
@@ -530,7 +532,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.transpile.datetime( this.activeLanguage, value, args );
+    return this.localize.datetime( this.activeLanguage, value, args );
   }
 
   custom(

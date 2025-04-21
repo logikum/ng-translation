@@ -5,14 +5,14 @@ import { NgTranslationModule, TranslationService } from '@logikum/ng-translation
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-text',
+  selector: 'fts-code',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './text.component.html',
-  styleUrl: './text.component.css'
+  templateUrl: './code.component.html',
+  styleUrl: './code.component.css'
 })
-export class TextComponent {
+export class CodeComponent {
 
   private translation = inject(TranslationService);
 
@@ -21,10 +21,16 @@ export class TextComponent {
   get water(): string { return this.translation.get('translation.text.element.water'); }
   get wind(): string{ return this.translation.get('translation.text.element.wind'); }
   get fire(): string { return this.translation.get('translation.text.element.fire'); }
+  get smurfs(): string { return this.translation.get('translation.text.smurfs'); }
 
-  get seasons(): string { return this.translation.get('app.fourSeasons'); }
+  get seasons(): string { return this.translation.get('shared.fourSeasons'); }
   get spring(): string { return this.translation.get('enums.season.spring'); }
   get summer(): string { return this.translation.get('enums.season.summer'); }
   get autumn(): string{ return this.translation.get('enums.season.autumn'); }
   get winter(): string { return this.translation.get('enums.season.winter'); }
+  get pooh(): string { return this.translation.get('shared.pooh'); }
+
+  get today(): string { return this.translation.get('translation.text.today', new Date()); }
+  get stock(): string { return this.translation.get('translation.text.stock', [0.0206, 16724.46]); }
+  get book(): string { return this.translation.get('translation.text.book', [[60, 'USD'], [48, 'USD']]); }
 }

@@ -1,11 +1,10 @@
 /* 3rd party libraries */
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
 import { FormatData, TranspileData, TranspileExtender } from '../models';
 import { LocalizationService } from './localization.service';
 import { MessengerService } from './messenger.service';
-import { CurrencyValue } from '../types';
 
 const INTL_SEP = '|';
 const PATTERN_SEP = ':';
@@ -19,12 +18,10 @@ const VALUE_PH = '#';
 } )
 export class TranspilerService {
 
-  extender: TranspileExtender;
+  private readonly localization = inject( LocalizationService );
+  private readonly messenger = inject( MessengerService );
 
-  constructor(
-    private readonly localization: LocalizationService,
-    private readonly messenger: MessengerService
-  ) { }
+  extender: TranspileExtender;
 
   insert(
     data: TranspileData,
@@ -42,8 +39,8 @@ export class TranspilerService {
 
         // Check currency data type.
         if (args.length === 2 &&
-          typeof args[0] === 'number' &&
-          typeof args[1] === 'string' && args[1].length === 3
+          typeof args[ 0 ] === 'number' &&
+          typeof args[ 1 ] === 'string' && args[ 1 ].length === 3
         ) {
           args = [ args ];
         }
@@ -193,54 +190,4 @@ export class TranspilerService {
     } );
     return pluralized.replace( VALUE_PH, value );
   }
-
-  //region Localization methods
-
-  number(
-    locale: string,
-    value: number,
-    args?: string
-  ): string {
-
-    return this.localization.number( locale, value, args );
-  }
-
-  percent(
-    locale: string,
-    value: number,
-    args?: string
-  ): string {
-
-    return this.localization.percent( locale, value, args );
-  }
-
-  currency(
-    locale: string,
-    value: CurrencyValue,
-    args?: string
-  ): string {
-
-    return this.localization.currency( locale, value, args );
-  }
-
-  ccy(
-    locale: string,
-    value: number,
-    currency: string,
-    args?: string
-  ): string {
-
-    return this.localization.currency( locale, [ value, currency ], args );
-  }
-
-  datetime(
-    locale: string,
-    value: Date | number | string,
-    args?: string
-  ): string {
-
-    return this.localization.datetime( locale, value, args );
-  }
-
-  //endregion
 }

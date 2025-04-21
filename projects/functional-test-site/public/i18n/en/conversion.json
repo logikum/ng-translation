@@ -1,8 +1,5 @@
 {
-  "title": "Sample Title",
-  "description": "Sample description of the section.",
   "poFile": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "title": "PO File Conversion"
   }
 }

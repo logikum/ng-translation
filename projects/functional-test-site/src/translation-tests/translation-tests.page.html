@@ -1,16 +1,9 @@
 <ng-container *ngtContext="let t; node: 'translation'">
   <fts-accordion [collapsing]="true">
-    <div ftsAccordionItem [title]="t('text.title')">
+    <div ftsAccordionItem [title]="t('code.title')">
       <ng-template ftsAccordionContent>
         <div class="accordion-content">
-          <fts-text></fts-text>
-        </div>
-      </ng-template>
-    </div>
-    <div ftsAccordionItem [title]="t('interpolation.title')">
-      <ng-template ftsAccordionContent>
-        <div class="accordion-content">
-          <fts-interpolation></fts-interpolation>
+          <fts-code></fts-code>
         </div>
       </ng-template>
     </div>
@@ -21,7 +14,17 @@
         </div>
       </ng-template>
     </div>
-    <div ftsAccordionItem [title]="t('pipe.title')">
+    <div ftsAccordionItem [title]="t('reader.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-reader></fts-reader>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem>
+      <ng-template ftsAccordionTitle>
+        <p class="accordion-title" [innerHTML]="t('pipe.title')">ABC</p>
+      </ng-template>
       <ng-template ftsAccordionContent>
         <div class="accordion-content">
           <fts-pipe></fts-pipe>
@@ -32,13 +35,6 @@
       <ng-template ftsAccordionContent>
         <div class="accordion-content">
           <fts-attribute></fts-attribute>
-        </div>
-      </ng-template>
-    </div>
-    <div ftsAccordionItem [title]="t('html.title')">
-      <ng-template ftsAccordionContent>
-        <div class="accordion-content">
-          <fts-html></fts-html>
         </div>
       </ng-template>
     </div>

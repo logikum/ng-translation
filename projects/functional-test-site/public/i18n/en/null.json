@@ -1,20 +1,42 @@
 {
+  "boolean": "{{0}}",
+  "currency": "{{0|C}}",
+  "datetime": "{{0|D}}",
+  "number": "{{0|N}}",
+  "percent": "{{0|P}}",
+  "plural": "{{0|R:0=zero;1-5=some;other=many}}",
+  "text": "{{0}}",
   "currencyCodes": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "code": "Code",
+    "empty": "empty",
+    "invalid": "invalid",
+    "lilangeni": "lilangeni (Swaziland)",
+    "noCurrency": "no currency",
+    "null": "null",
+    "test": "test",
+    "title": "Currency Codes",
+    "undefined": "undefined",
+    "value": "Value"
   },
   "localizationMethod": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "method": "Method",
+    "null": "Null",
+    "title": "Localization Method",
+    "undefined": "Undefined",
+    "value": "Value"
   },
   "localizationPipe": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "null": "Null",
+    "pipe": "Pipe",
+    "title": "Localization Pipe",
+    "undefined": "Undefined",
+    "value": "Value"
   },
-  "title": "Sample Title",
-  "description": "Sample description of the section.",
   "translationString": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "dataType": "Data type",
+    "null": "Null",
+    "title": "Translation String",
+    "undefined": "Undefined",
+    "value": "Value"
   }
 }

@@ -1,34 +1,30 @@
 {
   "attribute": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "title": "Using Attribute Directive"
   },
-  "html": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
-  },
-  "interpolation": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+  "code": {
+    "title": "Text from Code"
   },
   "pipe": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "title": "Using Translate Pipe"
+  },
+  "reader": {
+    "title": "Using Structural Directive (Reader)"
   },
   "structural": {
-    "title": "Sample Title",
-    "description": "Sample description of the section."
+    "title": "Using Structural Directive (Context)"
   },
   "text": {
-    "title": "Text Translation",
+    "book": "The book is currently priced at {{ 0 | C }}, but during the sale it will be {{ 1 | C }}.",
     "otherElements": "The other four elements in the movie The Fifth Element:",
+    "smurfs": "<strong>Blue and small</strong>, standing only <em>three apples high</em>, the <a href=\"https://www.smurf.com/\" target=\"_blank\">Smurfs</a> might be hard to tell apart at first.",
+    "stock": "The stock market closed at {{ 1 | N }} points after rising {{ 0 | P: minfd = 2 }}.",
+    "today": "Today's date: {{ 0 | D }}",
     "element": {
       "earth": "earth",
+      "fire": "fire",
       "water": "water",
-      "wind": "wind",
-      "fire": "fire"
+      "wind": "wind"
     }
-  },
-  "title": "Sample Title",
-  "description": "Sample description of the section."
+  }
 }

@@ -1,3 +1,30 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "attribute": {
+    "title": "Attribútum direktíva használata"
+  },
+  "code": {
+    "title": "Szöveg a kódból"
+  },
+  "pipe": {
+    "title": "A <em>translate</em> cső használata"
+  },
+  "reader": {
+    "title": "Strukturális direktíva használata (Reader)"
+  },
+  "structural": {
+    "title": "Strukturális direktíva használata (Context)"
+  },
+  "text": {
+    "book": "A könyv jelenlegi ára {{ 0 | C }}, de az akció alatt {{ 1 | C }} lesz.",
+    "otherElements": "A másik négy elem az Ötödik elem című filmben:",
+    "smurfs": "<strong>Kékek és kicsik</strong>, mindössze <em>három alma magasak</em>, a <a href=\"https://www.smurf.com/\" target=\"_blank\">Hupikék törpikék</a>et elsőre nehéz lehet megkülönböztetni.",
+    "stock": "A tőzsde {{ 1 | N }} ponton zárt {{ 0 | P: minfd = 2 }} emelkedés után.",
+    "today": "Mai dátum: {{ 0 | D }}",
+    "element": {
+      "earth": "föld",
+      "fire": "tűz",
+      "water": "víz",
+      "wind": "szél"
+    }
+  }
 }

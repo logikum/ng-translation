@@ -1,1 +1,60 @@
-<p>datetime-format works!</p>
+<ng-container *ngtContext="let t; node: 'localization.datetime'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="label">
+        {{ t('default_f') }}:
+        <span class="data">{{ t('default_l', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('short_f') }}:
+        <span class="data">{{ t('short_l', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('medium_f') }}:
+        <span class="data">{{ t('medium_l', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('long_f') }}:
+        <span class="data">{{ t('long_l', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('full_f') }}:
+        <span class="data">{{ t('full_l', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('fractional_f') }}:
+        <span class="data">{{ t('fractional_l', now) }}</span>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="label">
+        {{ t('default_f') }}:
+        <span class="data">{{ t('default_s', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('short_f') }}:
+        <span class="data">{{ t('short_s', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('medium_f') }}:
+        <span class="data">{{ t('medium_s', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('long_f') }}:
+        <span class="data">{{ t('long_s', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('full_f') }}:
+        <span class="data">{{ t('full_s', now) }}</span>
+      </div>
+      <div class="label">
+        {{ t('fractional_f') }}:
+        <span class="data">{{ t('fractional_s', now) }}</span>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

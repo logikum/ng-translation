@@ -7,7 +7,6 @@ import { NgTranslationModule, TranslationService  } from '@logikum/ng-translatio
 import { NgtLocaleList } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use relative path */
-
 import { translationConfig } from '../translation.config';
 
 @Component({
@@ -20,10 +19,17 @@ export class HeaderComponent  {
 
   private translation = inject(TranslationService);
 
-  locales = new NgtLocaleList( translationConfig.allowedLanguages );
+  locales: NgtLocaleList;
 
   get isInitialized(): Observable<boolean> {
     return this.translation.isInitialized;
+  }
+
+  constructor() {
+
+    const languages = [ ...translationConfig.allowedLanguages ];
+    languages.push( 'hi' ); // not allowed language, it should not be displayed
+    this.locales = new NgtLocaleList( languages );
   }
 
   changeLanguage(

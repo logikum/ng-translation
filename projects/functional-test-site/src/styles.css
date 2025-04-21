@@ -12,7 +12,7 @@
 body {
   /* 3. Add accessible line-height */
   line-height: 1.5;
-  /* 4. Improve text rendering */
+  /* 4. Improve code rendering */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -27,7 +27,7 @@ input, button, textarea, select {
   font: inherit;
 }
 
-/* 7. Avoid text overflows */
+/* 7. Avoid code overflows */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
@@ -38,6 +38,9 @@ p {
 }
 h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
+}
+select {
+  padding: .25rem .5rem;
 }
 
 /*
@@ -73,40 +76,16 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--main-color-300);
 }
 
-/* flexbox */
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-.justify-center {
-  justify-content: center;
-}
-.space-between {
-  justify-content: space-between;
-}
-.align-start {
-  align-items: flex-start;
-}
-.align-center {
-  align-items: center;
-}
-.align-end {
-  align-items: flex-end;
-}
-align-stretch {
-  align-items: stretch;
-}
-
 /* accordion */
 .accordion-content {
   padding: .5rem 1rem;
 }
 
 /* tests */
+.header {
+  color: #444;
+  font-weight: bold;
+}
 .label {
   color: #444;
 }
@@ -129,16 +108,48 @@ align-stretch {
 .flex-row {
   display: flex;
   flex-direction: row;
-  column-gap: 1rem;
-}
-.row-item {
-  line-height: 1.5rem;
 }
 .flex-col {
   display: flex;
   flex-direction: column;
 }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+}
+.row-item {
+  line-height: 1.5rem;
+}
 .col-item {
+}
+.justify-center {
+  justify-content: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+align-stretch {
+  align-items: stretch;
+}
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+.grid-1-1-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
 }
 .grid-8 {
   display: grid;
@@ -153,4 +164,7 @@ align-stretch {
 .grid-item {
   line-height: 1.5rem;
   white-space: nowrap;
+}
+.items-center {
+  justify-items: center;
 }

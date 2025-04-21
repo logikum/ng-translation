@@ -1,6 +1,6 @@
 {
   "logLevel": {
-    "info": "informció",
+    "info": "információ",
     "success": "siker",
     "warning": "figyelmeztetés",
     "error": "hiba"

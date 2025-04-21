@@ -5,6 +5,6 @@
 export const environment = {
   production: false,
   defaultLanguage: 'en',
-  allowedLanguages: [ 'hu', 'en', 'it', 'sk' ],
+  allowedLanguages: [ 'en', 'it', 'hu', 'sk' ],
   disableWarnings: false
 };

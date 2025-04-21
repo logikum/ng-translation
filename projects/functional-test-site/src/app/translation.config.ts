@@ -3,20 +3,27 @@ import { TranslationConfig} from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { environment } from '../environments/environment';
-import { group } from '@angular/animations';
 
 export const translationConfig: TranslationConfig = {
   translationPath: '/i18n/{ language }/{ section }.json',
   // translationPath: '/18n/{section}.{language}.json',
   sections: [
-    'app', 'enums',
-    { group: 'model', items: [ 'model' ] },
+    'app', 'shared', 'enums',
     { group: 'translation', items: [ 'translation' ] },
     { group: 'localization', items: [ 'localization' ] },
-    { group: 'conversion', items: [ 'conversion' ] },
+    { group: 'model', items: [ 'model' ] },
     { group: 'null', items: [ 'null' ] },
-    { group: 'other', items: [ 'other' ] },
-    // { group: 'winter2', type: 'inline', items: [ 'winter' ] }
+    { group: 'conversion', items: [
+      'conversion',
+      {
+        name: 'autumn',
+        alias: 'fall',
+        path: '/po-files/{section}.{language}.po',
+        format: 'po',
+        type: 'text'
+      }
+    ] },
+    { group: 'other', items: [ 'mit-license', 'other' ] },
   ],
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,

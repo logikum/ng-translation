@@ -1,1 +1,34 @@
-<p>po-file works!</p>
+<ng-container *ngtContext="let t; node: 'fall'">
+
+  <h1>{{ t('title') }}</h1>
+
+  <div class="center">
+    <div class="tempo"> Allegro </div>
+    <p>
+      {{ t('line_1_1') }}<br>
+      {{ t('line_1_2') }}<br>
+      {{ t('line_1_3') }}<br>
+      {{ t('line_1_4') }}
+    </p>
+    <div class="tempo"> Adagio molto </div>
+    <p>
+      {{ t('line_2_1') }}<br>
+      {{ t('line_2_2') }}<br>
+      {{ t('line_2_3') }}<br>
+      {{ t('line_2_4') }}
+    </p>
+    <div class="tempo"> Allegro </div>
+    <p>
+      {{ t('line_3_1') }}<br>
+      {{ t('line_3_2') }}<br>
+      {{ t('line_3_3') }}
+    </p>
+    <div>&nbsp;</div>
+    <p>
+      {{ t('line_4_1') }}<br>
+      {{ t('line_4_2') }}<br>
+      {{ t('line_4_3') }}
+    </p>
+  </div>
+
+</ng-container>

@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 
@@ -14,4 +14,5 @@ import { NgTranslationModule } from 'ng-translation';
 })
 export class TranslationStringComponent {
 
+  get today(): Date { return new Date(); }
 }

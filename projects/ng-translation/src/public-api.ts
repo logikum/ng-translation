@@ -9,13 +9,9 @@ export * from './lib/guards/load-translations';
 
 export * from './lib/directives/ngt-context.directive';
 export * from './lib/directives/ngt-html.directive';
+export * from './lib/directives/ngt-params.directive';
 export * from './lib/directives/ngt-reader.directive';
 export * from './lib/directives/ngt-text.directive';
-export * from './lib/directives/translate.directive';
-export * from './lib/directives/translate2.directive';
-export * from './lib/directives/translate-html.directive';
-export * from './lib/directives/translate-params.directive';
-export * from './lib/directives/translation.directive';
 
 export * from './lib/pipes/to-ccy.pipe';
 export * from './lib/pipes/to-currency.pipe';

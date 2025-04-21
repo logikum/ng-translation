@@ -1,1 +1,45 @@
-<p>currency-codes works!</p>
+<ng-container *ngtContext="let t; node: 'null.currencyCodes'; let l = localize">
+
+  <div class="grid-1-1-1-1">
+    <div class="grid-item header">{{ t('code') }}</div>
+    <div class="grid-item header">{{ t('value') }}</div>
+    <div class="grid-item header"></div>
+    <div class="grid-item header"></div>
+
+    <div class="grid-item label">{{ t('undefined') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, undefined ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">{{ t('null') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, null ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">{{ t('empty') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, '' ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">{{ t('test') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, 'XTS' ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">{{ t('noCurrency') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, 'XXX' ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">{{ t('lilangeni') }}</div>
+    <div class="grid-item data">{{ l.currency( [ 123, 'SZL' ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+
+    <div class="grid-item label">invalid</div>
+    <div class="grid-item data">{{ l.currency( [ 123, 'ABC' ] ) }}</div>
+    <div class="grid-item data"></div>
+    <div class="grid-item data"></div>
+  </div>
+
+</ng-container>

@@ -1,1 +1,30 @@
-<p>localization-pipe works!</p>
+<ng-container *ngtContext="let t; node: 'null.localizationPipe'">
+
+  <div class="grid-1-1-1-1">
+    <div class="grid-item header">{{ t('pipe') }}</div>
+    <div class="grid-item header">{{ t('value') }}</div>
+    <div class="grid-item header">{{ t('null') }}</div>
+    <div class="grid-item header">{{ t('undefined') }}</div>
+
+    <div class="grid-item label">toNumber</div>
+    <div class="grid-item data">{{ 1234 | toNumber }}</div>
+    <div class="grid-item data">{{ null | toNumber }}</div>
+    <div class="grid-item data">{{ undefined | toNumber }}</div>
+
+    <div class="grid-item label">toPercent</div>
+    <div class="grid-item data">{{ .1234 | toPercent }}</div>
+    <div class="grid-item data">{{ null | toPercent }}</div>
+    <div class="grid-item data">{{ undefined | toPercent }}</div>
+
+    <div class="grid-item label">toCurrency</div>
+    <div class="grid-item data">{{ [ 500, 'HUF' ] | toCurrency }}</div>
+    <div class="grid-item data">{{ [ null, 'HUF' ] | toCurrency }}</div>
+    <div class="grid-item data">{{ [ undefined, 'HUF' ] | toCurrency }}</div>
+
+    <div class="grid-item label">toDatetime</div>
+    <div class="grid-item data">{{ today | toDatetime }}</div>
+    <div class="grid-item data">{{ null | toDatetime }}</div>
+    <div class="grid-item data">{{ undefined | toDatetime }}</div>
+  </div>
+
+</ng-container>

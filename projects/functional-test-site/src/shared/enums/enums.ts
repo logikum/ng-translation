@@ -10,10 +10,10 @@ export enum LogLevel {
 }
 
 export enum Season {
-  spring,
-  summer,
-  autumn,
-  winter
+  spring = 'S',
+  summer = 'M',
+  autumn = 'A',
+  winter = 'W'
 }
 
 export enum Month {

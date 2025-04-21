@@ -1,24 +1,18 @@
 /* 3rd party libraries */
-import { ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { LocalizationService, TranslationService } from '../services';
+import { LocalizationRef } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
-    name: 'toNumber',
-    pure: false,
-    standalone: false
+  name: 'toNumber',
+  pure: false,
+  standalone: false
 } )
 export class ToNumberPipe extends TranslationPipeBase implements PipeTransform {
 
-  constructor(
-    protected readonly cdRef: ChangeDetectorRef,
-    protected readonly translation: TranslationService,
-    private readonly localization: LocalizationService
-  ) {
-    super( cdRef, translation );
-  }
+  private readonly localize = inject( LocalizationRef );
 
   transform(
     value: number,
@@ -26,7 +20,7 @@ export class ToNumberPipe extends TranslationPipeBase implements PipeTransform {
   ): string {
 
     if (!this.isValid) {
-      this.localized = this.localization.number(
+      this.localized = this.localize.number(
         this.translation.activeLanguage, value, args
       );
       this.isValid = true;

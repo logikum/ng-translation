@@ -1,3 +1,20 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "camelCase": {
+    "title": "Nomi dei nodi camel case"
+  },
+  "enumeration": {
+    "appStatus": "Stato dell'app",
+    "levelName": "{{ 0 | logLevel }}",
+    "logLevel": "Livello del registro",
+    "month": "Mese",
+    "season": "Stagione",
+    "statusName": "{{ 0 | appStatus }}",
+    "title": "Enumerazioni"
+  },
+  "transpileExtender": {
+    "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
+    "range": "Intervallo",
+    "romanNumber": "{{ 0 | roman }}",
+    "title": "Estensione di formato - Numeri romani"
+  }
 }

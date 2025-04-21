@@ -1,3 +1,46 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "localeList": {
+    "changeByCode": "Impostato dal codice",
+    "changeByIndex": "Impostato tramite indice",
+    "selectedCode": "Codice selezionato",
+    "selectedIndex": "Indice selezionato",
+    "selectedItem": "Elemento selezionato",
+    "selectedName": "Nome selezionato"
+  },
+  "multipleChoice": {
+    "changeByIndexes": "Impostato tramite indicees",
+    "changeByValues": "Impostato dai valori",
+    "filter": "Filtro",
+    "selectAll": "Tutto",
+    "selectNone": "Nessuno",
+    "selectedCount": "Conteggio selezionato",
+    "selectedIndexes": "Indice selezionatoes",
+    "selectedItems": "Elementi selezionati",
+    "selectedTexts": "Testi selezionati",
+    "selectedValues": "Valori selezionati"
+  },
+  "singleChoice": {
+    "changeByIndex": "Impostato tramite indice",
+    "changeByValue": "Impostato per valore",
+    "filter": "Filtro",
+    "selectedIndex": "Indice selezionato",
+    "selectedItem": "Elemento selezionato",
+    "selectedText": "Testo selezionato",
+    "selectedValue": "Valore selezionato"
+  },
+  "textList": {
+    "advice": "La frutta fa bene alla salute.",
+    "fruit": {
+      "apple": "mela",
+      "cherry": "ciliegia",
+      "peach": "pesca"
+    },
+    "label": {
+      "advice": "Consiglio",
+      "fruits": "Frutta",
+      "seasons": "Stagioni",
+      "status": "Stato",
+      "welcome": "Benvenuto"
+    }
+  }
 }

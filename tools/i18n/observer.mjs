@@ -6,10 +6,6 @@ export default class Observer extends EventEmitter {
 
   isInitialized = false;
 
-  constructor() {
-    super();
-  }
-
   watchFolder(folder) {
     try {
       const relFolder = folder.substring(process.cwd().length + 1);

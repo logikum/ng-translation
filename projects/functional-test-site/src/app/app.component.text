@@ -12,6 +12,3 @@ localization:   Localization Tests
 conversion:     Conversion Tests
 null:           Null Value Tests
 other:          Other Tests
-
-# shared texts
-fourSeasons:    The four seasons:

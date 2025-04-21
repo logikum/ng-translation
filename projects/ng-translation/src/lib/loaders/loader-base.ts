@@ -8,11 +8,15 @@ import { buildPath } from './build-path';
 
 export class LoaderBase<T> implements ResourceLoader {
 
+  private readonly options: { [ key: string ]: any };
+
   constructor(
-    protected options,
+    protected readonly responseType: 'json' | 'text' | 'blob' | 'arraybuffer',
     protected readonly http: HttpClient,
     protected readonly messenger: MessengerService
-  ) { }
+  ) {
+    this.options = { responseType };
+  }
 
   load(
     language: string,

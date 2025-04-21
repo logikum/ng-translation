@@ -1,3 +1,42 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "boolean": "{{0}}",
+  "currency": "{{0|C}}",
+  "datetime": "{{0|D}}",
+  "number": "{{0|N}}",
+  "percent": "{{0|P}}",
+  "plural": "{{0|R:0=zero;1-5=some;other=many}}",
+  "text": "{{0}}",
+  "currencyCodes": {
+    "code": "Kód",
+    "empty": "üres",
+    "invalid": "érvénytelen",
+    "lilangeni": "lilangeni (Szváziföld)",
+    "noCurrency": "nincs valuta",
+    "null": "nulla",
+    "test": "teszt",
+    "title": "Valutakódok",
+    "undefined": "meghatározatlan",
+    "value": "Érték"
+  },
+  "localizationMethod": {
+    "method": "Módszer",
+    "null": "Nulla",
+    "title": "Lokalizációs módszer",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  },
+  "localizationPipe": {
+    "null": "Nulla",
+    "pipe": "Cső",
+    "title": "Lokalizációs cső",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  },
+  "translationString": {
+    "dataType": "Adattípus",
+    "null": "Nulla",
+    "title": "Fordítási szöveg",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  }
 }

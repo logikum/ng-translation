@@ -1,14 +1,14 @@
 /* 3rd party libraries */
 import {
-  ChangeDetectorRef, Directive, Input, OnChanges, OnInit,
+  ChangeDetectorRef, Directive, inject, Input, OnChanges, OnInit,
   Optional, SimpleChanges, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use relative path */
-import { CurrencyValue } from '../types';
-import { FormatData, TranslateContext } from '../models';
-import { LocalizationService, TranslationService } from '../services';
+import { TranslateContext } from '../models';
+import { LocalizationRef, TranslationService } from '../services';
+import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {
   selector: '[ngtContext]',
@@ -16,20 +16,21 @@ import { LocalizationService, TranslationService } from '../services';
 } )
 export class NgtContextDirective implements OnInit, OnChanges {
 
+  private readonly container = inject( ViewContainerRef );
+  @Optional() private readonly template = inject( TemplateRef<TranslateContext> );
+  private readonly changeDetector = inject( ChangeDetectorRef );
+  private readonly translation = inject( TranslationService );
+  private readonly localization = inject( LocalizationRef );
+
   @Input( 'ngtContext' ) key?: string;
   @Input() ngtContextNode?: string;
 
-  constructor(
-    private readonly container: ViewContainerRef,
-    @Optional() private template: TemplateRef<TranslateContext>,
-    private readonly cdRef: ChangeDetectorRef,
-    private readonly translate: TranslationService,
-    private readonly localization: LocalizationService
-  ) {
-    translate.languageChanged
+  constructor() {
+
+    this.translation.languageChanged
       .pipe( takeUntilDestroyed() )
       .subscribe( language => {
-        this.cdRef.markForCheck();
+        this.changeDetector.markForCheck();
       } );
   }
 
@@ -40,6 +41,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
   ngOnChanges(
     changes: SimpleChanges
   ): void {
+
     const isUpdate = Object.keys( changes )
       .some( p => changes[ p ].firstChange === false );
     if (isUpdate) {
@@ -49,7 +51,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
 
   private initialize(): void {
 
-    const service = this.translate;
+    const service = this.translation;
     const localize = this.localization;
     const keyRoot = this.ngtContextNode;
     const self = this;
@@ -68,54 +70,8 @@ export class NgtContextDirective implements OnInit, OnChanges {
           return service.get( key, args );
         }
       },
-      localize: {
-        number(
-          value: number,
-          args: string
-        ): string {
-          return localize.number( service.activeLanguage, value, args );
-        },
-        percent(
-          value: number,
-          args: string
-        ): string {
-          return localize.percent( service.activeLanguage, value, args );
-        },
-        currency(
-          value: CurrencyValue,
-          args: string
-        ): string {
-          return localize.currency( service.activeLanguage, value, args );
-        },
-        ccy(
-          value: number,
-          currency: string,
-          args: string
-        ): string {
-          return localize.currency( service.activeLanguage, [ value, currency ], args );
-        },
-        datetime(
-          value: Date | number | string,
-          args: string
-        ): string {
-          return localize.datetime( service.activeLanguage, value, args );
-        }
-      }
+      localize: createLocalizeContext( service, localize )
     };
-    if (this.translate.formatNameExtensions.length) {
-      this.translate.formatNameExtensions.forEach( formatName => {
-
-        context.localize[formatName] = (value: any, params?: string): string => {
-          const formatData: FormatData = {
-            key: undefined,
-            locale: this.translate.activeLanguage,
-            params: params || '',
-            value: value
-          };
-          return this.translate.custom( formatName, formatData );
-        };
-      } );
-    }
     this.container.clear();
     this.container.createEmbeddedView( this.template, context );
   }
@@ -125,7 +81,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
     key: string
   ): string {
 
-    if (key.startsWith('../')) {
+    if (key.startsWith( '../' )) {
 
       let head = keyRoot;
       let tail = key;
@@ -133,12 +89,12 @@ export class NgtContextDirective implements OnInit, OnChanges {
         const nodes = head.split( '.' );
         if (nodes.length > 1) {
           nodes.splice( -1, 1 );
-          head = nodes.join('.');
+          head = nodes.join( '.' );
         } else {
           head = '';
         }
         tail = tail.substring( 3 );
-      } while (tail.startsWith('../'));
+      } while (tail.startsWith( '../' ));
 
       return `${ head }.${ tail }`;
     } else {

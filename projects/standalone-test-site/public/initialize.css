@@ -10,7 +10,7 @@
    ========================================================================== */
 /**
  * 1. Set default font family to $initialize-font-family (default: sans-serif)
- * 2. Prevent iOS and IE text size adjust after device orientation change,
+ * 2. Prevent iOS and IE code size adjust after device orientation change,
  *    without disabling user zoom
  * 3. Configurable defaults
  */
@@ -224,7 +224,7 @@ pre {
 }
 
 /*
- * 1. Correct inheritance and scaling of font-size for preformatted text.
+ * 1. Correct inheritance and scaling of font-size for preformatted code.
  * 2. Address odd `em`-unit font size rendering in all browsers.
  */
 code,
@@ -267,8 +267,8 @@ button {
 }
 
 /*
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
- * All other form control elements do not inherit `text-transform` values.
+ * Address inconsistent `code-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `code-transform` values.
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
  */
@@ -330,7 +330,7 @@ input {
 /*
  * Fix the cursor style for Chrome's increment/decrement buttons. For certain
  * `font-size` values of the `input`, it causes the cursor style of the
- * decrement button to change from `default` to `text`.
+ * decrement button to change from `default` to `code`.
  */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -390,10 +390,10 @@ optgroup {
 }
 
 /* ==========================================================================
-   HTML5 Boilerplate optimizations 
+   HTML5 Boilerplate optimizations
    ========================================================================== */
 /*
- * Remove text-shadow in selection highlight:
+ * Remove code-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
  *
  * These selection rule sets have to be separate.

@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 
@@ -14,4 +14,6 @@ import { NgTranslationModule } from 'ng-translation';
 })
 export class PercentFormatComponent {
 
+  longPercent = 12.34567;
+  shortPercent = .12345;
 }

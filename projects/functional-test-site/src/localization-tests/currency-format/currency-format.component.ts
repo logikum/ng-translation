@@ -1,8 +1,12 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule, CurrencyValue } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
+
+interface Price {
+  price: CurrencyValue;
+}
 
 @Component({
   selector: 'fts-currency-format',
@@ -14,4 +18,10 @@ import { NgTranslationModule } from 'ng-translation';
 })
 export class CurrencyFormatComponent {
 
+  priceUSD: Price = { price: [ 1234.567, 'USD' ] };
+  priceEUR: Price = { price: [ 1234.567, 'EUR' ] };
+  priceHUF: Price = { price: [ 1234.567, 'HUF' ] };
+  currencyUSD: CurrencyValue = [ 1234.567, 'USD' ];
+  currencyEUR: CurrencyValue = [ 1234.567, 'EUR' ];
+  currencyHUF: CurrencyValue = [ 1234.567, 'HUF' ];
 }

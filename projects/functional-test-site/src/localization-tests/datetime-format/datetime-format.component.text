@@ -5,5 +5,29 @@
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------
-title: Sample Title
-description: Sample description of the section.
+
+title: Date and Time Formatting
+
+default_f: Default date format
+default_l: {{ 0|datetime }}
+default_s: {{ 0 | D }}
+
+short_f: Short date and time
+short_l: {{ 0|D:dateStyle=short;timeStyle=short;hour12=false }}
+short_s: {{ 0| D : ds = short; ts = short; h12 = false }}
+
+medium_f: Medium date and time
+medium_l: {{ 0|D:dateStyle=medium;timeStyle=medium }}
+medium_s: {{ 0 | D : ds = medium; ts = medium }}
+
+long_f: Long date and time
+long_l: {{ 0|D:dateStyle=long;timeStyle=long }}
+long_s: {{ 0 | D : ds = long; ts = long }}
+
+full_f: Full date and time
+full_l: {{ 0|D:dateStyle=full;timeStyle=full;hour12=true }}
+full_s: {{ 0 | D : ds = full; ts = full; h12 = true }}
+
+fractional_f: Fractional second digits
+fractional_l: {{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}
+fractional_s: {{ 0| D : ds = short; ts = medium; fsd = 3 }}

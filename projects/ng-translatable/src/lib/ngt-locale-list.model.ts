@@ -37,7 +37,7 @@ export class NgtLocaleList implements IterableIterator<LocaleOption> {
       this.changeInProgress = true;
 
       if (!this.setSelectedCode( value )) {
-        // Language not found -try neutral one.
+        // Language not found - try neutral one.
         const locale = new Locale( value );
         if (locale.hasRegion && this.setSelectedCode( locale.neutral )) {
           // Neutral language found.
@@ -73,7 +73,7 @@ export class NgtLocaleList implements IterableIterator<LocaleOption> {
     localeCodes: Array<string>
   ) {
 
-    const currentValue = this.getSelectedCode();
+    const currentValue = this.getSelectedCode() || this.translation.activeLanguage;
     localeCodes.forEach( code => {
       // @ts-ignore
       const languageNames = new Intl.DisplayNames([ code ], { type: 'language' });

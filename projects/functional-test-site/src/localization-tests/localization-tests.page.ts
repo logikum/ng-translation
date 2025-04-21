@@ -10,7 +10,6 @@ import { PercentFormatComponent } from './percent-format/percent-format.componen
 import { CurrencyFormatComponent } from './currency-format/currency-format.component';
 import { DatetimeFormatComponent } from './datetime-format/datetime-format.component';
 import { PluralFormatComponent } from './plural-format/plural-format.component';
-import { LocalizationComponent } from './localization/localization.component';
 
 @Component({
   selector: 'fun-localization-tests',
@@ -21,8 +20,7 @@ import { LocalizationComponent } from './localization/localization.component';
     PercentFormatComponent,
     CurrencyFormatComponent,
     DatetimeFormatComponent,
-    PluralFormatComponent,
-    LocalizationComponent
+    PluralFormatComponent
   ],
   templateUrl: './localization-tests.page.html',
   styleUrl: './localization-tests.page.css'

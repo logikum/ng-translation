@@ -21,6 +21,7 @@ export class TranspileExtenderComponent {
   randoms: Array<number> = [];
 
   constructor() {
+
     for (let i = 1; i <= 10; i++) {
       this.ones.push(i);
       this.tens.push(i * 10);

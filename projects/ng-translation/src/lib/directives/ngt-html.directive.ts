@@ -13,16 +13,12 @@ export class NgtHtmlDirective extends NgtDirectiveBase {
   isHtml = true;
 
   @Input( 'ngtHtml' )
-  set key(value: string) {
-    this.setKeyValue(value);
+  set key( value: string ) {
+    this.setKeyValue( value );
   }
 
   @Input( 'ngt-params' )
-  set params(value: any | undefined) {
-    this.setParamsValue(value);
-  }
-
-  constructor() {
-    super();
+  set params( value: any | undefined ) {
+    this.setParamsValue( value );
   }
 }

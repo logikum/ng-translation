@@ -49,7 +49,8 @@ export class MessengerService {
     format: string
   ): void {
 
-    this.display( key, format,
+    this.display(
+      key, format,
       'Not supported format:',
       'Missing format.'
     );
@@ -60,7 +61,8 @@ export class MessengerService {
     optionName: string
   ): void {
 
-    this.display( key, optionName,
+    this.display(
+      key, optionName,
       'Not supported option:',
       'Missing option name.'
     );
@@ -71,7 +73,8 @@ export class MessengerService {
     optionValue: string
   ): void {
 
-    this.display( key, optionValue,
+    this.display(
+      key, optionValue,
       'Invalid option value:',
       'Missing option value.'
     );
@@ -82,7 +85,8 @@ export class MessengerService {
     optionValue: string
   ): void {
 
-    this.display( key, optionValue,
+    this.display(
+      key, optionValue,
       'Not supported date style value:',
       'Missing date style value.'
     );
@@ -93,7 +97,8 @@ export class MessengerService {
     optionValue: string
   ): void {
 
-    this.display( key, optionValue,
+    this.display(
+      key, optionValue,
       'Not supported time style value:',
       'Missing time style value.'
     );
@@ -104,7 +109,8 @@ export class MessengerService {
     optionName: string
   ): void {
 
-    this.display( key, optionName,
+    this.display(
+      key, optionName,
       'Option must be a number, a range or "other":',
       'Missing plural option.'
     );

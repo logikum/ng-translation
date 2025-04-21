@@ -2,45 +2,45 @@
   "localeList": {
     "changeByCode": "Set by code",
     "changeByIndex": "Set by index",
-    "selectedIndex": "Selected index",
     "selectedCode": "Selected code",
-    "selectedName": "Selected name",
-    "selectedItem": "Selected item"
+    "selectedIndex": "Selected index",
+    "selectedItem": "Selected item",
+    "selectedName": "Selected name"
   },
   "multipleChoice": {
-    "changeByValues": "Set by values",
     "changeByIndexes": "Set by indexes",
+    "changeByValues": "Set by values",
+    "filter": "Filter",
     "selectAll": "All",
     "selectNone": "None",
-    "filter": "Filter",
     "selectedCount": "Selected count",
     "selectedIndexes": "Selected indexes",
-    "selectedValues": "Selected values",
+    "selectedItems": "Selected items",
     "selectedTexts": "Selected texts",
-    "selectedItems": "Selected items"
+    "selectedValues": "Selected values"
   },
   "singleChoice": {
-    "changeByValue": "Set by value",
     "changeByIndex": "Set by index",
+    "changeByValue": "Set by value",
     "filter": "Filter",
     "selectedIndex": "Selected index",
-    "selectedValue": "Selected value",
+    "selectedItem": "Selected item",
     "selectedText": "Selected text",
-    "selectedItem": "Selected item"
+    "selectedValue": "Selected value"
   },
   "textList": {
     "advice": "Fruit is healthy.",
-    "label": {
-      "seasons": "Seasons",
-      "advice": "Advice",
-      "fruits": "Fruits",
-      "welcome": "Welcome",
-      "status": "Status"
-    },
     "fruit": {
       "apple": "apple",
-      "peach": "peach",
-      "cherry": "cherry"
+      "cherry": "cherry",
+      "peach": "peach"
+    },
+    "label": {
+      "advice": "Advice",
+      "fruits": "Fruits",
+      "seasons": "Seasons",
+      "status": "Status",
+      "welcome": "Welcome"
     }
   }
 }

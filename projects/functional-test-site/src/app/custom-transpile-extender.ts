@@ -38,13 +38,20 @@ export class CustomTranspileExtender extends TranspileExtenderBase {
       case FormatName.logLevel:
         return this.translation.get(`enums.logLevel.${ LogLevel[ data.value ] }`);
       case FormatName.season:
-        return this.translation.get(`enums.season.${ Season[ data.value ] }`);
+        return this.translation.get(`enums.season.${ getEnumName( Season, data.value ) }`);
       case FormatName.month:
         return this.translation.get(`enums.month.${ Month[ data.value ] }`);
       default:
         return undefined;
     }
   }
+}
+
+function getEnumName(
+  enumType: any,
+  enumValue: number
+): string {
+  return Object.keys( enumType )[ Object.values( enumType ).indexOf( enumValue ) ];
 }
 
 function integerToRoman(

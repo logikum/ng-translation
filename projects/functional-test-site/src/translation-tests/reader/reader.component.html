@@ -1,0 +1,34 @@
+<div class="context">--- the source is the same section ---</div>
+<ng-container *ngtReader="let r; node: 'translation.text'">
+  <div class="data">{{ r.otherElements() }}</div>
+  <ng-container *ngtReader="let r; node: 'translation.text.element'">
+    <div class="data flex-row">
+      <div class="row-item">{{ r.earth() }}</div>
+      <div class="row-item">{{ r.water() }}</div>
+      <div class="row-item">{{ r.wind() }}</div>
+      <div class="row-item">{{ r.fire() }}</div>
+    </div>
+  </ng-container>
+  <div class="data" [innerHtml]="r.smurfs()"></div>
+</ng-container>
+
+<div class="context">--- the sources are shared sections ---</div>
+<ng-container *ngtReader="let r; node: 'shared'">
+  <div class="data">{{ r.fourSeasons() }}</div>
+  <ng-container *ngtReader="let r; node: 'enums.season'">
+    <div class="data flex-row">
+      <div class="row-item">{{ r.spring() }}</div>
+      <div class="row-item">{{ r.summer() }}</div>
+      <div class="row-item">{{ r.autumn() }}</div>
+      <div class="row-item">{{ r.winter() }}</div>
+    </div>
+  </ng-container>
+  <div class="data" [innerHtml]="r.pooh()"></div>
+</ng-container>
+
+<ng-container *ngtReader="let r; node: 'translation.text'">
+  <div class="context">--- with interpolation ---</div>
+  <div class="data">{{ r.today(today) }}</div>
+  <div class="data">{{ r.stock(rise, value) }}</div>
+  <div class="data">{{ r.book(normalPrice, specialPrice) }}</div>
+</ng-container>

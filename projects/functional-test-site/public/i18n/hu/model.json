@@ -1,3 +1,46 @@
 {
-  "temp": "A simple and customizable accordion component."
+  "localeList": {
+    "changeByCode": "Kód alapján beállítva",
+    "changeByIndex": "Index alapján beállítva",
+    "selectedCode": "Kiválasztott kód",
+    "selectedIndex": "Kiválasztott index",
+    "selectedItem": "Kiválasztott elem",
+    "selectedName": "Kiválasztott név"
+  },
+  "multipleChoice": {
+    "changeByIndexes": "Index alapján beállítva",
+    "changeByValues": "Értékek alapján beállítva",
+    "filter": "Szűrő",
+    "selectAll": "Mind",
+    "selectNone": "Egyik sem",
+    "selectedCount": "Kiválasztottak száma",
+    "selectedIndexes": "Kiválasztott indexek",
+    "selectedItems": "Kiválasztott elemek",
+    "selectedTexts": "Kiválasztott szövegek",
+    "selectedValues": "Kiválasztott értékek"
+  },
+  "singleChoice": {
+    "changeByIndex": "Index alapján beállítva",
+    "changeByValue": "Érték alapján beállítva",
+    "filter": "Szűrő",
+    "selectedIndex": "Kiválasztott index",
+    "selectedItem": "Kiválasztott elem",
+    "selectedText": "Kiválasztott szöveg",
+    "selectedValue": "Kiválasztott érték"
+  },
+  "textList": {
+    "advice": "A gyümölcs egészséges.",
+    "fruit": {
+      "apple": "alma",
+      "cherry": "cseresznye",
+      "peach": "őszibarack"
+    },
+    "label": {
+      "advice": "Tanács",
+      "fruits": "Gyümölcsök",
+      "seasons": "Évszakok",
+      "status": "Állapot",
+      "welcome": "Üdvözöljük"
+    }
+  }
 }

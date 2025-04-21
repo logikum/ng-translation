@@ -7,14 +7,16 @@ import { TranslationService } from '../services';
 
 export abstract class NgtDirectiveBase {
 
-  private readonly container = inject(ViewContainerRef);
-  private readonly cdRef = inject(ChangeDetectorRef);
-  private readonly translation = inject(TranslationService);
+  private readonly container = inject( ViewContainerRef );
+  private readonly changeDetector = inject( ChangeDetectorRef );
+  private readonly translation = inject( TranslationService );
   private keyValue?: string;
   private paramsValue?: any;
 
-  abstract set key(value: string);
-  abstract set params(value: any | undefined);
+  abstract set key( value: string );
+
+  abstract set params( value: any | undefined );
+
   protected abstract isHtml: boolean;
 
   protected setKeyValue(
@@ -50,11 +52,11 @@ export abstract class NgtDirectiveBase {
     if (this.keyValue) {
       const text = this.translation.get( this.keyValue, this.paramsValue );
       if (this.isHtml) {
-        this.container.element.nativeElement.innnerHtml = text;
+        this.container.element.nativeElement.innerHTML = text;
       } else {
         this.container.element.nativeElement.innerText = text;
       }
-      this.cdRef.markForCheck();
+      this.changeDetector.markForCheck();
     }
   }
 }

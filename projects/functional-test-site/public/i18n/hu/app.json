@@ -1,16 +1,10 @@
 {
-  "languages": {
-    "en": "English",
-    "hu": "magyar",
-    "it": "italiano"
-  },
-  "model": "Modell tesztek",
-  "component": "Komponens tesztek",
-  "translation": "Fordítási tesztek",
-  "localization": "Lokalizációs tesztek",
   "conversion": "Konvertálási tesztek",
+  "localization": "Lokalizációs tesztek",
+  "model": "Modell tesztek",
   "null": "Null érték tesztek",
   "other": "Egyéb tesztek",
+  "translation": "Fordítási tesztek",
   "enums": {
     "appStatus": {
       "construct": "építés alatt",
@@ -23,6 +17,5 @@
   },
   "home": {
     "title": "Üdvözöljük a funkcionális tesztoldalon!"
-  },
-  "title": {}
+  }
 }

@@ -5,24 +5,22 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 import { ContentService } from '../shared/content.service';
 import { AccordionModule } from '../shared/accordion/accordion.module';
-import { TextComponent } from './text/text.component';
-import { InterpolationComponent } from './interpolation/interpolation.component';
+import { CodeComponent } from './code/code.component';
 import { StructuralComponent } from './structural/structural.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { AttributeComponent } from './attribute/attribute.component';
-import { HtmlComponent } from './html/html.component';
+import { ReaderComponent } from './reader/reader.component';
 
 @Component({
   selector: 'fun-translation-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,
-    TextComponent,
-    InterpolationComponent,
+    CodeComponent,
     StructuralComponent,
     PipeComponent,
     AttributeComponent,
-    HtmlComponent
+    ReaderComponent
   ],
   templateUrl: './translation-tests.page.html',
   styleUrl: './translation-tests.page.css'

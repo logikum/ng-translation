@@ -15,6 +15,10 @@ function missing(
   return value === null || value === undefined;
 }
 
+interface DateTimeFormatOptions extends Intl.DateTimeFormatOptions {
+  fractionalSecondDigits?: 1 | 2 | 3;
+}
+
 @Injectable( {
   providedIn: 'root'
 } )
@@ -163,7 +167,7 @@ export class LocalizationService {
     if (missing( data.value )) {
       return '';
     }
-    const options: Intl.DateTimeFormatOptions = {};
+    const options: DateTimeFormatOptions = {};
     if (data.params.trim().length > 0) {
       const items = data.params.split( OPTION_SEP );
       items.forEach( item => {
@@ -277,6 +281,15 @@ export class LocalizationService {
                 data.key, optionValue, [ 'numeric', '2-digit' ]
               ) as 'numeric' | '2-digit';
               break;
+            case 'fsd':
+            case 'fractionalSecondDigits':
+              let fsdValue = parseInt( optionValue, 10 );
+              if (isNaN( fsdValue ) || ![ 1, 2, 3 ].includes( fsdValue )) {
+                this.messenger.optionValueError( data.key, optionValue );
+                fsdValue = undefined;
+              }
+              options.fractionalSecondDigits = fsdValue as 1 | 2 | 3 | undefined;
+              break;
             case 'tz':
             case 'timeZone':
               options.timeZone = optionValue;
@@ -335,7 +348,7 @@ export class LocalizationService {
     list: Array<string>
   ): string {
 
-    if (list.indexOf( member ) < 0) {
+    if (!list.includes( member )) {
       this.messenger.optionValueError( key, member );
       return undefined;
     }

@@ -8,6 +8,7 @@ import { AccordionModule } from '../shared/accordion/accordion.module';
 import { NumberFormatComponent } from './number-format/number-format.component';
 import { PercentFormatComponent } from './percent-format/percent-format.component';
 import { CurrencyFormatComponent } from './currency-format/currency-format.component';
+import { MoneyFormatComponent } from './money-format/money-format.component';
 import { DatetimeFormatComponent } from './datetime-format/datetime-format.component';
 
 @Component({
@@ -18,6 +19,7 @@ import { DatetimeFormatComponent } from './datetime-format/datetime-format.compo
     NumberFormatComponent,
     PercentFormatComponent,
     CurrencyFormatComponent,
+    MoneyFormatComponent,
     DatetimeFormatComponent
   ],
   templateUrl: './localize-tests.page.html',

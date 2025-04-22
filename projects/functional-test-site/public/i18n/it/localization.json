@@ -35,6 +35,13 @@
     "fractional_l": "{{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}",
     "fractional_s": "{{ 0| D : ds = short; ts = medium; fsd = 3 }}"
   },
+  "money": {
+    "code": "Formato del codice valuta",
+    "default": "Formato valuta predefinito",
+    "name": "Formato del nome della valuta",
+    "symbol": "Formato del simbolo di valuta",
+    "title": "Formattazione del denaro"
+  },
   "number": {
     "title": "Formattazione numerica",
     "basic_f": "Formato numerico di base",

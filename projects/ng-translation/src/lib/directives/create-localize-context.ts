@@ -34,7 +34,7 @@ export function createLocalizeContext(
       currency: string,
       args: string
     ): string {
-      return localize.currency( translation.activeLanguage, [ value, currency ], args );
+      return localize.money( translation.activeLanguage, value, currency, args );
     },
     datetime(
       value: Date | number | string,

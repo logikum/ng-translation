@@ -1,7 +1,7 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> localize.number
+> localization.number
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------

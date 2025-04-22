@@ -35,6 +35,13 @@
     "fractional_l": "{{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}",
     "fractional_s": "{{ 0| D : ds = short; ts = medium; fsd = 3 }}"
   },
+  "money": {
+    "code": "Pénznem kód formátuma",
+    "default": "Alap pénznemformátum",
+    "name": "Pénznem név formátuma",
+    "symbol": "Pénznem szimbólum formátuma",
+    "title": "Pénzformázás"
+  },
   "number": {
     "title": "Szám formázása",
     "basic_f": "Alap számformátum",

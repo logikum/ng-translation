@@ -35,6 +35,13 @@
     "short_s": "{{ 0| D : ds = short; ts = short; h12 = false }}",
     "title": "Date and Time Formatting"
   },
+  "money": {
+    "code": "Currency code format",
+    "default": "Default currency format",
+    "name": "Currency name format",
+    "symbol": "Currency symbol format",
+    "title": "Money Formatting"
+  },
   "number": {
     "basic_f": "Basic number format",
     "basic_l": "{{ 0|number }}",

@@ -1,8 +1,14 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> localization.datetime
+> localization.money
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------
 
+title:    Money Formatting
+
+default:  Default currency format
+code:     Currency code format
+name:     Currency name format
+symbol:   Currency symbol format

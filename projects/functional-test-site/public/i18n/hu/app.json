@@ -5,6 +5,7 @@
   "model": "Modell tesztek",
   "null": "Null érték tesztek",
   "other": "Egyéb tesztek",
+  "pipe": "Lokalizációs tesztek | pipe",
   "translation": "Fordítási tesztek",
   "enums": {
     "appStatus": {

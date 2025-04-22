@@ -1,9 +1,9 @@
 <ng-container *ngtContext="let t; node: 'other'">
   <fts-accordion [collapsing]="true">
-    <div ftsAccordionItem [title]="t('camelCase.title')">
+    <div ftsAccordionItem [title]="t('enumeration.title')">
       <ng-template ftsAccordionContent>
         <div class="accordion-content">
-          <fts-camel-case></fts-camel-case>
+          <fts-enumeration></fts-enumeration>
         </div>
       </ng-template>
     </div>
@@ -14,10 +14,10 @@
         </div>
       </ng-template>
     </div>
-    <div ftsAccordionItem [title]="t('enumeration.title')">
+    <div ftsAccordionItem [title]="t('camelCase.title')">
       <ng-template ftsAccordionContent>
         <div class="accordion-content">
-          <fts-enumeration></fts-enumeration>
+          <fts-camel-case></fts-camel-case>
         </div>
       </ng-template>
     </div>

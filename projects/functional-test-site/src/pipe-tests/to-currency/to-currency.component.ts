@@ -5,14 +5,14 @@ import { NgTranslationModule, CurrencyValue } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-currency-format',
+  selector: 'fts-to-currency',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './currency-format.component.html',
-  styleUrl: './currency-format.component.css'
+  templateUrl: './to-currency.component.html',
+  styleUrl: './to-currency.component.css'
 })
-export class CurrencyFormatComponent {
+export class ToCurrencyComponent {
 
   currencyUSD: CurrencyValue = [ 1234.567, 'USD' ];
   currencyEUR: CurrencyValue = [ 1234.567, 'EUR' ];

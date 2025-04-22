@@ -40,7 +40,7 @@
     "default": "Alap pénznemformátum",
     "name": "Pénznem név formátuma",
     "symbol": "Pénznem szimbólum formátuma",
-    "title": "Pénzformázás"
+    "title": "Pénz formázása"
   },
   "number": {
     "title": "Szám formázása",

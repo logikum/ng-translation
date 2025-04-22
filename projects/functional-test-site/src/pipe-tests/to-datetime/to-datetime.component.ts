@@ -5,14 +5,14 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-money-format',
+  selector: 'fts-to-datetime',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './money-format.component.html',
-  styleUrl: './money-format.component.css'
+  templateUrl: './to-datetime.component.html',
+  styleUrl: './to-datetime.component.css'
 })
-export class MoneyFormatComponent {
+export class ToDatetimeComponent {
 
-  amount = 1234.567;
+  now = Date.now();
 }

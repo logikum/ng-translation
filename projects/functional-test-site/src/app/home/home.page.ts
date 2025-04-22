@@ -23,7 +23,8 @@ export class HomePage {
 
   // tests = signal(tests);
   tests = [
-    'translation', 'localization', 'localize', 'model', 'null', 'conversion', 'other'
+    'translation', 'localization', 'localize', 'pipe',
+    'model', 'null', 'conversion', 'other'
   ];
 
   constructor() {

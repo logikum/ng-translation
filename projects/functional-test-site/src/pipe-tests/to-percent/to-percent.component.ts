@@ -5,14 +5,15 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-money-format',
+  selector: 'fts-to-percent',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './money-format.component.html',
-  styleUrl: './money-format.component.css'
+  templateUrl: './to-percent.component.html',
+  styleUrl: './to-percent.component.css'
 })
-export class MoneyFormatComponent {
+export class ToPercentComponent {
 
-  amount = 1234.567;
+  longPercent = 12.34567;
+  shortPercent = .12345;
 }

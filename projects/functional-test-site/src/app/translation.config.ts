@@ -12,6 +12,7 @@ export const translationConfig: TranslationConfig = {
     { group: 'translation', items: [ 'translation' ] },
     { group: 'localization', items: [ 'localization' ] },
     { group: 'localize', items: [ 'localization' ] },
+    { group: 'pipe', items: [ 'localization' ] },
     { group: 'model', items: [ 'model' ] },
     { group: 'null', items: [ 'null' ] },
     { group: 'conversion', items: [

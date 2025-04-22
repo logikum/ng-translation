@@ -1,0 +1,39 @@
+<ng-container *ngtContext="let t; node: 'localization'">
+  <fts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('number.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-to-number></fts-to-number>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('percent.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-to-percent></fts-to-percent>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('currency.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-to-currency></fts-to-currency>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('money.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-to-money></fts-to-money>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('datetime.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-to-datetime></fts-to-datetime>
+        </div>
+      </ng-template>
+    </div>
+  </fts-accordion>
+</ng-container>

@@ -5,6 +5,7 @@
   "model": "Test del modello",
   "null": "Test di valore nullo",
   "other": "Altri test",
+  "pipe": "Test di localizzazione | pipe",
   "translation": "Test di traduzione",
   "enums": {
     "appStatus": {

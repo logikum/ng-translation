@@ -21,7 +21,7 @@ export class ToMoneyPipe extends TranslationPipeBase implements PipeTransform {
 
     if (!this.isValid) {
       const ix = (args || '').indexOf( '|' );
-      const currency = ix < 0 ? args : args.substring( 0, ix );
+      const currency = ix < 0 ? args : args.substring( 0, ix ).trim();
       const opts = ix < 0 ? '' : args.substring( ix + 1 );
 
       this.localized = this.localize.money(

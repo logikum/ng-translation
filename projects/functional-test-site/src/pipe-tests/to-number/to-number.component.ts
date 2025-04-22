@@ -5,14 +5,15 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-money-format',
+  selector: 'fts-to-number',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './money-format.component.html',
-  styleUrl: './money-format.component.css'
+  templateUrl: './to-number.component.html',
+  styleUrl: './to-number.component.css'
 })
-export class MoneyFormatComponent {
+export class ToNumberComponent {
 
-  amount = 1234.567;
+  longNumber = 1234567.1234567;
+  shortNumber = 1.2;
 }

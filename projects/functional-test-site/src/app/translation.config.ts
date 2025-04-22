@@ -28,6 +28,7 @@ export const translationConfig: TranslationConfig = {
   ],
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
+  defaultCurrency: environment.defaultCurrency,
   disableWarnings: environment.disableWarnings,
   currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' },
   filenameToCamelCase: true

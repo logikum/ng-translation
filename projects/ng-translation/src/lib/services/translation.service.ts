@@ -518,13 +518,13 @@ export class TranslationService implements LocalizeContext {
     return this.localize.currency( this.activeLanguage, value, args );
   }
 
-  ccy(
+  money(
     value: number,
-    currency: string,
+    currency?: string,
     args?: string
   ): string {
 
-    return this.localize.ccy( this.activeLanguage, value, currency, args );
+    return this.localize.money( this.activeLanguage, value, currency, args );
   }
 
   datetime(

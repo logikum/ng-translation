@@ -6,17 +6,17 @@ import { LocalizationRef } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
-  name: 'toCcy',
+  name: 'toMoney',
   pure: false,
   standalone: false
 } )
-export class ToCcyPipe extends TranslationPipeBase implements PipeTransform {
+export class ToMoneyPipe extends TranslationPipeBase implements PipeTransform {
 
   private readonly localize = inject( LocalizationRef );
 
   transform(
     value: number,
-    args: string
+    args?: string
   ): string {
 
     if (!this.isValid) {
@@ -24,8 +24,8 @@ export class ToCcyPipe extends TranslationPipeBase implements PipeTransform {
       const currency = ix < 0 ? args : args.substring( 0, ix );
       const opts = ix < 0 ? '' : args.substring( ix + 1 );
 
-      this.localized = this.localize.currency(
-        this.translation.activeLanguage, [ value, currency ], opts
+      this.localized = this.localize.money(
+        this.translation.activeLanguage, value, currency, opts
       );
       this.isValid = true;
     }

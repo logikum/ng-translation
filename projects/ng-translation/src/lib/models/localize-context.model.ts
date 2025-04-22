@@ -11,7 +11,7 @@ export interface LocalizeContext {
 
   currency( value: CurrencyValue, args?: string ): string;
 
-  ccy( value: number, currency: string, args?: string ): string;
+  money( value: number, currency: string, args?: string ): string;
 
   datetime( value: Date | number | string, args?: string ): string;
 }

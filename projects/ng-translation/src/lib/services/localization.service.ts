@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
-import { FormatData, NGT_CONFIGURATION, TranslationConfig } from '../models';
+import { FormatData, NGT_CONFIGURATION } from '../models';
 import { MessengerService } from './messenger.service';
 
 const OPTION_SEP = ';';

@@ -4,7 +4,7 @@ import { inject, Injectable } from '@angular/core';
 /* locally accessible feature module code, always use relative path */
 import { LocalizationService } from './localization.service';
 import { CurrencyValue } from '../types';
-import { FormatData } from '../models';
+import { FormatData, NGT_CONFIGURATION } from '../models';
 
 function createFormatData(
   locale: string,
@@ -26,11 +26,12 @@ function createFormatData(
 export class LocalizationRef {
 
   private readonly localization = inject( LocalizationService );
+  private readonly config = inject( NGT_CONFIGURATION );
 
   number(
     locale: string,
     value: number,
-    args: string
+    args?: string
   ): string {
     return this.localization.numberFormat( createFormatData( locale, value, args ) );
   }
@@ -38,7 +39,7 @@ export class LocalizationRef {
   percent(
     locale: string,
     value: number,
-    args: string
+    args?: string
   ): string {
     return this.localization.percentFormat( createFormatData( locale, value, args ) );
   }
@@ -46,24 +47,33 @@ export class LocalizationRef {
   currency(
     locale: string,
     value: CurrencyValue,
-    args: string
+    args?: string
   ): string {
     return this.localization.currencyFormat( createFormatData( locale, value, args ) );
   }
 
-  ccy(
+  money(
     locale: string,
     value: number,
-    currency: string,
+    currency?: string,
     args?: string
   ): string {
-    return this.currency( locale, [ value, currency ], args );
+
+    let vCurrency = currency || this.config.defaultCurrency;
+    let vArgs = args;
+    if (currency && (currency.length !== 3 || [...currency].some( c => c !== c.toUpperCase()))) {
+      vCurrency = this.config.defaultCurrency;
+      if (!args) {
+        vArgs = currency;
+      }
+    }
+    return this.currency( locale, [value, vCurrency], vArgs );
   }
 
   datetime(
     locale: string,
     value: Date | number | string,
-    args: string
+    args?: string
   ): string {
     return this.localization.datetimeFormat( createFormatData( locale, value, args ) );
   }

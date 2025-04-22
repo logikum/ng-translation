@@ -33,6 +33,7 @@ export interface TranslationConfig {
   readonly sections: SectionList;
   readonly defaultLanguage: string;
   readonly allowedLanguages?: Array<string>;
+  readonly defaultCurrency: string;
   readonly disableWarnings?: boolean;
   readonly currencyDefaultOptions?: object;
   readonly filenameToCamelCase?: boolean;

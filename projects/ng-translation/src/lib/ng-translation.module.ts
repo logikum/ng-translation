@@ -12,7 +12,7 @@ import {
   NGT_INLINE_LOADER, TranslationConfig
 } from './models';
 import {
-  ToCcyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
+  ToMoneyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
 } from './pipes';
 import { TranslationService } from './services';
 import { initializerFactory } from './initializer.factory';
@@ -21,7 +21,7 @@ import { DefaultFormatExtender } from './default-format.extender';
 
 @NgModule( {
   declarations: [
-    ToCcyPipe,
+    ToMoneyPipe,
     ToCurrencyPipe,
     ToDatetimePipe,
     ToNumberPipe,
@@ -34,7 +34,7 @@ import { DefaultFormatExtender } from './default-format.extender';
     NgtTextDirective
   ],
   exports: [
-    ToCcyPipe,
+    ToMoneyPipe,
     ToCurrencyPipe,
     ToDatetimePipe,
     ToNumberPipe,

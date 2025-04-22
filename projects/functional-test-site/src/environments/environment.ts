@@ -6,5 +6,6 @@ export const environment = {
   production: false,
   defaultLanguage: 'en',
   allowedLanguages: [ 'en', 'it', 'hu', 'sk' ],
+  defaultCurrency: 'USD',
   disableWarnings: false
 };

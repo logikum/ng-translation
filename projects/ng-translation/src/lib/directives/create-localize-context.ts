@@ -29,7 +29,7 @@ export function createLocalizeContext(
     ): string {
       return localize.currency( translation.activeLanguage, value, args );
     },
-    ccy(
+    money(
       value: number,
       currency: string,
       args: string
@@ -47,7 +47,7 @@ export function createLocalizeContext(
   if (translation.formatNameExtensions.length) {
     translation.formatNameExtensions.forEach( ( formatName: string ) => {
 
-      if ([ 'number', 'percent', 'currency', 'ccy', 'datetime' ].includes( formatName )) {
+      if ([ 'number', 'percent', 'currency', 'money', 'datetime' ].includes( formatName )) {
         throw new Error(`Format name '${formatName}' is reserved.`);
       } else if (localizeContext.hasOwnProperty( formatName )) {
         throw new Error(`Format name '${formatName}' is already used.`);

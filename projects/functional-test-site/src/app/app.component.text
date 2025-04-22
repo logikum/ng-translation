@@ -8,7 +8,8 @@
 
 model:          Model Tests
 translation:    Translation Tests
-localization:   Localization Tests
+localization:   Localization Tests - t()
+localize:       Localization Tests - l()
 conversion:     Conversion Tests
 null:           Null Value Tests
 other:          Other Tests

@@ -22,7 +22,7 @@ minfd_s: {{ 0 | P : minfd = 3 }}
 
 maxfd_f: Maximum fraction digits
 maxfd_l: {{ 0|P:maximumFractionDigits=1 }}
-maxfd_s: {{ 0 | P : maxfd=1 }}
+maxfd_s: {{ 0 | P : maxfd = 1 }}
 
 minsd_f: Minimum significant digits
 minsd_l: {{ 0|P:minimumSignificantDigits=3 }}

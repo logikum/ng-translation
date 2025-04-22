@@ -1,6 +1,7 @@
 {
   "conversion": "Konvertálási tesztek",
-  "localization": "Lokalizációs tesztek",
+  "localization": "Lokalizációs tesztek - t()",
+  "localize": "Lokalizációs tesztek - l()",
   "model": "Modell tesztek",
   "null": "Null érték tesztek",
   "other": "Egyéb tesztek",

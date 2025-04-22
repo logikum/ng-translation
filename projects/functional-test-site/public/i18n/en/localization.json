@@ -68,7 +68,7 @@
     "basic_s": "{{ 0 | P }}",
     "maxfd_f": "Maximum fraction digits",
     "maxfd_l": "{{ 0|P:maximumFractionDigits=1 }}",
-    "maxfd_s": "{{ 0 | P : maxfd=1 }}",
+    "maxfd_s": "{{ 0 | P : maxfd = 1 }}",
     "maxsd_f": "Maximum significant digits",
     "maxsd_l": "{{ 0|P:maximumSignificantDigits=3 }}",
     "maxsd_s": "{{ 0 | P : maxsd = 3 }}",

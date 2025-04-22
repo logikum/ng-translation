@@ -10,7 +10,7 @@ import { TranspileExtenderComponent } from './transpile-extender/transpile-exten
 import { EnumerationComponent } from './enumeration/enumeration.component';
 
 @Component({
-  selector: 'fun-other-tests',
+  selector: 'fts-other-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,

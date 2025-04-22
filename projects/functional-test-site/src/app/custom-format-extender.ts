@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Injectable } from '@angular/core';
-import { FormatData, TranspileExtenderBase } from 'ng-translation';
+import { FormatData, TranspileExtenderBase } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { AppStatus } from './enums/app-status.enum';

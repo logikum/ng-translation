@@ -10,7 +10,7 @@ import { NgtLocaleList } from '@logikum/ng-translatable';
 import { translationConfig } from '../translation.config';
 
 @Component({
-  selector: 'fun-header',
+  selector: 'fts-header',
   imports: [ RouterLink, NgTranslationModule, AsyncPipe ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'

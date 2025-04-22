@@ -8,7 +8,7 @@ import { AccordionModule } from '../shared/accordion/accordion.module';
 import { PoFileComponent } from './po-file/po-file.component';
 
 @Component({
-  selector: 'fun-conversion-tests',
+  selector: 'fts-conversion-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,

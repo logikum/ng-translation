@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { TitleComponent } from './title/title.component';
 
 @Component({
-  selector: 'fun-root',
+  selector: 'fts-root',
   imports: [ RouterOutlet, HeaderComponent, TitleComponent, AsyncPipe ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

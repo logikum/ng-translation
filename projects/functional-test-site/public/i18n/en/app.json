@@ -1,6 +1,7 @@
 {
   "conversion": "Conversion Tests",
-  "localization": "Localization Tests",
+  "localization": "Localization Tests - t()",
+  "localize": "Localization Tests - l()",
   "model": "Model Tests",
   "null": "Null Value Tests",
   "other": "Other Tests",

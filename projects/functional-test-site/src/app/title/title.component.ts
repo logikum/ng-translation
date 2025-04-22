@@ -7,7 +7,7 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 import { ContentService } from '../../shared/content.service';
 
 @Component({
-  selector: 'fun-title',
+  selector: 'fts-title',
   imports: [ RouterLink, NgTranslationModule ],
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'

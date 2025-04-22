@@ -12,7 +12,7 @@ const tests = [
 
 @Component({
 
-  selector: 'fun-home',
+  selector: 'fts-home',
   imports: [ RouterLink, NgTranslationModule, NgTranslationModule ],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css'
@@ -23,7 +23,7 @@ export class HomePage {
 
   // tests = signal(tests);
   tests = [
-    'translation', 'localization', 'model', 'null', 'conversion', 'other'
+    'translation', 'localization', 'localize', 'model', 'null', 'conversion', 'other'
   ];
 
   constructor() {

@@ -11,6 +11,7 @@ export const translationConfig: TranslationConfig = {
     'app', 'shared', 'enums',
     { group: 'translation', items: [ 'translation' ] },
     { group: 'localization', items: [ 'localization' ] },
+    { group: 'localize', items: [ 'localization' ] },
     { group: 'model', items: [ 'model' ] },
     { group: 'null', items: [ 'null' ] },
     { group: 'conversion', items: [

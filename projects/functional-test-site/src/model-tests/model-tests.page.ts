@@ -11,7 +11,7 @@ import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { LocaleListComponent } from './locale-list/locale-list.component';
 
 @Component({
-  selector: 'fun-model-tests',
+  selector: 'fts-model-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,

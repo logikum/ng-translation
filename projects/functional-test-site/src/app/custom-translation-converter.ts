@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resource, TranslationConverter } from 'ng-translation';
+import { Resource, TranslationConverter } from '@logikum/ng-translation';
 
 @Injectable()
 export class CustomTranslationConverter implements TranslationConverter {

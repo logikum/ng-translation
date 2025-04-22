@@ -1,6 +1,7 @@
 {
   "conversion": "Test di conversione",
-  "localization": "Test di localizzazione",
+  "localization": "Test di localizzazione - t()",
+  "localize": "Test di localizzazione - l()",
   "model": "Test del modello",
   "null": "Test di valore nullo",
   "other": "Altri test",

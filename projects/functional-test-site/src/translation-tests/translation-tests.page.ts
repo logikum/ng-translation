@@ -12,7 +12,7 @@ import { AttributeComponent } from './attribute/attribute.component';
 import { ReaderComponent } from './reader/reader.component';
 
 @Component({
-  selector: 'fun-translation-tests',
+  selector: 'fts-translation-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,

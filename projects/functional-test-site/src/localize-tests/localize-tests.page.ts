@@ -9,27 +9,25 @@ import { NumberFormatComponent } from './number-format/number-format.component';
 import { PercentFormatComponent } from './percent-format/percent-format.component';
 import { CurrencyFormatComponent } from './currency-format/currency-format.component';
 import { DatetimeFormatComponent } from './datetime-format/datetime-format.component';
-import { PluralFormatComponent } from './plural-format/plural-format.component';
 
 @Component({
-  selector: 'fts-localization-tests',
+  selector: 'fts-localize-tests',
   imports: [
     NgTranslationModule,
     AccordionModule,
     NumberFormatComponent,
     PercentFormatComponent,
     CurrencyFormatComponent,
-    DatetimeFormatComponent,
-    PluralFormatComponent
+    DatetimeFormatComponent
   ],
-  templateUrl: './localization-tests.page.html',
-  styleUrl: './localization-tests.page.css'
+  templateUrl: './localize-tests.page.html',
+  styleUrl: './localize-tests.page.css'
 })
-export class LocalizationTestsPage {
+export class LocalizeTestsPage {
 
   private contentService = inject(ContentService);
 
   constructor() {
-    this.contentService.title = 'localization';
+    this.contentService.title = 'localize';
   }
 }

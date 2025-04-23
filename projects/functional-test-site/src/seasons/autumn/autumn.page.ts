@@ -6,14 +6,14 @@ import { NgTranslationModule } from 'ng-translation';
 import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 
 @Component({
-  selector: 'fts-winter',
+  selector: 'fts-fall',
   imports: [
     NgTranslationModule,
     SeasonsMenuComponent
   ],
-  templateUrl: './winter.page.html',
-  styleUrl: './winter.page.css'
+  templateUrl: './autumn.page.html',
+  styleUrl: './autumn.page.css'
 })
-export class WinterPage {
+export class AutumnPage {
 
 }

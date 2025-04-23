@@ -9,7 +9,7 @@ export const seasonSections: SectionList = [ {
     'seasons/vivaldi',
     'seasons/spring',
     'seasons/summer',
-    'seasons/fall',
+    'seasons/autumn',
     'seasons/winter'
   ] }
 ];

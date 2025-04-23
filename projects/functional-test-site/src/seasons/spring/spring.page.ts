@@ -1,12 +1,15 @@
+/* 3rd party libraries */
 import { Component } from '@angular/core';
-import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 import { NgTranslationModule } from 'ng-translation';
+
+/* locally accessible feature module code, always use relative path */
+import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 
 @Component({
   selector: 'fts-spring',
   imports: [
-    SeasonsMenuComponent,
-    NgTranslationModule
+    NgTranslationModule,
+    SeasonsMenuComponent
   ],
   templateUrl: './spring.page.html',
   styleUrl: './spring.page.css'

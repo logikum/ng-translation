@@ -6,14 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { VivaldiPage } from './vivaldi/vivaldi.page';
 import { SpringPage } from './spring/spring.page';
 import { SummerPage } from './summer/summer.page';
-import { FallPage } from './fall/fall.page';
+import { AutumnPage } from './autumn/autumn.page';
 import { WinterPage } from './winter/winter.page';
 
 const routes: Routes = [
   { path: '', component: VivaldiPage },
   { path: 'spring', component: SpringPage },
   { path: 'summer', component: SummerPage },
-  { path: 'fall', component: FallPage },
+  { path: 'autumn', component: AutumnPage },
   { path: 'winter', component: WinterPage }
 ];
 

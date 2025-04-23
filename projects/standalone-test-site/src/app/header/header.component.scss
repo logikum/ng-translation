@@ -1,7 +1,0 @@
-@use '@angular/material' as mat;
-
-.mat-toolbar {
-  @include mat.icon-overrides((
-    color: white,
-  ));
-}

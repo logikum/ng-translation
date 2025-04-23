@@ -1,6 +1,5 @@
 import chokidar from 'chokidar';
 import EventEmitter from 'node:events';
-import fsExtra from 'fs-extra';
 
 export default class Observer extends EventEmitter {
 

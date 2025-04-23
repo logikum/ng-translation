@@ -1,10 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-// import * as stringify from 'json-stable-stringify';
-// const stringify = require('json-stable-stringify');
-// import { stringify } from 'json-stable-stringify';
 import stringify from 'json-stable-stringify';
-// const { stringify } = pkg;
 
 const walkTree = ( dir, done ) => {
 

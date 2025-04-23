@@ -11,6 +11,9 @@
     "statusName": "{{ 0 | appStatus }}",
     "title": "Enumerations"
   },
+  "inlineLoader": {
+    "title": "Inline Loader"
+  },
   "transpileExtender": {
     "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
     "range": "Range",

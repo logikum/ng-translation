@@ -8,6 +8,7 @@ import { AccordionModule } from '../shared/accordion/accordion.module';
 import { CamelCaseComponent } from './camel-case/camel-case.component';
 import { TranspileExtenderComponent } from './transpile-extender/transpile-extender.component';
 import { EnumerationComponent } from './enumeration/enumeration.component';
+import { InlineLoaderComponent } from './inline-loader/inline-loader.component';
 
 @Component({
   selector: 'fts-other-tests',
@@ -16,7 +17,8 @@ import { EnumerationComponent } from './enumeration/enumeration.component';
     AccordionModule,
     CamelCaseComponent,
     TranspileExtenderComponent,
-    EnumerationComponent
+    EnumerationComponent,
+    InlineLoaderComponent
   ],
   templateUrl: './other-tests.page.html',
   styleUrl: './other-tests.page.css'

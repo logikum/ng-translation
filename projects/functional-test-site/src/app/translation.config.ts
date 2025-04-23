@@ -25,7 +25,11 @@ export const translationConfig: TranslationConfig = {
         type: 'text'
       }
     ] },
-    { group: 'other', items: [ 'mit-license', 'other' ] },
+    { group: 'other', items: [
+      'mit-license',
+      'other',
+      { name: 'spring', type: 'inline' }
+    ] },
   ],
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,

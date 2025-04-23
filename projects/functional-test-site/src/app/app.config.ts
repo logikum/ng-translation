@@ -14,14 +14,12 @@ import { routes } from './app.routes';
 import { translationConfig } from './translation.config';
 import { CustomTranslationConverter } from './custom-translation-converter';
 import { CustomFormatExtender } from './custom-format-extender';
-// import {
-//   addAutumnLoaders
-// } from '../../../test-web-site/src/seasons/autumn/add-autumn-loaders';
+import { addInlineLoaders } from './add-inline-loaders';
 
 export function getInlineLoaders(): InlineLoaderMap {
 
-  const loaders: InlineLoaderMap = {};
-  // addAutumnLoaders( loaders, translationConfig );
+  const loaders: InlineLoaderMap = { };
+  addInlineLoaders( loaders, translationConfig );
   return loaders;
 }
 

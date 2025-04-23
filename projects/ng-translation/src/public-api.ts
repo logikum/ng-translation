@@ -2,7 +2,7 @@
  * Public API Surface of ng-translation
  */
 export * from './lib/ng-translation.module';
-export * from './lib/get-module-items';
+export * from './lib/get-inline-items';
 export * from './lib/types';
 
 export * from './lib/guards/load-translations';

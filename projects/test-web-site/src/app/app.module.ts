@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import {
-  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NgTranslationModule,
+  NGT_TRANSLATION_CONVERTER, NGT_FORMAT_EXTENDER, NgTranslationModule,
   NGT_INLINE_LOADER, InlineLoaderMap
 } from 'ng-translation';
 
@@ -57,7 +57,7 @@ export function getInlineLoaders(): InlineLoaderMap {
       provide: NGT_TRANSLATION_CONVERTER,
       useClass: CustomTranslationConverter
     }, {
-      provide: NGT_TRANSPILE_EXTENDER,
+      provide: NGT_FORMAT_EXTENDER,
       useClass: CustomTranspileExtender
     },
     provideHttpClient( withInterceptorsFromDi() )

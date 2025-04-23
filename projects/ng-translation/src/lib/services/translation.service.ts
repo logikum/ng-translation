@@ -283,7 +283,12 @@ export class TranslationService implements LocalizeContext {
         }
         promises.push( loader.load( language, resource )
           .then( translations => {
-            this.storeTranslations( language, resource, translations );
+            this.storeTranslations(
+              language,
+              resource,
+              resource.type === 'inline' && translations.default
+                ? translations.default
+                : translations );
           } )
           .catch( error => {
             this.handleError( error );

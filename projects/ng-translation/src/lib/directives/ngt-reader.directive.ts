@@ -35,7 +35,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
     this.translation.languageChanged
       .pipe( takeUntilDestroyed() )
       .subscribe( language => {
-        this.changeDetector.markForCheck();
+        this.initialize();
       } );
   }
 

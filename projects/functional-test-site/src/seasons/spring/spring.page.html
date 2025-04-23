@@ -1,36 +1,36 @@
 <fts-seasons-menu></fts-seasons-menu>
 
-<ng-container *ngtContext="let t; node: 'seasons/spring'">
+<ng-container *ngtReader="let r; node: 'seasons/spring'">
 
-  <h3 class="subtitle">{{ t('title') }}</h3>
+  <h3 class="subtitle">{{ r.title() }}</h3>
 
   <div class="grid-1-1">
     <div class="grid-item">
       <div class="tempo"> Allegro </div>
       <p>
-        {{ t('line_1_1') }}<br>
-        {{ t('line_1_2') }}<br>
-        {{ t('line_1_3') }}<br>
-        {{ t('line_1_4') }}
+        {{ r.line_1_1() }}<br>
+        {{ r.line_1_2() }}<br>
+        {{ r.line_1_3() }}<br>
+        {{ r.line_1_4() }}
       </p>
       <div class="tempo"> &nbsp; </div>
       <p>
-        {{ t('line_2_1') }}<br>
-        {{ t('line_2_2') }}<br>
-        {{ t('line_2_3') }}<br>
-        {{ t('line_2_4') }}
+        {{ r.line_2_1() }}<br>
+        {{ r.line_2_2() }}<br>
+        {{ r.line_2_3() }}<br>
+        {{ r.line_2_4() }}
       </p>
       <div class="tempo"> Largo </div>
       <p>
-        {{ t('line_3_1') }}<br>
-        {{ t('line_3_2') }}<br>
-        {{ t('line_3_3') }}
+        {{ r.line_3_1() }}<br>
+        {{ r.line_3_2() }}<br>
+        {{ r.line_3_3() }}
       </p>
       <div class="tempo"> Allegro </div>
       <p>
-        {{ t('line_4_1') }}<br>
-        {{ t('line_4_2') }}<br>
-        {{ t('line_4_3') }}
+        {{ r.line_4_1() }}<br>
+        {{ r.line_4_2() }}<br>
+        {{ r.line_4_3() }}
       </p>
     </div>
     <div class="grid-item">

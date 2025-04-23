@@ -23,7 +23,7 @@ export class HomePage {
 
   // tests = signal(tests);
   tests = [
-    'translation', 'localization', 'localize', 'pipe',
+    'translation', 'seasons', 'localization', 'localize', 'pipe',
     'model', 'null', 'conversion', 'other'
   ];
 

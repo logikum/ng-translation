@@ -1,21 +1,19 @@
 /* 3rd party libraries */
-import { TranslationConfig} from '@logikum/ng-translation';
+import { SectionList, TranslationConfig } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use relative path */
 import { environment } from '../environments/environment';
+import { seasonSections } from '../seasons/season-sections';
 
-export const translationConfig: TranslationConfig = {
-  translationPath: '/i18n/{ language }/{ section }.json',
-  // translationPath: '/18n/{section}.{language}.json',
-  sections: [
-    'app', 'shared', 'enums',
-    { group: 'translation', items: [ 'translation' ] },
-    { group: 'localization', items: [ 'localization' ] },
-    { group: 'localize', items: [ 'localization' ] },
-    { group: 'pipe', items: [ 'localization' ] },
-    { group: 'model', items: [ 'model' ] },
-    { group: 'null', items: [ 'null' ] },
-    { group: 'conversion', items: [
+const appSections: SectionList = [
+  'app', 'shared', 'enums',
+  { group: 'translation', items: [ 'translation' ] },
+  { group: 'localization', items: [ 'localization' ] },
+  { group: 'localize', items: [ 'localization' ] },
+  { group: 'pipe', items: [ 'localization' ] },
+  { group: 'model', items: [ 'model' ] },
+  { group: 'null', items: [ 'null' ] },
+  { group: 'conversion', items: [
       'conversion',
       {
         name: 'autumn',
@@ -25,12 +23,17 @@ export const translationConfig: TranslationConfig = {
         type: 'text'
       }
     ] },
-    { group: 'other', items: [
+  { group: 'other', items: [
       'mit-license',
       'other',
       { name: 'spring', type: 'inline' }
     ] },
-  ],
+];
+
+export const translationConfig: TranslationConfig = {
+  translationPath: '/i18n/{ language }/{ section }.json',
+  // translationPath: '/18n/{section}.{language}.json',
+  sections: appSections.concat( seasonSections ),
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
   defaultCurrency: environment.defaultCurrency,

@@ -22,5 +22,9 @@ export const routes: Routes = [
   { path: 'conversion', canMatch: [ loadTranslations ], component: ConversionTestsPage },
   { path: 'null', canMatch: [ loadTranslations ], component: NullTestsPage },
   { path: 'other', canMatch: [ loadTranslations ], component: OtherTestsPage },
+  { path: 'seasons', canMatch: [ loadTranslations ],
+    loadChildren: () => import('../seasons/seasons.module')
+      .then(m => m.SeasonsModule)
+  },
   { path: '**', component: HomePage },
 ];

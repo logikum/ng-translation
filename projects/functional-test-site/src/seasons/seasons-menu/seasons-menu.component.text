@@ -1,0 +1,12 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> seasons/vivaldi
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+spring:   Spring
+summer:   Summer
+fall:     Fall
+winter:   Winter

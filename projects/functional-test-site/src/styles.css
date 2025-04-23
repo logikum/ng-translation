@@ -168,3 +168,13 @@ align-stretch {
 .items-center {
   justify-items: center;
 }
+
+/* other */
+.tempo {
+  color: grey;
+  font-style: italic;
+  padding-left: 3rem;
+}
+.subtitle {
+  margin-bottom: 1.5rem;
+}

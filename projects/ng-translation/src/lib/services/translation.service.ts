@@ -274,7 +274,7 @@ export class TranslationService implements LocalizeContext {
             loader = new ArrayBufferLoader( this.http, this.messenger );
             break;
           case 'inline':
-            loader = new InlineLoader( this.loaders );
+            loader = new InlineLoader( this.loaders, this.messenger );
             break;
           case 'json':
           default:

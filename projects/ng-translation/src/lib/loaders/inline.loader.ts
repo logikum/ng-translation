@@ -1,5 +1,4 @@
 /* 3rd party libraries */
-import { inject } from '@angular/core';
 
 /* locally accessible feature module code, always use relative path */
 import { Resource, ResourceLoader } from '../models';
@@ -8,10 +7,9 @@ import { InlineLoaderMap } from '../types';
 
 export class InlineLoader implements ResourceLoader {
 
-  private readonly messenger = inject( MessengerService );
-
   constructor(
-    private readonly loaders: InlineLoaderMap
+    private readonly loaders: InlineLoaderMap,
+    private readonly messenger: MessengerService
   ) { }
 
   load(

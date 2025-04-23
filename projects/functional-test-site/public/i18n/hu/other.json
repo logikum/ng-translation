@@ -14,7 +14,7 @@
   "inlineLoader": {
     "title": "Beágyazott betöltő"
   },
-  "transpileExtender": {
+  "formatExtender": {
     "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
     "range": "Tartomány",
     "romanNumber": "{{ 0 | roman }}",

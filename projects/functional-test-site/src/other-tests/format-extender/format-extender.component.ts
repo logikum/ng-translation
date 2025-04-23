@@ -5,14 +5,14 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use relative path */
 
 @Component({
-  selector: 'fts-transpile-extender',
+  selector: 'fts-format-extender',
   imports: [
     NgTranslationModule
   ],
-  templateUrl: './transpile-extender.component.html',
-  styleUrl: './transpile-extender.component.css'
+  templateUrl: './format-extender.component.html',
+  styleUrl: './format-extender.component.css'
 })
-export class TranspileExtenderComponent {
+export class FormatExtenderComponent {
 
   readonly format = '{{0|roman}}';
   ones: Array<number> = [];

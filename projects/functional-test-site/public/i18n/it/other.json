@@ -14,7 +14,7 @@
   "inlineLoader": {
     "title": "Caricatore in linea"
   },
-  "transpileExtender": {
+  "formatExtender": {
     "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
     "range": "Intervallo",
     "romanNumber": "{{ 0 | roman }}",

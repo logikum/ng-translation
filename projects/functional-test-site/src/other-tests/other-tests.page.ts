@@ -6,7 +6,7 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 import { ContentService } from '../shared/content.service';
 import { AccordionModule } from '../shared/accordion/accordion.module';
 import { CamelCaseComponent } from './camel-case/camel-case.component';
-import { TranspileExtenderComponent } from './transpile-extender/transpile-extender.component';
+import { FormatExtenderComponent } from './format-extender/format-extender.component';
 import { EnumerationComponent } from './enumeration/enumeration.component';
 import { InlineLoaderComponent } from './inline-loader/inline-loader.component';
 
@@ -16,7 +16,7 @@ import { InlineLoaderComponent } from './inline-loader/inline-loader.component';
     NgTranslationModule,
     AccordionModule,
     CamelCaseComponent,
-    TranspileExtenderComponent,
+    FormatExtenderComponent,
     EnumerationComponent,
     InlineLoaderComponent
   ],

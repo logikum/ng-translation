@@ -1,12 +1,12 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> other.transpileExtender
+> other.formatExtender
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------
 
-title:        Transpile Extender - Roman Numbers
+title:        Format Extender - Roman Numbers
 range:        Range
 first_last:   {{ 0 | roman }} ... {{ 1 | roman }}
 romanNumber:  {{ 0 | roman }}

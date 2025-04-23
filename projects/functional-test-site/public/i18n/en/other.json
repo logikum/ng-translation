@@ -14,10 +14,10 @@
   "inlineLoader": {
     "title": "Inline Loader"
   },
-  "transpileExtender": {
+  "formatExtender": {
     "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
     "range": "Range",
     "romanNumber": "{{ 0 | roman }}",
-    "title": "Transpile Extender - Roman Numbers"
+    "title": "Format Extender - Roman Numbers"
   }
 }

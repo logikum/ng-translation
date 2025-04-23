@@ -22,7 +22,6 @@ export class NgtReaderDirective implements OnInit, OnChanges {
 
   private readonly container = inject( ViewContainerRef );
   @Optional() private template = inject( TemplateRef<TranslationReader> );
-  private readonly changeDetector = inject( ChangeDetectorRef );
   private readonly translation = inject( TranslationService );
   private readonly transpiler = inject( TranspilerService );
   private readonly localization = inject( LocalizationRef );

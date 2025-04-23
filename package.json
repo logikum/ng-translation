@@ -17,7 +17,7 @@
   "author": "Mármarosi József <marmarosi@logikum.hu>",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve test-web-site --port=3000 --open",
+    "start": "ng serve functional-test-site --port=4200 --open",
     "build:ngt": "ng build ng-translation",
     "build:ngm": "ng build ng-translatable",
     "build:fts": "ng build functional-test-site",
@@ -26,7 +26,6 @@
     "watch:ngm": "ng build ng-translatable --watch",
     "serve:fts": "ng serve functional-test-site --port=4200 --open",
     "serve:std": "ng serve standalone-test-site --port=4200 --open",
-    "serve:tws": "ng serve test-web-site --port=4200 --open",
     "i18n:fts": "node tools/i18n/server.mjs projects/functional-test-site/src projects/functional-test-site/public/i18n/en",
     "test": "ng test",
     "lint": "ng lint",

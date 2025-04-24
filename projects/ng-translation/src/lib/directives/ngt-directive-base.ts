@@ -15,7 +15,7 @@ export abstract class NgtDirectiveBase {
 
   abstract set key( value: string );
 
-  abstract set params( value: any | undefined );
+  abstract set params( value: any );
 
   protected abstract isHtml: boolean;
 

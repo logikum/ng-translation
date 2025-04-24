@@ -9,5 +9,5 @@ import { Directive, Input } from '@angular/core';
 } )
 export class NgtParamsDirective {
 
-  @Input( 'ngtParams' ) params: any | undefined;
+  @Input( 'ngtParams' ) params: any;
 }

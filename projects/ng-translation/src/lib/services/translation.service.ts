@@ -121,7 +121,7 @@ export class TranslationService implements LocalizeContext {
           this.statusChangeSubject.next( TranslationChange.event( 'app', 'finish' ) );
           resolve( this.browserLanguageIsSupported );
         } )
-        .catch( error => {
+        .catch( (error: Error) => {
           this.isLoading = false;
           this.statusChangeSubject.next( TranslationChange.event( 'app', 'finish' ) );
           reject( error );
@@ -134,11 +134,9 @@ export class TranslationService implements LocalizeContext {
   ): Promise<boolean> {
 
     if (this.isLoading) {
-      return Promise.reject( false );
+      return Promise.resolve( false );
     }
-    const module = route.data && route.data.translationGroup ?
-      route.data.translationGroup :
-      route.path;
+    const module = route.data?.translationGroup ?? route.path;
     this.statusChangeSubject.next( TranslationChange.event( 'module', 'start', module ) );
 
     return new Promise( ( resolve, reject ) => {
@@ -155,7 +153,7 @@ export class TranslationService implements LocalizeContext {
           this.statusChangeSubject.next( TranslationChange.event( 'module', 'finish', module ) );
           resolve( true );
         } )
-        .catch( error => {
+        .catch( (error: Error) => {
           this.isLoading = false;
           this.statusChangeSubject.next( TranslationChange.event( 'module', 'finish', module ) );
           reject( error );
@@ -206,7 +204,7 @@ export class TranslationService implements LocalizeContext {
             this.statusChangeSubject.next( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             resolve();
           } )
-          .catch( error => {
+          .catch( (error: Error) => {
             this.statusChangeSubject.next( TranslationChange.event( 'language', 'finish', safeLanguage ) );
             reject( error );
           } );
@@ -344,7 +342,7 @@ export class TranslationService implements LocalizeContext {
   ): void {
 
     const message = error ?
-      (error.message ? error.message : error.toString()) :
+      (error.message ?? error.toString()) :
       'An error occurred while downloading a translation file.'
     ;
     this.messenger.error( message );
@@ -412,14 +410,14 @@ export class TranslationService implements LocalizeContext {
     const path: string[] = key.split( '.' );
     let result: any = this.translations[ language ];
 
-    for (let i = 0; i < path.length; i++) {
+    for (const element of path) {
       if (result) {
-        result = result[ path[ i ] ];
+        result = result[ element ];
       } else {
         break;
       }
     }
-    return result || key;
+    return result ?? key;
   }
 
   insert(
@@ -485,9 +483,9 @@ export class TranslationService implements LocalizeContext {
 
     const path: string[] = key.split( '.' );
     let result: object = this.translations[ language ];
-    for (let i = 0; i < path.length; i++) {
+    for (const element of path) {
       if (result) {
-        result = result[ path[ i ] ];
+        result = result[ element ];
       } else {
         break;
       }

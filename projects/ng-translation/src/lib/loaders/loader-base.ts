@@ -34,7 +34,7 @@ export class LoaderBase<T> implements ResourceLoader {
           next( translations ) {
             resolve( translations as T );
           },
-          error( error ) {
+          error( error: Error ) {
             if (locale.hasRegion) {
               self.messenger.info( `Using alternative: ${ locale.neutral }` );
 

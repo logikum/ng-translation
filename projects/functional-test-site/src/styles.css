@@ -90,7 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #444;
 }
 .data {
-  color: dodgerblue;
+  color: mediumseagreen;
 }
 .context {
   font-style: italic;
@@ -171,7 +171,7 @@ align-stretch {
 
 /* other */
 .tempo {
-  color: grey;
+  color: mediumseagreen;
   font-style: italic;
   padding-left: 3rem;
 }

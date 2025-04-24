@@ -18,7 +18,7 @@ export class NgtHtmlDirective extends NgtDirectiveBase {
   }
 
   @Input( 'ngt-params' )
-  set params( value: any | undefined ) {
+  set params( value: any ) {
     this.setParamsValue( value );
   }
 }

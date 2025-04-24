@@ -79,7 +79,7 @@ export class LocalizationService {
     if (!missing( currency ) && currency?.toString().trim() !== '') {
       // Add eventual custom default options.
       if (this.config.currencyDefaultOptions) {
-        const cdo = this.config.currencyDefaultOptions[ currency ] || '';
+        const cdo = this.config.currencyDefaultOptions[ currency ] ?? '';
         options = this.extendOptions( data.key, cdo, options );
       }
       // Add fix options.
@@ -124,7 +124,6 @@ export class LocalizationService {
             break;
           case 'minfd':
           case 'minimumFractionDigits':
-            // options.minimumFractionDigits = parseInt( optionValue, 10 );
             options.minimumFractionDigits = this.getInt( key, optionValue );
             break;
           case 'maxfd':
@@ -173,8 +172,11 @@ export class LocalizationService {
       items.forEach( item => {
         const parts = item.split( VALUE_SEP );
         if (parts.length === 2) {
+
           const optionName = parts[ 0 ].trim();
           const optionValue = parts[ 1 ].trim();
+          let fsdValue: number;
+
           switch (optionName) {
             case 'ds':
             case 'dateStyle':
@@ -283,7 +285,7 @@ export class LocalizationService {
               break;
             case 'fsd':
             case 'fractionalSecondDigits':
-              let fsdValue = parseInt( optionValue, 10 );
+              fsdValue = parseInt( optionValue, 10 );
               if (isNaN( fsdValue ) || ![ 1, 2, 3 ].includes( fsdValue )) {
                 this.messenger.optionValueError( data.key, optionValue );
                 fsdValue = undefined;

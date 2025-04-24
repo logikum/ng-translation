@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
 import { MSG_PREFIX } from '../models/constants';
@@ -129,12 +129,10 @@ export class MessengerService {
       } else {
         this.warn( `[${ key }] ${ missing }` );
       }
+    } else if (value) {
+      this.warn( `${ wrong } ${ value }` );
     } else {
-      if (value) {
-        this.warn( `${ wrong } ${ value }` );
-      } else {
-        this.warn( `${ missing }` );
-      }
+      this.warn( `${ missing }` );
     }
   }
 }

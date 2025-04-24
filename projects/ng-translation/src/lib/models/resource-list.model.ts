@@ -60,7 +60,7 @@ export class ResourceList {
               inUse: false
             } );
 
-          } else if ((groupItem as Section).name) {
+          } else if (groupItem.name) {
             resources.push( {
               name: groupItem.name,
               alias: groupItem.alias ?? groupItem.name,

@@ -18,7 +18,7 @@ export class NgtTextDirective extends NgtDirectiveBase {
   }
 
   @Input( 'ngtParams' )
-  set params( value: any | undefined ) {
+  set params( value: any ) {
     this.setParamsValue( value );
   }
 }

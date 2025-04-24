@@ -12,12 +12,10 @@ export function getInlineItems(
     if (typeof section !== 'string') {
       if ((section as SectionGroup).group) {
         (section as SectionGroup).items
-          .filter( item => typeof item !== 'string' && (item as Section).type === 'inline' )
+          .filter( item => typeof item !== 'string' && item.type === 'inline' )
           .forEach( item => items.push( (item as Section).name ) );
-      } else {
-        if ((section as Section).type === 'inline') {
-          items.push( (section as Section).name );
-        }
+      } else if ((section as Section).type === 'inline') {
+        items.push( (section as Section).name );
       }
     }
   } );

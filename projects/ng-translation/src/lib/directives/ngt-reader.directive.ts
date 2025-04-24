@@ -1,17 +1,13 @@
 /* 3rd party libraries */
 import {
-  ChangeDetectorRef, Directive, inject, Input, OnChanges, OnInit,
-  Optional, SimpleChanges, TemplateRef, ViewContainerRef
+  Directive, inject, Input, OnChanges, OnInit, Optional, SimpleChanges,
+  TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationReader, TranspileData } from '../models';
-import {
-  LocalizationRef,
-  TranslationService,
-  TranspilerService
-} from '../services';
+import { LocalizationRef, TranslationService, TranspilerService } from '../services';
 import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {
@@ -21,7 +17,7 @@ import { createLocalizeContext } from './create-localize-context';
 export class NgtReaderDirective implements OnInit, OnChanges {
 
   private readonly container = inject( ViewContainerRef );
-  @Optional() private template = inject( TemplateRef<TranslationReader> );
+  @Optional() private readonly template = inject( TemplateRef<TranslationReader> );
   private readonly translation = inject( TranslationService );
   private readonly transpiler = inject( TranspilerService );
   private readonly localization = inject( LocalizationRef );

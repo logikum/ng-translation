@@ -48,7 +48,7 @@ export class TranspilerService {
         // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
         let index = 0;
         args.forEach( arg => {
-          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*([^\}]+)?\\}\\}` );
+          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*([^}]+)?\\}\\}` );
           if (re) {
             data.text = this.replace( data, re, arg );
           }
@@ -58,7 +58,7 @@ export class TranspilerService {
         // Replace named parameters: 'xxxxxx{{name-A}}xxxxxxxx{{name-B}}xxxxxx'
         const names = Object.getOwnPropertyNames( args );
         names.forEach( name => {
-          const re = new RegExp( `\\{\\{\\s*${ name }\\s*([^\}]+)?\\}\\}` );
+          const re = new RegExp( `\\{\\{\\s*${ name }\\s*([^}]+)?}}` );
           if (re) {
             data.text = this.replace( data, re, args[ name ] );
           }
@@ -77,17 +77,17 @@ export class TranspilerService {
   ): string {
 
     let localized = (value === undefined || value === null) ? '' : value.toString();
-    const result = tdata.text.match( re );
+    const result = RegExp( re ).exec( tdata.text );
     if (result && result[ 1 ]) {
       const group = result[ 1 ].trim();
       if (group.startsWith( INTL_SEP )) {
 
-        let format = group.substr( INTL_SEP.length );
+        let format = group.substring( INTL_SEP.length );
         let params = '';
         const pos = format.indexOf( PATTERN_SEP );
         if (pos > 0) {
-          params = format.substr( pos + PATTERN_SEP.length );
-          format = format.substr( 0, pos );
+          params = format.substring( pos + PATTERN_SEP.length );
+          format = format.substring( 0, pos );
         }
         format = format.trim();
         const fdata: FormatData = {
@@ -96,6 +96,7 @@ export class TranspilerService {
           params: params,
           value: value
         };
+        let transpiled: string;
         switch (format) {
           case 'N':
           case 'number':
@@ -118,7 +119,7 @@ export class TranspilerService {
             localized = this.pluralFormat( fdata );
             break;
           default:
-            const transpiled = this.extender.transpile( format, fdata );
+            transpiled = this.extender.transpile( format, fdata );
             if (transpiled !== undefined) {
               localized = transpiled;
             } else {
@@ -157,15 +158,13 @@ export class TranspilerService {
             const to = parseInt( range[ 1 ], 10 );
             if (isNaN( from ) || isNaN( to )) {
               this.messenger.pluralError( data.key, optionName );
+            } else if (from > to) {
+              for (let i = to; i <= from; i++) {
+                options.set( i, optionValue );
+              }
             } else {
-              if (from > to) {
-                for (let i = to; i <= from; i++) {
-                  options.set( i, optionValue );
-                }
-              } else {
-                for (let i = from; i <= to; i++) {
-                  options.set( i, optionValue );
-                }
+              for (let i = from; i <= to; i++) {
+                options.set( i, optionValue );
               }
             }
           } else {
@@ -181,7 +180,9 @@ export class TranspilerService {
         this.messenger.optionValueError( data.key, item );
       }
     } );
-    const pluralized = options.has( data.value ) ? options.get( data.value ) : options.get( 'other' ) || '';
+    const pluralized = options.has( data.value )
+      ? options.get( data.value )
+      : options.get( 'other' ) ?? '';
     const value = this.localization.numberFormat( {
       key: undefined,
       locale: data.locale,

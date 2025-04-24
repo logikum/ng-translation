@@ -48,7 +48,7 @@ export class TranspilerService {
         // Replace indexed parameters: 'xxxxxx{{0}}xxxxxxxx{{1}}xxxxxx'
         let index = 0;
         args.forEach( arg => {
-          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*([^}]+)?\\}\\}` );
+          const re = new RegExp( `\\{\\{\\s*${ index++ }\\s*([^}]+)?}}` );
           if (re) {
             data.text = this.replace( data, re, arg );
           }

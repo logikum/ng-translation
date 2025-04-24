@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { Inject, Injectable } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { MSG_PREFIX } from '../models/constants';
 
 @Injectable( {

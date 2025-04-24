@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { ContentChild, Directive, Input } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { AccordionContentDirective } from './accordion-content.directive';
 import { AccordionTitleDirective } from './accordion-title.directive';
 import { AccordionHeaderDirective } from './accordion-header.directive';

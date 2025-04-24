@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { AccordionItemDirective } from './directives/accordion-item.directive';
 
 @Component({

@@ -9,3 +9,4 @@ export * from './lib/ngt-text-list.model';
 
 export * from './lib/locale-option.model';
 export * from './lib/translatable-option.model';
+export * from './lib/types';

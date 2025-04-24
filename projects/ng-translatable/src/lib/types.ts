@@ -2,4 +2,4 @@
 
 /* locally accessible feature module code, always use a relative path */
 
-export const MSG_PREFIX = 'NG-TRANSLATION * ';
+export type FilterFn = ( value: string, text: string ) => boolean;

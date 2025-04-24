@@ -2,7 +2,7 @@
 import { Component, inject } from '@angular/core';
 import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Component({
   selector: 'fts-code',

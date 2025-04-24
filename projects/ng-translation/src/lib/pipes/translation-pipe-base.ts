@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../services';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 

@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { VivaldiPage } from './vivaldi/vivaldi.page';
 import { SpringPage } from './spring/spring.page';
 import { SummerPage } from './summer/summer.page';

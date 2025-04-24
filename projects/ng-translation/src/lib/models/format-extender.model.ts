@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { InjectionToken } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../services';
 import { FormatData } from './format-data.model';
 

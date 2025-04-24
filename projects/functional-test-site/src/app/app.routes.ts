@@ -2,7 +2,7 @@
 import { Routes } from '@angular/router';
 import { loadTranslations } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { HomePage } from './home/home.page';
 import { TranslationTestsPage } from '../translation-tests/translation-tests.page';
 import { ModelTestsPage } from '../model-tests/model-tests.page';

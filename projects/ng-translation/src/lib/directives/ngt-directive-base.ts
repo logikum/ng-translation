@@ -2,7 +2,7 @@
 import { ChangeDetectorRef, inject, ViewContainerRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../services';
 
 export abstract class NgtDirectiveBase {

@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { SectionList, TranslationConfig } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { environment } from '../environments/environment';
 import { seasonSections } from '../seasons/season-sections';
 

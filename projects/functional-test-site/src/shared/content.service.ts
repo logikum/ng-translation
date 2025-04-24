@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { Injectable, signal, Signal } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Injectable({
   providedIn: 'root'

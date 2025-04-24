@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { Pipe, PipeTransform } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {

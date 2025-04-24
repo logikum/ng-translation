@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { NgTranslationModule, TranslationService  } from '@logikum/ng-translation';
 import { NgtLocaleList } from '@logikum/ng-translatable';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { translationConfig } from '../translation.config';
 
 @Component({

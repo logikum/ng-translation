@@ -3,8 +3,9 @@ import { Directive, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslatableOption } from './translatable-option.model';
+import { FilterFn } from './types';
 
 @Directive()
 export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
@@ -12,7 +13,7 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
   private readonly translation = inject(TranslationService);
   private readonly items: Array<TranslatableOption> = [];
   private iteratorIndex = 0;
-  private filter = ( value: string, text: string ): boolean => {
+  private filter: FilterFn = ( value: string, text: string ): boolean => {
     return true;
   }
 
@@ -64,7 +65,7 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
 
   constructor(
     private readonly key: string,
-    filter?: ( value: string, text: string ) => boolean
+    filter?: FilterFn
   ) {
     this.translation.languageChanged
       // @ts-ignore
@@ -94,8 +95,7 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
       if (optionValues.length) {
         let itemIndex = -1;
 
-        for (let i = 0; i < optionValues.length; i++) {
-          const value = optionValues[ i ];
+        for (const value of optionValues) {
           const text = optionGroup[ value ];
           if (this.filter( value, text )) {
             itemIndex++;

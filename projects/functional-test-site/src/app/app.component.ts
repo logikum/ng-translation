@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { HeaderComponent } from './header/header.component';
 import { TitleComponent } from './title/title.component';
 

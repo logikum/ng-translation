@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslateContext } from '../models';
 import { LocalizationRef, TranslationService } from '../services';
 import { createLocalizeContext } from './create-localize-context';

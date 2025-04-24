@@ -2,7 +2,7 @@
 import { Directive, inject } from '@angular/core';
 import { Locale, TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { LocaleOption } from './locale-option.model';
 
 @Directive()
@@ -20,10 +20,23 @@ export class NgtLocaleList implements IterableIterator<LocaleOption> {
 
   set selectedIndex( index: number ) {
 
-    const ix = Math.round( index );
-    this.currentIndex = -1 < ix && ix < this.items.length ? ix : -1;
+    let found = false;
     for (let i = 0; i < this.items.length; i++) {
-      this.items[ i ].selected = i === this.currentIndex;
+      if (i === index) {
+        this.currentIndex = i;
+        this.items[ i ].selected = true;
+        found = true;
+      } else {
+        this.items[ i ].selected = false;
+      }
+    }
+    if (!found) {
+      this.currentIndex = -1;
+    } else {
+      const code = this.items[ index ].code;
+      if (code !== this.translation.activeLanguage) {
+        this.translation.changeLanguage( code );
+      }
     }
   }
 
@@ -133,6 +146,9 @@ export class NgtLocaleList implements IterableIterator<LocaleOption> {
       } else {
         this.items[ i ].selected = false;
       }
+    }
+    if (!found) {
+      this.currentIndex = -1;
     }
     return found;
   }

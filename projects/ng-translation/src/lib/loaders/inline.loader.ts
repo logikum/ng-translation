@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { Resource, ResourceLoader } from '../models';
 import { MessengerService } from '../services';
 import { InlineLoaderMap } from '../types';

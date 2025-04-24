@@ -4,7 +4,7 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 import { AppStatus } from '../../app/enums/app-status.enum';
 import { LogLevel, Month, Season } from '../../shared/enums/enums';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Component( {
   selector: 'fts-enumeration',

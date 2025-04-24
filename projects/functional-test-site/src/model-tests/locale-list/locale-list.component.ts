@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtLocaleList } from '@logikum/ng-translatable';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Component({
   selector: 'fts-locale-list',
@@ -34,6 +34,6 @@ export class LocaleListComponent {
   changeByIndex(
     event: any
   ): void {
-    this.locales.selectedIndex = event.target.value;
+    this.locales.selectedIndex = parseInt( event.target.value, 10 );
   }
 }

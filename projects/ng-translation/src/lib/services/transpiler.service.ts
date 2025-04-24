@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { FormatData, FormatExtender, TranspileData } from '../models';
 import { LocalizationService } from './localization.service';
 import { MessengerService } from './messenger.service';

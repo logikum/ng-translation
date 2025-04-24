@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { NgTranslationModule } from 'ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 
 @Component({

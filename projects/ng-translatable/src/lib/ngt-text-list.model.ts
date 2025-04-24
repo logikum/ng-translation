@@ -3,7 +3,7 @@ import { Directive, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TextListKeys, TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Directive()
 export class NgtTextList {
@@ -44,7 +44,7 @@ export class NgtTextList {
 
     this.texts.clear();
     this.names.forEach( ( value, key ) => {
-      const result = this.translation.get( value || key ) || { };
+      const result = this.translation.get( value ?? key ) || { };
 
       if (typeof result === 'object') {
         const names = Object.getOwnPropertyNames( result );

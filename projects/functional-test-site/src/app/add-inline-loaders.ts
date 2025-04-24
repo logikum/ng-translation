@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { InlineLoaderMap, getInlineItems, TranslationConfig } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 export function addInlineLoaders(
   loaders: InlineLoaderMap,

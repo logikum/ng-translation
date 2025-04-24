@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { MSG_PREFIX } from './constants';
 
 export interface TranslationChange {

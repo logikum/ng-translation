@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import {
   Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_FORMAT_EXTENDER,
   NGT_INLINE_LOADER, Resource, ResourceList, ResourceLoader, TranslationChange,

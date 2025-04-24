@@ -11,13 +11,13 @@
     "statusName": "{{ 0 | appStatus }}",
     "title": "Enumerations"
   },
-  "inlineLoader": {
-    "title": "Inline Loader"
-  },
   "formatExtender": {
     "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
     "range": "Range",
     "romanNumber": "{{ 0 | roman }}",
     "title": "Format Extender - Roman Numbers"
+  },
+  "inlineLoader": {
+    "title": "Inline Loader"
   }
 }

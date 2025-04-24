@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { LocalizationService } from './localization.service';
 import { CurrencyValue } from '../types';
 import { FormatData, NGT_CONFIGURATION } from '../models';

@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { AccordionComponent } from './accordion.component';
 import { AccordionItemDirective } from './directives/accordion-item.directive';
 import { AccordionContentDirective } from './directives/accordion-content.directive';

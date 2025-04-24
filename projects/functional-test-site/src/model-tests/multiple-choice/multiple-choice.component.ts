@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtMultipleChoice } from '@logikum/ng-translatable';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 @Component({
   selector: 'fts-multiple-choice',

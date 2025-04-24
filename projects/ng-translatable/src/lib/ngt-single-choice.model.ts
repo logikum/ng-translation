@@ -1,19 +1,20 @@
 /* 3rd party libraries */
+import { DestroyRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslationService } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
-import { DestroyRef, inject } from '@angular/core';
+/* locally accessible feature module code, always use a relative path */
 import { TranslatableOption } from './translatable-option.model';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FilterFn } from './types';
 
 export class NgtSingleChoice {
 
-  private destroyRef = inject(DestroyRef);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly translation = inject(TranslationService);
   private readonly items: Array<TranslatableOption> = [];
   private currentIndex = -1;
   private iteratorIndex = 0;
-  protected filter = ( value: string, text: string ): boolean => {
+  protected filter: FilterFn = ( value: string, text: string ): boolean => {
     return true;
   }
 
@@ -55,7 +56,7 @@ export class NgtSingleChoice {
 
   constructor(
     private readonly key: string,
-    filter?: ( value: string, text: string ) => boolean
+    filter?: FilterFn
   ) {
     if (filter) {
       this.filter = filter;
@@ -91,8 +92,7 @@ export class NgtSingleChoice {
       if (optionValues.length) {
         let itemIndex = -1;
 
-        for (let i = 0; i < optionValues.length; i++) {
-          const value = optionValues[ i ];
+        for (const value of optionValues) {
           const text = optionGroup[ value ];
           if (this.filter( value, text )) {
             itemIndex++;

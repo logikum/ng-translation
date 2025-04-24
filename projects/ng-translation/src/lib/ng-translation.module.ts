@@ -2,7 +2,7 @@
 import { NgModule, ModuleWithProviders, inject, provideAppInitializer } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import {
   NgtContextDirective, NgtHtmlDirective, NgtParamsDirective, NgtReaderDirective,
   NgtTextDirective,

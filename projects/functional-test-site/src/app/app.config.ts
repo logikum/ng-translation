@@ -9,7 +9,7 @@ import {
   NGT_FORMAT_EXTENDER, NgTranslationModule
 } from '@logikum/ng-translation';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { routes } from './app.routes';
 import { translationConfig } from './translation.config';
 import { CustomTranslationConverter } from './custom-translation-converter';

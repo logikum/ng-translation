@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { HttpClient } from '@angular/common/http';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { Locale, Resource, ResourceLoader } from '../models';
 import { MessengerService } from '../services';
 import { buildPath } from './build-path';

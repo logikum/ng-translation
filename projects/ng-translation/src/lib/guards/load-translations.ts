@@ -2,7 +2,7 @@
 import { inject } from '@angular/core';
 import { Route } from '@angular/router';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../services';
 
 export function loadTranslations(

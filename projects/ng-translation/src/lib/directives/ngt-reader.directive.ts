@@ -67,20 +67,33 @@ export class NgtReaderDirective implements OnInit, OnChanges {
 
   private getReader(): object {
 
-    const reader = {};
-    const node = this.translation.getGroup( this.ngtReaderNode );
-    if (node && typeof node === 'object') {
+    let reader = {};
+    const group = this.translation.getGroup( this.ngtReaderNode );
+    if (group && typeof group === 'object') {
+      reader = this.getReaderObject( group );
+    }
+    return reader;
+  }
 
-      for (const property in node) {
-        if (node.hasOwnProperty( property ) && typeof node[ property ] === 'string') {
-          reader[ property ] = this.getTranspilingFunction(
+  private getReaderObject(
+    group: object
+  ): object {
+
+    const obj = { };
+    for (const property in group) {
+
+      if (group.hasOwnProperty( property )) {
+        if (typeof group[ property ] === 'string') {
+          obj[ property ] = this.getTranspilingFunction(
             `${ this.ngtReaderNode }.${ property }`,
-            node[ property ]
+            group[ property ]
           );
+        } else if (typeof group[ property ] === 'object') {
+          obj[ property ] = this.getReaderObject( group[ property ] );
         }
       }
     }
-    return reader;
+    return obj;
   }
 
   private getTranspilingFunction(
@@ -97,7 +110,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
           locale: this.translation.activeLanguage,
           text
         };
-        return this.transpiler.insert( data, args );
+        return this.transpiler.insert( data, args.length > 1 ? args : args[ 0 ] );
       }
     };
   }

@@ -9,7 +9,15 @@
     "title": "Utilizzo di <em>translate</em> tubo"
   },
   "reader": {
-    "title": "Utilizzo della direttiva strutturale (Reader)"
+    "title": "Utilizzo della direttiva strutturale (Reader)",
+    "form": {
+      "hint": "Per aggiungere un nuovo prodotto, inserisci le seguenti informazioni",
+      "name": {
+        "label": "Nome del prodotto",
+        "maxLength": "Il nome del prodotto non può superare i {{ length }} caratteri.",
+        "minLength": "Il nome del prodotto deve essere lungo almeno {{ 0 }} caratteri, ma si consiglia una lunghezza di {{ 1 }} caratteri."
+      }
+    }
   },
   "structural": {
     "title": "Utilizzo della direttiva strutturale (Context)"

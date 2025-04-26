@@ -9,7 +9,15 @@
     "title": "Using Translate Pipe"
   },
   "reader": {
-    "title": "Using Structural Directive (Reader)"
+    "title": "Using Structural Directive (Reader)",
+    "form": {
+      "hint": "To add a new product, enter the following information",
+      "name": {
+        "label": "Product name",
+        "maxLength": "The product name cannot exceed {{ length }} characters.",
+        "minLength": "The product name must be at least {{ 0 }} characters, but {{ 1 }} characters long is recommended."
+      }
+    }
   },
   "structural": {
     "title": "Using Structural Directive (Context)"

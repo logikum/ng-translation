@@ -7,3 +7,9 @@
 # ------------------------------------------
 
 title:  Using Structural Directive (Reader)
+
+form.hint:  To add a new product, enter the following information
+form.name.label:  Product name
+form.name.minLength:  The product name must be at least {{ 0 }} characters,
+                      but {{ 1 }} characters long is recommended.
+form.name.maxLength:  The product name cannot exceed {{ length }} characters.

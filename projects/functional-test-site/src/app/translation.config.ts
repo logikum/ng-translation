@@ -16,6 +16,12 @@ const appSections: SectionList = [
   { group: 'conversion', items: [
       'conversion',
       {
+        name: 'summer',
+        path: '/csv-files/{language}_{section}.csv',
+        format: 'csv',
+        type: 'text'
+      },
+      {
         name: 'autumn',
         alias: 'fall',
         path: '/po-files/{section}.{language}.po',

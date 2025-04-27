@@ -1,5 +1,12 @@
 <ng-container *ngtContext="let t; node: 'conversion'">
   <fts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('csvFile.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <fts-csv-file></fts-csv-file>
+        </div>
+      </ng-template>
+    </div>
     <div ftsAccordionItem [title]="t('poFile.title')">
       <ng-template ftsAccordionContent>
         <div class="accordion-content">

@@ -5,6 +5,7 @@ import { NgTranslationModule } from 'ng-translation';
 /* locally accessible feature module code, always use a relative path */
 import { ContentService } from '../../shared/content.service';
 import { AccordionModule } from '../../shared/accordion/accordion.module';
+import { CsvFileComponent } from './csv-file/csv-file.component';
 import { PoFileComponent } from './po-file/po-file.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { PoFileComponent } from './po-file/po-file.component';
   imports: [
     NgTranslationModule,
     AccordionModule,
+    CsvFileComponent,
     PoFileComponent
   ],
   templateUrl: './conversion-tests.page.html',

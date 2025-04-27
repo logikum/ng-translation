@@ -11,12 +11,36 @@ export class CustomTranslationConverter implements TranslationConverter {
   ): object {
 
     switch (resource.format) {
+      case 'csv':
+        return csv2object( language, resource, translations );
       case 'po':
         return po2object( language, resource, translations );
       default:
         return translations;
     }
   }
+}
+
+function csv2object(
+  language: string,
+  resource: Resource,
+  translations: string
+): object {
+
+  const result: object = {};
+  const lines: Array<string> = translations.split('\n');
+  for (const line of lines) {
+
+    const position = line.indexOf( ':' );
+    if (position > 0) {
+      const key = line.substring( 0, position ).trim();
+      const text = line.substring( position + 1 ).trim();
+      if (key.length && text.length) {
+        result[ key ] = text;
+      }
+    }
+  }
+  return result;
 }
 
 function po2object(

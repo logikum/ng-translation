@@ -6,6 +6,7 @@
   "null": "Test di valore nullo",
   "other": "Altri test",
   "pipe": "Test di localizzazione | pipe",
+  "seasons": "Test di utilizzo del modulo",
   "translation": "Test di traduzione",
   "enums": {
     "appStatus": {

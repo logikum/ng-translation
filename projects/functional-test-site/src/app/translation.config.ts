@@ -36,6 +36,7 @@ export const translationConfig: TranslationConfig = {
   sections: appSections.concat( seasonSections ),
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
+  formatter: 'ngt',
   defaultCurrency: environment.defaultCurrency,
   disableWarnings: environment.disableWarnings,
   currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' },

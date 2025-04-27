@@ -4,6 +4,7 @@
 
 export type CurrencyValue = [ number, string ];
 export type LoaderType = 'json' | 'text' | 'blob' | 'arraybuffer' | 'inline';
+export type FormatterType = 'ngt' | 'icu';
 export type TextListKeys = string | Array<string> | object;
 
 export interface HashMap<T = any> { [key: string]: T; }

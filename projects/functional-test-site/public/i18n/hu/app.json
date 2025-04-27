@@ -6,6 +6,7 @@
   "null": "Null érték tesztek",
   "other": "Egyéb tesztek",
   "pipe": "Lokalizációs tesztek | pipe",
+  "seasons": "Modulhasználati teszt",
   "translation": "Fordítási tesztek",
   "enums": {
     "appStatus": {

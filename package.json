@@ -44,6 +44,7 @@
     "@angular/router": "^19.1.5",
     "codelyzer": "^6.0.2",
     "initialize-css": "^1.4.0",
+    "intl-messageformat": "^10.7.16",
     "rxjs": ">=7.4.0",
     "zone.js": "~0.15.0"
   },

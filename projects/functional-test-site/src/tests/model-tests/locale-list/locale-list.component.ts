@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtLocaleList } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */

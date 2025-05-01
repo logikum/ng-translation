@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component, inject } from '@angular/core';
-import { NgTranslationModule, TranslationService } from 'ng-translation';
+import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 

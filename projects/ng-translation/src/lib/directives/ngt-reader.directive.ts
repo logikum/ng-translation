@@ -7,7 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationReader, TranspileData } from '../models';
-import { LocalizationRef, TranslationService, TranspilerService } from '../services';
+import { LocalizationRef, TranslationService, InterpolationService } from '../services';
 import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {
@@ -19,7 +19,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
   private readonly container = inject( ViewContainerRef );
   @Optional() private readonly template = inject( TemplateRef<TranslationReader> );
   private readonly translation = inject( TranslationService );
-  private readonly transpiler = inject( TranspilerService );
+  private readonly transpiler = inject( InterpolationService );
   private readonly localization = inject( LocalizationRef );
 
   @Input( 'ngtReader' ) key?: string;

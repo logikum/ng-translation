@@ -3,22 +3,26 @@ import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
 import { FormatData, FormatExtender, TranspileData } from '../models';
-import { LocalizationService } from './localization.service';
 import { MessengerService } from './messenger.service';
-
-const INTL_SEP = '|';
-const PATTERN_SEP = ':';
-const OPTION_SEP = ';';
-const VALUE_SEP = '=';
-const RANGE_SEP = '~';
-const VALUE_PH = '#';
+import {
+  CurrencyFormatterService,
+  DatetimeFormatterService,
+  NumberFormatterService,
+  PercentFormatterService
+} from '../formatters';
+import {
+  INTL_SEP, PATTERN_SEP, OPTION_SEP, VALUE_SEP, RANGE_SEP, VALUE_PH
+} from '../formatters/format-constants';
 
 @Injectable( {
   providedIn: 'root'
 } )
-export class TranspilerService {
+export class InterpolationService {
 
-  private readonly localization = inject( LocalizationService );
+  private readonly currencyFormatter = inject( CurrencyFormatterService );
+  private readonly datetimeFormatter = inject( DatetimeFormatterService );
+  private readonly numberFormatter = inject( NumberFormatterService );
+  private readonly percentFormatter = inject( PercentFormatterService );
   private readonly messenger = inject( MessengerService );
 
   extender: FormatExtender;
@@ -100,19 +104,19 @@ export class TranspilerService {
         switch (format) {
           case 'N':
           case 'number':
-            localized = this.localization.numberFormat( fdata );
+            localized = this.numberFormatter.format( fdata );
             break;
           case 'P':
           case 'percent':
-            localized = this.localization.percentFormat( fdata );
+            localized = this.percentFormatter.format( fdata );
             break;
           case 'C':
           case 'currency':
-            localized = this.localization.currencyFormat( fdata );
+            localized = this.currencyFormatter.format( fdata );
             break;
           case 'D':
           case 'datetime':
-            localized = this.localization.datetimeFormat( fdata );
+            localized = this.datetimeFormatter.format( fdata );
             break;
           case 'R':
           case 'plural':
@@ -183,7 +187,7 @@ export class TranspilerService {
     const pluralized = options.has( data.value )
       ? options.get( data.value )
       : options.get( 'other' ) ?? '';
-    const value = this.localization.numberFormat( {
+    const value = this.numberFormatter.format( {
       key: undefined,
       locale: data.locale,
       params: '',

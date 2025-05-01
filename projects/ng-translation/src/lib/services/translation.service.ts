@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { IntlMessageFormat } from 'intl-messageformat';
 
 /* locally accessible feature module code, always use a relative path */
 import {
@@ -10,13 +11,14 @@ import {
   NGT_INLINE_LOADER, Resource, ResourceList, ResourceLoader, TranslationChange,
   LocalizeContext, FormatData
 } from '../models';
-import { TranspilerService } from './transpiler.service';
+import { InterpolationService } from './interpolation.service';
 import { MessengerService } from './messenger.service';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
 } from '../loaders';
 import { CurrencyValue } from '../types';
 import { LocalizationRef } from './localization-ref';
+import { IntlFormatterService } from './intl-formatter.service';
 
 @Injectable( {
   providedIn: 'root'
@@ -29,8 +31,9 @@ export class TranslationService implements LocalizeContext {
   private readonly loaders = inject( NGT_INLINE_LOADER );
   private readonly converter = inject( NGT_TRANSLATION_CONVERTER );
   private readonly extender = inject( NGT_FORMAT_EXTENDER );
-  private readonly transpile = inject( TranspilerService );
+  private readonly interpolation = inject( InterpolationService );
   private readonly localize = inject( LocalizationRef );
+  private readonly intlFormatter = inject( IntlFormatterService );
   private readonly messenger = inject( MessengerService );
   private readonly http = inject( HttpClient );
 
@@ -77,8 +80,8 @@ export class TranslationService implements LocalizeContext {
 
     this.defaultLanguage = this.config.defaultLanguage;
     this.messenger.disableWarnings = this.config.disableWarnings;
-    this.transpile.extender = this.extender;
-    this.transpile.extender.translation = this;
+    this.interpolation.extender = this.extender;
+    this.interpolation.extender.translation = this;
     this.resourceList = new ResourceList(
       this.messenger,
       this.config.sections,
@@ -375,15 +378,15 @@ export class TranslationService implements LocalizeContext {
 
     let locale = new Locale( language );
 
-    // Try the requested (eventual specific) culture (language).
+    // Try the requested (eventually specific) culture (language).
     let translation: string = this.find( locale.name, key );
 
-    // If not found try neutral culture (language without country/region).
+    // If not found, try neutral culture (language without country/region).
     if (translation === key && locale.hasRegion) {
       translation = this.find( locale.neutral, key );
     }
 
-    // Finally if not found...
+    // Finally, if not found...
     if (translation === key) {
 
       // Warning of missing translation code.
@@ -393,7 +396,7 @@ export class TranslationService implements LocalizeContext {
       locale = new Locale( this.defaultLanguage );
       translation = this.find( locale.name, key );
 
-      // If not found still try invariant neutral culture.
+      // If not found, still try invariant neutral culture.
       if (translation === key && locale.hasRegion) {
         translation = this.find( locale.neutral, key );
       }
@@ -426,14 +429,24 @@ export class TranslationService implements LocalizeContext {
     args?: any
   ): string {
 
-    return this.transpile.insert(
-      {
-        key: key,
-        locale: this.active,
-        text: text
-      },
-      args
-    );
+    if (this.config.formatter.toLowerCase() === 'icu') {
+      return new IntlMessageFormat(
+        text,
+        this.active,
+        undefined,
+        { formatters: this.intlFormatter.formatters }
+      )
+        .format( args ) as string;
+    } else {
+      return this.interpolation.insert(
+        {
+          key: key,
+          locale: this.active,
+          text: text
+        },
+        args
+      );
+    }
   }
 
   // endregion

@@ -14,7 +14,8 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2021",
+      "es2021.intl",
       "dom"
     ],
     "paths": {
@@ -23,12 +24,6 @@
       ],
       "@logikum/ng-translation": [
         "dist/ng-translation"
-      ],
-      "ng-translation": [
-        "dist/ng-translation"
-      ],
-      "ng-translation/*": [
-        "dist/ng-translation/*"
       ]
     },
     "resolveJsonModule": true,

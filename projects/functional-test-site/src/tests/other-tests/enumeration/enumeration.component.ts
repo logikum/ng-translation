@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 import { AppStatus } from '../../../app/enums/app-status.enum';
 import { LogLevel, Month, Season } from '../../../shared/enums/enums';
 

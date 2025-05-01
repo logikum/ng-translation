@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgTranslationModule } from 'ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtSingleChoice } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */

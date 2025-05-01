@@ -2,9 +2,14 @@
 import { inject, Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
-import { LocalizationService } from './localization.service';
 import { CurrencyValue } from '../types';
 import { FormatData, NGT_CONFIGURATION } from '../models';
+import {
+  CurrencyFormatterService,
+  DatetimeFormatterService,
+  NumberFormatterService,
+  PercentFormatterService
+} from '../formatters';
 
 function createFormatData(
   locale: string,
@@ -25,15 +30,18 @@ function createFormatData(
 } )
 export class LocalizationRef {
 
-  private readonly localization = inject( LocalizationService );
   private readonly config = inject( NGT_CONFIGURATION );
+  private readonly currencyFormatter = inject( CurrencyFormatterService );
+  private readonly datetimeFormatter = inject( DatetimeFormatterService );
+  private readonly numberFormatter = inject( NumberFormatterService );
+  private readonly percentFormatter = inject( PercentFormatterService );
 
   number(
     locale: string,
     value: number,
     args?: string
   ): string {
-    return this.localization.numberFormat( createFormatData( locale, value, args ) );
+    return this.numberFormatter.format( createFormatData( locale, value, args ) );
   }
 
   percent(
@@ -41,7 +49,7 @@ export class LocalizationRef {
     value: number,
     args?: string
   ): string {
-    return this.localization.percentFormat( createFormatData( locale, value, args ) );
+    return this.percentFormatter.format( createFormatData( locale, value, args ) );
   }
 
   currency(
@@ -49,7 +57,7 @@ export class LocalizationRef {
     value: CurrencyValue,
     args?: string
   ): string {
-    return this.localization.currencyFormat( createFormatData( locale, value, args ) );
+    return this.currencyFormatter.format( createFormatData( locale, value, args ) );
   }
 
   money(
@@ -75,6 +83,6 @@ export class LocalizationRef {
     value: Date | number | string,
     args?: string
   ): string {
-    return this.localization.datetimeFormat( createFormatData( locale, value, args ) );
+    return this.datetimeFormatter.format( createFormatData( locale, value, args ) );
   }
 }

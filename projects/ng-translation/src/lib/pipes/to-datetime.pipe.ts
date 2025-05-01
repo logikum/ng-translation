@@ -1,8 +1,7 @@
 /* 3rd party libraries */
-import { inject, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
-import { LocalizationRef } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
@@ -12,15 +11,13 @@ import { TranslationPipeBase } from './translation-pipe-base';
 } )
 export class ToDatetimePipe extends TranslationPipeBase implements PipeTransform {
 
-  private readonly localize = inject( LocalizationRef );
-
   transform(
     value: Date | number | string,
     args?: string
   ): string {
 
     if (!this.isValid) {
-      this.localized = this.localize.datetime(
+      this.localized = this.localizer.datetime(
         this.translation.activeLanguage, value, args
       );
       this.isValid = true;

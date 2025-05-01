@@ -1,8 +1,7 @@
 /* 3rd party libraries */
-import { inject, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
-import { LocalizationRef } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
@@ -11,8 +10,6 @@ import { TranslationPipeBase } from './translation-pipe-base';
   standalone: false
 } )
 export class ToMoneyPipe extends TranslationPipeBase implements PipeTransform {
-
-  private readonly localize = inject( LocalizationRef );
 
   transform(
     value: number,
@@ -24,7 +21,7 @@ export class ToMoneyPipe extends TranslationPipeBase implements PipeTransform {
       const currency = ix < 0 ? args : args.substring( 0, ix ).trim();
       const opts = ix < 0 ? '' : args.substring( ix + 1 );
 
-      this.localized = this.localize.money(
+      this.localized = this.localizer.money(
         this.translation.activeLanguage, value, currency, opts
       );
       this.isValid = true;

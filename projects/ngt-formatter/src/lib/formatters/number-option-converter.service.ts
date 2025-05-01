@@ -1,8 +1,8 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
+import { MessengerService } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { MessengerService } from '../services';
 import { FormatterUtilityService } from './formatter-utility.service';
 import { OPTION_SEP, VALUE_SEP } from './format-constants';
 

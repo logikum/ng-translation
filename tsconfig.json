@@ -24,6 +24,12 @@
       ],
       "@logikum/ng-translation": [
         "dist/ng-translation"
+      ],
+      "@logikum/ngt-common": [
+        "./dist/ngt-common"
+      ],
+      "@logikum/ngt-formatter": [
+        "./dist/ngt-formatter"
       ]
     },
     "resolveJsonModule": true,

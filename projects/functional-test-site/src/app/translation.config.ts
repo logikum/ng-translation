@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { SectionList, TranslationConfig } from '@logikum/ng-translation';
+import { SectionList, TranslationConfig } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { environment } from '../environments/environment';
@@ -42,7 +42,6 @@ export const translationConfig: TranslationConfig = {
   sections: appSections.concat( seasonSections ),
   defaultLanguage: environment.defaultLanguage,
   allowedLanguages: environment.allowedLanguages,
-  formatter: 'ngt',
   defaultCurrency: environment.defaultCurrency,
   disableWarnings: environment.disableWarnings,
   currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' },

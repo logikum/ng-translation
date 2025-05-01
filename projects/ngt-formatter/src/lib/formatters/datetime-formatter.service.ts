@@ -1,8 +1,8 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
+import { FormatData } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { FormatData } from '../models';
 import { FormatterUtilityService } from './formatter-utility.service';
 import { DatetimeOptionConverterService } from './datetime-option-converter.service';
 

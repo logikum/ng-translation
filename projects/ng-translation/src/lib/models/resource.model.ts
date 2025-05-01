@@ -1,8 +1,9 @@
 /* 3rd party libraries */
 import { InjectionToken } from '@angular/core';
+import { LoaderType } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { InlineLoaderMap, LoaderType } from '../types';
+import { InlineLoaderMap } from '../types';
 
 export interface Resource {
 

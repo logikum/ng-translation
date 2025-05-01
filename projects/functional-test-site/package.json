@@ -9,6 +9,8 @@
   },
   "homepage": "https://ngt.logikum.hu",
   "peerDependencies": {
+    "@logikum/ngt-common": ">=9.1.1",
+    "@logikum/ngt-formatter": ">=9.1.1",
     "@logikum/ng-translation": ">=9.1.1",
     "@logikum/ng-translatable": ">=9.1.1"
   },

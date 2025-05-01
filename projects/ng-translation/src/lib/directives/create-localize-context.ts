@@ -1,9 +1,9 @@
 /* 3rd party libraries */
+import { CurrencyValue, FormatData, LocalizationRef } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { LocalizationRef, TranslationService } from '../services';
-import { CurrencyValue } from '../types';
-import { FormatData, LocalizeContext } from '../models';
+import { TranslationService } from '../services';
+import { LocalizeContext } from '../models';
 
 export function createLocalizeContext(
   translation: TranslationService,

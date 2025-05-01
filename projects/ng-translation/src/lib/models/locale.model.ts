@@ -12,7 +12,6 @@ export class Locale {
     readonly baseName: string
   ) {
 
-    // @ts-ignore
     const locale = new Intl.Locale( baseName );
 
     this.name = locale.baseName;

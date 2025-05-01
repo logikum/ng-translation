@@ -1,5 +1,6 @@
 /* 3rd party libraries */
-import { InlineLoaderMap, getInlineItems, TranslationConfig } from '@logikum/ng-translation';
+import { TranslationConfig } from '@logikum/ngt-common';
+import { InlineLoaderMap, getInlineItems } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 

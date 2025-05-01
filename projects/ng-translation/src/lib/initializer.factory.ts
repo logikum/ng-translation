@@ -1,8 +1,8 @@
 /* 3rd party libraries */
+import { TranslationConfig } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationService } from './services';
-import { TranslationConfig } from './models';
 
 export function initializerFactory(
   service: TranslationService,

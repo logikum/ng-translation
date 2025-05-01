@@ -1,8 +1,8 @@
 /* 3rd party libraries */
+import { MessengerService } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { Resource, ResourceLoader } from '../models';
-import { MessengerService } from '../services';
 import { InlineLoaderMap } from '../types';
 
 export class InlineLoader implements ResourceLoader {

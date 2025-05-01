@@ -1,10 +1,10 @@
 /* 3rd party libraries */
+import {
+  LoaderType, MessengerService, Section, SectionGroup, SectionItem, SectionList
+} from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { MessengerService } from '../services';
-import { LoaderType } from '../types';
 import { Resource } from './resource.model';
-import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
 
 export class ResourceList {
 

@@ -1,9 +1,8 @@
 /* 3rd party libraries */
-import { inject, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
+import { CurrencyValue } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { CurrencyValue } from '../types';
-import { LocalizationRef } from '../services';
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
@@ -13,15 +12,13 @@ import { TranslationPipeBase } from './translation-pipe-base';
 } )
 export class ToCurrencyPipe extends TranslationPipeBase implements PipeTransform {
 
-  private readonly localize = inject( LocalizationRef );
-
   transform(
     value: CurrencyValue,
     args?: string
   ): string {
 
     if (!this.isValid) {
-      this.localized = this.localize.currency(
+      this.localized = this.localizer.currency(
         this.translation.activeLanguage, value, args
       );
       this.isValid = true;

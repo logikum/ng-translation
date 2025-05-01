@@ -1,7 +1,7 @@
 /* 3rd party libraries */
+import { Section, SectionGroup, TranslationConfig } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { Section, SectionGroup, TranslationConfig } from './models';
 
 export function getInlineItems(
   config: TranslationConfig

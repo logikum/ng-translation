@@ -1,34 +1,106 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
+import {
+  CurrencyValue, FormatService, LocalizationRef, NGT_CONFIGURATION,
+  FormatData, FormatExtender, InterpolationData, MessengerService
+} from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { FormatData, FormatExtender, TranspileData } from '../models';
-import { MessengerService } from './messenger.service';
 import {
   CurrencyFormatterService,
   DatetimeFormatterService,
   NumberFormatterService,
-  PercentFormatterService
-} from '../formatters';
+  PercentFormatterService,
+  PluralFormatterService
+} from './formatters';
 import {
   INTL_SEP, PATTERN_SEP, OPTION_SEP, VALUE_SEP, RANGE_SEP, VALUE_PH
-} from '../formatters/format-constants';
+} from './formatters/format-constants';
+
+function createFormatData(
+  locale: string,
+  value: string | number | Date | CurrencyValue,
+  args: string
+): FormatData {
+
+  return {
+    key: undefined,
+    locale: locale,
+    params: args || '',
+    value: value
+  };
+}
 
 @Injectable( {
   providedIn: 'root'
 } )
-export class InterpolationService {
+export class NgtFormatterService implements FormatService {
 
+  private readonly config = inject( NGT_CONFIGURATION );
   private readonly currencyFormatter = inject( CurrencyFormatterService );
   private readonly datetimeFormatter = inject( DatetimeFormatterService );
   private readonly numberFormatter = inject( NumberFormatterService );
   private readonly percentFormatter = inject( PercentFormatterService );
+  private readonly pluralFormatter = inject( PluralFormatterService );
   private readonly messenger = inject( MessengerService );
 
   extender: FormatExtender;
 
+  getLocalizationRef(): LocalizationRef {
+
+    return {
+      number: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+        return this.numberFormatter.format( createFormatData( locale, value, args ) );
+      },
+      percent: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+        return this.percentFormatter.format( createFormatData( locale, value, args ) );
+      },
+      currency: (
+        locale: string,
+        value: CurrencyValue,
+        args?: string
+      ): string => {
+        return this.currencyFormatter.format( createFormatData( locale, value, args ) );
+      },
+      money: (
+        locale: string,
+        value: number,
+        currency?: string,
+        args?: string
+      ): string => {
+
+        let vCurrency = currency || this.config.defaultCurrency;
+        let vArgs = args;
+        if (currency && (currency.length !== 3 ||
+            [...currency].some( c => c !== c.toUpperCase() ))
+        ) {
+          vCurrency = this.config.defaultCurrency;
+          if (!args) {
+            vArgs = currency;
+          }
+        }
+        return this.currencyFormatter.format( createFormatData( locale, [value, vCurrency], vArgs ) );
+      },
+      datetime: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
+        return this.datetimeFormatter.format( createFormatData( locale, value, args ) );
+      }
+    } as LocalizationRef;
+  }
+
   insert(
-    data: TranspileData,
+    data: InterpolationData,
     args?: any
   ): string {
 
@@ -75,13 +147,13 @@ export class InterpolationService {
   }
 
   private replace(
-    tdata: TranspileData,
+    data: InterpolationData,
     re: RegExp,
     value: any
   ): string {
 
     let localized = (value === undefined || value === null) ? '' : value.toString();
-    const result = RegExp( re ).exec( tdata.text );
+    const result = RegExp( re ).exec( data.text );
     if (result && result[ 1 ]) {
       const group = result[ 1 ].trim();
       if (group.startsWith( INTL_SEP )) {
@@ -95,12 +167,12 @@ export class InterpolationService {
         }
         format = format.trim();
         const fdata: FormatData = {
-          key: tdata.key,
-          locale: tdata.locale,
+          key: data.key,
+          locale: data.locale,
           params: params,
           value: value
         };
-        let transpiled: string;
+        let interpolated: string;
         switch (format) {
           case 'N':
           case 'number':
@@ -120,79 +192,19 @@ export class InterpolationService {
             break;
           case 'R':
           case 'plural':
-            localized = this.pluralFormat( fdata );
+            localized = this.pluralFormatter.format( fdata );
             break;
           default:
-            transpiled = this.extender.transpile( format, fdata );
-            if (transpiled !== undefined) {
-              localized = transpiled;
+            interpolated = this.extender.interpolate( format, fdata );
+            if (interpolated !== undefined) {
+              localized = interpolated;
             } else {
-              this.messenger.formatError( tdata.key, format );
+              this.messenger.formatError( data.key, format );
             }
             break;
         }
       }
     }
-    return result ? tdata.text.replace( result[ 0 ], localized ) : tdata.text;
-  }
-
-  private pluralFormat(
-    data: FormatData
-  ): string {
-
-    if (data.value === null || data.value === undefined) {
-      return '';
-    }
-    const options = new Map();
-    const items = data.params.split( OPTION_SEP );
-
-    items.forEach( item => {
-      const parts = item.split( VALUE_SEP );
-      if (parts.length === 2) {
-        const optionName = parts[ 0 ].trim();
-        const optionValue = parts[ 1 ].trim();
-
-        if (optionName === 'other') {
-          options.set( optionName, optionValue );
-        } else {
-          const pos = optionName.indexOf( RANGE_SEP );
-          if (pos > 0) {
-            const range = optionName.split( RANGE_SEP );
-            const from = parseInt( range[ 0 ], 10 );
-            const to = parseInt( range[ 1 ], 10 );
-            if (isNaN( from ) || isNaN( to )) {
-              this.messenger.pluralError( data.key, optionName );
-            } else if (from > to) {
-              for (let i = to; i <= from; i++) {
-                options.set( i, optionValue );
-              }
-            } else {
-              for (let i = from; i <= to; i++) {
-                options.set( i, optionValue );
-              }
-            }
-          } else {
-            const i = parseInt( optionName, 10 );
-            if (isNaN( i )) {
-              this.messenger.pluralError( data.key, optionName );
-            } else {
-              options.set( i, optionValue );
-            }
-          }
-        }
-      } else if (parts.length > 2) {
-        this.messenger.optionValueError( data.key, item );
-      }
-    } );
-    const pluralized = options.has( data.value )
-      ? options.get( data.value )
-      : options.get( 'other' ) ?? '';
-    const value = this.numberFormatter.format( {
-      key: undefined,
-      locale: data.locale,
-      params: '',
-      value: data.value
-    } );
-    return pluralized.replace( VALUE_PH, value );
+    return result ? data.text.replace( result[ 0 ], localized ) : data.text;
   }
 }

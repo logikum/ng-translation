@@ -1,9 +1,9 @@
 /* 3rd party libraries */
 import { HttpClient } from '@angular/common/http';
+import { MessengerService } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { Locale, Resource, ResourceLoader } from '../models';
-import { MessengerService } from '../services';
 import { buildPath } from './build-path';
 
 export class LoaderBase<T> implements ResourceLoader {

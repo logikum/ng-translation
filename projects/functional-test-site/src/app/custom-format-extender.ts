@@ -1,6 +1,7 @@
 /* 3rd party libraries */
 import { Injectable } from '@angular/core';
-import { FormatData, TranspileExtenderBase } from '@logikum/ng-translation';
+import { FormatData } from '@logikum/ngt-common';
+import { FormatExtenderBase } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 import { AppStatus } from './enums/app-status.enum';
@@ -15,7 +16,7 @@ enum FormatName {
 }
 
 @Injectable()
-export class CustomFormatExtender extends TranspileExtenderBase {
+export class CustomFormatExtender extends FormatExtenderBase {
 
   readonly formatNames: Array<string> = [
     FormatName.roman,
@@ -25,7 +26,7 @@ export class CustomFormatExtender extends TranspileExtenderBase {
     FormatName.month
   ];
 
-  transpile(
+  interpolate(
     format: string,
     data: FormatData
   ): string | undefined {

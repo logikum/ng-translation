@@ -2,7 +2,7 @@
 import { InjectionToken } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
-import { FormatterType, LoaderType } from '../types';
+import { LoaderType } from '../types';
 
 export interface Section {
 
@@ -33,7 +33,6 @@ export interface TranslationConfig {
   readonly sections: SectionList;
   readonly defaultLanguage: string;
   readonly allowedLanguages?: Array<string>;
-  readonly formatter: FormatterType;
   readonly defaultCurrency: string;
   readonly disableWarnings?: boolean;
   readonly currencyDefaultOptions?: object;

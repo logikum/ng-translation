@@ -4,10 +4,11 @@ import {
   TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { InterpolationData, NGT_FORMAT_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { TranslationReader, TranspileData } from '../models';
-import { LocalizationRef, TranslationService, InterpolationService } from '../services';
+import { TranslationReader } from '../models';
+import { TranslationService } from '../services';
 import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {
@@ -19,8 +20,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
   private readonly container = inject( ViewContainerRef );
   @Optional() private readonly template = inject( TemplateRef<TranslationReader> );
   private readonly translation = inject( TranslationService );
-  private readonly transpiler = inject( InterpolationService );
-  private readonly localization = inject( LocalizationRef );
+  private readonly formatter = inject( NGT_FORMAT_SERVICE );
 
   @Input( 'ngtReader' ) key?: string;
   @Input() ngtReaderNode?: string;
@@ -56,7 +56,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
   private initialize(): void {
 
     const service = this.translation;
-    const localize = this.localization;
+    const localize = this.formatter.getLocalizationRef();
     const context: TranslationReader = {
       $implicit: this.getReader(),
       localize: createLocalizeContext( service, localize )
@@ -105,12 +105,12 @@ export class NgtReaderDirective implements OnInit, OnChanges {
       if (args === undefined) {
         return text;
       } else {
-        const data: TranspileData = {
+        const data: InterpolationData = {
           key,
           locale: this.translation.activeLanguage,
           text
         };
-        return this.transpiler.insert( data, args.length > 1 ? args : args[ 0 ] );
+        return this.formatter.insert( data, args.length > 1 ? args : args[ 0 ] );
       }
     };
   }

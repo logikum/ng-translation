@@ -1,6 +1,7 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule, CurrencyValue } from '@logikum/ng-translation';
+import { CurrencyValue } from '@logikum/ngt-common';
+import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 

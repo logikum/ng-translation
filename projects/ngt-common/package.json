@@ -1,0 +1,12 @@
+{
+  "name": "@logikum/ngt-common",
+  "version": "9.1.1",
+  "peerDependencies": {
+    "@angular/common": "^19.1.0",
+    "@angular/core": "^19.1.0"
+  },
+  "dependencies": {
+    "tslib": ">=2.6.2"
+  },
+  "sideEffects": false
+}

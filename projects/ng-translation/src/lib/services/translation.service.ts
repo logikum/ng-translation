@@ -3,22 +3,20 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { IntlMessageFormat } from 'intl-messageformat';
+import {
+  CurrencyValue, FormatData, LocalizationRef, MessengerService,
+  NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, NGT_FORMAT_SERVICE
+} from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import {
-  Locale, NGT_CONFIGURATION, NGT_TRANSLATION_CONVERTER, NGT_FORMAT_EXTENDER,
-  NGT_INLINE_LOADER, Resource, ResourceList, ResourceLoader, TranslationChange,
-  LocalizeContext, FormatData
+  Locale, NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER,
+  Resource, ResourceList, ResourceLoader, TranslationChange,
+  LocalizeContext
 } from '../models';
-import { InterpolationService } from './interpolation.service';
-import { MessengerService } from './messenger.service';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
 } from '../loaders';
-import { CurrencyValue } from '../types';
-import { LocalizationRef } from './localization-ref';
-import { IntlFormatterService } from './intl-formatter.service';
 
 @Injectable( {
   providedIn: 'root'
@@ -31,9 +29,8 @@ export class TranslationService implements LocalizeContext {
   private readonly loaders = inject( NGT_INLINE_LOADER );
   private readonly converter = inject( NGT_TRANSLATION_CONVERTER );
   private readonly extender = inject( NGT_FORMAT_EXTENDER );
-  private readonly interpolation = inject( InterpolationService );
-  private readonly localize = inject( LocalizationRef );
-  private readonly intlFormatter = inject( IntlFormatterService );
+  private readonly formatter = inject( NGT_FORMAT_SERVICE );
+  private readonly localizer: LocalizationRef;
   private readonly messenger = inject( MessengerService );
   private readonly http = inject( HttpClient );
 
@@ -80,8 +77,9 @@ export class TranslationService implements LocalizeContext {
 
     this.defaultLanguage = this.config.defaultLanguage;
     this.messenger.disableWarnings = this.config.disableWarnings;
-    this.interpolation.extender = this.extender;
-    this.interpolation.extender.translation = this;
+    this.formatter.extender = this.extender;
+    this.formatter.extender.translation = this;
+    this.localizer = this.formatter.getLocalizationRef();
     this.resourceList = new ResourceList(
       this.messenger,
       this.config.sections,
@@ -429,24 +427,14 @@ export class TranslationService implements LocalizeContext {
     args?: any
   ): string {
 
-    if (this.config.formatter.toLowerCase() === 'icu') {
-      return new IntlMessageFormat(
-        text,
-        this.active,
-        undefined,
-        { formatters: this.intlFormatter.formatters }
-      )
-        .format( args ) as string;
-    } else {
-      return this.interpolation.insert(
-        {
-          key: key,
-          locale: this.active,
-          text: text
-        },
-        args
-      );
-    }
+    return this.formatter.insert(
+      {
+        key: key,
+        locale: this.active,
+        text: text
+      },
+      args
+    );
   }
 
   // endregion
@@ -515,7 +503,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.localize.number( this.activeLanguage, value, args );
+    return this.localizer.number( this.activeLanguage, value, args );
   }
 
   percent(
@@ -523,7 +511,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.localize.percent( this.activeLanguage, value, args );
+    return this.localizer.percent( this.activeLanguage, value, args );
   }
 
   currency(
@@ -531,7 +519,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.localize.currency( this.activeLanguage, value, args );
+    return this.localizer.currency( this.activeLanguage, value, args );
   }
 
   money(
@@ -540,7 +528,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.localize.money( this.activeLanguage, value, currency, args );
+    return this.localizer.money( this.activeLanguage, value, currency, args );
   }
 
   datetime(
@@ -548,7 +536,7 @@ export class TranslationService implements LocalizeContext {
     args?: string
   ): string {
 
-    return this.localize.datetime( this.activeLanguage, value, args );
+    return this.localizer.datetime( this.activeLanguage, value, args );
   }
 
   custom(
@@ -556,7 +544,7 @@ export class TranslationService implements LocalizeContext {
     formatData: FormatData
   ): string {
 
-    return this.extender.transpile( format, formatData );
+    return this.extender.interpolate( format, formatData );
   }
 
   //endregion

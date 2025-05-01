@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { SectionList } from '@logikum/ng-translation';
+import { SectionList } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 

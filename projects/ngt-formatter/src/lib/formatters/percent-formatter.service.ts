@@ -1,15 +1,15 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
+import { FormatData } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { FormatData } from '../models';
 import { FormatterUtilityService } from './formatter-utility.service';
 import { NumberOptionConverterService } from './number-option-converter.service';
 
 @Injectable( {
   providedIn: 'root'
 } )
-export class NumberFormatterService {
+export class PercentFormatterService {
 
   private readonly utility = inject( FormatterUtilityService );
   private readonly converter = inject( NumberOptionConverterService );
@@ -22,7 +22,7 @@ export class NumberFormatterService {
       return '';
     }
     const options: Intl.NumberFormatOptions = this.converter.extendOptions(
-      data.key, data.params, { style: 'decimal' }
+      data.key, data.params, { style: 'percent' }
     );
     return new Intl.NumberFormat( data.locale, options ).format( data.value );
   }

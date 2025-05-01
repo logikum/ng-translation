@@ -4,10 +4,11 @@ import {
   Optional, SimpleChanges, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LocalizationRef, NGT_FORMAT_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslateContext } from '../models';
-import { LocalizationRef, TranslationService } from '../services';
+import { TranslationService } from '../services';
 import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {
@@ -20,7 +21,8 @@ export class NgtContextDirective implements OnInit, OnChanges {
   @Optional() private readonly template = inject( TemplateRef<TranslateContext> );
   private readonly changeDetector = inject( ChangeDetectorRef );
   private readonly translation = inject( TranslationService );
-  private readonly localization = inject( LocalizationRef );
+  private readonly formatter = inject( NGT_FORMAT_SERVICE );
+  private readonly localizer: LocalizationRef;
 
   @Input( 'ngtContext' ) key?: string;
   @Input() ngtContextNode?: string;
@@ -32,6 +34,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
       .subscribe( language => {
         this.changeDetector.markForCheck();
       } );
+    this.localizer = this.formatter.getLocalizationRef();
   }
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
   private initialize(): void {
 
     const service = this.translation;
-    const localize = this.localization;
+    const localize = this.localizer;
     const keyRoot = this.ngtContextNode;
     const self = this;
     const context: TranslateContext = {

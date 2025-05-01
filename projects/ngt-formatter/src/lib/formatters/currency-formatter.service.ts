@@ -1,8 +1,8 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
+import { FormatData, NGT_CONFIGURATION } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { FormatData, NGT_CONFIGURATION } from '../models';
 import { FormatterUtilityService } from './formatter-utility.service';
 import { NumberOptionConverterService } from './number-option-converter.service';
 

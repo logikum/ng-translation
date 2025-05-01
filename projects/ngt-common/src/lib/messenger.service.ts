@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
-import { MSG_PREFIX } from '../models/constants';
+import { MSG_PREFIX } from './models';
 
 @Injectable( {
   providedIn: 'root'

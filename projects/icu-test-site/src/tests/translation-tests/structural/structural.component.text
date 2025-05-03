@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translation.structural
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Using Structural Directive (Context)

@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+}
+.menu {
+  display: inline-block;
+  border: var(--main-color-300) solid 2px;
+  float: right;
+  position: absolute;
+  top: -3.5rem;
+  right: 0
+}
+.menu-item {
+  display: inline-block;
+  padding: 0.25rem .75rem;
+}

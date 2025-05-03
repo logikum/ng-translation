@@ -1,0 +1,17 @@
+.title {
+  margin-bottom: 1rem;
+}
+.chevron {
+  stroke: var(--main-color-600);
+  height: 3rem;
+  width: 2rem;
+}
+.chevron>svg {
+  display: block;
+  overflow: hidden;
+  width : 100%; /* stretch to fill parent */
+  height: 100%;
+}
+a {
+  text-decoration: none;
+}

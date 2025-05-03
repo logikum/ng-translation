@@ -1,0 +1,19 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> model.textList
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+advice:         Fruit is healthy.
+
+label.seasons:  Seasons
+label.advice:   Advice
+label.fruits:   Fruits
+label.welcome:  Welcome
+label.status:   Status
+
+fruit.apple:    apple
+fruit.peach:    peach
+fruit.cherry:   cherry

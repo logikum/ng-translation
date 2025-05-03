@@ -1,0 +1,23 @@
+{
+  "camelCase": {
+    "title": "Camel case csomópontnevek"
+  },
+  "enumeration": {
+    "appStatus": "Alkalmazás állapota",
+    "levelName": "{{ 0 | logLevel }}",
+    "logLevel": "Naplózási szint",
+    "month": "Hónap",
+    "season": "Évszak",
+    "statusName": "{{ 0 | appStatus }}",
+    "title": "Felsorolások"
+  },
+  "inlineLoader": {
+    "title": "Beágyazott betöltő"
+  },
+  "formatExtender": {
+    "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
+    "range": "Tartomány",
+    "romanNumber": "{{ 0 | roman }}",
+    "title": "Formátumbővítő - Római számok"
+  }
+}

@@ -30,6 +30,9 @@
       ],
       "@logikum/ngt-formatter": [
         "./dist/ngt-formatter"
+      ],
+      "@logikum/icu-formatter": [
+        "./dist/icu-formatter"
       ]
     },
     "resolveJsonModule": true,

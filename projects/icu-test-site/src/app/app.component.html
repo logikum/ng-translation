@@ -1,0 +1,11 @@
+@if (isInitialized | async) {
+  <icu-header></icu-header>
+  <div class="main flex-row justify-center">
+    <div class="main-content flex-col">
+      <icu-title></icu-title>
+      <router-outlet />
+    </div>
+  </div>
+} @else {
+  <p>App is initializing...</p>
+}

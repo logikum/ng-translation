@@ -1,0 +1,47 @@
+<ng-container *ngtContext="let t; node: 'model.localeList'">
+
+  <div class="flex-row align-center">
+    <div class="row-item label">{{ t('changeByCode') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByCode( $event )">
+        @for (locale of locales; track locale.code) {
+          <option value="{{ locale.code }}"
+                  [selected]="locale.selected">
+            {{ locale.name }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="row-item label">{{ t('changeByIndex') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByIndex( $event )">
+        @for (locale of locales; track locale.code; let i = $index) {
+          <option value="{{ i }}"
+                  [selected]="locale.selected">
+            {{ locale.name }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedIndex') }}:</div>
+      <div class="grid-item data">{{ locales.selectedIndex }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedCode') }}:</div>
+      <div class="grid-item data">{{ locales.selectedCode }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedName') }}:</div>
+      <div class="grid-item data">{{ locales.selectedName }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedItem') }}:</div>
+      <div class="grid-item data">{{ selectedLocale }}</div>
+    </div>
+  </div>
+
+</ng-container>

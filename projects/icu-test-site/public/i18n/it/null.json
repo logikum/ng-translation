@@ -1,0 +1,42 @@
+{
+  "boolean": "{{0}}",
+  "currency": "{{0|C}}",
+  "datetime": "{{0|D}}",
+  "number": "{{0|N}}",
+  "percent": "{{0|P}}",
+  "plural": "{{0|R:0=zero;1-5=some;other=many}}",
+  "text": "{{0}}",
+  "currencyCodes": {
+    "code": "Codice",
+    "empty": "vuoto",
+    "invalid": "non valido",
+    "lilangeni": "lilangeni (Swaziland)",
+    "noCurrency": "nessuna valuta",
+    "null": "null",
+    "test": "test",
+    "title": "Codici valuta",
+    "undefined": "indefinito",
+    "value": "Valore"
+  },
+  "localizationMethod": {
+    "method": "Metodo",
+    "null": "Null",
+    "title": "Metodo di localizzazione",
+    "undefined": "Indefinito",
+    "value": "Valore"
+  },
+  "localizationPipe": {
+    "null": "Null",
+    "pipe": "Pipe",
+    "title": "Pipe di localizzazione",
+    "undefined": "Indefinito",
+    "value": "Valore"
+  },
+  "translationString": {
+    "dataType": "Tipo di dati",
+    "null": "Null",
+    "title": "Stringa di traduzione",
+    "undefined": "Indefinito",
+    "value": "Valore"
+  }
+}

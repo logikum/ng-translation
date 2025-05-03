@@ -1,0 +1,21 @@
+<div class="container" *ngtReader="let r; node: 'seasons/vivaldi'">
+
+  <div class="menu">
+    <div class="menu-item">
+      <a routerLink="/seasons">Vivaldi</a>
+    </div>
+    <div class="menu-item">
+      <a routerLink="/seasons/spring">{{ r.spring() }}</a>
+    </div>
+    <div class="menu-item">
+      <a routerLink="/seasons/summer">{{ r.summer() }}</a>
+    </div>
+    <div class="menu-item">
+      <a routerLink="/seasons/autumn">{{ r.autumn() }}</a>
+    </div>
+    <div class="menu-item">
+      <a routerLink="/seasons/winter">{{ r.winter() }}</a>
+    </div>
+  </div>
+
+</div>

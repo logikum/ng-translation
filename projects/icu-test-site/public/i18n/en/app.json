@@ -1,0 +1,24 @@
+{
+  "conversion": "Conversion Tests",
+  "localization": "Localization Tests - t()",
+  "localize": "Localization Tests - l()",
+  "model": "Model Tests",
+  "null": "Null Value Tests",
+  "other": "Other Tests",
+  "pipe": "Localization Tests | pipe",
+  "seasons": "Module Usage Test",
+  "translation": "Translation Tests",
+  "enums": {
+    "appStatus": {
+      "construct": "under construction",
+      "maintain": "under maintenance",
+      "operate": "in operation"
+    }
+  },
+  "header": {
+    "name": "NgTranslation/NgTranslatable Tests"
+  },
+  "home": {
+    "title": "WWelcome to ICU Format Test Site!"
+  }
+}

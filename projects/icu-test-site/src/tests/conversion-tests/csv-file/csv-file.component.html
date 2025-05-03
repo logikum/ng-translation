@@ -1,0 +1,34 @@
+<ng-container *ngtReader="let r; node: 'summer'">
+
+  <h1>{{ r.title() }}</h1>
+
+  <div class="center">
+    <div class="tempo"> Allegro non molto - Allegro </div>
+    <p>
+      {{ r.line_1_1() }}<br>
+      {{ r.line_1_2() }}<br>
+      {{ r.line_1_3() }}<br>
+      {{ r.line_1_4() }}
+    </p>
+    <div class="tempo"> &nbsp; </div>
+    <p>
+      {{ r.line_2_1() }}<br>
+      {{ r.line_2_2() }}<br>
+      {{ r.line_2_3() }}<br>
+      {{ r.line_2_4() }}
+    </p>
+    <div class="tempo"> Adagio e piano - Presto e forte </div>
+    <p>
+      {{ r.line_3_1() }}<br>
+      {{ r.line_3_2() }}<br>
+      {{ r.line_3_3() }}
+    </p>
+    <div class="tempo"> Presto </div>
+    <p>
+      {{ r.line_4_1() }}<br>
+      {{ r.line_4_2() }}<br>
+      {{ r.line_4_3() }}
+    </p>
+  </div>
+
+</ng-container>

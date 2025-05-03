@@ -1,0 +1,8 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> localization.currency
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+

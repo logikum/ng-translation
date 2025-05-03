@@ -13,23 +13,7 @@ import {
   PercentFormatterService,
   PluralFormatterService
 } from './formatters';
-import {
-  INTL_SEP, PATTERN_SEP, OPTION_SEP, VALUE_SEP, RANGE_SEP, VALUE_PH
-} from './formatters/format-constants';
-
-function createFormatData(
-  locale: string,
-  value: string | number | Date | CurrencyValue,
-  args: string
-): FormatData {
-
-  return {
-    key: undefined,
-    locale: locale,
-    params: args || '',
-    value: value
-  };
-}
+import { INTL_SEP, PATTERN_SEP } from './formatters/format-constants';
 
 @Injectable( {
   providedIn: 'root'
@@ -45,59 +29,6 @@ export class NgtFormatterService implements FormatService {
   private readonly messenger = inject( MessengerService );
 
   extender: FormatExtender;
-
-  getLocalizationRef(): LocalizationRef {
-
-    return {
-      number: (
-        locale: string,
-        value: number,
-        args?: string
-      ): string => {
-        return this.numberFormatter.format( createFormatData( locale, value, args ) );
-      },
-      percent: (
-        locale: string,
-        value: number,
-        args?: string
-      ): string => {
-        return this.percentFormatter.format( createFormatData( locale, value, args ) );
-      },
-      currency: (
-        locale: string,
-        value: CurrencyValue,
-        args?: string
-      ): string => {
-        return this.currencyFormatter.format( createFormatData( locale, value, args ) );
-      },
-      money: (
-        locale: string,
-        value: number,
-        currency?: string,
-        args?: string
-      ): string => {
-
-        let vCurrency = currency || this.config.defaultCurrency;
-        let vArgs = args;
-        if (currency && (currency.length !== 3 ||
-            [...currency].some( c => c !== c.toUpperCase() ))
-        ) {
-          vCurrency = this.config.defaultCurrency;
-          if (!args) {
-            vArgs = currency;
-          }
-        }
-        return this.currencyFormatter.format( createFormatData( locale, [value, vCurrency], vArgs ) );
-      },
-      datetime: (
-        locale: string,
-        value: Date | number | string,
-        args?: string
-      ): string => {
-        return this.datetimeFormatter.format( createFormatData( locale, value, args ) );
-      }
-    } as LocalizationRef;
-  }
 
   insert(
     data: InterpolationData,
@@ -206,5 +137,86 @@ export class NgtFormatterService implements FormatService {
       }
     }
     return result ? data.text.replace( result[ 0 ], localized ) : data.text;
+  }
+
+  getLocalizationRef(): LocalizationRef {
+
+    return {
+      number: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+
+        return this.numberFormatter.format(
+          this.createFormatData( locale, value, args )
+        );
+      },
+      percent: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+
+        return this.percentFormatter.format(
+          this.createFormatData( locale, value, args )
+        );
+      },
+      currency: (
+        locale: string,
+        value: CurrencyValue,
+        args?: string
+      ): string => {
+
+        return this.currencyFormatter.format(
+          this.createFormatData( locale, value, args )
+        );
+      },
+      money: (
+        locale: string,
+        value: number,
+        currency?: string,
+        args?: string
+      ): string => {
+
+        let vCurrency = currency || this.config.defaultCurrency;
+        let vArgs = args;
+        if (currency && (currency.length !== 3 ||
+          [...currency].some( c => c !== c.toUpperCase() ))
+        ) {
+          vCurrency = this.config.defaultCurrency;
+          if (!args) {
+            vArgs = currency;
+          }
+        }
+        return this.currencyFormatter.format(
+          this.createFormatData( locale, [value, vCurrency], vArgs )
+        );
+      },
+      datetime: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
+
+        return this.datetimeFormatter.format(
+          this.createFormatData( locale, value, args )
+        );
+      }
+    } as LocalizationRef;
+  }
+
+  private createFormatData(
+    locale: string,
+    value: string | number | Date | CurrencyValue,
+    args: string
+  ): FormatData {
+
+    return {
+      key: undefined,
+      locale: locale,
+      params: args || '',
+      value: value
+    };
   }
 }

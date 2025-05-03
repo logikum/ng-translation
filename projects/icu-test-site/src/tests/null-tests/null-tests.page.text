@@ -1,0 +1,15 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+text:       {{0}}
+number:     {{0|N}}
+percent:    {{0|P}}
+currency:   {{0|C}}
+datetime:   {{0|D}}
+plural:     {{0|R:0=zero;1-5=some;other=many}}
+boolean:    {{0}}

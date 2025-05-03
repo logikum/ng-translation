@@ -1,0 +1,42 @@
+<ng-container *ngtContext="let t; node: 'other.enumeration'; let l = localize">
+
+  <div class="grid-1-1">
+    <div class="context">--- using data format ---</div>
+    <div class="context">--- using localization ---</div>
+  </div>
+  <div class="grid-1-1-1-1">
+    <div class="grid-item">
+      <div>{{ t('appStatus') }}:</div>
+      <ul class="data">
+        @for (status of appStatuses; track status) {
+          <li>{{ t('statusName', status) }}</li>
+        }
+      </ul>
+    </div>
+    <div class="grid-item">
+      <div>{{ t('logLevel') }}:</div>
+      <ul class="data">
+        @for (level of logLevels; track level) {
+          <li>{{ t('levelName', level) }}</li>
+        }
+      </ul>
+    </div>
+    <div class="grid-item">
+      <div>{{ t('season') }}:</div>
+      <ul class="data">
+        @for (season of seasons; track season) {
+          <li>{{ l.season( season ) }}</li>
+        }
+      </ul>
+    </div>
+    <div class="grid-item">
+      <div>{{ t('month') }}:</div>
+      <ul class="data">
+        @for (month of months; track month) {
+          <li>{{ l.month( month ) }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+
+</ng-container>

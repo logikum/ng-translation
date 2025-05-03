@@ -1,0 +1,41 @@
+<icu-seasons-menu></icu-seasons-menu>
+
+<ng-container *ngtReader="let r; node: 'seasons/spring'">
+
+  <h3 class="subtitle">{{ r.title() }}</h3>
+
+  <div class="grid-1-1">
+    <div class="grid-item">
+      <div class="tempo"> Allegro </div>
+      <p>
+        {{ r.line_1_1() }}<br>
+        {{ r.line_1_2() }}<br>
+        {{ r.line_1_3() }}<br>
+        {{ r.line_1_4() }}
+      </p>
+      <div class="tempo"> &nbsp; </div>
+      <p>
+        {{ r.line_2_1() }}<br>
+        {{ r.line_2_2() }}<br>
+        {{ r.line_2_3() }}<br>
+        {{ r.line_2_4() }}
+      </p>
+      <div class="tempo"> Largo </div>
+      <p>
+        {{ r.line_3_1() }}<br>
+        {{ r.line_3_2() }}<br>
+        {{ r.line_3_3() }}
+      </p>
+      <div class="tempo"> Allegro </div>
+      <p>
+        {{ r.line_4_1() }}<br>
+        {{ r.line_4_2() }}<br>
+        {{ r.line_4_3() }}
+      </p>
+    </div>
+    <div class="grid-item">
+      <img src="/images/spring.jpg" alt="">
+    </div>
+  </div>
+
+</ng-container>

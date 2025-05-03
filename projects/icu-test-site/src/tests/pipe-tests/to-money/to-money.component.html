@@ -1,0 +1,56 @@
+<ng-container *ngtContext="let t; node: 'localization.money'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP' }}</div>
+        </div>
+        <div class="label">{{ t('code' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'currencyDisplay=code' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | currencyDisplay=code' }}</div>
+        </div>
+        <div class="label">{{ t('name' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'currencyDisplay=name' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | currencyDisplay=name' }}</div>
+        </div>
+        <div class="label">{{ t('symbol' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'currencyDisplay=symbol' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | currencyDisplay=symbol' }}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP' }}</div>
+        </div>
+        <div class="label">{{ t('code' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'cd = code' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | cd = code' }}</div>
+        </div>
+        <div class="label">{{ t('name' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'cd = name' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | cd = name' }}</div>
+        </div>
+        <div class="label">{{ t('symbol' ) }}:</div>
+        <div>
+          <div class="data">{{ amount | toMoney: 'cd = symbol' }}</div>
+          <div class="data">{{ amount | toMoney: 'GBP | cd = symbol' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

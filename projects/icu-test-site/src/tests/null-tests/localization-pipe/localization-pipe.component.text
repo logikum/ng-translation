@@ -1,0 +1,14 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null.localizationPipe
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Localization Pipe
+
+pipe:       Pipe
+value:      Value
+null:       Null
+undefined:  Undefined

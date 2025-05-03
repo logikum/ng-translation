@@ -1,0 +1,25 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> localization.currency
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title: Currency Formatting
+
+default_f: Default currency format
+default_l: {{ price|currency }}
+default_s: {{ price | C }}
+
+code_f: Currency code format
+code_l: {{ 0|currency:currencyDisplay=code }}
+code_s: {{ 0 | C : cd = code }}
+
+name_f: Currency name format
+name_l: {{ 0|currency:currencyDisplay=name }}
+name_s: {{ 0 | C : cd = name }}
+
+symbol_f: Currency symbol format
+symbol_l: {{ price|currency:currencyDisplay=symbol }}
+symbol_s: {{ price | C : cd = symbol }}

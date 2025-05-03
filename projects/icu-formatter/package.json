@@ -1,0 +1,14 @@
+{
+  "name": "@logikum/icu-formatter",
+  "version": "9.1.1",
+  "peerDependencies": {
+    "@angular/common": "^19.1.0",
+    "@angular/core": "^19.1.0",
+    "intl-messageformat": "^10.7.16",
+    "@logikum/ngt-common": "9.1.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

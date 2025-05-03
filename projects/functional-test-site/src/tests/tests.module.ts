@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /* locally accessible feature module code, always use a relative path */
-import { SeasonsRoutingModule } from './seasons-routing.module';
+import { TestsRoutingModule } from './tests-routing.module';
 
 @NgModule( {
   declarations: [],
   imports: [
     CommonModule,
-    SeasonsRoutingModule
-  ],
+    TestsRoutingModule
+  ]
 } )
-export class SeasonsModule { }
+export class TestsModule { }

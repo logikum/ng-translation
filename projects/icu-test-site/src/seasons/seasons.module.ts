@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 /* locally accessible feature module code, always use a relative path */
 import { SeasonsRoutingModule } from './seasons-routing.module';
 
-@NgModule({
+@NgModule( {
   declarations: [],
   imports: [
     CommonModule,
     SeasonsRoutingModule
   ],
-})
+} )
 export class SeasonsModule { }

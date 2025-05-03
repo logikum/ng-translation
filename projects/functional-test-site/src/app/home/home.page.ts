@@ -6,16 +6,16 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use a relative path */
 import { ContentService } from '../../shared/content.service';
 
-@Component({
+@Component( {
 
   selector: 'fts-home',
   imports: [ RouterLink, NgTranslationModule, NgTranslationModule ],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css'
-})
+} )
 export class HomePage {
 
-  private contentService = inject(ContentService);
+  private contentService = inject( ContentService );
 
   // tests = signal(tests);
   tests = [
@@ -25,5 +25,11 @@ export class HomePage {
 
   constructor() {
     this.contentService.title = '';
+  }
+
+  link(
+    test: string
+  ): string {
+    return `/${ test === 'seasons' ? '' : 'tests/' }${ test }`;
   }
 }

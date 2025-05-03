@@ -27,10 +27,10 @@ export function getInlineLoaders(): InlineLoaderMap {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideZoneChangeDetection( { eventCoalescing: true } ),
+    provideRouter( routes ),
     provideAnimations(),
-    importProvidersFrom( NgTranslationModule.forRoot(translationConfig) ),
+    importProvidersFrom( NgTranslationModule.forRoot( translationConfig ) ),
     {
       provide: NGT_FORMAT_SERVICE,
       useClass: NgtFormatterService

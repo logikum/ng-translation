@@ -24,7 +24,7 @@
 
 <ng-container *ngtContext="let t; node: 'translation.text'">
   <div class="context">--- with interpolation ---</div>
-  <div class="data">{{ t('today', today) }}</div>
-  <div class="data">{{ t('stock', [rise, value]) }}</div>
-  <div class="data">{{ t('book', [normalPrice, specialPrice]) }}</div>
+  <div class="data">{{ t('today', { today } ) }}</div>
+  <div class="data">{{ t('stock', stock ) }}</div>
+  <div class="data">{{ t('book', book ) }}</div>
 </ng-container>

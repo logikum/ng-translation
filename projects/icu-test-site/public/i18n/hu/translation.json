@@ -14,8 +14,8 @@
       "hint": "Új termék felvételáhez adja meg az alábbi adatokat",
       "name": {
         "label": "Termék neve",
-        "maxLength": "A termék neve nem haladhatja meg a {{ length }} karaktert.",
-        "minLength": "A termék nevének legalább {{ 0 }} karakterből kell állnia, de {{ 1 }} karakter hosszúságú ajánlott."
+        "maxLength": "A termék neve nem haladhatja meg a { maxLength, number } karaktert.",
+        "minLength": "A termék nevének legalább { minLength, number } karakterből kell állnia, de { recommended, number } karakter hosszúságú ajánlott."
       }
     }
   },
@@ -23,11 +23,11 @@
     "title": "Strukturális direktíva használata (Context)"
   },
   "text": {
-    "book": "A könyv jelenlegi ára {{ 0 | C }}, de az akció alatt {{ 1 | C }} lesz.",
+    "book": "A könyv jelenlegi ára { current, number, ::currency/_1_ }, de az akció alatt { onSale, number, ::currency/_2_ } lesz.",
     "otherElements": "A másik négy elem az Ötödik elem című filmben:",
     "smurfs": "<strong>Kékek és kicsik</strong>, mindössze <em>három alma magasak</em>, a <a href=\"https://www.smurf.com/\" target=\"_blank\">Hupikék törpikék</a>et elsőre nehéz lehet megkülönböztetni.",
-    "stock": "A tőzsde {{ 1 | N }} ponton zárt {{ 0 | P: minfd = 2 }} emelkedés után.",
-    "today": "Mai dátum: {{ 0 | D }}",
+    "stock": "A tőzsde { points, number } ponton zárt { surge, number, ::percent .## } emelkedés után.",
+    "today": "Mai dátum: { today, date }",
     "element": {
       "earth": "föld",
       "fire": "tűz",

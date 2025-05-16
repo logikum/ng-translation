@@ -44,6 +44,6 @@ export const translationConfig: TranslationConfig = {
   allowedLanguages: environment.allowedLanguages,
   defaultCurrency: environment.defaultCurrency,
   disableWarnings: environment.disableWarnings,
-  currencyDefaultOptions: { HUF: 'minfd=0;maxfd=0' },
+  currencyDefaultOptions: { HUF: 'precision-integer' },
   filenameToCamelCase: true
 };

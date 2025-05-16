@@ -2,12 +2,8 @@
 import { inject, Injectable } from '@angular/core';
 import { IntlMessageFormat } from 'intl-messageformat';
 import {
-  CurrencyValue,
-  FormatExtender,
-  FormatService,
-  InterpolationData,
-  LocalizationRef,
-  NGT_CONFIGURATION
+  CurrencyValue, FormatExtender, FormatService, InterpolationData,
+  LocalizationRef, NGT_CONFIGURATION
 } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
@@ -22,20 +18,66 @@ export class IcuFormatterService implements FormatService {
   private readonly intlFormatter = inject( IntlFormatterService );
   extender: FormatExtender;
 
-  constructor() { }
-
   insert(
     data: InterpolationData,
     args?: any
   ): string {
 
+    console.log( `ICU: ${ data.text }` );
     return new IntlMessageFormat(
-      data.text,
+      this.insertCurrency( data.text, args ),
       data.locale,
       undefined,
-      { formatters: this.intlFormatter.formatters }
+      { formatters: this.intlFormatter.formatters, ignoreTag: true }
     )
       .format( args ) as string;
+  }
+
+  private insertCurrency(
+    text: string,
+    args?: object
+  ): string {
+
+    const found = text.match( /currency\/_[_0-9]_/g );
+    if (found) {
+      found.forEach( placeholder => {
+        const index = placeholder.match( /[0-9]/ );
+        if (index === null) {
+          text = text.replaceAll(
+            '___',
+            this.getCurrencyCode( args )
+          );
+        } else {
+          text = text.replaceAll( `_${ index }_`,
+            this.getCurrencyCode( args, index.toString() )
+          );
+        }
+      } );
+    }
+    return text;
+  }
+
+  private  getCurrencyCode(
+    args?: object,
+    index?: string
+  ): string {
+
+    const currencyCode = args[ `currency${ index ?? '' }` ] || 'XXX';
+    // Add eventual custom default options.
+    return this.addCurrencyOptions( currencyCode );
+  }
+
+  private addCurrencyOptions(
+    currencyCode: string,
+  ): string {
+
+    if (this.config.currencyDefaultOptions) {
+      const cdo = this.config.currencyDefaultOptions[ currencyCode ] ?? '';
+      if (cdo) {
+        currencyCode += ' ' + cdo;
+      }
+    }
+    return currencyCode;
   }
 
   getLocalizationRef(): LocalizationRef {
@@ -65,8 +107,14 @@ export class IcuFormatterService implements FormatService {
         args?: string
       ): string => {
 
-        const text = this.createFormatElement( 'number', `currency/${value[1]}`, args );
-        return this.getFormattedValue( text, locale, value[0] );
+        // Add eventual custom default options.
+        const currencyCode = this.addCurrencyOptions( value[ 1 ] );
+        const text = this.createFormatElement(
+          'number',
+          `currency/${ currencyCode }`,
+          args
+        );
+        return this.getFormattedValue( text, locale, value[ 0 ] );
       },
       money: (
         locale: string,
@@ -75,13 +123,19 @@ export class IcuFormatterService implements FormatService {
         args?: string
       ): string => {
 
-        let vCurrency = currency || this.config.defaultCurrency;
+        let currencyCode = currency || this.config.defaultCurrency;
         if (currency && (currency.length !== 3 ||
-          [...currency].some( c => c !== c.toUpperCase() ))
+          [ ...currency ].some( c => c !== c.toUpperCase() ))
         ) {
-          vCurrency = this.config.defaultCurrency;
+          currencyCode = this.config.defaultCurrency || 'XXX';
         }
-        const text = this.createFormatElement( 'number', `currency/${vCurrency}`, args );
+        // Add eventual custom default options.
+        currencyCode = this.addCurrencyOptions( currencyCode );
+        const text = this.createFormatElement(
+          'number',
+          `currency/${ currencyCode }`,
+          args
+        );
         return this.getFormattedValue( text, locale, value );
       },
       datetime: (
@@ -103,11 +157,11 @@ export class IcuFormatterService implements FormatService {
   ): string {
 
     const items = [ 'value', type ];
-    const skeleton = `${defaultStem} ${otherStems}`.trim();
+    const skeleton = `${ defaultStem } ${ otherStems }`.trim();
     if (skeleton) {
       items.push( '::' + skeleton );
     }
-    return `{${ items.join(', ') }}`;
+    return `{${ items.join( ', ' ) }}`;
   }
 
   private getFormattedValue(

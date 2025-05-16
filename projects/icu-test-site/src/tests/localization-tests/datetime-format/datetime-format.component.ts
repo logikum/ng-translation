@@ -14,5 +14,5 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 })
 export class DatetimeFormatComponent {
 
-  now = Date.now();
+  now = { now: Date.now() };
 }

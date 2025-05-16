@@ -12,7 +12,6 @@ export const routes: Routes = [
       .then(m => m.SeasonsModule)
   },
   { path: 'tests',
-    canMatch: [ loadTranslations ],
     loadChildren: () => import('../tests/tests.module')
       .then(m => m.TestsModule)
   },

@@ -20,7 +20,7 @@
 
 <ng-container *ngtContext="let t; node: 'translation.text'">
   <div class="context">--- with interpolation ---</div>
-    <div class="data" ngtText="translation.text.today" [ngtParams]="today"></div>
-  <div class="data" ngtText="translation.text.stock" [ngtParams]="[rise, value]"></div>
-  <div class="data" ngtText="translation.text.book" [ngtParams]="[normalPrice, specialPrice]"></div>
+  <div class="data" [ngtText]="'translation.text.today'"[ngtParams]="{ today }"></div>
+  <div class="data" [ngtText]="'translation.text.stock'" [ngtParams]="{ surge, points }"></div>
+  <div class="data" [ngtText]="'translation.text.book'" [ngtParams]="book"></div>
 </ng-container>

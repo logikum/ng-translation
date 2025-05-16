@@ -1,23 +1,20 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { CurrencyValue } from '@logikum/ngt-common';
 import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'icu-structural',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './structural.component.html',
   styleUrl: './structural.component.css'
-})
+} )
 export class StructuralComponent {
 
-  get today(): Date { return new Date(); }
-  get rise(): number { return 0.0206; }
-  get value(): number { return 16724.46; }
-  get normalPrice(): CurrencyValue { return [60, 'USD']; }
-  get specialPrice(): CurrencyValue { return [48, 'USD']; }
+  today = new Date();
+  stock = { surge: 0.0206, points: 16724.46 };
+  book = { current: 60, currency1: 'USD', onSale: 48, currency2: 'USD' };
 }

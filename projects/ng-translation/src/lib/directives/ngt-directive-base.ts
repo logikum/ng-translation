@@ -19,6 +19,15 @@ export abstract class NgtDirectiveBase {
 
   protected abstract isHtml: boolean;
 
+  protected constructor() {
+
+    this.translation.languageChanged
+      .pipe( takeUntilDestroyed() )
+      .subscribe( language => {
+        this.translateText();
+      } );
+  }
+
   protected setKeyValue(
     value: string
   ): void {
@@ -36,15 +45,6 @@ export abstract class NgtDirectiveBase {
       this.paramsValue = value;
       this.translateText();
     }
-  }
-
-  protected constructor() {
-
-    this.translation.languageChanged
-      .pipe( takeUntilDestroyed() )
-      .subscribe( language => {
-        this.translateText();
-      } );
   }
 
   private translateText(): void {

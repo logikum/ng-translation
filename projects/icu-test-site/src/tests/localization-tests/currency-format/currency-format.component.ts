@@ -6,7 +6,8 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use a relative path */
 
 interface Price {
-  price: CurrencyValue;
+  price: number;
+  currency: string;
 }
 
 @Component({
@@ -19,10 +20,7 @@ interface Price {
 })
 export class CurrencyFormatComponent {
 
-  priceUSD: Price = { price: [ 1234.567, 'USD' ] };
-  priceEUR: Price = { price: [ 1234.567, 'EUR' ] };
-  priceHUF: Price = { price: [ 1234.567, 'HUF' ] };
-  currencyUSD: CurrencyValue = [ 1234.567, 'USD' ];
-  currencyEUR: CurrencyValue = [ 1234.567, 'EUR' ];
-  currencyHUF: CurrencyValue = [ 1234.567, 'HUF' ];
+  priceUSD: Price = { price: 1234.567, currency: 'USD' };
+  priceEUR: Price = { price: 1234.567, currency: 'EUR' };
+  priceHUF: Price = { price: 1234.567, currency: 'HUF' };
 }

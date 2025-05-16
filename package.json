@@ -31,6 +31,7 @@
     "serve:fts": "ng serve functional-test-site --port=4200 --open",
     "serve:its": "ng serve icu-test-site --port=4100 --open",
     "i18n:fts": "node tools/i18n/server.mjs projects/functional-test-site/src projects/functional-test-site/public/i18n/en",
+    "i18n:its": "node tools/i18n/server.mjs projects/icu-test-site/src projects/icu-test-site/public/i18n/en",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -20,7 +20,7 @@ interface Price {
 })
 export class CurrencyFormatComponent {
 
-  priceUSD: Price = { price: 1234.567, currency: 'USD' };
-  priceEUR: Price = { price: 1234.567, currency: 'EUR' };
-  priceHUF: Price = { price: 1234.567, currency: 'HUF' };
+  readonly priceUSD: Price = { price: 1234.567, currency: 'USD' };
+  readonly priceEUR: Price = { price: 1234.567, currency: 'EUR' };
+  readonly priceHUF: Price = { price: 1234.567, currency: 'HUF' };
 }

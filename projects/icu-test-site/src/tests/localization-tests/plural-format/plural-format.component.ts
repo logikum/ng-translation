@@ -14,4 +14,8 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 })
 export class PluralFormatComponent {
 
+  readonly count_0 = { count: 0 };
+  readonly count_1 = { count: 1 };
+  readonly count_5 = { count: 5 };
+  readonly count_1973 = { count: 1973 };
 }

@@ -18,22 +18,22 @@
     "title": "Dátum és idő formázása",
     "default_f": "Alap dátumformátum",
     "default_l": "{ now, date } { now, time }",
-    "default_s": "{{ 0 | D }}",
+    "default_s": "{ now, date } { now, time }",
     "short_f": "Rövid dátum és idő",
-    "short_l": "{{ 0|D:dateStyle=short;timeStyle=short;hour12=false }}",
-    "short_s": "{{ 0| D : ds = short; ts = short; h12 = false }}",
+    "short_l": "{ now, date, short } { now, time, short }",
+    "short_s": "{ now, date, short } { now, time, short }",
     "medium_f": "Közepes dátum és idő",
-    "medium_l": "{{ 0|D:dateStyle=medium;timeStyle=medium }}",
-    "medium_s": "{{ 0 | D : ds = medium; ts = medium }}",
+    "medium_l": "{ now, date, medium } { now, time, medium }",
+    "medium_s": "{ now, date, medium } { now, time, medium }",
     "long_f": "Hosszú dátum és idő",
-    "long_l": "{{ 0|D:dateStyle=long;timeStyle=long }}",
-    "long_s": "{{ 0 | D : ds = long; ts = long }}",
+    "long_l": "{ now, date, long } { now, time, long }",
+    "long_s": "{ now, date, long } { now, time, long }",
     "full_f": "Teljes dátum és idő",
-    "full_l": "{{ 0|D:dateStyle=full;timeStyle=full;hour12=true }}",
-    "full_s": "{{ 0 | D : ds = full; ts = full; h12 = true }}",
+    "full_l": "{ now, date, full } { now, time, full }",
+    "full_s": "{ now, date, full } { now, time, full }",
     "fractional_f": "Tizedes másodpercek",
-    "fractional_l": "{{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}",
-    "fractional_s": "{{ 0| D : ds = short; ts = medium; fsd = 3 }}"
+    "fractional_l": "{ now, date, medium } { now, time, ::HHmmss }",
+    "fractional_s": "{ now, date, medium } { now, time, ::HHmmss }"
   },
   "money": {
     "code": "Pénznem kód formátuma",
@@ -90,7 +90,7 @@
     "maxsd_l": "{ longPercent, number, ::percent @##}",
     "maxsd_s": "{ longPercent, number, ::percent @## }",
     "mixed_f": "Több beállítással",
-    "mixed_l": "{ shortPercent, number, ::percent percent integer-width/*000 .00000*}",
+    "mixed_l": "{ shortPercent, number, ::percent integer-width/*000 .00000*}",
     "mixed_s": "{ shortPercent, number, ::percent 000 .00000* }",
     "usegrp_f": "Csoportosítás nélkül",
     "usegrp_l": "{ longPercent, number, ::percent group-off}",
@@ -98,6 +98,6 @@
   },
   "plural": {
     "title": "Többes számú szabályok",
-    "updated": "Ezt az oldalt {{ 0 | plural : 0=most; 1~5=# perccel ezelőtt; other=nem régen }} frissítették."
+    "updated": "Ezt az oldalt { count, plural, =0 { most } =1 { # perccel ezelőtt } =2 { # perccel ezelőtt } =3 { # perccel ezelőtt } =4 { # perccel ezelőtt } =5 { # perccel ezelőtt } other { nem régen } } frissítették."
   }
 }

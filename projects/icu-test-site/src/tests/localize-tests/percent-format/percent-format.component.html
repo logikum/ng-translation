@@ -7,19 +7,19 @@
         <div class="label">{{ t('basic_f') }}:</div>
         <div class="data">{{ l.percent(shortPercent) }}</div>
         <div class="label">{{ t('minid_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minimumIntegerDigits=3') }}</div>
+        <div class="data">{{ l.percent(shortPercent, 'integer-width/*000') }}</div>
         <div class="label">{{ t('minfd_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minimumFractionDigits=3') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '.000*') }}</div>
         <div class="label">{{ t('maxfd_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'maximumFractionDigits=1') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '.#') }}</div>
         <div class="label">{{ t('minsd_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'minimumSignificantDigits=3') }}</div>
+        <div class="data">{{ l.percent(longPercent, '.###/@@@*') }}</div>
         <div class="label">{{ t('maxsd_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'maximumSignificantDigits=3') }}</div>
+        <div class="data">{{ l.percent(longPercent, '@##') }}</div>
         <div class="label">{{ t('mixed_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minimumIntegerDigits=3;minimumFractionDigits=5') }}</div>
+        <div class="data">{{ l.percent(shortPercent, 'integer-width/*000 .00000*') }}</div>
         <div class="label">{{ t('usegrp_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'useGrouping=false') }}</div>
+        <div class="data">{{ l.percent(longPercent, 'group-off') }}</div>
       </div>
     </div>
     <div>
@@ -28,19 +28,19 @@
         <div class="label">{{ t('basic_f') }}:</div>
         <div class="data">{{ l.percent(shortPercent) }}</div>
         <div class="label">{{ t('minid_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minid = 3') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '000') }}</div>
         <div class="label">{{ t('minfd_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minfd = 3') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '.000*') }}</div>
         <div class="label">{{ t('maxfd_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'maxfd = 1') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '.#') }}</div>
         <div class="label">{{ t('minsd_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'minsd = 3') }}</div>
+        <div class="data">{{ l.percent(longPercent, '.###/@@@*') }}</div>
         <div class="label">{{ t('maxsd_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'maxsd = 3') }}</div>
+        <div class="data">{{ l.percent(longPercent, '@##') }}</div>
         <div class="label">{{ t('mixed_f') }}:</div>
-        <div class="data">{{ l.percent(shortPercent, 'minid = 3 ; minfd = 5') }}</div>
+        <div class="data">{{ l.percent(shortPercent, '000 .00000*') }}</div>
         <div class="label">{{ t('usegrp_f') }}:</div>
-        <div class="data">{{ l.percent(longPercent, 'ug = false') }}</div>
+        <div class="data">{{ l.percent(longPercent, 'group-off') }}</div>
       </div>
     </div>
   </div>

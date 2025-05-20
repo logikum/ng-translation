@@ -14,10 +14,12 @@ export * from './lib/directives/ngt-reader.directive';
 export * from './lib/directives/ngt-text.directive';
 
 export * from './lib/pipes/to-currency.pipe';
+export * from './lib/pipes/to-date.pipe';
 export * from './lib/pipes/to-datetime.pipe';
 export * from './lib/pipes/to-money.pipe';
 export * from './lib/pipes/to-number.pipe';
 export * from './lib/pipes/to-percent.pipe';
+export * from './lib/pipes/to-time.pipe';
 export * from './lib/pipes/translate.pipe';
 
 export * from './lib/services/translation.service';

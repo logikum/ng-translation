@@ -5,7 +5,7 @@ import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   CurrencyValue, FormatData, LocalizationRef, MessengerService,
-  NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, NGT_FORMAT_SERVICE
+  NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, NGT_FORMATTER_SERVICE
 } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
@@ -29,7 +29,7 @@ export class TranslationService implements LocalizeContext {
   private readonly loaders = inject( NGT_INLINE_LOADER );
   private readonly converter = inject( NGT_TRANSLATION_CONVERTER );
   private readonly extender = inject( NGT_FORMAT_EXTENDER );
-  private readonly formatter = inject( NGT_FORMAT_SERVICE );
+  private readonly formatter = inject( NGT_FORMATTER_SERVICE );
   private readonly localizer: LocalizationRef;
   private readonly messenger = inject( MessengerService );
   private readonly http = inject( HttpClient );
@@ -79,6 +79,7 @@ export class TranslationService implements LocalizeContext {
     this.messenger.disableWarnings = this.config.disableWarnings;
     this.formatter.extender = this.extender;
     this.formatter.extender.translation = this;
+    this.messenger.info( `Translation Service uses ${ this.formatter.name }.` );
     this.localizer = this.formatter.getLocalizationRef();
     this.resourceList = new ResourceList(
       this.messenger,
@@ -537,6 +538,22 @@ export class TranslationService implements LocalizeContext {
   ): string {
 
     return this.localizer.datetime( this.activeLanguage, value, args );
+  }
+
+  date(
+    value: Date | number | string,
+    args?: string
+  ): string {
+
+    return this.localizer.time( this.activeLanguage, value, args );
+  }
+
+  time(
+    value: Date | number | string,
+    args?: string
+  ): string {
+
+    return this.localizer.time( this.activeLanguage, value, args );
   }
 
   custom(

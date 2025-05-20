@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
 import {
-  CurrencyValue, FormatService, LocalizationRef, NGT_CONFIGURATION,
+  CurrencyValue, FormatterService, LocalizationRef, NGT_CONFIGURATION,
   FormatData, FormatExtender, InterpolationData, MessengerService
 } from '@logikum/ngt-common';
 
@@ -18,7 +18,7 @@ import { INTL_SEP, PATTERN_SEP } from './formatters/format-constants';
 @Injectable( {
   providedIn: 'root'
 } )
-export class NgtFormatterService implements FormatService {
+export class NgtFormatterService implements FormatterService {
 
   private readonly config = inject( NGT_CONFIGURATION );
   private readonly currencyFormatter = inject( CurrencyFormatterService );
@@ -29,6 +29,8 @@ export class NgtFormatterService implements FormatService {
   private readonly messenger = inject( MessengerService );
 
   extender: FormatExtender;
+
+  get name() { return  'NgT Formatter Service'; }
 
   insert(
     data: InterpolationData,
@@ -202,8 +204,22 @@ export class NgtFormatterService implements FormatService {
         return this.datetimeFormatter.format(
           this.createFormatData( locale, value, args )
         );
+      },
+      date: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
+        throw new Error( 'Method date() is not implemented in NgT Formatter Service.' );
+      },
+      time: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
+        throw new Error( 'Method time() is not implemented in NgT Formatter Service.' );
       }
-    } as LocalizationRef;
+    };
   }
 
   private createFormatData(

@@ -32,8 +32,8 @@
     "full_l": "{ now, date, full } { now, time, full }",
     "full_s": "{ now, date, full } { now, time, full }",
     "fractional_f": "Tizedes másodpercek",
-    "fractional_l": "{ now, date, medium } { now, time, ::HHmmss }",
-    "fractional_s": "{ now, date, medium } { now, time, ::HHmmss }"
+    "fractional_l": "{ now, date, medium } { now, time, ::HHmmssSSS }",
+    "fractional_s": "{ now, date, medium } { now, time, ::HHmmssSSS }"
   },
   "money": {
     "code": "Pénznem kód formátuma",

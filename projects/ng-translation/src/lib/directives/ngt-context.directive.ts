@@ -4,7 +4,7 @@ import {
   Optional, SimpleChanges, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { LocalizationRef, NGT_FORMAT_SERVICE } from '@logikum/ngt-common';
+import { LocalizationRef, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslateContext } from '../models';
@@ -21,7 +21,7 @@ export class NgtContextDirective implements OnInit, OnChanges {
   @Optional() private readonly template = inject( TemplateRef<TranslateContext> );
   private readonly changeDetector = inject( ChangeDetectorRef );
   private readonly translation = inject( TranslationService );
-  private readonly formatter = inject( NGT_FORMAT_SERVICE );
+  private readonly formatter = inject( NGT_FORMATTER_SERVICE );
   private readonly localizer: LocalizationRef;
 
   @Input( 'ngtContext' ) key?: string;

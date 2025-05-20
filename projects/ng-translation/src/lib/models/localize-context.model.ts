@@ -10,4 +10,6 @@ export interface LocalizeContext {
   currency( value: CurrencyValue, args?: string ): string;
   money( value: number, currency: string, args?: string ): string;
   datetime( value: Date | number | string, args?: string ): string;
+  date( value: Date | number | string, args?: string ): string;
+  time( value: Date | number | string, args?: string ): string;
 }

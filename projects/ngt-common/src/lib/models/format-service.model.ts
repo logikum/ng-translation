@@ -6,7 +6,9 @@ import { InterpolationData } from './interpolation-data.model';
 import { LocalizationRef } from './localization-ref.model';
 import { FormatExtender } from './format-extender.model';
 
-export interface FormatService {
+export interface FormatterService {
+
+  get name(): string;
 
   insert: (
     data: InterpolationData,
@@ -18,6 +20,6 @@ export interface FormatService {
   extender: FormatExtender;
 }
 
-export const NGT_FORMAT_SERVICE = new InjectionToken<FormatService>(
-  'NGT_FORMAT_SERVICE'
+export const NGT_FORMATTER_SERVICE = new InjectionToken<FormatterService>(
+  'NGT_FORMATTER_SERVICE'
 );

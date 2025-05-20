@@ -5,6 +5,10 @@ import { CurrencyValue, FormatData, LocalizationRef } from '@logikum/ngt-common'
 import { TranslationService } from '../services';
 import { LocalizeContext } from '../models';
 
+const reservedNames = [
+  'number', 'percent', 'currency', 'money', 'datetime', 'date', 'time'
+];
+
 export function createLocalizeContext(
   translation: TranslationService,
   localize: LocalizationRef
@@ -41,19 +45,30 @@ export function createLocalizeContext(
       args: string
     ): string {
       return localize.datetime( translation.activeLanguage, value, args );
+    },
+    date(
+      value: Date | number | string,
+      args: string
+    ): string {
+      return localize.date( translation.activeLanguage, value, args );
+    },
+    time(
+      value: Date | number | string,
+      args: string
+    ): string {
+      return localize.time( translation.activeLanguage, value, args );
     }
   };
 
   if (translation.formatNameExtensions.length) {
     translation.formatNameExtensions.forEach( ( formatName: string ) => {
 
-      if ([ 'number', 'percent', 'currency', 'money', 'datetime' ].includes( formatName )) {
+      if (reservedNames.includes( formatName )) {
         throw new Error(`Format name '${formatName}' is reserved.`);
       } else if (localizeContext.hasOwnProperty( formatName )) {
         throw new Error(`Format name '${formatName}' is already used.`);
       }
-      localizeContext[ formatName ] = (
-        value: any, params?: string ): string => {
+      localizeContext[ formatName ] = ( value: any, params?: string ): string => {
         const formatData: FormatData = {
           key: undefined,
           locale: translation.activeLanguage,

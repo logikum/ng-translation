@@ -4,7 +4,7 @@ import {
   TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { InterpolationData, NGT_FORMAT_SERVICE } from '@logikum/ngt-common';
+import { InterpolationData, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationReader } from '../models';
@@ -20,7 +20,7 @@ export class NgtReaderDirective implements OnInit, OnChanges {
   private readonly container = inject( ViewContainerRef );
   @Optional() private readonly template = inject( TemplateRef<TranslationReader> );
   private readonly translation = inject( TranslationService );
-  private readonly formatter = inject( NGT_FORMAT_SERVICE );
+  private readonly formatter = inject( NGT_FORMATTER_SERVICE );
 
   @Input( 'ngtReader' ) key?: string;
   @Input() ngtReaderNode?: string;

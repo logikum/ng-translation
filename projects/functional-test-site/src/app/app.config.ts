@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { NGT_FORMAT_EXTENDER, NGT_FORMAT_SERVICE } from '@logikum/ngt-common';
+import { NGT_FORMAT_EXTENDER, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 import { NgtFormatterService } from '@logikum/ngt-formatter';
 import {
   InlineLoaderMap, NGT_INLINE_LOADER, NGT_TRANSLATION_CONVERTER,
@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom( NgTranslationModule.forRoot( translationConfig ) ),
     {
-      provide: NGT_FORMAT_SERVICE,
+      provide: NGT_FORMATTER_SERVICE,
       useClass: NgtFormatterService
     }, {
       provide: NGT_INLINE_LOADER,

@@ -10,7 +10,8 @@ import {
 } from './directives';
 import { NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER } from './models';
 import {
-  ToMoneyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
+  ToMoneyPipe, ToCurrencyPipe, ToDatePipe, ToDatetimePipe, ToNumberPipe,
+  ToPercentPipe, ToTimePipe, TranslatePipe
 } from './pipes';
 import { TranslationService } from './services';
 import { initializerFactory } from './initializer.factory';
@@ -21,9 +22,11 @@ import { DefaultFormatExtender } from './default-format.extender';
   declarations: [
     ToMoneyPipe,
     ToCurrencyPipe,
+    ToDatePipe,
     ToDatetimePipe,
     ToNumberPipe,
     ToPercentPipe,
+    ToTimePipe,
     TranslatePipe,
     NgtContextDirective,
     NgtHtmlDirective,
@@ -34,9 +37,11 @@ import { DefaultFormatExtender } from './default-format.extender';
   exports: [
     ToMoneyPipe,
     ToCurrencyPipe,
+    ToDatePipe,
     ToDatetimePipe,
     ToNumberPipe,
     ToPercentPipe,
+    ToTimePipe,
     TranslatePipe,
     NgtContextDirective,
     NgtHtmlDirective,

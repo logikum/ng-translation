@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { IntlMessageFormat } from 'intl-messageformat';
 import {
-  CurrencyValue, FormatExtender, FormatService, InterpolationData,
+  CurrencyValue, FormatExtender, FormatterService, InterpolationData,
   LocalizationRef, NGT_CONFIGURATION
 } from '@logikum/ngt-common';
 
@@ -12,11 +12,14 @@ import { IntlFormatterService } from './intl-formatter.service';
 @Injectable( {
   providedIn: 'root'
 } )
-export class IcuFormatterService implements FormatService {
+export class IcuFormatterService implements FormatterService {
 
   private readonly config = inject( NGT_CONFIGURATION );
   private readonly intlFormatter = inject( IntlFormatterService );
+
   extender: FormatExtender;
+
+  get name() { return  'ICU Formatter Service'; }
 
   insert(
     data: InterpolationData,
@@ -143,11 +146,27 @@ export class IcuFormatterService implements FormatService {
         value: Date | number | string,
         args?: string
       ): string => {
+        throw new Error( 'Method datetime() is not implemented in ICU Formatter Service.' );
+      },
+      date: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
 
-        const text = this.createFormatElement( 'number', 'date', args );
+        const text = this.createDatetimeElement( 'date', args );
+        return this.getFormattedValue( text, locale, value );
+      },
+      time: (
+        locale: string,
+        value: Date | number | string,
+        args?: string
+      ): string => {
+
+        const text = this.createDatetimeElement( 'time', args );
         return this.getFormattedValue( text, locale, value );
       }
-    } as LocalizationRef;
+    };
   }
 
   private createFormatElement(
@@ -158,6 +177,28 @@ export class IcuFormatterService implements FormatService {
 
     const items = [ 'value', type ];
     const skeleton = `${ defaultStem } ${ otherStems }`.trim();
+    if (skeleton) {
+      items.push( '::' + skeleton );
+    }
+    return `{${ items.join( ', ' ) }}`;
+  }
+
+  private createDatetimeElement(
+    type: string,
+    stems?: string
+  ): string {
+
+    const items = [ 'value', type ];
+    const otherStems = [];
+    const stemArray = stems ? stems.split( ' ' ) : [];
+    stemArray.forEach( stem => {
+      if ([ 'short', 'medium', 'long', 'full' ].includes( stem )) {
+        items.push( stem );
+      } else if (stem) {
+        otherStems.push( stem );
+      }
+    });
+    const skeleton = otherStems.join( ' ' );
     if (skeleton) {
       items.push( '::' + skeleton );
     }

@@ -10,4 +10,6 @@ export interface LocalizationRef {
   currency: ( locale: string, value: CurrencyValue, args?: string ) => string;
   money: ( locale: string, value: number, currency?: string, args?: string ) => string;
   datetime: ( locale: string, value: Date | number | string, args?: string ) => string;
+  date: ( locale: string, value: Date | number | string, args?: string ) => string;
+  time: ( locale: string, value: Date | number | string, args?: string ) => string;
 }

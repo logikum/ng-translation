@@ -5,54 +5,54 @@
       <div class="context">--- with long option names ---</div>
       <div class="label">
         {{ t('default_f') }}:
-        <span class="data">{{ now | toDatetime }}</span>
+        <span class="data">{{ now | toDate }} {{ now | toTime }}</span>
       </div>
       <div class="label">
         {{ t('short_f') }}:
-        <span class="data">{{ now | toDatetime: 'dateStyle=short;timeStyle=short;hour12=false' }}</span>
+        <span class="data">{{ now | toDate: 'short' }} {{ now | toTime: 'short' }}</span>
       </div>
       <div class="label">
         {{ t('medium_f') }}:
-        <span class="data">{{ now | toDatetime: 'dateStyle=medium;timeStyle=medium' }}</span>
+        <span class="data">{{ now | toDate: 'medium' }} {{ now | toTime: 'medium' }}</span>
       </div>
       <div class="label">
         {{ t('long_f') }}:
-        <span class="data">{{ now | toDatetime: 'dateStyle=long;timeStyle=long' }}</span>
+        <span class="data">{{ now | toDate: 'long' }} {{ now | toTime: 'long' }}</span>
       </div>
       <div class="label">
         {{ t('full_f') }}:
-        <span class="data">{{ now | toDatetime: 'dateStyle=full;timeStyle=full;hour12=true' }}</span>
+        <span class="data">{{ now | toDate: 'full' }} {{ now | toTime: 'full' }}</span>
       </div>
       <div class="label">
         {{ t('fractional_f') }}:
-        <span class="data">{{ now | toDatetime: 'dateStyle=short;timeStyle=medium;fractionalSecondDigits=3' }}</span>
+        <span class="data">{{ now | toDate: 'short' }} {{ now | toTime: 'HHmmssSSS' }}</span>
       </div>
     </div>
     <div>
       <div class="context">--- with short option names ---</div>
       <div class="label">
         {{ t('default_f') }}:
-        <span class="data">{{ now | toDatetime }}</span>
+        <span class="data">{{ now | toDate }} {{ now | toTime }}</span>
       </div>
       <div class="label">
         {{ t('short_f') }}:
-        <span class="data">{{ now | toDatetime: 'ds = short; ts = short; h12 = false' }}</span>
+        <span class="data">{{ now | toDate: 'short' }} {{ now | toTime: 'short' }}</span>
       </div>
       <div class="label">
         {{ t('medium_f') }}:
-        <span class="data">{{ now | toDatetime: 'ds = medium; ts = medium' }}</span>
+        <span class="data">{{ now | toDate: 'medium' }} {{ now | toTime: 'medium' }}</span>
       </div>
       <div class="label">
         {{ t('long_f') }}:
-        <span class="data">{{ now | toDatetime: 'ds = long; ts = long' }}</span>
+        <span class="data">{{ now | toDate: 'long' }} {{ now | toTime: 'long' }}</span>
       </div>
       <div class="label">
         {{ t('full_f') }}:
-        <span class="data">{{ now | toDatetime: 'ds = full; ts = full; h12 = true' }}</span>
+        <span class="data">{{ now | toDate: 'full' }} {{ now | toTime: 'full' }}</span>
       </div>
       <div class="label">
         {{ t('fractional_f') }}:
-        <span class="data">{{ now | toDatetime: 'ds = short; ts = medium; fsd = 3' }}</span>
+        <span class="data">{{ now | toDate: 'short' }} {{ now | toTime: 'HHmmssSSS' }}</span>
       </div>
     </div>
   </div>

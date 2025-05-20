@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { Directive, Input } from '@angular/core';
+import { Directive, Input, OnInit } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
 import { NgtDirectiveBase } from './ngt-directive-base';
@@ -8,7 +8,7 @@ import { NgtDirectiveBase } from './ngt-directive-base';
   selector: '[ngtText]',
   standalone: false
 } )
-export class NgtTextDirective extends NgtDirectiveBase {
+export class NgtTextDirective extends NgtDirectiveBase implements OnInit {
 
   isHtml = false;
 
@@ -20,5 +20,9 @@ export class NgtTextDirective extends NgtDirectiveBase {
   @Input( 'ngtParams' )
   set params( value: any ) {
     this.setParamsValue( value );
+  }
+
+  ngOnInit(): void {
+    this.initialize();
   }
 }

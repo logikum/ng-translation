@@ -28,7 +28,7 @@ export class IcuFormatterService implements FormatterService {
 
     console.log( `ICU: ${ data.text }` );
     return new IntlMessageFormat(
-      this.insertCurrency( data.text, args ),
+      this.insertCurrency( data.text.toString(), args ),
       data.locale,
       undefined,
       { formatters: this.intlFormatter.formatters, ignoreTag: true }

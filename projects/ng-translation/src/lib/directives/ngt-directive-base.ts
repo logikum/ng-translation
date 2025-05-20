@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { ChangeDetectorRef, inject, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, DestroyRef, inject, ViewContainerRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use a relative path */
@@ -9,6 +9,7 @@ export abstract class NgtDirectiveBase {
 
   private readonly container = inject( ViewContainerRef );
   private readonly changeDetector = inject( ChangeDetectorRef );
+  private readonly destroyRef = inject( DestroyRef );
   private readonly translation = inject( TranslationService );
   private keyValue?: string;
   private paramsValue?: any;
@@ -19,10 +20,10 @@ export abstract class NgtDirectiveBase {
 
   protected abstract isHtml: boolean;
 
-  protected constructor() {
+  protected initialize(): void {
 
     this.translation.languageChanged
-      .pipe( takeUntilDestroyed() )
+      .pipe( takeUntilDestroyed( this.destroyRef ) )
       .subscribe( language => {
         this.translateText();
       } );

@@ -44,11 +44,11 @@ export class NgtTextList {
 
     this.texts.clear();
     this.names.forEach( ( value, key ) => {
-      const result = this.translation.get( value ?? key ) || { };
+      const result = this.translation.get( value || key ) || { };
 
       if (typeof result === 'object') {
-        const names = Object.getOwnPropertyNames( result );
-        names.forEach( name => {
+        const propertyNames = Object.getOwnPropertyNames( result );
+        propertyNames.forEach( name => {
           this.texts.set(
             value ? name : `${ key }.${ name }`,
             result[ name ]

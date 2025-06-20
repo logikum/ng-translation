@@ -26,14 +26,17 @@ export class IcuFormatterService implements FormatterService {
     args?: any
   ): string {
 
-    console.log( `ICU: ${ data.text }` );
-    return new IntlMessageFormat(
-      this.insertCurrency( data.text.toString(), args ),
-      data.locale,
-      undefined,
-      { formatters: this.intlFormatter.formatters, ignoreTag: true }
-    )
-      .format( args ) as string;
+    if (data.text && typeof data.text === 'string') {
+      console.log( `ICU: ${ data.text }` );
+      return new IntlMessageFormat(
+        this.insertCurrency( data.text.toString(), args ),
+        data.locale,
+        undefined,
+        { formatters: this.intlFormatter.formatters, ignoreTag: true }
+      )
+        .format( args ) as string;
+    }
+    return data.text;
   }
 
   private insertCurrency(

@@ -6,14 +6,14 @@
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------
 
-advice:         Fruit is healthy.
+advice:         A gyümölcs egészséges.
 
-label.seasons:  Seasons
-label.advice:   Advice
-label.fruits:   Fruits
-label.welcome:  Welcome
-label.status:   Status
+label.seasons:  Évszakok
+label.advice:   Tanács
+label.fruits:   Gyümölcsök
+label.welcome:  Üdvözöljük
+label.status:   Állapot
 
-fruit.apple:    apple
-fruit.peach:    peach
-fruit.cherry:   cherry
+fruit.apple:    alma
+fruit.peach:    őszibarack
+fruit.cherry:   cseresznye

@@ -25,7 +25,7 @@ export class TextListComponent {
   ] );
   texts_3 = new NgtTextList( {
     advice: 'model.textList.advice',
-    fruits: 'model.textList.fruits',
+    fruits: 'model.textList.fruit',
     welcome: 'app.home.title',
     status: 'app.enums.appStatus'
   } );

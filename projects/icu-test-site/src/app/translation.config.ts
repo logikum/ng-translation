@@ -7,7 +7,7 @@ import { seasonSections } from '../seasons/season-sections';
 
 const appSections: SectionList = [
   'app', 'shared', 'enums',
-  { group: 'translation', items: [ 'translation' ] },
+  { group: 'general', items: [ 'general' ] },
   { group: 'localization', items: [ 'localization' ] },
   { group: 'localize', items: [ 'localization' ] },
   { group: 'pipe', items: [ 'localization' ] },

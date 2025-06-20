@@ -1,0 +1,24 @@
+<div class="context">--- the source is the same section ---</div>
+<div class="data">{{ 'general.text.otherElements' | translate }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ 'general.text.element.earth' | translate }}</div>
+  <div class="row-item">{{ 'general.text.element.water' | translate }}</div>
+  <div class="row-item">{{ 'general.text.element.wind' | translate }}</div>
+  <div class="row-item">{{ 'general.text.element.fire' | translate }}</div>
+</div>
+<div class="data" [innerHtml]="'general.text.smurfs' | translate"></div>
+
+<div class="context">--- the sources are shared sections ---</div>
+<div class="data">{{ 'shared.fourSeasons' | translate }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ 'enums.season.spring' | translate }}</div>
+  <div class="row-item">{{ 'enums.season.summer' | translate }}</div>
+  <div class="row-item">{{ 'enums.season.autumn' | translate }}</div>
+  <div class="row-item">{{ 'enums.season.winter' | translate }}</div>
+</div>
+<div class="data" [innerHtml]="'shared.pooh' | translate"></div>
+
+<div class="context">--- with interpolation ---</div>
+<div class="data">{{ 'general.text.today'| translate: today }}</div>
+<div class="data">{{ 'general.text.stock' | translate: stock }}</div>
+<div class="data">{{ 'general.text.book' | translate: book }}</div>

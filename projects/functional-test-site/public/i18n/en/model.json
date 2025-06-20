@@ -29,18 +29,18 @@
     "selectedValue": "Selected value"
   },
   "textList": {
-    "advice": "Fruit is healthy.",
+    "advice": "A gyümölcs egészséges.",
     "fruit": {
-      "apple": "apple",
-      "cherry": "cherry",
-      "peach": "peach"
+      "apple": "alma",
+      "cherry": "cseresznye",
+      "peach": "őszibarack"
     },
     "label": {
-      "advice": "Advice",
-      "fruits": "Fruits",
-      "seasons": "Seasons",
-      "status": "Status",
-      "welcome": "Welcome"
+      "advice": "Tanács",
+      "fruits": "Gyümölcsök",
+      "seasons": "Évszakok",
+      "status": "Állapot",
+      "welcome": "Üdvözöljük"
     }
   }
 }

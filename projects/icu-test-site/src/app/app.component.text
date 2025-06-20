@@ -7,7 +7,7 @@
 # ------------------------------------------
 
 model:          Model Tests
-translation:    Translation Tests
+general:        General Tests
 localization:   Localization Tests - t()
 localize:       Localization Tests - l()
 pipe:           Localization Tests | pipe

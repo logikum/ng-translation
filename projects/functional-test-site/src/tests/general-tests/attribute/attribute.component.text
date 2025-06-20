@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> general.attribute
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Using Attribute Directive

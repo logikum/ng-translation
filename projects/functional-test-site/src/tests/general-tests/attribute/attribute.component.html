@@ -1,0 +1,26 @@
+<div class="context">--- the source is the same section ---</div>
+<div class="data" ngtText="general.text.otherElements"></div>
+<div class="data flex-row">
+  <div class="row-item" ngtText="general.text.element.earth"></div>
+  <div class="row-item" ngtText="general.text.element.water"></div>
+  <div class="row-item" ngtText="general.text.element.wind"></div>
+  <div class="row-item" ngtText="general.text.element.fire"></div>
+</div>
+<div class="data" ngtHtml="general.text.smurfs"></div>
+
+<div class="context">--- the sources are shared sections ---</div>
+<div class="data" ngtText="shared.fourSeasons"></div>
+<div class="data flex-row">
+  <div class="row-item" ngtText="enums.season.spring"></div>
+  <div class="row-item" ngtText="enums.season.summer"></div>
+  <div class="row-item" ngtText="enums.season.autumn"></div>
+  <div class="row-item" ngtText="enums.season.winter"></div>
+</div>
+<div class="data" ngtHtml="shared.pooh"></div>
+
+<ng-container *ngtContext="let t; node: 'general.text'">
+  <div class="context">--- with interpolation ---</div>
+    <div class="data" ngtText="general.text.today" [ngtParams]="today"></div>
+  <div class="data" ngtText="general.text.stock" [ngtParams]="[rise, value]"></div>
+  <div class="data" ngtText="general.text.book" [ngtParams]="[normalPrice, specialPrice]"></div>
+</ng-container>

@@ -7,7 +7,7 @@
   "other": "Altri test",
   "pipe": "Test di localizzazione | pipe",
   "seasons": "Test di utilizzo del modulo",
-  "translation": "Test di traduzione",
+  "general": "Test generali",
   "enums": {
     "appStatus": {
       "construct": "in costruzione",

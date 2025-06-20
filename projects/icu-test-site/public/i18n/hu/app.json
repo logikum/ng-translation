@@ -7,7 +7,7 @@
   "other": "Egyéb tesztek",
   "pipe": "Lokalizációs tesztek | pipe",
   "seasons": "Modulhasználati teszt",
-  "translation": "Fordítási tesztek",
+  "general": "Általános tesztek",
   "enums": {
     "appStatus": {
       "construct": "építés alatt",

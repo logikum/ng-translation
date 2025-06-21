@@ -22,14 +22,14 @@ import { PluralFormatComponent } from './plural-format/plural-format.component';
     DatetimeFormatComponent,
     PluralFormatComponent
   ],
-  templateUrl: './localization-tests.page.html',
-  styleUrl: './localization-tests.page.css'
+  templateUrl: './translate-tests.page.html',
+  styleUrl: './translate-tests.page.css'
 })
-export class LocalizationTestsPage {
+export class TranslateTestsPage {
 
   private contentService = inject(ContentService);
 
   constructor() {
-    this.contentService.title = 'localization';
+    this.contentService.title = 'translate';
   }
 }

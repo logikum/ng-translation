@@ -8,7 +8,7 @@
 
 model:          Model Tests
 general:        General Tests
-localization:   Localization Tests - t()
+translate:      Localization Tests - t()
 localize:       Localization Tests - l()
 pipe:           Localization Tests | pipe
 conversion:     Conversion Tests

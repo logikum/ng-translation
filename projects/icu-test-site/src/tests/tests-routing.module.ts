@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 /* locally accessible feature module code, always use a relative path */
 import { GeneralTestsPage } from './general-tests/general-tests.page';
 import { ModelTestsPage } from './model-tests/model-tests.page';
-import { LocalizationTestsPage } from './localization-tests/localization-tests.page';
+import { TranslateTestsPage } from './translate-tests/translate-tests.page';
 import { LocalizeTestsPage } from './localize-tests/localize-tests.page';
 import { PipeTestsPage } from './pipe-tests/pipe-tests.page';
 import { ConversionTestsPage } from './conversion-tests/conversion-tests.page';
@@ -16,7 +16,7 @@ import { loadTranslations } from '@logikum/ng-translation';
 const routes: Routes = [
   { path: 'model', canMatch: [ loadTranslations ], component: ModelTestsPage },
   { path: 'general', canMatch: [ loadTranslations ], component: GeneralTestsPage },
-  { path: 'localization', canMatch: [ loadTranslations ], component: LocalizationTestsPage },
+  { path: 'translate', canMatch: [ loadTranslations ], component: TranslateTestsPage },
   { path: 'localize', canMatch: [ loadTranslations ], component: LocalizeTestsPage },
   { path: 'pipe', canMatch: [ loadTranslations ], component: PipeTestsPage },
   { path: 'conversion', canMatch: [ loadTranslations ], component: ConversionTestsPage },

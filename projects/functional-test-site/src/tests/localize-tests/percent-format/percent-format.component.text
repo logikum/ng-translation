@@ -1,7 +1,7 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> localization.percent
+> translate.percent
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------

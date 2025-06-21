@@ -1,7 +1,7 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> localization.money
+> translate.money
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------

@@ -1,7 +1,7 @@
 #
 # Section *** [folder/]file[.node[.node]...]
 # ------------------------------------------
-> localization.datetime
+> translate.datetime
 #
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------

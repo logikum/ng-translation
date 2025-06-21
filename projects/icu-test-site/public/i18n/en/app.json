@@ -1,13 +1,13 @@
 {
   "conversion": "Conversion Tests",
   "general": "General Tests",
-  "localization": "Localization Tests - t()",
   "localize": "Localization Tests - l()",
   "model": "Model Tests",
   "null": "Null Value Tests",
   "other": "Other Tests",
   "pipe": "Localization Tests | pipe",
   "seasons": "Module Usage Test",
+  "translate": "Localization Tests - t()",
   "enums": {
     "appStatus": {
       "construct": "under construction",

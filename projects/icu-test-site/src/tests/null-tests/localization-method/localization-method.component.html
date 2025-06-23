@@ -21,10 +21,15 @@
     <div class="grid-item data">{{ l.currency( [ null, 'HUF' ] ) }}</div>
     <div class="grid-item data">{{ l.currency( [ undefined, 'HUF' ] ) }}</div>
 
-    <div class="grid-item label">l.datetime()</div>
-    <div class="grid-item data">{{ l.datetime( today ) }}</div>
-    <div class="grid-item data">{{ l.datetime( null ) }}</div>
-    <div class="grid-item data">{{ l.datetime( undefined ) }}</div>
+    <div class="grid-item label">l.date()</div>
+    <div class="grid-item data">{{ l.date( today ) }}</div>
+    <div class="grid-item data">{{ l.date( null ) }}</div>
+    <div class="grid-item data">{{ l.date( undefined ) }}</div>
+
+    <div class="grid-item label">l.time()</div>
+    <div class="grid-item data">{{ l.time( today ) }}</div>
+    <div class="grid-item data">{{ l.time( null ) }}</div>
+    <div class="grid-item data">{{ l.time( undefined ) }}</div>
   </div>
 
 </ng-container>

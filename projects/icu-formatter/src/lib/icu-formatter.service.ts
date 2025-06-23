@@ -28,8 +28,12 @@ export class IcuFormatterService implements FormatterService {
 
     if (data.text && typeof data.text === 'string') {
       console.log( `ICU: ${ data.text }` );
-      return new IntlMessageFormat(
+      const message = this.removeNullValueParams(
         this.insertCurrency( data.text.toString(), args ),
+        args
+      );
+      return new IntlMessageFormat(
+        message,
         data.locale,
         undefined,
         { formatters: this.intlFormatter.formatters, ignoreTag: true }
@@ -37,6 +41,27 @@ export class IcuFormatterService implements FormatterService {
         .format( args ) as string;
     }
     return data.text;
+  }
+
+  private removeNullValueParams(
+    text: string,
+    args?: object
+  ): string {
+
+    if (args) {
+      Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
+        if (args[ key ] === null || args[ key ] === undefined) {
+          const re = new RegExp( `\\{\\s*${ key }\\s*,.*\\}`, 'gm' );
+          const found = text.match( re );
+          if (found) {
+            found.forEach( placeholder => {
+              text = text.replace( placeholder, '' );
+            } );
+          }
+        }
+      } );
+    }
+    return text;
   }
 
   private insertCurrency(
@@ -95,8 +120,12 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        const text = this.createFormatElement( 'number', '', args );
-        return this.getFormattedValue( text, locale, value );
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createFormatElement( 'number', '', args );
+          return this.getFormattedValue( text, locale, value );
+        }
       },
       percent: (
         locale: string,
@@ -104,8 +133,12 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        const text = this.createFormatElement( 'number', 'percent', args );
-        return this.getFormattedValue( text, locale, value );
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createFormatElement( 'number', 'percent', args );
+          return this.getFormattedValue( text, locale, value );
+        }
       },
       currency: (
         locale: string,
@@ -113,14 +146,20 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        // Add eventual custom default options.
-        const currencyCode = this.addCurrencyOptions( value[ 1 ] );
-        const text = this.createFormatElement(
-          'number',
-          `currency/${ currencyCode }`,
-          args
-        );
-        return this.getFormattedValue( text, locale, value[ 0 ] );
+        if (!value ||
+            value[0] === null || value[0] === undefined ||
+            value[1] === null || value[1] === undefined) {
+          return '';
+        } else {
+          // Add eventual custom default options.
+          const currencyCode = this.addCurrencyOptions( value[ 1 ] );
+          const text = this.createFormatElement(
+            'number',
+            `currency/${ currencyCode }`,
+            args
+          );
+          return this.getFormattedValue( text, locale, value[ 0 ] );
+        }
       },
       money: (
         locale: string,
@@ -129,20 +168,24 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        let currencyCode = currency || this.config.defaultCurrency;
-        if (currency && (currency.length !== 3 ||
-          [ ...currency ].some( c => c !== c.toUpperCase() ))
-        ) {
-          currencyCode = this.config.defaultCurrency || 'XXX';
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          let currencyCode = currency || this.config.defaultCurrency;
+          if (currency && (currency.length !== 3 ||
+            [ ...currency ].some( c => c !== c.toUpperCase() ))
+          ) {
+            currencyCode = this.config.defaultCurrency || 'XXX';
+          }
+          // Add eventual custom default options.
+          currencyCode = this.addCurrencyOptions( currencyCode );
+          const text = this.createFormatElement(
+            'number',
+            `currency/${ currencyCode }`,
+            args
+          );
+          return this.getFormattedValue( text, locale, value );
         }
-        // Add eventual custom default options.
-        currencyCode = this.addCurrencyOptions( currencyCode );
-        const text = this.createFormatElement(
-          'number',
-          `currency/${ currencyCode }`,
-          args
-        );
-        return this.getFormattedValue( text, locale, value );
       },
       datetime: (
         locale: string,
@@ -157,8 +200,12 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        const text = this.createDatetimeElement( 'date', args );
-        return this.getFormattedValue( text, locale, value );
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createDatetimeElement( 'date', args );
+          return this.getFormattedValue( text, locale, value );
+        }
       },
       time: (
         locale: string,
@@ -166,8 +213,12 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        const text = this.createDatetimeElement( 'time', args );
-        return this.getFormattedValue( text, locale, value );
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createDatetimeElement( 'time', args );
+          return this.getFormattedValue( text, locale, value );
+        }
       }
     };
   }

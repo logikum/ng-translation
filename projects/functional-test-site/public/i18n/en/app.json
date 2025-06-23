@@ -7,7 +7,7 @@
   "pipe": "Localization Tests | pipe",
   "seasons": "Module Usage Test",
   "translate": "Localization Tests - t()",
-  "translation": "Translation Tests",
+  "general": "Translation Tests",
   "enums": {
     "appStatus": {
       "construct": "under construction",

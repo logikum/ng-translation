@@ -21,10 +21,15 @@
     <div class="grid-item data">{{ [ null, 'HUF' ] | toCurrency }}</div>
     <div class="grid-item data">{{ [ undefined, 'HUF' ] | toCurrency }}</div>
 
-    <div class="grid-item label">toDatetime</div>
-    <div class="grid-item data">{{ today | toDatetime }}</div>
-    <div class="grid-item data">{{ null | toDatetime }}</div>
-    <div class="grid-item data">{{ undefined | toDatetime }}</div>
+    <div class="grid-item label">toDate</div>
+    <div class="grid-item data">{{ today | toDate }}</div>
+    <div class="grid-item data">{{ null | toDate }}</div>
+    <div class="grid-item data">{{ undefined | toDate }}</div>
+
+    <div class="grid-item label">toTime</div>
+    <div class="grid-item data">{{ today | toTime }}</div>
+    <div class="grid-item data">{{ null | toTime }}</div>
+    <div class="grid-item data">{{ undefined | toTime }}</div>
   </div>
 
 </ng-container>

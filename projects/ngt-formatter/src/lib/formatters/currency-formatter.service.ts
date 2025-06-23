@@ -36,6 +36,7 @@ export class CurrencyFormatterService {
     }
 
     // Determine the currency options.
+    let params = data.params;
     let options: Intl.NumberFormatOptions = {};
 
     if (!this.utility.missing( currency ) && currency?.toString().trim() !== '') {
@@ -49,9 +50,12 @@ export class CurrencyFormatterService {
         style: 'currency',
         currency: currency
       } );
+    } else {
+      // Use 2 fraction digits in lack of currency code.
+      params = params ? `minfd=2;${params}` : 'minfd=2';
     }
     // Add user options.
-    options = this.converter.extendOptions( data.key, data.params, options );
+    options = this.converter.extendOptions( data.key, params, options );
 
     // Return the formatted currency value as string.
     return new Intl.NumberFormat( data.locale, options ).format( worth );

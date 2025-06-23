@@ -27,7 +27,9 @@ export class IcuFormatterService implements FormatterService {
   ): string {
 
     if (data.text && typeof data.text === 'string') {
-      console.log( `ICU: ${ data.text }` );
+      // console.log( `ICU: ${ data.text }` );
+      console.log( `ICU: ${ JSON.stringify( data, null, 2 ) }` );
+      console.log( `args: ${ JSON.stringify( args, null, 2 ) }` );
       const message = this.removeNullValueParams(
         this.insertCurrency( data.text.toString(), args ),
         args
@@ -41,6 +43,16 @@ export class IcuFormatterService implements FormatterService {
         .format( args ) as string;
     }
     return data.text;
+  }
+
+  private applyExtensions(
+     data: InterpolationData,
+     args?: any
+  ): void {
+
+    const text = 'alma { abc, appStatus } korte {xyz  , logLevel} barack DDDd 1276378 { tyu, error} upsa';
+    const re = new RegExp( `/\\{\\s*.+\\s*,\\s*(.+)\\s*\\}/g`, 'gm' );
+    const found = text.match( re );
   }
 
   private removeNullValueParams(
@@ -146,19 +158,21 @@ export class IcuFormatterService implements FormatterService {
         args?: string
       ): string => {
 
-        if (!value ||
-            value[0] === null || value[0] === undefined ||
-            value[1] === null || value[1] === undefined) {
+        let text = '';
+        if (!value || value[0] === null || value[0] === undefined) {
           return '';
+        } else if (value[1] === null || value[1] === undefined || value[1] === '') {
+          text = this.createFormatElement( 'number', `.00`, args );
+          return this.getFormattedValue( text, locale, value[0] );
         } else {
           // Add eventual custom default options.
           const currencyCode = this.addCurrencyOptions( value[ 1 ] );
-          const text = this.createFormatElement(
+          text = this.createFormatElement(
             'number',
             `currency/${ currencyCode }`,
             args
           );
-          return this.getFormattedValue( text, locale, value[ 0 ] );
+          return this.getFormattedValue( text, locale, value[0] );
         }
       },
       money: (

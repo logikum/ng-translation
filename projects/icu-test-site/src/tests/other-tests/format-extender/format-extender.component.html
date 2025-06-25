@@ -1,11 +1,11 @@
 <ng-container *ngtContext="let t; node: 'other.formatExtender'; let l = localize">
 
   <div class="context">--- with interpolation ---</div>
-  <div class="data"><span class="label">{{ t('range') }} =</span> {{ t('first_last', [1, 3399]) }}</div>
-  <div class="data">@for (one of ones; track one; let i = $index) {{{ t('romanNumber', one) + separator(i) }}}</div>
-  <div class="data">@for (ten of tens; track ten; let i = $index) {{{ t('romanNumber', ten) + separator(i) }}}</div>
-  <div class="data">@for (hundred of hundreds; track hundred; let i = $index) {{{ t('romanNumber', hundred) + separator(i) }}}</div>
-  <div class="data">@for (random of randoms; track random; let i = $index) {{{ t('romanNumber', random) + separator(i) }}}</div>
+  <div class="data"><span class="label">{{ t('range') }} =</span> {{ t('first_last', { first: 1, last: 3399 }) }}</div>
+  <div class="data">@for (one of ones; track one; let i = $index) {{{ t('romanNumber', { value: one }) + separator(i) }}}</div>
+  <div class="data">@for (ten of tens; track ten; let i = $index) {{{ t('romanNumber', { value: ten }) + separator(i) }}}</div>
+  <div class="data">@for (hundred of hundreds; track hundred; let i = $index) {{{ t('romanNumber', { value: hundred }) + separator(i) }}}</div>
+  <div class="data">@for (random of randoms; track random; let i = $index) {{{ t('romanNumber', { value: random }) + separator(i) }}}</div>
 
   <div class="context">--- with localization ---</div>
   <div class="data"><span class="label">{{ t('range') }} =</span> {{ l.roman(1) }} ... {{ l.roman(3399) }}</div>

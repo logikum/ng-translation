@@ -21,17 +21,19 @@ export class IcuFormatterService implements FormatterService {
 
   get name() { return  'ICU Formatter Service'; }
 
+  //#region insert
+
   insert(
     data: InterpolationData,
     args?: any
   ): string {
 
     if (data.text && typeof data.text === 'string') {
-      // console.log( `ICU: ${ data.text }` );
-      console.log( `ICU: ${ JSON.stringify( data, null, 2 ) }` );
-      console.log( `args: ${ JSON.stringify( args, null, 2 ) }` );
-      const message = this.removeNullValueParams(
-        this.insertCurrency( data.text.toString(), args ),
+      const message = this.applyExtensions(
+        this.removeNullValueParams(
+          this.insertCurrency( data.text.toString(), args ),
+          args
+        ),
         args
       );
       return new IntlMessageFormat(
@@ -46,13 +48,38 @@ export class IcuFormatterService implements FormatterService {
   }
 
   private applyExtensions(
-     data: InterpolationData,
-     args?: any
-  ): void {
+    text: string,
+    args?: any
+  ): string {
 
-    const text = 'alma { abc, appStatus } korte {xyz  , logLevel} barack DDDd 1276378 { tyu, error} upsa';
-    const re = new RegExp( `/\\{\\s*.+\\s*,\\s*(.+)\\s*\\}/g`, 'gm' );
-    const found = text.match( re );
+    let resultText = text;
+    if (args) {
+      const values = args as object;
+      const re = /\{\s*([^}]+)\s*,\s*([^}]+)\s*}/mg;
+      let searchResult: RegExpExecArray;
+
+      while ((searchResult = re.exec( text )) !== null) {
+        const valueName = searchResult[ 1 ].trim();
+        const format = searchResult[ 2 ].trim();
+
+        if (this.extender.formatNames.includes( format ) &&
+            values.hasOwnProperty( valueName )) {
+          let extensionValue: string;
+          const value = values[ valueName ];
+
+          if (value !== null && value !== undefined) {
+            extensionValue = this.extender.interpolate(
+              format,
+              { key: '', locale: '', params: '', value }
+            );
+          }
+          const offset = text.length - resultText.length;
+          resultText = resultText.slice( 0, searchResult.index - offset ) +
+            (extensionValue || '') + resultText.slice( re.lastIndex - offset );
+        }
+      }
+    }
+    return resultText;
   }
 
   private removeNullValueParams(
@@ -63,7 +90,7 @@ export class IcuFormatterService implements FormatterService {
     if (args) {
       Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
         if (args[ key ] === null || args[ key ] === undefined) {
-          const re = new RegExp( `\\{\\s*${ key }\\s*,.*\\}`, 'gm' );
+          const re = /\{\s*${ key }\s*,.*}/gm;
           const found = text.match( re );
           if (found) {
             found.forEach( placeholder => {
@@ -122,6 +149,10 @@ export class IcuFormatterService implements FormatterService {
     }
     return currencyCode;
   }
+
+  //#endregion
+
+  //#region getLocalizationRef
 
   getLocalizationRef(): LocalizationRef {
 
@@ -287,4 +318,6 @@ export class IcuFormatterService implements FormatterService {
     )
       .format( { value } ) as string;
   }
+
+  //#endregion
 }

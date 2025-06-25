@@ -4,20 +4,20 @@
   },
   "enumeration": {
     "appStatus": "Alkalmazás állapota",
-    "levelName": "{{ 0 | logLevel }}",
+    "levelName": "{ level, logLevel }",
     "logLevel": "Naplózási szint",
     "month": "Hónap",
     "season": "Évszak",
-    "statusName": "{{ 0 | appStatus }}",
+    "statusName": "{ status, appStatus }",
     "title": "Felsorolások"
   },
   "inlineLoader": {
     "title": "Beágyazott betöltő"
   },
   "formatExtender": {
-    "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
+    "first_last": "{ first, roman } ... { last, roman }",
     "range": "Tartomány",
-    "romanNumber": "{{ 0 | roman }}",
+    "romanNumber": "{ value, roman }",
     "title": "Formátumbővítő - Római számok"
   }
 }

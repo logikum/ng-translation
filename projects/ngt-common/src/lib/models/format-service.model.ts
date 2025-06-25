@@ -8,6 +8,8 @@ import { FormatExtender } from './format-extender.model';
 
 export interface FormatterService {
 
+  extender: FormatExtender;
+
   get name(): string;
 
   insert: (
@@ -16,8 +18,6 @@ export interface FormatterService {
   ) => string;
 
   getLocalizationRef: () => LocalizationRef;
-
-  extender: FormatExtender;
 }
 
 export const NGT_FORMATTER_SERVICE = new InjectionToken<FormatterService>(

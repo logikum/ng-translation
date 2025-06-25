@@ -9,7 +9,7 @@
       <div>{{ t('appStatus') }}:</div>
       <ul class="data">
         @for (status of appStatuses; track status) {
-          <li>{{ t('statusName', status) }}</li>
+          <li>{{ t('statusName', { status }) }}</li>
         }
       </ul>
     </div>
@@ -17,7 +17,7 @@
       <div>{{ t('logLevel') }}:</div>
       <ul class="data">
         @for (level of logLevels; track level) {
-          <li>{{ t('levelName', level) }}</li>
+          <li>{{ t('levelName', { level }) }}</li>
         }
       </ul>
     </div>

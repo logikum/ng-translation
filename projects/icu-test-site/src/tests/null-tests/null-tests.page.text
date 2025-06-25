@@ -6,10 +6,11 @@
 # Texts *** [node.[node.]...]keyword: text
 # ------------------------------------------
 
-text:       {{0}}
-number:     {{0|N}}
-percent:    {{0|P}}
-currency:   {{0|C}}
-datetime:   {{0|D}}
-plural:     {{0|R:0=zero;1-5=some;other=many}}
-boolean:    {{0}}
+text:       { text }
+number:     { value, number }
+percent:    { value, number, ::percent }
+currency:   { value, number, ::currency/___ }
+date:       { value, date }
+time:       { value, time }
+plural:     { value, plural, =0 { zero } =2 { some } other { many } }
+boolean:    { value }

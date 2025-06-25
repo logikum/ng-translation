@@ -9,7 +9,7 @@
     "code_s": "{ price, number, ::currency/___ code }",
     "name_f": "Pénznem név formátuma",
     "name_l": "{ price, number, ::currency/___ currency-name}",
-    "name_s": "{ price, number, ::currency/___ code }",
+    "name_s": "{ price, number, ::currency/___ name }",
     "symbol_f": "Pénznem szimbólum formátuma",
     "symbol_l": "{ price, number, ::currency/___ currency-symbol}",
     "symbol_s": "{ price, number, ::currency/___ symbol }"

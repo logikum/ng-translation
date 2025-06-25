@@ -9,25 +9,25 @@
 title: Date and Time Formatting
 
 default_f: Default date format
-default_l: {{ 0|datetime }}
-default_s: {{ 0 | D }}
+default_l: { now, date } { now, time }
+default_s: { now, date } { now, time }
 
 short_f: Short date and time
-short_l: {{ 0|D:dateStyle=short;timeStyle=short;hour12=false }}
-short_s: {{ 0| D : ds = short; ts = short; h12 = false }}
+short_l: { now, date, short } { now, time, short }
+short_s: { now, date, short } { now, time, short }
 
 medium_f: Medium date and time
-medium_l: {{ 0|D:dateStyle=medium;timeStyle=medium }}
-medium_s: {{ 0 | D : ds = medium; ts = medium }}
+medium_l: { now, date, medium } { now, time, medium }
+medium_s: { now, date, medium } { now, time, medium }
 
 long_f: Long date and time
-long_l: {{ 0|D:dateStyle=long;timeStyle=long }}
-long_s: {{ 0 | D : ds = long; ts = long }}
+long_l: { now, date, long } { now, time, long }
+long_s: { now, date, long } { now, time, long }
 
 full_f: Full date and time
-full_l: {{ 0|D:dateStyle=full;timeStyle=full;hour12=true }}
-full_s: {{ 0 | D : ds = full; ts = full; h12 = true }}
+full_l: { now, date, full } { now, time, full }
+full_s: { now, date, full } { now, time, full }
 
 fractional_f: Fractional second digits
-fractional_l: {{ 0|D:dateStyle=short;timeStyle=medium;fractionalSecondDigits=3 }}
-fractional_s: {{ 0| D : ds = short; ts = medium; fsd = 3 }}
+fractional_l: { now, date, medium } { now, time, ::HHmmssSSS }
+fractional_s: { now, date, medium } { now, time, ::HHmmssSSS }

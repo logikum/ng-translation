@@ -90,7 +90,7 @@ export class IcuFormatterService implements FormatterService {
     if (args) {
       Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
         if (args[ key ] === null || args[ key ] === undefined) {
-          const re = /\{\s*${ key }\s*,.*}/gm;
+          const re = new RegExp( `\\{\\s*${ key }\\s*,.*}`, 'gm' );
           const found = text.match( re );
           if (found) {
             found.forEach( placeholder => {
@@ -132,7 +132,8 @@ export class IcuFormatterService implements FormatterService {
     index?: string
   ): string {
 
-    const currencyCode = args[ `currency${ index ?? '' }` ] || 'XXX';
+    const currencyCode = args[ `currency${ index ?? '' }` ] ||
+      this.config.defaultCurrency || 'XXX';
     // Add eventual custom default options.
     return this.addCurrencyOptions( currencyCode );
   }

@@ -8,5 +8,5 @@
 
 title:        Format Extender - Roman Numbers
 range:        Range
-first_last:   {{ 0 | roman }} ... {{ 1 | roman }}
-romanNumber:  {{ 0 | roman }}
+first_last:   { first, roman } ... { last, roman }
+romanNumber:  { value, roman }

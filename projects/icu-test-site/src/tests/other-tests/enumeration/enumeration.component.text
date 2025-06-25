@@ -13,5 +13,5 @@ logLevel:   Log level
 season:     Season
 month:      Month
 
-statusName:   {{ 0 | appStatus }}
-levelName:    {{ 0 | logLevel }}
+statusName:   { status, appStatus }
+levelName:    { level, logLevel }

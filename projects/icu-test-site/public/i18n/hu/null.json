@@ -5,7 +5,7 @@
   "time": "{ value, time }",
   "number": "{ value, number }",
   "percent": "{ value, number, ::percent }",
-  "plural": "{ value, plural, =0 { zero } =2 { some } other { many } }",
+  "plural": "{ value, plural, =0 { nulla } =2 { néhány } other { sok } }",
   "text": "{ text }",
   "currencyCodes": {
     "code": "Kód",

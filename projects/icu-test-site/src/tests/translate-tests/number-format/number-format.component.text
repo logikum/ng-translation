@@ -9,33 +9,33 @@
 title:  Number Formatting
 
 basic_f:  Basic number format
-basic_l:  {{ 0|number }}
-basic_s:  {{ 0| N }}
+basic_l:  { longNumber, number }
+basic_s:  { longNumber, number }
 
 minid_f: Minimum integer digits
-minid_l: {{ 0|N:minimumIntegerDigits=3 }}
-minid_s: {{ 0 | N : minid = 3 }}
+minid_l: { shortNumber, number, ::integer-width/*000}
+minid_s: { shortNumber, number, :: 000 }
 
 minfd_f: Minimum fraction digits
-minfd_l: {{ 0|N:minimumFractionDigits=5 }}
-minfd_s: {{ 0 | N : minfd = 5 }}
+minfd_l: { longNumber, number, :: .00000* }
+minfd_s: { longNumber, number, :: .00000* }
 
 maxfd_f: Maximum fraction digits
-maxfd_l: {{ 0|N:maximumFractionDigits=1 }}
-maxfd_s: {{ 0 | N : maxfd = 1 }}
+maxfd_l: { longNumber, number, :: .# }
+maxfd_s: { longNumber, number, :: .# }
 
 minsd_f: Minimum significant digits
-minsd_l: {{ 0|N:minimumSignificantDigits=3 }}
-minsd_s: {{ 0 | N : minsd = 3 }}
+minsd_l: { shortNumber, number, :: .#/@@@r }
+minsd_s: { shortNumber, number, :: .#/@@@r }
 
 maxsd_f: Maximum significant digits
-maxsd_l: {{ 0|N:maximumSignificantDigits=3 }}
-maxsd_s: {{ 0 | N : maxsd = 3 }}
+maxsd_l: { longNumber, number, :: @## }
+maxsd_s: { longNumber, number, :: @## }
 
 mixed_f: With several options
-mixed_l: {{ 0|N:minimumIntegerDigits=3;minimumFractionDigits=5 }}
-mixed_s: {{ 0 | N : minid = 3 ; minfd = 5 }}
+mixed_l: { shortNumber, number, ::integer-width/*000 .00000*}
+mixed_s: { shortNumber, number, :: 000 .00000* }
 
 usegrp_f: Without grouping
-usegrp_l: {{ 0|N:useGrouping=false }}
-usegrp_s: {{ 0 | N : ug = false }}
+usegrp_l: { longNumber, number, ::group-off}
+usegrp_s: { longNumber, number, ::group-off}

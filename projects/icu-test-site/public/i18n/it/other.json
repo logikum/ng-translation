@@ -4,20 +4,20 @@
   },
   "enumeration": {
     "appStatus": "Stato dell'app",
-    "levelName": "{{ 0 | logLevel }}",
+    "levelName": "{ level, logLevel }",
     "logLevel": "Livello del registro",
     "month": "Mese",
     "season": "Stagione",
-    "statusName": "{{ 0 | appStatus }}",
+    "statusName": "{ status, appStatus }",
     "title": "Enumerazioni"
   },
   "inlineLoader": {
     "title": "Caricatore in linea"
   },
   "formatExtender": {
-    "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
+    "first_last": "{ first, roman } ... { last, roman }",
     "range": "Intervallo",
-    "romanNumber": "{{ 0 | roman }}",
+    "romanNumber": "{ value, roman }",
     "title": "Estensione di formato - Numeri romani"
   }
 }

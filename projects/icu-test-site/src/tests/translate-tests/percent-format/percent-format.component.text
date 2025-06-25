@@ -9,33 +9,33 @@
 title: Percent Formatting
 
 basic_f: Basic percent format
-basic_l: {{ 0|percent }}
-basic_s: {{ 0 | P }}
+basic_l: { shortPercent, number, ::percent }
+basic_s: { shortPercent, number, ::percent }
 
 minid_f: Minimum integer digits
-minid_l: {{ 0|P:minimumIntegerDigits=3 }}
-minid_s: {{ 0 | P : minid = 3 }}
+minid_l: { shortPercent, number, ::percent integer-width/*000}
+minid_s: { shortPercent, number, ::percent 000 }
 
 minfd_f: Minimum fraction digits
-minfd_l: {{ 0|P:minimumFractionDigits=3 }}
-minfd_s: {{ 0 | P : minfd = 3 }}
+minfd_l: { shortPercent, number, ::percent .000*}
+minfd_s: { shortPercent, number, ::percent .000* }
 
 maxfd_f: Maximum fraction digits
-maxfd_l: {{ 0|P:maximumFractionDigits=1 }}
-maxfd_s: {{ 0 | P : maxfd = 1 }}
+maxfd_l: { shortPercent, number, ::percent .#}
+maxfd_s: { shortPercent, number, ::percent .# }
 
 minsd_f: Minimum significant digits
-minsd_l: {{ 0|P:minimumSignificantDigits=3 }}
-minsd_s: {{ 0 | P : minsd = 3 }}
+minsd_l: { longPercent, number, ::percent .###/@@@*}
+minsd_s: { longPercent, number, ::percent .###/@@@* }
 
 maxsd_f: Maximum significant digits
-maxsd_l: {{ 0|P:maximumSignificantDigits=3 }}
-maxsd_s: {{ 0 | P : maxsd = 3 }}
+maxsd_l: { longPercent, number, ::percent @##}
+maxsd_s: { longPercent, number, ::percent @## }
 
 mixed_f: With several options
-mixed_l: {{ 0|P:minimumIntegerDigits=3;minimumFractionDigits=5 }}
-mixed_s: {{ 0 | P : minid = 3 ; minfd = 5 }}
+mixed_l: { shortPercent, number, ::percent integer-width/*000 .00000*}
+mixed_s: { shortPercent, number, ::percent 000 .00000* }
 
 usegrp_f: Without grouping
-usegrp_l: {{ 0|P:useGrouping=false }}
-usegrp_s: {{ 0 | P : ug = false }}
+usegrp_l: { longPercent, number, ::percent group-off}
+usegrp_s: { longPercent, number, ::percent group-off }

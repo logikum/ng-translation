@@ -7,4 +7,4 @@
 # ------------------------------------------
 
 title: Plural Rules
-updated: This page has been updated {{ 0 | plural : 0=just now; 1=one minute ago; 2-10=# minutes ago; other=formerly }}.
+updated: This page has been updated { count, plural, =0 { just  } =1 { one minute ago } =2 { # minutes ago } =3 { # minutes ago } =4 { # minutes ago } =5 { # minutes ago } other { formerly } }.

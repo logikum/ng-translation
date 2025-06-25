@@ -4,7 +4,7 @@
   "datetime": "{{0|D}}",
   "number": "{{0|N}}",
   "percent": "{{0|P}}",
-  "plural": "{{0|R:0=zero;1-5=some;other=many}}",
+  "plural": "{{0|R:0=nulla;1-5=néhány;other=sok}}",
   "text": "{{0}}",
   "currencyCodes": {
     "code": "Kód",

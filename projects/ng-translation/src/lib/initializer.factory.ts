@@ -2,7 +2,7 @@
 import { TranslationConfig } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { TranslationService } from './services';
+import { TranslationService } from './translation.service';
 
 export function initializerFactory(
   service: TranslationService,

@@ -3,7 +3,7 @@ import { ChangeDetectorRef, DestroyRef, inject, ViewContainerRef } from '@angula
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 /* locally accessible feature module code, always use a relative path */
-import { TranslationService } from '../services';
+import { TranslationService } from '../translation.service';
 
 export abstract class NgtDirectiveBase {
 

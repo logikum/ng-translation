@@ -1,10 +1,10 @@
 /* 3rd party libraries */
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LocalizationRef, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
-import { TranslationService } from '../services';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslationService } from '../translation.service';
 
 @Component( {
   template: '',

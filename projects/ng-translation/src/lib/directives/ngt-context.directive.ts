@@ -7,8 +7,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { LocalizationRef, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
+import { TranslationService } from '../translation.service';
 import { TranslateContext } from '../models';
-import { TranslationService } from '../services';
 import { createLocalizeContext } from './create-localize-context';
 
 @Directive( {

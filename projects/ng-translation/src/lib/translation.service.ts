@@ -13,10 +13,10 @@ import {
   Locale, NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER,
   Resource, ResourceList, ResourceLoader, TranslationChange,
   LocalizeContext
-} from '../models';
+} from './models';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
-} from '../loaders';
+} from './loaders';
 
 @Injectable( {
   providedIn: 'root'

@@ -3,6 +3,7 @@
  */
 export * from './lib/ng-translation.module';
 export * from './lib/get-inline-items';
+export * from './lib/translation.service';
 export * from './lib/types';
 
 export * from './lib/guards/load-translations';
@@ -21,8 +22,6 @@ export * from './lib/pipes/to-number.pipe';
 export * from './lib/pipes/to-percent.pipe';
 export * from './lib/pipes/to-time.pipe';
 export * from './lib/pipes/translate.pipe';
-
-export * from './lib/services/translation.service';
 
 export * from './lib/models/format-extender-base.model';
 export * from './lib/models/locale.model';

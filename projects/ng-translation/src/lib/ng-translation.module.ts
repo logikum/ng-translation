@@ -13,7 +13,7 @@ import {
   ToMoneyPipe, ToCurrencyPipe, ToDatePipe, ToDatetimePipe, ToNumberPipe,
   ToPercentPipe, ToTimePipe, TranslatePipe
 } from './pipes';
-import { TranslationService } from './services';
+import { TranslationService } from './translation.service';
 import { initializerFactory } from './initializer.factory';
 import { DefaultTranslationConverter } from './default-translation.converter';
 import { DefaultFormatExtender } from './default-format.extender';

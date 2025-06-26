@@ -8,11 +8,11 @@ import { TextListKeys, TranslationService } from '@logikum/ng-translation';
 @Directive()
 export class NgtTextList {
 
-  private readonly translation = inject(TranslationService);
   private readonly names = new Map();
   private readonly texts = new Map();
 
   constructor(
+    private readonly translation: TranslationService,
     private readonly keyList: TextListKeys
   ) {
 

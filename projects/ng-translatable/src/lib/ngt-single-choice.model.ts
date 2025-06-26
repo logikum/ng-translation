@@ -10,7 +10,6 @@ import { FilterFn } from './types';
 export class NgtSingleChoice {
 
   private readonly destroyRef = inject(DestroyRef);
-  private readonly translation = inject(TranslationService);
   private readonly items: Array<TranslatableOption> = [];
   private currentIndex = -1;
   private iteratorIndex = 0;
@@ -55,6 +54,7 @@ export class NgtSingleChoice {
   }
 
   constructor(
+    private readonly translation: TranslationService,
     private readonly key: string,
     filter?: FilterFn
   ) {

@@ -6,8 +6,7 @@
       </a>
       <select (change)="changeLanguage( $event )">
       @for (locale of locales; track locale.code) {
-        <option value="{{ locale.code }}"
-                [selected]="locale.selected">
+        <option value="{{ locale.code }}" [selected]="locale.selected">
           {{ locale.name }}
         </option>
       }

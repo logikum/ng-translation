@@ -1,9 +1,10 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtTextList } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */
+import { AppService } from '../../../app/app.service';
 
 @Component({
   selector: 'fts-text-list',
@@ -15,18 +16,30 @@ import { NgtTextList } from '@logikum/ng-translatable';
 })
 export class TextListComponent {
 
-  labels = new NgtTextList({ label: 'model.textList.label' });
-  texts_1 = new NgtTextList( 'enums.season' );
-  texts_2 = new NgtTextList( [
-    'model.textList.advice',
-    'model.textList.fruit',
-    'app.home.title',
-    'app.enums.appStatus'
-  ] );
-  texts_3 = new NgtTextList( {
-    advice: 'model.textList.advice',
-    fruits: 'model.textList.fruits',
-    welcome: 'app.home.title',
-    status: 'app.enums.appStatus'
-  } );
+  private readonly appService = inject( AppService );
+
+  labels = new NgtTextList(
+    this.appService.translation,
+    { label: 'model.textList.label' }
+  );
+  texts_1 = new NgtTextList(
+    this.appService.translation,
+    'enums.season'
+  );
+  texts_2 = new NgtTextList(
+    this.appService.translation,
+    [
+      'model.textList.advice',
+      'model.textList.fruit',
+      'app.home.title',
+      'app.enums.appStatus'
+    ] );
+  texts_3 = new NgtTextList(
+    this.appService.translation,
+    {
+      advice: 'model.textList.advice',
+      fruits: 'model.textList.fruits',
+      welcome: 'app.home.title',
+      status: 'app.enums.appStatus'
+    } );
 }

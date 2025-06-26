@@ -1,10 +1,11 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtSingleChoice } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */
+import { AppService } from '../../../app/app.service';
 
 @Component({
   selector: 'icu-single-choice',
@@ -17,8 +18,14 @@ import { NgtSingleChoice } from '@logikum/ng-translatable';
 })
 export class SingleChoiceComponent {
 
-  seasons = new NgtSingleChoice( 'enums.season' );
+  private readonly appService = inject( AppService );
+
+  seasons = new NgtSingleChoice(
+    this.appService.translation,
+    'enums.season'
+  );
   months = new NgtSingleChoice(
+    this.appService.translation,
     'enums.month',
     this.filterByText.bind( this )
   );

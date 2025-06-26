@@ -1,5 +1,6 @@
 {
   "conversion": "Conversion Tests",
+  "general": "Translation Tests",
   "localize": "Localization Tests - l()",
   "model": "Model Tests",
   "null": "Null Value Tests",
@@ -7,7 +8,6 @@
   "pipe": "Localization Tests | pipe",
   "seasons": "Module Usage Test",
   "translate": "Localization Tests - t()",
-  "general": "Translation Tests",
   "enums": {
     "appStatus": {
       "construct": "under construction",

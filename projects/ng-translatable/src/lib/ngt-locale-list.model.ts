@@ -1,14 +1,14 @@
 /* 3rd party libraries */
-import { Directive, inject } from '@angular/core';
+import { Directive } from '@angular/core';
 import { Locale, TranslationService } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 import { LocaleOption } from './locale-option.model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive()
 export class NgtLocaleList implements IterableIterator<LocaleOption> {
 
-  private readonly translation = inject(TranslationService);
   private readonly items: Array<LocaleOption> = [];
   private currentIndex = -1;
   private iteratorIndex = 0;
@@ -77,9 +77,19 @@ export class NgtLocaleList implements IterableIterator<LocaleOption> {
   }
 
   constructor(
+    private readonly translation: TranslationService,
     readonly localeCodes: Array<string>
   ) {
     this.initialize( localeCodes );
+
+    this.translation.languageChanged
+      // @ts-ignore
+      .pipe( takeUntilDestroyed() )
+      .subscribe( language => {
+        this.items.forEach(( item: LocaleOption ) => {
+          item.selected = item.code === language;
+        });
+      } );
   }
 
   private initialize(

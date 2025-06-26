@@ -10,7 +10,6 @@ import { FilterFn } from './types';
 @Directive()
 export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
 
-  private readonly translation = inject(TranslationService);
   private readonly items: Array<TranslatableOption> = [];
   private iteratorIndex = 0;
   private filter: FilterFn = ( value: string, text: string ): boolean => {
@@ -64,6 +63,7 @@ export class NgtMultipleChoice implements IterableIterator<TranslatableOption> {
   }
 
   constructor(
+    private readonly translation: TranslationService,
     private readonly key: string,
     filter?: FilterFn
   ) {

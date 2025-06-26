@@ -1,9 +1,10 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtLocaleList } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */
+import { AppService } from '../../../app/app.service';
 
 @Component({
   selector: 'icu-locale-list',
@@ -15,14 +16,15 @@ import { NgtLocaleList } from '@logikum/ng-translatable';
 })
 export class LocaleListComponent {
 
-  locales = new NgtLocaleList([ 'en-US', 'hu', 'it', 'pt-BR' ]);
+  private readonly appService = inject( AppService );
+
+  locales = new NgtLocaleList(
+    this.appService.translation,
+    [ 'en-US', 'hu', 'it', 'pt-BR' ]
+  );
 
   get selectedLocale(): string {
     return JSON.stringify( this.locales.selectedItem );
-  }
-
-  constructor() {
-    this.locales.selectedCode = 'hu';
   }
 
   changeByCode(

@@ -1,10 +1,11 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgTranslationModule } from '@logikum/ng-translation';
 import { NgtMultipleChoice } from '@logikum/ng-translatable';
 
 /* locally accessible feature module code, always use a relative path */
+import { AppService } from '../../../app/app.service';
 
 @Component({
   selector: 'fts-multiple-choice',
@@ -17,8 +18,14 @@ import { NgtMultipleChoice } from '@logikum/ng-translatable';
 })
 export class MultipleChoiceComponent {
 
-  seasons = new NgtMultipleChoice( 'enums.season' );
+  private readonly appService = inject( AppService );
+
+  seasons = new NgtMultipleChoice(
+    this.appService.translation,
+    'enums.season'
+  );
   months = new NgtMultipleChoice(
+    this.appService.translation,
     'enums.month',
     this.filterByText.bind( this )
   );

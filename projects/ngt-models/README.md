@@ -1,6 +1,6 @@
-# NgTranslatable
+# NgtModels
 
-NgTranslatable provides data models for translatable UI components.
+NgtModels provides data models for translatable UI components.
 It is a supplementary package for NgTranslation package.
 
 See documentation: [NgTranslation](https://ngt.logikum.hu/)

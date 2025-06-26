@@ -19,7 +19,7 @@ Features:
 * Supports parameter localization
 * Provides localization methods in code
 * Provides data models for translatable UI components in separate package
-  (@logikum/ng-translatable)
+  (@logikum/ngt-models)
 * Provides several translation loaders (including inline loader)
 * Supports translation converters to use custom formats
 * Supports transpile extenders to use custom localization

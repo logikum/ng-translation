@@ -3,6 +3,39 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngt-common": {
+      "projectType": "library",
+      "root": "projects/ngt-common",
+      "sourceRoot": "projects/ngt-common/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngt-common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngt-common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngt-common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngt-common/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
     "ng-translation": {
       "projectType": "library",
       "root": "projects/ng-translation",
@@ -34,23 +67,23 @@
         }
       }
     },
-    "ng-translatable": {
+    "ngt-formatter": {
       "projectType": "library",
-      "root": "projects/ng-translatable",
-      "sourceRoot": "projects/ng-translatable/src",
+      "root": "projects/ngt-formatter",
+      "sourceRoot": "projects/ngt-formatter/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ng-translatable/ng-package.json"
+            "project": "projects/ngt-formatter/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-translatable/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngt-formatter/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ng-translatable/tsconfig.lib.json"
+              "tsConfig": "projects/ngt-formatter/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -58,9 +91,44 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng-translatable/src/test.ts",
-            "tsConfig": "projects/ng-translatable/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-translatable/karma.conf.js"
+            "tsConfig": "projects/ngt-formatter/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "ngt-models": {
+      "projectType": "library",
+      "root": "projects/ngt-models",
+      "sourceRoot": "projects/ngt-models/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngt-models/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngt-models/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngt-models/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngt-models/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
@@ -158,72 +226,6 @@
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
-        }
-      }
-    },
-    "ngt-formatter": {
-      "projectType": "library",
-      "root": "projects/ngt-formatter",
-      "sourceRoot": "projects/ngt-formatter/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/ngt-formatter/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngt-formatter/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ngt-formatter/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/ngt-formatter/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
-    "ngt-common": {
-      "projectType": "library",
-      "root": "projects/ngt-common",
-      "sourceRoot": "projects/ngt-common/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/ngt-common/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngt-common/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ngt-common/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/ngt-common/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },

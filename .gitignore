@@ -8,8 +8,6 @@
 
 # dependencies
 /node_modules
-/projects/functional-test-site/node_modules
-/projects/ng-translatable/node_modules
 
 # IDEs and editors
 /.idea

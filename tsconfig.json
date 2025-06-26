@@ -19,17 +19,17 @@
       "dom"
     ],
     "paths": {
-      "@logikum/ng-translatable": [
-        "dist/ng-translatable"
+      "@logikum/ngt-common": [
+        "./dist/ngt-common"
       ],
       "@logikum/ng-translation": [
         "dist/ng-translation"
       ],
-      "@logikum/ngt-common": [
-        "./dist/ngt-common"
-      ],
       "@logikum/ngt-formatter": [
         "./dist/ngt-formatter"
+      ],
+      "@logikum/ngt-models": [
+        "dist/ngt-models"
       ],
       "@logikum/icu-formatter": [
         "./dist/icu-formatter"

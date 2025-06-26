@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-translatable
+ * Public API Surface of ngt-models
  */
 
 export * from './lib/ngt-locale-list.model';

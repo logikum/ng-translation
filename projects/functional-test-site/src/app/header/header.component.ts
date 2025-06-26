@@ -4,7 +4,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgTranslationModule  } from '@logikum/ng-translation';
-import { NgtLocaleList } from '@logikum/ng-translatable';
+import { NgtLocaleList } from '@logikum/ngt-models';
 
 /* locally accessible feature module code, always use a relative path */
 import { AppService } from '../app.service';

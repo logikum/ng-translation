@@ -1,19 +1,40 @@
 Version in:
     package.json
+    projects/ngt-common/package.json
     projects/ng-translation/package.json
-    projects/ng-translatable/package.json
-Description:
+    projects/ngt-formatter/package.json
+    projects/ngt-models/package.json
+    projects/icu-formatter/package.json
+Description in:
+    projects/ngt-common/CHANGELOG.md
+    projects/ngt-common/README.md
     projects/ng-translation/CHANGELOG.md
     projects/ng-translation/README.md
-    projects/ng-translatable/CHANGELOG.md
-    projects/ng-translatable/README.md
+    projects/ngt-formatter/CHANGELOG.md
+    projects/ngt-formatter/README.md
+    projects/ngt-models/CHANGELOG.md
+    projects/ngt-models/README.md
+    projects/icu-formatter/CHANGELOG.md
+    projects/icu-formatter/README.md
 git checkout master
+ng build ngt-common
 ng build ng-translation
-ng build ng-translatable
-cd dist/ng-translation
+ng build ngt-formatter
+ng build ngt-models
+ng build icu-formatter
+cd dist/ngt-common
 npm login
 npm init --scope=@logikum
 npm publish --access=public --otp=<code>
-cd ../ng-translatable
+cd ../ng-translation
+npm init --scope=@logikum
+npm publish --access=public --otp=<code>
+cd ../ngt-formatter
+npm init --scope=@logikum
+npm publish --access=public --otp=<code>
+cd ../ngt-models
+npm init --scope=@logikum
+npm publish --access=public --otp=<code>
+cd ../icu-formatter
 npm init --scope=@logikum
 npm publish --access=public --otp=<code>

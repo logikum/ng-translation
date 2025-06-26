@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { Component, inject } from '@angular/core';
 import { NgTranslationModule } from '@logikum/ng-translation';
-import { NgtTextList } from '@logikum/ng-translatable';
+import { NgtTextList } from '@logikum/ngt-models';
 
 /* locally accessible feature module code, always use a relative path */
 import { AppService } from '../../../app/app.service';

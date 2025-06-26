@@ -7,10 +7,12 @@ See documentation: [NgTranslation](https://ngt.logikum.hu/)
 
 ### Usage
 
-Run this command to use the localization library:
+Run this commands to use the localization library:
 ```
 npm install @logikum/ng-translation --save
-npm install @logikum/ng-translatable --save
+npm install @logikum/ngt-formatter --save     // for NgT message format
+npm install @logikum/icu-formatter --save     // for ICU message format
+npm install @logikum/ngt-models --save        // optional
 ```
 ### Install
 

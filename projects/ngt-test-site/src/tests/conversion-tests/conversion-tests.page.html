@@ -1,0 +1,18 @@
+<ng-container *ngtContext="let t; node: 'conversion'">
+  <nts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('csvFile.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-csv-file></nts-csv-file>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('poFile.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-po-file></nts-po-file>
+        </div>
+      </ng-template>
+    </div>
+  </nts-accordion>
+</ng-container>

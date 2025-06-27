@@ -1,0 +1,42 @@
+<ng-container *ngtContext="let t; node: 'general'">
+  <nts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('code.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-code></nts-code>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('structural.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-structural></nts-structural>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('reader.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-reader></nts-reader>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem>
+      <ng-template ftsAccordionTitle>
+        <p class="accordion-title" [innerHTML]="t('pipe.title')">ABC</p>
+      </ng-template>
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-pipe></nts-pipe>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('attribute.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-attribute></nts-attribute>
+        </div>
+      </ng-template>
+    </div>
+  </nts-accordion>
+</ng-container>

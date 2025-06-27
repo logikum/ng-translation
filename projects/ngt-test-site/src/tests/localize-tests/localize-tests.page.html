@@ -1,0 +1,39 @@
+<ng-container *ngtContext="let t; node: 'translate'">
+  <nts-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('number.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-number-format></nts-number-format>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('percent.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-percent-format></nts-percent-format>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('currency.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-currency-format></nts-currency-format>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('money.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-money-format></nts-money-format>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('datetime.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-datetime-format></nts-datetime-format>
+        </div>
+      </ng-template>
+    </div>
+  </nts-accordion>
+</ng-container>

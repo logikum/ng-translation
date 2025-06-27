@@ -36,37 +36,6 @@
         }
       }
     },
-    "ng-translation": {
-      "projectType": "library",
-      "root": "projects/ng-translation",
-      "sourceRoot": "projects/ng-translation/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/ng-translation/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ng-translation/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ng-translation/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ng-translation/src/test.ts",
-            "tsConfig": "projects/ng-translation/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-translation/karma.conf.js"
-          }
-        }
-      }
-    },
     "ngt-formatter": {
       "projectType": "library",
       "root": "projects/ngt-formatter",
@@ -96,6 +65,37 @@
               "zone.js",
               "zone.js/testing"
             ]
+          }
+        }
+      }
+    },
+    "ng-translation": {
+      "projectType": "library",
+      "root": "projects/ng-translation",
+      "sourceRoot": "projects/ng-translation/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ng-translation/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-translation/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ng-translation/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-translation/src/test.ts",
+            "tsConfig": "projects/ng-translation/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-translation/karma.conf.js"
           }
         }
       }
@@ -133,15 +133,13 @@
         }
       }
     },
-    "functional-test-site": {
+    "ngt-test-site": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "inlineTemplate": false,
-          "inlineStyle": false,
+        "@schematics/angular:class": {
           "skipTests": true
         },
-        "@schematics/angular:class": {
+        "@schematics/angular:component": {
           "skipTests": true
         },
         "@schematics/angular:directive": {
@@ -163,28 +161,28 @@
           "skipTests": true
         }
       },
-      "root": "projects/functional-test-site",
-      "sourceRoot": "projects/functional-test-site/src",
-      "prefix": "fts",
+      "root": "projects/ngt-test-site",
+      "sourceRoot": "projects/ngt-test-site/src",
+      "prefix": "nts",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/functional-test-site",
-            "index": "projects/functional-test-site/src/index.html",
-            "browser": "projects/functional-test-site/src/main.ts",
+            "outputPath": "dist/ngt-test-site",
+            "index": "projects/ngt-test-site/src/index.html",
+            "browser": "projects/ngt-test-site/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/functional-test-site/tsconfig.app.json",
+            "tsConfig": "projects/ngt-test-site/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/functional-test-site/public"
+                "input": "projects/ngt-test-site/public"
               }
             ],
             "styles": [
-              "projects/functional-test-site/src/styles.css"
+              "projects/ngt-test-site/src/styles.css"
             ],
             "scripts": []
           },
@@ -216,16 +214,36 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "functional-test-site:build:production"
+              "buildTarget": "ngt-test-site:build:production"
             },
             "development": {
-              "buildTarget": "functional-test-site:build:development"
+              "buildTarget": "ngt-test-site:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngt-test-site/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngt-test-site/public"
+              }
+            ],
+            "styles": [
+              "projects/ngt-test-site/src/styles.css"
+            ],
+            "scripts": []
+          }
         }
       }
     },

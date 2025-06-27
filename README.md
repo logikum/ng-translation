@@ -23,19 +23,30 @@ npm install
 ```
 ### Build the package
 
-Run this command to build the localization package:
+Run these commands to generate the default localization messages:
 ```
+npm run i18n:nts    // NgT test site
+npm run i18n:its    // ICU test site
+```
+
+Run these commands to build the localization package:
+```
+npm run build:ngc    // common library
+npm run build:ngf    // NgT formatter library
+npm run build:icu    // ICU formatter library
 npm run build:ngt    // localization library
 npm run build:ngm    // model library for localizable UI elements
-npm run build:tws    // test web site
+npm run build:nts    // NgT test site
+npm run build:its    // ICU test site
 ```
 or
 ```
-npm run build:all
+npm run build
 ```
 ### Test
 
-Run this command to start the test site in development mode:
+Run these commands to start the test sites in development mode:
 ```
-npm start
+npm run serve:nts    // NgT test site
+npm run serve:its    // ICU test site
 ```

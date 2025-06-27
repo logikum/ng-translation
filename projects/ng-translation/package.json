@@ -2,13 +2,7 @@
   "name": "@logikum/ng-translation",
   "version": "9.1.1",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
-  "keywords": [
-    "Angular",
-    "i18n",
-    "internationalization",
-    "l10n",
-    "localization"
-  ],
+  "keywords": [ "Angular", "translation", "i18n", "internationalization", "l10n", "localization" ],
   "license" : "MIT",
   "author": {
     "name": "Mármarosi József",
@@ -31,5 +25,6 @@
   },
   "dependencies": {
     "tslib": ">=2.6.2"
-  }
+  },
+  "sideEffects": false
 }

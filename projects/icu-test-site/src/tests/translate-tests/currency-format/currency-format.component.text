@@ -10,16 +10,16 @@ title: Currency Formatting
 
 default_f: Default currency format
 default_l: { price, number, ::currency/___ }
-default_s: { price, number, ::currency/___ }
+default_s: ~
 
 code_f: Currency code format
-code_l: { price, number, ::currency/___ currency-code}
-code_s: { price, number, ::currency/___ code }
+code_l: ~
+code_s: ~
 
 name_f: Currency name format
-name_l: { price, number, ::currency/___ currency-name}
-name_s: { price, number, ::currency/___ name }
+name_l: ~
+name_s: ~
 
 symbol_f: Currency symbol format
-symbol_l: { price, number, ::currency/___ currency-symbol}
-symbol_s: { price, number, ::currency/___ symbol }
+symbol_l: ~
+symbol_s: ~

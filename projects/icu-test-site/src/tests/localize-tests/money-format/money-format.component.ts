@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { NgTranslationModule, LocalizeContext, TranslationService } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
@@ -14,5 +14,5 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 })
 export class MoneyFormatComponent {
 
-  amount = 1234.567;
+  amount = 12345.678;
 }

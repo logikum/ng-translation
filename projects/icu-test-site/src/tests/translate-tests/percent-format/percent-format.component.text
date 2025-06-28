@@ -17,20 +17,20 @@ minid_l: { shortPercent, number, ::percent integer-width/*000}
 minid_s: { shortPercent, number, ::percent 000 }
 
 minfd_f: Minimum fraction digits
-minfd_l: { shortPercent, number, ::percent .000*}
-minfd_s: { shortPercent, number, ::percent .000* }
+minfd_l: ~
+minfd_s: { shortPercent, number, ::percent .000*}
 
 maxfd_f: Maximum fraction digits
-maxfd_l: { shortPercent, number, ::percent .#}
-maxfd_s: { shortPercent, number, ::percent .# }
+maxfd_l: ~
+maxfd_s: { shortPercent, number, ::percent .#}
 
 minsd_f: Minimum significant digits
-minsd_l: { longPercent, number, ::percent .###/@@@*}
-minsd_s: { longPercent, number, ::percent .###/@@@* }
+minsd_l: ~
+minsd_s: { longPercent, number, ::percent .###/@@@*}
 
 maxsd_f: Maximum significant digits
-maxsd_l: { longPercent, number, ::percent @##}
-maxsd_s: { longPercent, number, ::percent @## }
+maxsd_l: ~
+maxsd_s: { longPercent, number, ::percent @##}
 
 mixed_f: With several options
 mixed_l: { shortPercent, number, ::percent integer-width/*000 .00000*}
@@ -38,4 +38,4 @@ mixed_s: { shortPercent, number, ::percent 000 .00000* }
 
 usegrp_f: Without grouping
 usegrp_l: { longPercent, number, ::percent group-off}
-usegrp_s: { longPercent, number, ::percent group-off }
+usegrp_s: { longPercent, number, ::percent  ,_ }

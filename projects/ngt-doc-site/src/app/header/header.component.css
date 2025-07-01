@@ -1,0 +1,17 @@
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.link {
+  font-size: 1.14rem;
+  color: white;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+.link.selected {
+  background-color: var(--dark-color);
+}
+.chapter {
+  line-height: var(--header-height);
+}

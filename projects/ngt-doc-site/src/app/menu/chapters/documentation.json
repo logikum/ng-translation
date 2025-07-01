@@ -1,0 +1,10 @@
+[
+  { "id": "installation", "text": "Installation" },
+  { "id": "setup", "text": "Setup" },
+  { "id": "configuration", "text": "Configuration",
+    "children": [
+      { "id": "sections", "text": "Sections" },
+      { "id": "section-group", "text": "Section group" }
+    ]
+  }
+]

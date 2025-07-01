@@ -1,0 +1,32 @@
+li {
+  cursor: pointer;
+  line-height: 1.5rem;
+  color: var(--medium-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+li:hover:not(.selected) {
+  color: black;
+  background-color: var(--lighter-color);
+}
+li span {
+  flex: 1;
+}
+.selected {
+  cursor: default;
+  color: black;
+  background-color: white;
+}
+.indent0 {
+  padding: 0 5px;
+}
+.indent1 {
+  padding: 0 5px 0 19px;
+}
+.indent2 {
+  padding: 0 5px 0 33px;
+}
+.indent3 {
+  padding: 0 5px 0 47px;
+}

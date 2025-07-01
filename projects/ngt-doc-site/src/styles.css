@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  --dark-color: #0f3d0f;
+  --darker-color: #196619;
+  --medium-color: #228B22;
+  --lighter-color: #c2f0c2;
+  --light-color: #ebfaeb;
+  --header-height: 48px;
+  font-size: 14px;
+}
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+a, a.visited {
+  color: var(--darker-color);
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}

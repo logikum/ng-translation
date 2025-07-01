@@ -1,0 +1,8 @@
+<ul class="links">
+  @for (chapter of chapters; track chapter.id) {
+    <li class="link" (click)="selectChapter(chapter)"
+         [class]="getSelected(chapter.id)">
+      <div class="chapter">{{ chapter.text }}</div>
+    </li>
+  }
+</ul>

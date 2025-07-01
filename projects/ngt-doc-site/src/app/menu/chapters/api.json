@@ -1,0 +1,9 @@
+[
+  { "id": "module", "text": "NgTranslationModule" },
+  { "id": "configuration", "text": "Configuration",
+    "children": [
+      { "id": "translation-config", "text": "TranslationConfig" },
+      { "id": "section-group", "text": "Section group" }
+    ]
+  }
+]

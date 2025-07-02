@@ -25,7 +25,7 @@ JSON files:
 The following component view will display the texts in the selected language:
 
 ```html
-<!-- home.component.ts -->
+<!-- home.component.html -->
 <ng-container *translate="let t">
   <h1>{{ t( 'text.title' ) }}</h1>
   <p>{{ t( 'text.description' ) }}</p>

@@ -12,12 +12,12 @@ import { MarkdownService } from './markdown.service';
   standalone: true,
 })
 export class MarkdownRendererComponent {
-  src = input.required<string>();
-  textContent = '';
 
   private _elementRef = inject<ElementRef>(ElementRef);
-
   private markdownService = inject(MarkdownService);
+
+  src = input.required<string>();
+  // textContent = '';
 
   constructor() {
     effect(() => {
@@ -26,7 +26,9 @@ export class MarkdownRendererComponent {
     });
   }
 
-  setDataFromSrc(src: string) {
+  private setDataFromSrc(
+    src: string
+  ): void {
     this.markdownService
       .htmlContent(src)
       .pipe(take(1))
@@ -35,9 +37,11 @@ export class MarkdownRendererComponent {
       });
   }
 
-  updateDocument(rawHTML: string) {
+  private updateDocument(
+    rawHTML: string
+  ): void {
     this._elementRef.nativeElement.innerHTML = rawHTML;
-    this.textContent = this._elementRef.nativeElement.textContent;
+    // this.textContent = this._elementRef.nativeElement.textContent;
     highlightJs.highlightAll();
   }
 }

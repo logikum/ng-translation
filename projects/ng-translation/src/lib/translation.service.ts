@@ -10,9 +10,8 @@ import {
 
 /* locally accessible feature module code, always use a relative path */
 import {
-  Locale, NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER,
-  Resource, ResourceList, ResourceLoader, TranslationChange,
-  LocalizeContext
+  Locale, NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER, Resource, ResourceList,
+  ResourceLoader, TranslationBranch, TranslationChange, LocalizeContext
 } from './models';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
@@ -454,12 +453,12 @@ export class TranslationService implements LocalizeContext {
     // Try the requested (eventual specific) culture (language).
     let group: object = this.findGroup( locale.name, key );
 
-    // If not found try neutral culture (language without country/region).
+    // If not found, try neutral culture (language without country/region).
     if (group === null && locale.hasRegion) {
       group = this.findGroup( locale.neutral, key );
     }
 
-    // Finally if not found...
+    // Finally, if not found...
     if (group === null) {
 
       // Warning of missing translation code.
@@ -496,6 +495,16 @@ export class TranslationService implements LocalizeContext {
   }
 
   // endregion
+
+  //region Get translation branch
+
+  getBranch<BranchType>(
+    node: string
+  ): BranchType {
+    return new TranslationBranch( node ) as BranchType;
+  }
+
+  //endregion
 
   //region Implement LocalizeContext
 

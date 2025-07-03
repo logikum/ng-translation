@@ -4,6 +4,7 @@ export * from './localize-context.model';
 export * from './resource.model';
 export * from './resource-list.model';
 export * from './translate-context.model';
+export * from './translation-branch.model';
 export * from './translation-change.model';
 export * from './translation-converter.model';
 export * from './translation-reader.model';

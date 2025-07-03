@@ -1,9 +1,9 @@
 <div class="context">--- the source is the same section ---</div>
 <ng-container *ngtReader="let r; node: 'general.text'">
-  <div class="data">{{ r.otherElements() }}</div>
+  <div class="data">{{ r.otherElements() }} {{ b.otherElements() }}</div>
   <ng-container *ngtReader="let r; node: 'general.text.element'">
     <div class="data flex-row">
-      <div class="row-item">{{ r.earth() }}</div>
+      <div class="row-item">{{ r.earth() }} {{ b.element.earth() }}</div>
       <div class="row-item">{{ r.water() }}</div>
       <div class="row-item">{{ r.wind() }}</div>
       <div class="row-item">{{ r.fire() }}</div>
@@ -28,9 +28,9 @@
 
 <ng-container *ngtReader="let r; node: 'general.text'">
   <div class="context">--- with interpolation ---</div>
-  <div class="data">{{ r.today(today) }}</div>
-  <div class="data">{{ r.stock(rise, value) }}</div>
-  <div class="data">{{ r.book(normalPrice, specialPrice) }}</div>
+  <div class="data">{{ r.today(today) }} {{ b.today(today) }}</div>
+  <div class="data">{{ r.stock(rise, value) }} {{ b.stock(rise, value) }}</div>
+  <div class="data">{{ r.book(normalPrice, specialPrice) }} {{ b.book(normalPrice, specialPrice) }}</div>
 </ng-container>
 
 <ng-container *ngtReader="let r; node: 'general.reader'">

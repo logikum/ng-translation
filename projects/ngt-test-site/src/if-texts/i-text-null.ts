@@ -1,3 +1,4 @@
+/* tslint:disable */
 
 export interface IText_Null {
 

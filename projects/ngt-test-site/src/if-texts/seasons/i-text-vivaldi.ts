@@ -1,5 +1,6 @@
+/* tslint:disable */
 
-export interface IText_Seasons/vivaldi {
+export interface IText_Seasons$Vivaldi {
 
   spring: () => string;
   summer: () => string;

@@ -1,3 +1,4 @@
+/* tslint:disable */
 
 export interface IText_General {
 
@@ -29,7 +30,7 @@ export interface IText_General_Reader_Form {
 export interface IText_General_Reader_Form_Name {
 
   label: () => string;
-  minLength: ( arg0: string ) => string;
+  minLength: ( arg0: string, arg1: string ) => string;
   maxLength: ( length: string ) => string;
 }
 
@@ -45,7 +46,7 @@ export interface IText_General_Text {
   smurfs: () => string;
   today: ( arg0: Date ) => string;
   stock: ( arg1: number ) => string;
-  book: ( arg0: [number, string] ) => string;
+  book: ( arg0: [number, string], arg1: [number, string] ) => string;
 }
 
 export interface IText_General_Text_Element {

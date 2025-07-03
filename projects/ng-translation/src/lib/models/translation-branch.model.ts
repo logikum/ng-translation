@@ -25,15 +25,6 @@ export class TranslationBranch /*implements OnChanges*/ {
     this.#__initialize();
   }
 
-  // ngOnChanges(
-  //   changes: SimpleChanges
-  // ): void {
-  //
-  //   if (Object.keys( changes ).some( p => changes[ p ].firstChange === false )) {
-  //     this.#__initialize();
-  //   }
-  // }
-
   #__initialize(): void {
 
     const group = this.#__translation.getGroup( this.#__node );

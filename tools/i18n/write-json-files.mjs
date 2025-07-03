@@ -38,7 +38,7 @@ export const writeJsonFiles = (targetPath, texts) => {
     );
     console.log(`>   ${shortPath}.json`);
   }
-}
+};
 
 const compare = ( a, b ) => {
 
@@ -59,4 +59,4 @@ const compare = ( a, b ) => {
       return a.key > b.key ? 1 : -1;
     }
   }
-}
+};

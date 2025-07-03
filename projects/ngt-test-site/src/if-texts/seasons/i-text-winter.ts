@@ -1,5 +1,6 @@
+/* tslint:disable */
 
-export interface IText_Seasons/winter {
+export interface IText_Seasons$Winter {
 
   title: () => string;
   line_1_1: () => string;

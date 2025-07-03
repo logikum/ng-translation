@@ -32,29 +32,29 @@ export const writeInterfaces = (targetPath, formatter, texts) => {
 
     filename = dashize( filename );
     const interfacePath = interfaceDir + '/i-text-' + filename + '.ts';
+    const text = buildInterface( formatter, '', property, texts[property], [] );
     fs.writeFileSync(
       interfacePath,
-      buildInterface( formatter, '', property, texts[property], [] )
+      `/* tslint:disable */\r\n${ text }`
     );
-    console.log(`i   ${shortPath}.ts`);
+    console.log(`:   ${shortPath}.ts`);
   }
   console.log('------------------------------');
-}
+};
 
 const buildInterface = ( formatter, prefix, name, texts, children ) => {
 
   const iPrefix = prefix ? prefix + '_' : '';
-  const iName = capitalize(name);
+  const iName = capitalizeWithSlash(name);
   let text = `\r\nexport interface IText_${ iPrefix }${ iName } {\r\n\r\n`;
   for (let property in texts){
+
     if (typeof texts[property] === 'string') {
       const params = formatter === 'icu'
         ? getIcuParams( texts[property] )
         : getNgtParams( texts[property] );
-      if (params.length > 0) {
-        console.log( `Params: ${params} --- ${texts[ property ]}` );
-      }
       text += `  ${property}: (${ params }) => string;\r\n`;
+
     } else {
       const cPrefix = `${ iPrefix }${ iName }`;
       const cName = capitalize(property);
@@ -69,4 +69,19 @@ const buildInterface = ( formatter, prefix, name, texts, children ) => {
     });
   }
   return text;
-}
+};
+
+const capitalizeWithSlash = (name) => {
+
+   if (name.indexOf('/') < 0) {
+     return capitalize(name);
+   } else {
+
+     const parts = name.split('/');
+     const results = [ ];
+     parts.forEach(part => {
+       results.push( capitalize(part) );
+     });
+     return results.join('$');
+   }
+};

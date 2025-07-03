@@ -117,7 +117,7 @@ const readFile = ( textFile, texts ) => {
     previousNode = currentNode;
     previousKey = currentKey;
   } );
-}
+};
 
 export const updateI18n = ( sourcePath, targetPath, interfacePath, formatter ) => {
 
@@ -149,4 +149,4 @@ export const updateI18n = ( sourcePath, targetPath, interfacePath, formatter ) =
       console.log( '' );
     }
   } );
-}
+};

@@ -1,3 +1,4 @@
+/* tslint:disable */
 
 export interface IText_Other {
 
@@ -16,7 +17,7 @@ export interface IText_Other_FormatExtender {
 
   title: () => string;
   range: () => string;
-  first_last: ( arg0: string ) => string;
+  first_last: ( arg0: string, arg1: string ) => string;
   romanNumber: ( arg0: string ) => string;
 }
 

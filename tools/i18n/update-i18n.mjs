@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import stringify from 'json-stable-stringify';
+import { writeInterfaces } from './write-interfaces.mjs';
+import { writeJsonFiles } from './write-json-files.mjs';
 
 const walkTree = ( dir, done ) => {
 
@@ -118,7 +119,7 @@ const readFile = ( textFile, texts ) => {
   } );
 }
 
-export const updateI18n = ( sourcePath, targetPath ) => {
+export const updateI18n = ( sourcePath, targetPath, interfacePath ) => {
 
   let count = 0;
   const texts = { };
@@ -138,6 +139,9 @@ export const updateI18n = ( sourcePath, targetPath ) => {
       } );
       if (count === files.length) {
         console.log( `Processed text files: ${count}` );
+        if (interfacePath) {
+          writeInterfaces( interfacePath, texts );
+        }
         writeJsonFiles( targetPath, texts );
       }
       console.log( '' );
@@ -145,82 +149,4 @@ export const updateI18n = ( sourcePath, targetPath ) => {
       console.log( '' );
     }
   } );
-}
-
-const writeJsonFiles = (targetPath, texts) => {
-
-  cleanTexts( texts );
-  for (let property in texts) {
-
-    let i18nDir = targetPath;
-    let filename = property;
-
-    let shortPath;
-    if (property.indexOf( '/' ) > -1) {
-      const parts = property.split( '/' );
-      for (let i = 0; i < parts.length; i++) {
-        if (parts[ i ].trim() === '')
-          throw new Error(`Invalid filename: ${property}`);
-        filename = dashize( parts[ i ].trim() );
-        parts[ i ] = filename;
-        if (i > 0) {
-          i18nDir = i18nDir + '/' + parts[ i - 1 ];
-          if (!fs.existsSync( i18nDir ))
-            fs.mkdirSync( i18nDir );
-        }
-      }
-      shortPath = parts.join( '/' );
-    } else {
-      shortPath = dashize( property );
-    }
-
-    filename = dashize( filename );
-    const jsonPath = i18nDir + '/' + filename + '.json';
-    fs.writeFileSync(
-      jsonPath,
-      // JSON.stringify( texts[ property ], null, 2 )
-      stringify( texts[ property ], { cmp: compare, space: 2 } )
-    );
-    console.log(`>   ${shortPath}.json`);
-  }
-}
-
-const cleanTexts = texts => {
-
-  // Remove empty nodes.
-  for (let property in texts) {
-    if (typeof texts[ property ] !== 'string') {
-      const propertyCount = cleanTexts( texts[ property ] );
-      if (propertyCount === 0) {
-        delete texts[ property ];
-      }
-    }
-  }
-  // Return the count of properties.
-  return Object.keys( texts ).length;
-}
-
-const dashize = str => {
-  return str.replace(/[A-Z]/g, m => "-" + m.toLowerCase());
-}
-
-const compare = ( a, b ) => {
-
-  if (typeof a.value === 'object') {
-    if (typeof b.value === 'object') {
-      // a == object, b == object
-      return a.key > b.key ? 1 : -1;
-    } else {
-      // a == object, b == string
-      return 1;
-    }
-  } else {
-    if (typeof b.value === 'object') {
-      // a == string, b == object
-      return -1;
-    } else {
-      // a == string, b == string
-      return a.key > b.key ? 1 : -1;
-    }
-  }
 }

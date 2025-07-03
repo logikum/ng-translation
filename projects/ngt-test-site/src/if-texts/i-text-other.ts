@@ -16,8 +16,8 @@ export interface IText_Other_FormatExtender {
 
   title: () => string;
   range: () => string;
-  first_last: () => string;
-  romanNumber: () => string;
+  first_last: ( arg0: string ) => string;
+  romanNumber: ( arg0: string ) => string;
 }
 
 export interface IText_Other_Enumeration {
@@ -27,8 +27,8 @@ export interface IText_Other_Enumeration {
   logLevel: () => string;
   season: () => string;
   month: () => string;
-  statusName: () => string;
-  levelName: () => string;
+  statusName: ( arg0: string ) => string;
+  levelName: ( arg0: string ) => string;
 }
 
 export interface IText_Other_CamelCase {

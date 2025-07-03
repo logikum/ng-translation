@@ -4,13 +4,13 @@ export interface IText_Null {
   currencyCodes: IText_Null_CurrencyCodes;
   localizationMethod: IText_Null_LocalizationMethod;
   localizationPipe: IText_Null_LocalizationPipe;
-  text: () => string;
-  number: () => string;
-  percent: () => string;
-  currency: () => string;
-  datetime: () => string;
+  text: ( arg0: string ) => string;
+  number: ( arg0: number ) => string;
+  percent: ( arg0: number ) => string;
+  currency: ( arg0: [number, string] ) => string;
+  datetime: ( arg0: Date ) => string;
   plural: () => string;
-  boolean: () => string;
+  boolean: ( arg0: string ) => string;
   translationString: IText_Null_TranslationString;
 }
 

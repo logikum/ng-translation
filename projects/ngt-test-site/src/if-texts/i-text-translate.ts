@@ -19,8 +19,8 @@ export interface IText_Translate_Percent {
 
   title: () => string;
   basic_f: () => string;
-  basic_l: () => string;
-  basic_s: () => string;
+  basic_l: ( arg0: number ) => string;
+  basic_s: ( arg0: number ) => string;
   minid_f: () => string;
   minid_l: () => string;
   minid_s: () => string;
@@ -48,8 +48,8 @@ export interface IText_Translate_Number {
 
   title: () => string;
   basic_f: () => string;
-  basic_l: () => string;
-  basic_s: () => string;
+  basic_l: ( arg0: number ) => string;
+  basic_s: ( arg0: number ) => string;
   minid_f: () => string;
   minid_l: () => string;
   minid_s: () => string;
@@ -86,8 +86,8 @@ export interface IText_Translate_Datetime {
 
   title: () => string;
   default_f: () => string;
-  default_l: () => string;
-  default_s: () => string;
+  default_l: ( arg0: Date ) => string;
+  default_s: ( arg0: Date ) => string;
   short_f: () => string;
   short_l: () => string;
   short_s: () => string;
@@ -109,8 +109,8 @@ export interface IText_Translate_Currency {
 
   title: () => string;
   default_f: () => string;
-  default_l: () => string;
-  default_s: () => string;
+  default_l: ( price: [number, string] ) => string;
+  default_s: ( price: [number, string] ) => string;
   code_f: () => string;
   code_l: () => string;
   code_s: () => string;

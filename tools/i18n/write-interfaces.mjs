@@ -1,8 +1,9 @@
 import fs from "fs";
 import { capitalize, cleanTexts, dashize } from './helper.mjs';
-import stringify from "json-stable-stringify";
+import { getIcuParams } from './get-icu-params.mjs';
+import { getNgtParams } from './get-ngt-params.mjs';
 
-export const writeInterfaces = (targetPath, texts) => {
+export const writeInterfaces = (targetPath, formatter, texts) => {
 
   cleanTexts( texts );
   for (let property in texts) {
@@ -33,26 +34,32 @@ export const writeInterfaces = (targetPath, texts) => {
     const interfacePath = interfaceDir + '/i-text-' + filename + '.ts';
     fs.writeFileSync(
       interfacePath,
-      buildInterface( '', property, texts[property], [] )
+      buildInterface( formatter, '', property, texts[property], [] )
     );
     console.log(`i   ${shortPath}.ts`);
   }
   console.log('------------------------------');
 }
 
-const buildInterface = ( prefix, name, texts, children ) => {
+const buildInterface = ( formatter, prefix, name, texts, children ) => {
 
   const iPrefix = prefix ? prefix + '_' : '';
   const iName = capitalize(name);
   let text = `\r\nexport interface IText_${ iPrefix }${ iName } {\r\n\r\n`;
   for (let property in texts){
     if (typeof texts[property] === 'string') {
-      text += `  ${property}: () => string;\r\n`;
+      const params = formatter === 'icu'
+        ? getIcuParams( texts[property] )
+        : getNgtParams( texts[property] );
+      if (params.length > 0) {
+        console.log( `Params: ${params} --- ${texts[ property ]}` );
+      }
+      text += `  ${property}: (${ params }) => string;\r\n`;
     } else {
       const cPrefix = `${ iPrefix }${ iName }`;
       const cName = capitalize(property);
       text += `  ${property}: IText_${ cPrefix }_${ cName };\r\n`;
-      children.unshift( buildInterface( cPrefix, property, texts[property], children ) );
+      children.unshift( buildInterface( formatter, cPrefix, property, texts[property], children ) );
     }
   }
   text += '}\n';

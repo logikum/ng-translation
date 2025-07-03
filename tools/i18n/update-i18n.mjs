@@ -119,7 +119,7 @@ const readFile = ( textFile, texts ) => {
   } );
 }
 
-export const updateI18n = ( sourcePath, targetPath, interfacePath ) => {
+export const updateI18n = ( sourcePath, targetPath, interfacePath, formatter ) => {
 
   let count = 0;
   const texts = { };
@@ -140,7 +140,7 @@ export const updateI18n = ( sourcePath, targetPath, interfacePath ) => {
       if (count === files.length) {
         console.log( `Processed text files: ${count}` );
         if (interfacePath) {
-          writeInterfaces( interfacePath, texts );
+          writeInterfaces( interfacePath, formatter, texts );
         }
         writeJsonFiles( targetPath, texts );
       }

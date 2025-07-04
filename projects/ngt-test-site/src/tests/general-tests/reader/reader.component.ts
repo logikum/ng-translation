@@ -2,9 +2,9 @@
 import { Component, inject } from '@angular/core';
 import { CurrencyValue } from '@logikum/ngt-common';
 import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
-import { IReaderGeneralText } from '../../../if-reader/i-reader-general';
 
 /* locally accessible feature module code, always use a relative path */
+import { IText_General_Text } from '../../../if-texts/i-text-general';
 
 @Component({
   selector: 'nts-reader',
@@ -18,7 +18,7 @@ export class ReaderComponent {
 
   private readonly translation = inject( TranslationService );
 
-  b = this.translation.getBranch<IReaderGeneralText>('general.text');
+  b = this.translation.getBranch<IText_General_Text>('general.text');
 
   get today(): Date { return new Date(); }
   get rise(): number { return 0.0206; }

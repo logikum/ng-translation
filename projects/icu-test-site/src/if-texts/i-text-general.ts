@@ -34,8 +34,8 @@ export interface IText_General_Reader_Form {
 export interface IText_General_Reader_Form_Name {
 
   label: () => string;
-  minLength: ( arg0: string, arg1: string ) => string;
-  maxLength: ( length: string ) => string;
+  minLength: ( minLength: number ) => string;
+  maxLength: ( maxLength: number ) => string;
 }
 
 export interface IText_General_Pipe {
@@ -48,9 +48,9 @@ export interface IText_General_Text {
   otherElements: () => string;
   element: IText_General_Text_Element;
   smurfs: () => string;
-  today: ( arg0: Date ) => string;
-  stock: ( arg1: number ) => string;
-  book: ( arg0: [number, string], arg1: [number, string] ) => string;
+  today: ( today: Date ) => string;
+  stock: ( points: number ) => string;
+  book: ( current: [number, string] ) => string;
 }
 
 export interface IText_General_Text_Element {

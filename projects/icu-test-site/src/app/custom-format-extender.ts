@@ -15,6 +15,8 @@ enum FormatName {
   month = 'month'
 }
 
+export type Roman = string;
+
 @Injectable()
 export class CustomFormatExtender extends FormatExtenderBase {
 

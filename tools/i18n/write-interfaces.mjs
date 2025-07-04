@@ -6,6 +6,7 @@ import { getNgtParams } from './get-ngt-params.mjs';
 export const writeInterfaces = (targetPath, formatter, texts) => {
 
   cleanTexts( texts );
+  const imports = getImportStatements( targetPath );
   for (let property in texts) {
 
     let interfaceDir = targetPath;
@@ -35,7 +36,7 @@ export const writeInterfaces = (targetPath, formatter, texts) => {
     const text = buildInterface( formatter, '', property, texts[property], [] );
     fs.writeFileSync(
       interfacePath,
-      `/* tslint:disable */\r\n${ text }`
+      `${ imports }${ text }`
     );
     console.log(`:   ${shortPath}.ts`);
   }
@@ -47,7 +48,7 @@ const buildInterface = ( formatter, prefix, name, texts, children ) => {
   const iPrefix = prefix ? prefix + '_' : '';
   const iName = capitalizeWithSlash(name);
   let text = `\r\nexport interface IText_${ iPrefix }${ iName } {\r\n\r\n`;
-  for (let property in texts){
+  for (let property in texts) {
 
     if (typeof texts[property] === 'string') {
       const params = formatter === 'icu'
@@ -85,3 +86,13 @@ const capitalizeWithSlash = (name) => {
      return results.join('$');
    }
 };
+
+const getImportStatements = interfaceDir => {
+
+  let imports = '';
+  const importFilePath = interfaceDir + '/i-text.ts';
+  if (fs.existsSync(importFilePath)) {
+    imports = fs.readFileSync(importFilePath, { encoding: 'utf8', flag: 'r' });
+  }
+  return imports;
+}

@@ -9,13 +9,14 @@ export interface IText_Null {
   currencyCodes: IText_Null_CurrencyCodes;
   localizationMethod: IText_Null_LocalizationMethod;
   localizationPipe: IText_Null_LocalizationPipe;
-  text: ( arg0: string ) => string;
-  number: ( arg0: number ) => string;
-  percent: ( arg0: number ) => string;
-  currency: ( arg0: [number, string] ) => string;
-  datetime: ( arg0: Date ) => string;
-  plural: () => string;
-  boolean: ( arg0: string ) => string;
+  text: ( text: string ) => string;
+  number: ( value: number ) => string;
+  percent: ( value: number ) => string;
+  currency: ( value: [number, string] ) => string;
+  date: ( value: Date ) => string;
+  time: ( value: Date ) => string;
+  plural: ( value: number | string ) => string;
+  boolean: ( value: string ) => string;
   translationString: IText_Null_TranslationString;
 }
 

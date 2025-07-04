@@ -18,7 +18,7 @@ const targetPath = path.resolve( process.cwd(), process.argv[3] );
 const interfacePath = process.argv[4]
   ? path.resolve( process.cwd(), process.argv[4] ) : '';
 const formatter = process.argv[5]
-  ? (process.argv[4].toLowerCase() === 'icu' ? 'icu' : 'ngt') : 'ngt';
+  ? (process.argv[5].toLowerCase() === 'icu' ? 'icu' : 'ngt') : 'ngt';
 
 const observer = new Observer();
 

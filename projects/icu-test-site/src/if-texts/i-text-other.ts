@@ -21,7 +21,7 @@ export interface IText_Other_FormatExtender {
 
   title: () => string;
   range: () => string;
-  first_last: ( first: Roman ) => string;
+  first_last: ( first: Roman, last: Roman ) => string;
   romanNumber: ( value: Roman ) => string;
 }
 

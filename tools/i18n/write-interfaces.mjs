@@ -47,19 +47,19 @@ const buildInterface = ( formatter, prefix, name, texts, children ) => {
 
   const iPrefix = prefix ? prefix + '_' : '';
   const iName = capitalizeWithSlash(name);
-  let text = `\r\nexport interface IText_${ iPrefix }${ iName } {\r\n\r\n`;
+  let text = `\nexport interface IText_${ iPrefix }${ iName } {\n\n`;
   for (let property in texts) {
 
     if (typeof texts[property] === 'string') {
       const params = formatter === 'icu'
         ? getIcuParams( texts[property] )
         : getNgtParams( texts[property] );
-      text += `  ${property}: (${ params }) => string;\r\n`;
+      text += `  ${property}: (${ params }) => string;\n`;
 
     } else {
       const cPrefix = `${ iPrefix }${ iName }`;
       const cName = capitalize(property);
-      text += `  ${property}: IText_${ cPrefix }_${ cName };\r\n`;
+      text += `  ${property}: IText_${ cPrefix }_${ cName };\n`;
       children.unshift( buildInterface( formatter, cPrefix, property, texts[property], children ) );
     }
   }

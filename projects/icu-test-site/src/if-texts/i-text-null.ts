@@ -15,7 +15,7 @@ export interface IText_Null {
   currency: ( value: [number, string] ) => string;
   date: ( value: Date ) => string;
   time: ( value: Date ) => string;
-  plural: ( value: number | string ) => string;
+  plural: ( zero: number | string, some: number | string, many: number | string ) => string;
   boolean: ( value: string ) => string;
   translationString: IText_Null_TranslationString;
 }

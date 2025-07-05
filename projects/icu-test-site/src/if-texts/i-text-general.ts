@@ -34,7 +34,7 @@ export interface IText_General_Reader_Form {
 export interface IText_General_Reader_Form_Name {
 
   label: () => string;
-  minLength: ( minLength: number ) => string;
+  minLength: ( minLength: number, recommended: number ) => string;
   maxLength: ( maxLength: number ) => string;
 }
 
@@ -49,8 +49,8 @@ export interface IText_General_Text {
   element: IText_General_Text_Element;
   smurfs: () => string;
   today: ( today: Date ) => string;
-  stock: ( points: number ) => string;
-  book: ( current: [number, string] ) => string;
+  stock: ( points: number, surge: number ) => string;
+  book: ( current: [number, string], onSale: [number, string] ) => string;
 }
 
 export interface IText_General_Text_Element {

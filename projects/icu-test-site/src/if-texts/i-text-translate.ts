@@ -17,7 +17,7 @@ export interface IText_Translate {
 export interface IText_Translate_Plural {
 
   title: () => string;
-  updated: ( count: number | string ) => string;
+  updated: ( just: number | string, one: number | string, formerly: number | string ) => string;
 }
 
 export interface IText_Translate_Percent {
@@ -91,22 +91,22 @@ export interface IText_Translate_Datetime {
 
   title: () => string;
   default_f: () => string;
-  default_l: ( now: Date ) => string;
+  default_l: ( now: Date, now: Date ) => string;
   default_s: () => string;
   short_f: () => string;
-  short_l: ( now: Date ) => string;
+  short_l: ( now: Date, now: Date ) => string;
   short_s: () => string;
   medium_f: () => string;
-  medium_l: ( now: Date ) => string;
+  medium_l: ( now: Date, now: Date ) => string;
   medium_s: () => string;
   long_f: () => string;
-  long_l: ( now: Date ) => string;
+  long_l: ( now: Date, now: Date ) => string;
   long_s: () => string;
   full_f: () => string;
-  full_l: ( now: Date ) => string;
+  full_l: ( now: Date, now: Date ) => string;
   full_s: () => string;
   fractional_f: () => string;
-  fractional_l: ( now: Date ) => string;
+  fractional_l: ( now: Date, now: Date ) => string;
   fractional_s: () => string;
 }
 

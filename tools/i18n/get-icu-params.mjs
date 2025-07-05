@@ -3,7 +3,7 @@ import { capitalize } from './helper.mjs';
 export const getIcuParams = ( text ) => {
 
   let icuParams = [];
-  const re = /\{\s*(\w+).*}/gm;
+  const re = /\{\s*(\w+)\s*[^\{]*}/gm;
   let searchResult;
 
   while ((searchResult = re.exec( text )) !== null) {

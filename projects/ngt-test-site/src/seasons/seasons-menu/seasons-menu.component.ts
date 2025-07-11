@@ -1,14 +1,14 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { TranslationService } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
+import { IText_Seasons$Vivaldi } from '../../if-texts/seasons/i-text-vivaldi';
 
 @Component({
   selector: 'nts-seasons-menu',
   imports: [
-    NgTranslationModule,
     RouterLink
   ],
   templateUrl: './seasons-menu.component.html',
@@ -16,4 +16,6 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 })
 export class SeasonsMenuComponent {
 
+  private readonly translation = inject( TranslationService );
+  t = this.translation.getBranch<IText_Seasons$Vivaldi>('seasons/vivaldi');
 }

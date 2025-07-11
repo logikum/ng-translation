@@ -1,14 +1,14 @@
 /* 3rd party libraries */
-import { Component } from '@angular/core';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { Component, inject } from '@angular/core';
+import { TranslationService } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
+import { IText_Seasons$Spring } from '../../if-texts/seasons/i-text-spring';
 
 @Component({
   selector: 'icu-spring',
   imports: [
-    NgTranslationModule,
     SeasonsMenuComponent
   ],
   templateUrl: './spring.page.html',
@@ -16,4 +16,6 @@ import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 })
 export class SpringPage {
 
+  private readonly translation = inject( TranslationService );
+  t = this.translation.getBranch<IText_Seasons$Spring>('seasons/spring');
 }

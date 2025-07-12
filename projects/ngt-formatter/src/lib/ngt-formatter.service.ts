@@ -1,7 +1,7 @@
 /* 3rd party libraries */
 import { inject, Injectable } from '@angular/core';
 import {
-  CurrencyValue, FormatterService, LocalizationRef, NGT_CONFIGURATION,
+  CurrencyValue, DateValue, FormatterService, LocalizationRef, NGT_CONFIGURATION,
   FormatData, FormatExtender, InterpolationData, MessengerService
 } from '@logikum/ngt-common';
 
@@ -85,60 +85,62 @@ export class NgtFormatterService implements FormatterService {
     value: any
   ): string {
 
-    let localized = (value === undefined || value === null) ? '' : value.toString();
+    let localized: string;
     const result = RegExp( re ).exec( data.text );
-    if (result && result[ 1 ]) {
+    if (result?.[ 1 ]) {
       const group = result[ 1 ].trim();
       if (group.startsWith( INTL_SEP )) {
 
-        let format = group.substring( INTL_SEP.length );
         let params = '';
+        let format = group.substring( INTL_SEP.length );
         const pos = format.indexOf( PATTERN_SEP );
         if (pos > 0) {
           params = format.substring( pos + PATTERN_SEP.length );
           format = format.substring( 0, pos );
         }
-        format = format.trim();
-        const fdata: FormatData = {
+        localized = this.getLocalizedValue( format.trim(), {
           key: data.key,
           locale: data.locale,
           params: params,
           value: value
-        };
-        let interpolated: string;
-        switch (format) {
-          case 'N':
-          case 'number':
-            localized = this.numberFormatter.format( fdata );
-            break;
-          case 'P':
-          case 'percent':
-            localized = this.percentFormatter.format( fdata );
-            break;
-          case 'C':
-          case 'currency':
-            localized = this.currencyFormatter.format( fdata );
-            break;
-          case 'D':
-          case 'datetime':
-            localized = this.datetimeFormatter.format( fdata );
-            break;
-          case 'R':
-          case 'plural':
-            localized = this.pluralFormatter.format( fdata );
-            break;
-          default:
-            interpolated = this.extender.interpolate( format, fdata );
-            if (interpolated !== undefined) {
-              localized = interpolated;
-            } else {
-              this.messenger.formatError( data.key, format );
-            }
-            break;
-        }
+        } );
       }
     }
+    localized ??= (value ?? '').toString();
     return result ? data.text.replace( result[ 0 ], localized ) : data.text;
+  }
+
+  private getLocalizedValue(
+    format: string,
+    formatData: FormatData
+  ): string {
+
+    let interpolated: string;
+    switch (format) {
+      case 'N':
+      case 'number':
+        return this.numberFormatter.format( formatData );
+      case 'P':
+      case 'percent':
+        return this.percentFormatter.format( formatData );
+      case 'C':
+      case 'currency':
+        return this.currencyFormatter.format( formatData );
+      case 'D':
+      case 'datetime':
+        return this.datetimeFormatter.format( formatData );
+      case 'R':
+      case 'plural':
+        return this.pluralFormatter.format( formatData );
+      default:
+        interpolated = this.extender.interpolate( format, formatData );
+        if (interpolated !== undefined) {
+          return interpolated;
+        } else {
+          this.messenger.formatError( formatData.key, format );
+          return undefined;
+        }
+    }
   }
 
   getLocalizationRef(): LocalizationRef {
@@ -197,7 +199,7 @@ export class NgtFormatterService implements FormatterService {
       },
       datetime: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
 
@@ -207,14 +209,14 @@ export class NgtFormatterService implements FormatterService {
       },
       date: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
         throw new Error( 'Method date() is not implemented in NgT Formatter Service.' );
       },
       time: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
         throw new Error( 'Method time() is not implemented in NgT Formatter Service.' );

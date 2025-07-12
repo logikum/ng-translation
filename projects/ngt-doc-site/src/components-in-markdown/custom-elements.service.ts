@@ -5,16 +5,17 @@ import { CounterComponent } from './counter/counter.component';
 
 @Injectable({ providedIn: 'root' })
 export class CustomElementsService {
-  private _injector = inject(Injector);
+
+  private readonly injector = inject(Injector);
 
   setupCustomElements() {
     const subscribeElement = createCustomElement(SubscribeComponent, {
-      injector: this._injector,
+      injector: this.injector,
     });
     customElements.define('subscribe-component', subscribeElement);
 
     const counterElement = createCustomElement(CounterComponent, {
-      injector: this._injector,
+      injector: this.injector,
     });
     customElements.define('counter-component', counterElement);
   }

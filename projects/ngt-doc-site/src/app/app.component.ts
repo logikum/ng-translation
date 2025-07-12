@@ -25,8 +25,8 @@ import { FooterComponent } from './footer/footer.component';
 })
 export class AppComponent {
 
-  private appService = inject(AppService);
-  private hiddenSubject = new BehaviorSubject<boolean>(false);
+  private readonly appService = inject(AppService);
+  private readonly hiddenSubject = new BehaviorSubject<boolean>(false);
 
   title = 'NgTranslation';
   @ViewChild('sideMenu', { read: ElementRef}) private sideMenu: ElementRef;
@@ -36,6 +36,7 @@ export class AppComponent {
   }
 
   constructor() {
+
     this.appService.contentChange$
       .pipe(takeUntilDestroyed())
       .subscribe(contentChange => {

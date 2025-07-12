@@ -3,7 +3,7 @@ import { capitalize } from './helper.mjs';
 export const getIcuParams = ( text ) => {
 
   let icuParams = [];
-  const re = /\{\s*(\w+)\s*[^\{]*}/gm;
+  const re = /\{\s*(\w+)\s*[^{]*}/gm;
   let searchResult;
 
   while ((searchResult = re.exec( text )) !== null) {
@@ -36,7 +36,7 @@ export const getIcuParams = ( text ) => {
           break;
       }
     }
-    const len = icuParams.push( `${argName}: ${argType}` );
+    icuParams.push( `${argName}: ${argType}` );
   }
   return icuParams.length > 0 ? ` ${ icuParams.join(', ')} ` : '';
 };

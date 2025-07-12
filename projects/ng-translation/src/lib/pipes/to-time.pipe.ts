@@ -1,5 +1,6 @@
 /* 3rd party libraries */
 import { Pipe, PipeTransform } from '@angular/core';
+import { DateValue } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationPipeBase } from './translation-pipe-base';
@@ -12,7 +13,7 @@ import { TranslationPipeBase } from './translation-pipe-base';
 export class ToTimePipe extends TranslationPipeBase implements PipeTransform {
 
   transform(
-    value: Date | number | string,
+    value: DateValue,
     args?: string
   ): string {
 

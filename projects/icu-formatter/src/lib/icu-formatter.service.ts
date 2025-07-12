@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { IntlMessageFormat } from 'intl-messageformat';
 import {
-  CurrencyValue, FormatExtender, FormatterService, InterpolationData,
+  CurrencyValue, DateValue, FormatExtender, FormatterService, InterpolationData,
   LocalizationRef, NGT_CONFIGURATION
 } from '@logikum/ngt-common';
 
@@ -91,10 +91,10 @@ export class IcuFormatterService implements FormatterService {
       Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
         if (args[ key ] === null || args[ key ] === undefined) {
           const re = new RegExp( `\\{\\s*${ key }\\s*,.*}`, 'gm' );
-          const found = text.match( re );
-          if (found) {
-            found.forEach( placeholder => {
-              text = text.replace( placeholder, '' );
+          const matches = re.exec( text );
+          if (matches) {
+            matches.forEach( match => {
+              text = text.replace( match[0], '' );
             } );
           }
         }
@@ -108,17 +108,17 @@ export class IcuFormatterService implements FormatterService {
     args?: object
   ): string {
 
-    const found = text.match( /currency\/_[_0-9]_/g );
-    if (found) {
-      found.forEach( placeholder => {
-        const index = placeholder.match( /[0-9]/ );
+    const matches = text.match( /currency\/_[_0-9]_/g );
+    if (matches) {
+      matches.forEach( match => {
+        const index = /\d/.exec( match );
         if (index === null) {
           text = text.replaceAll(
             '___',
             this.getCurrencyCode( args )
           );
         } else {
-          text = text.replaceAll( `_${ index }_`,
+          text = text.replaceAll( `_${ index[0] }_`,
             this.getCurrencyCode( args, index.toString() )
           );
         }
@@ -235,14 +235,14 @@ export class IcuFormatterService implements FormatterService {
       },
       datetime: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
         throw new Error( 'Method datetime() is not implemented in ICU Formatter Service.' );
       },
       date: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
 
@@ -255,7 +255,7 @@ export class IcuFormatterService implements FormatterService {
       },
       time: (
         locale: string,
-        value: Date | number | string,
+        value: DateValue,
         args?: string
       ): string => {
 

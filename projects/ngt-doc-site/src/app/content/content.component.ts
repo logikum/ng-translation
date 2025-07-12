@@ -20,8 +20,8 @@ import { MarkdownRendererComponent } from '../../markdown-renderer/markdown-rend
 })
 export class ContentComponent {
 
-  private appService = inject(AppService);
-  private contentSubject = new BehaviorSubject<string>(null);
+  private readonly appService = inject(AppService);
+  private readonly contentSubject = new BehaviorSubject<string>(null);
 
   get content$(): Observable<string> {
     return this.contentSubject.asObservable();

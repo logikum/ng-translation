@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { CurrencyValue } from '@logikum/ngt-common';
+import { CurrencyValue, DateValue } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 
@@ -9,7 +9,7 @@ export interface LocalizeContext {
   percent( value: number, args?: string ): string;
   currency( value: CurrencyValue, args?: string ): string;
   money( value: number, currency: string, args?: string ): string;
-  datetime( value: Date | number | string, args?: string ): string;
-  date( value: Date | number | string, args?: string ): string;
-  time( value: Date | number | string, args?: string ): string;
+  datetime( value: DateValue, args?: string ): string;
+  date( value: DateValue, args?: string ): string;
+  time( value: DateValue, args?: string ): string;
 }

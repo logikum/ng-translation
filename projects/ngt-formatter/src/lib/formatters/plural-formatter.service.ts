@@ -21,7 +21,7 @@ export class PluralFormatterService {
     if (data.value === null || data.value === undefined) {
       return '';
     }
-    const options = new Map();
+    const options = new Map<number|string, string>();
     const items = data.params.split( OPTION_SEP );
 
     items.forEach( item => {
@@ -35,27 +35,9 @@ export class PluralFormatterService {
         } else {
           const pos = optionName.indexOf( RANGE_SEP );
           if (pos > 0) {
-            const range = optionName.split( RANGE_SEP );
-            const from = parseInt( range[ 0 ], 10 );
-            const to = parseInt( range[ 1 ], 10 );
-            if (isNaN( from ) || isNaN( to )) {
-              this.messenger.pluralError( data.key, optionName );
-            } else if (from > to) {
-              for (let i = to; i <= from; i++) {
-                options.set( i, optionValue );
-              }
-            } else {
-              for (let i = from; i <= to; i++) {
-                options.set( i, optionValue );
-              }
-            }
+            this.setRangeOption( options, optionName, optionValue, data.key );
           } else {
-            const i = parseInt( optionName, 10 );
-            if (isNaN( i )) {
-              this.messenger.pluralError( data.key, optionName );
-            } else {
-              options.set( i, optionValue );
-            }
+            this.setNumberOption( options, optionName, optionValue, data.key );
           }
         }
       } else if (parts.length > 2) {
@@ -73,5 +55,43 @@ export class PluralFormatterService {
       value: data.value
     } );
     return pluralized.replace( VALUE_PH, value );
+  }
+
+  private setRangeOption(
+    options: Map<number|string, string>,
+    optionName: string,
+    optionValue: string,
+    key: string
+  ): void {
+
+    const range = optionName.split( RANGE_SEP );
+    const from = parseInt( range[ 0 ], 10 );
+    const to = parseInt( range[ 1 ], 10 );
+    if (isNaN( from ) || isNaN( to )) {
+      this.messenger.pluralError( key, optionName );
+    } else if (from > to) {
+      for (let i = to; i <= from; i++) {
+        options.set( i, optionValue );
+      }
+    } else {
+      for (let i = from; i <= to; i++) {
+        options.set( i, optionValue );
+      }
+    }
+  }
+
+  private setNumberOption(
+    options: Map<number|string, string>,
+    optionName: string,
+    optionValue: string,
+    key: string
+  ): void {
+
+    const i = parseInt( optionName, 10 );
+    if (isNaN( i )) {
+      this.messenger.pluralError( key, optionName );
+    } else {
+      options.set( i, optionValue );
+    }
   }
 }

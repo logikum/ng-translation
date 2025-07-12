@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
-  CurrencyValue, FormatData, LocalizationRef, MessengerService,
+  CurrencyValue, DateValue, FormatData, LocalizationRef, MessengerService,
   NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, NGT_FORMATTER_SERVICE
 } from '@logikum/ngt-common';
 
@@ -542,7 +542,7 @@ export class TranslationService implements LocalizeContext {
   }
 
   datetime(
-    value: Date | number | string,
+    value: DateValue,
     args?: string
   ): string {
 
@@ -550,7 +550,7 @@ export class TranslationService implements LocalizeContext {
   }
 
   date(
-    value: Date | number | string,
+    value: DateValue,
     args?: string
   ): string {
 
@@ -558,7 +558,7 @@ export class TranslationService implements LocalizeContext {
   }
 
   time(
-    value: Date | number | string,
+    value: DateValue,
     args?: string
   ): string {
 

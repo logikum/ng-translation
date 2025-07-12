@@ -45,7 +45,7 @@ export const getNgtParams = ( text ) => {
           break;
       }
     }
-    const len = ngtParams.push( `${argName}: ${argType}` );
+    ngtParams.push( `${argName}: ${argType}` );
   }
   return ngtParams.length > 0 ? ` ${ ngtParams.join(', ')} ` : '';
 }

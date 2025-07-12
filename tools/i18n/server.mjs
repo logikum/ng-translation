@@ -3,12 +3,6 @@ import { setTimeout } from 'node:timers';
 import Observer from './observer.mjs';
 import { updateI18n } from './update-i18n.mjs';
 
-// const txt = 'ashagjsdg {{ ablak | N }} dash {{1}}x';
-// const re = new RegExp( '\\{\\{\\s*(\\w+)[|\\s\\w]*}}', 'gm' );
-// //const result = RegExp( re ).exec( txt );
-// const result = txt.match( re)
-// const c = result.length;
-
 if (process.argv.length < 4) {
   console.log('Usage: node server sourcePath targetPath [interfacePath] [ngt|icu]');
   process.exit(1);
@@ -17,8 +11,11 @@ const sourcePath = path.resolve( process.cwd(), process.argv[2] );
 const targetPath = path.resolve( process.cwd(), process.argv[3] );
 const interfacePath = process.argv[4]
   ? path.resolve( process.cwd(), process.argv[4] ) : '';
-const formatter = process.argv[5]
-  ? (process.argv[5].toLowerCase() === 'icu' ? 'icu' : 'ngt') : 'ngt';
+
+let formatter = 'ngt';
+if (process.argv[5]) {
+  formatter = process.argv[ 5 ].toLowerCase() === 'icu' ? 'icu' : 'ngt';
+}
 
 const observer = new Observer();
 

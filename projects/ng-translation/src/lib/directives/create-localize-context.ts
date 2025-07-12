@@ -1,5 +1,5 @@
 /* 3rd party libraries */
-import { CurrencyValue, FormatData, LocalizationRef } from '@logikum/ngt-common';
+import { CurrencyValue, DateValue, FormatData, LocalizationRef } from '@logikum/ngt-common';
 
 /* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../translation.service';
@@ -41,19 +41,19 @@ export function createLocalizeContext(
       return localize.money( translation.activeLanguage, value, currency, args );
     },
     datetime(
-      value: Date | number | string,
+      value: DateValue,
       args: string
     ): string {
       return localize.datetime( translation.activeLanguage, value, args );
     },
     date(
-      value: Date | number | string,
+      value: DateValue,
       args: string
     ): string {
       return localize.date( translation.activeLanguage, value, args );
     },
     time(
-      value: Date | number | string,
+      value: DateValue,
       args: string
     ): string {
       return localize.time( translation.activeLanguage, value, args );

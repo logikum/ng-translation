@@ -10,7 +10,8 @@ import { markdownToHtml } from './transform-markdown';
   providedIn: 'root',
 })
 export class MarkdownService {
-  private httpClient = inject(HttpClient);
+
+  private readonly httpClient = inject(HttpClient);
 
   htmlContent(
     src: string

@@ -10,7 +10,7 @@ import { Chapter, ContentChangeEvent } from './content-change.event';
 })
 export class AppService {
 
-  private changeSubject: BehaviorSubject<ContentChangeEvent>;
+  private readonly changeSubject: BehaviorSubject<ContentChangeEvent>;
   chapter: Chapter = 'home';
   title = '';
   content = '';
@@ -20,6 +20,7 @@ export class AppService {
   }
 
   constructor() {
+
     this.changeSubject = new BehaviorSubject<ContentChangeEvent>({
       chapter: this.chapter,
       content: this.content
@@ -30,6 +31,7 @@ export class AppService {
     chapter: Chapter,
     title: string
   ): void {
+
     this.chapter = chapter;
     this.title = title;
     this.content = '';
@@ -39,11 +41,13 @@ export class AppService {
   setContent(
     content: string
   ): void {
+
     this.content = content;
     this.sendNotification();
   }
 
   private sendNotification(): void {
+
     this.changeSubject.next({
       chapter: this.chapter,
       content: this.content

@@ -17,7 +17,7 @@ import { SideMenuItem } from '../side-menu-item.model';
 })
 export class SideMenuComponent {
 
-  private appService = inject(AppService);
+  private readonly appService = inject(AppService);
 
   @Input() items$: Observable<Array<SideMenuItem>>;
   @Input() level = 0;

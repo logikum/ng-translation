@@ -23,8 +23,8 @@ import * as api from './chapters/api.json';
 })
 export class MenuComponent {
 
-  private appService = inject(AppService);
-  private itemsSubject = new BehaviorSubject<Array<SideMenuItem>>([]);
+  private readonly appService = inject(AppService);
+  private readonly itemsSubject = new BehaviorSubject<Array<SideMenuItem>>([]);
   private currentChapter = '';
 
   get title(): string {
@@ -35,6 +35,7 @@ export class MenuComponent {
   }
 
   constructor() {
+
     this.appService.contentChange$
       .pipe(takeUntilDestroyed())
       .subscribe(contentChange => {
@@ -82,6 +83,7 @@ export class MenuComponent {
   private selectContent(
     content: string
   ): void {
+
     if (this.appService.content !== content) {
       this.appService.setContent(content);
     }

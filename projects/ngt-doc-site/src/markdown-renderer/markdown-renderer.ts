@@ -13,13 +13,13 @@ import { MarkdownService } from './markdown.service';
 })
 export class MarkdownRendererComponent {
 
-  private _elementRef = inject<ElementRef>(ElementRef);
-  private markdownService = inject(MarkdownService);
+  private readonly _elementRef = inject<ElementRef>(ElementRef);
+  private readonly markdownService = inject(MarkdownService);
 
   src = input.required<string>();
-  // textContent = '';
 
   constructor() {
+
     effect(() => {
       const src = this.src();
       this.setDataFromSrc(src);
@@ -29,6 +29,7 @@ export class MarkdownRendererComponent {
   private setDataFromSrc(
     src: string
   ): void {
+
     this.markdownService
       .htmlContent(src)
       .pipe(take(1))
@@ -40,8 +41,8 @@ export class MarkdownRendererComponent {
   private updateDocument(
     rawHTML: string
   ): void {
+
     this._elementRef.nativeElement.innerHTML = rawHTML;
-    // this.textContent = this._elementRef.nativeElement.textContent;
     highlightJs.highlightAll();
   }
 }

@@ -15,7 +15,7 @@ import * as topMenu from './top-menu.json';
 })
 export class HeaderComponent {
 
-  private appService = inject(AppService);
+  private readonly appService = inject(AppService);
 
   chapters = (topMenu as any).default as Array<TopMenuItem>;
 
@@ -28,6 +28,7 @@ export class HeaderComponent {
   selectChapter(
     chapter: TopMenuItem
   ): void {
+
     if (this.appService.chapter !== chapter.id) {
       this.appService.setChapter(chapter.id, chapter.text);
     }

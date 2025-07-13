@@ -6,16 +6,16 @@ import { TranslationService } from '@logikum/ng-translation';
 import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 import { IText_Seasons$Spring } from '../../if-texts/seasons/i-text-spring';
 
-@Component({
+@Component( {
   selector: 'nts-spring',
   imports: [
     SeasonsMenuComponent
   ],
   templateUrl: './spring.page.html',
   styleUrl: './spring.page.css'
-})
+} )
 export class SpringPage {
 
   private readonly translation = inject( TranslationService );
-  t = this.translation.getBranch<IText_Seasons$Spring>('seasons/spring');
+  readonly t = this.translation.getTextObject<IText_Seasons$Spring>( 'seasons/spring' );
 }

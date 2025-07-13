@@ -11,7 +11,7 @@ import { PipeComponent } from './pipe/pipe.component';
 import { AttributeComponent } from './attribute/attribute.component';
 import { ReaderComponent } from './reader/reader.component';
 
-@Component({
+@Component( {
   selector: 'nts-translation-tests',
   imports: [
     NgTranslationModule,
@@ -24,10 +24,10 @@ import { ReaderComponent } from './reader/reader.component';
   ],
   templateUrl: './general-tests.page.html',
   styleUrl: './general-tests.page.css'
-})
+} )
 export class GeneralTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'general';

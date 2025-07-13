@@ -37,13 +37,13 @@ export class CustomFormatExtender extends FormatExtenderBase {
       case FormatName.roman:
         return integerToRoman( parseInt( data.value, 10 ) );
       case FormatName.appStatus:
-        return this.translation.get(`app.enums.appStatus.${ AppStatus[ data.value ] }`);
+        return this.translation.get( `app.enums.appStatus.${ AppStatus[ data.value ] }` );
       case FormatName.logLevel:
-        return this.translation.get(`enums.logLevel.${ LogLevel[ data.value ] }`);
+        return this.translation.get( `enums.logLevel.${ LogLevel[ data.value ] }` );
       case FormatName.season:
-        return this.translation.get(`enums.season.${ getEnumName( Season, data.value ) }`);
+        return this.translation.get( `enums.season.${ getEnumName( Season, data.value ) }` );
       case FormatName.month:
-        return this.translation.get(`enums.month.${ Month[ data.value ] }`);
+        return this.translation.get( `enums.month.${ Month[ data.value ] }` );
       default:
         return undefined;
     }

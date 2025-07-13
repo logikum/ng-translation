@@ -4,14 +4,14 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'nts-inline-loader',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './inline-loader.component.html',
   styleUrl: './inline-loader.component.css'
-})
+} )
 export class InlineLoaderComponent {
 
 }

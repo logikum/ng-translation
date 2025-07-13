@@ -4,15 +4,17 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'nts-translation-string',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './translation-string.component.html',
   styleUrl: './translation-string.component.css'
-})
+} )
 export class TranslationStringComponent {
 
-  get today(): Date { return new Date(); }
+  get today(): Date {
+    return new Date();
+  }
 }

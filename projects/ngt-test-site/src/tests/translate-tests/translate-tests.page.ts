@@ -11,7 +11,7 @@ import { CurrencyFormatComponent } from './currency-format/currency-format.compo
 import { DatetimeFormatComponent } from './datetime-format/datetime-format.component';
 import { PluralFormatComponent } from './plural-format/plural-format.component';
 
-@Component({
+@Component( {
   selector: 'nts-localization-tests',
   imports: [
     NgTranslationModule,
@@ -24,10 +24,10 @@ import { PluralFormatComponent } from './plural-format/plural-format.component';
   ],
   templateUrl: './translate-tests.page.html',
   styleUrl: './translate-tests.page.css'
-})
+} )
 export class TranslateTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'translate';

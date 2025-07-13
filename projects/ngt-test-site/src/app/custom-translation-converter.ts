@@ -28,7 +28,7 @@ function csv2object(
 ): object {
 
   const result: object = {};
-  const lines: Array<string> = translations.split('\n');
+  const lines: Array<string> = translations.split( '\n' );
   for (const line of lines) {
 
     const position = line.indexOf( ':' );

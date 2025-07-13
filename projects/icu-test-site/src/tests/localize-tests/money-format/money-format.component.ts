@@ -1,18 +1,18 @@
 /* 3rd party libraries */
 import { Component } from '@angular/core';
-import { NgTranslationModule, LocalizeContext, TranslationService } from '@logikum/ng-translation';
+import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'icu-money-format',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './money-format.component.html',
   styleUrl: './money-format.component.css'
-})
+} )
 export class MoneyFormatComponent {
 
-  amount = 12345.678;
+  readonly amount = 12345.678;
 }

@@ -11,7 +11,7 @@ import { CurrencyFormatComponent } from './currency-format/currency-format.compo
 import { MoneyFormatComponent } from './money-format/money-format.component';
 import { DatetimeFormatComponent } from './datetime-format/datetime-format.component';
 
-@Component({
+@Component( {
   selector: 'icu-localize-tests',
   imports: [
     NgTranslationModule,
@@ -24,10 +24,10 @@ import { DatetimeFormatComponent } from './datetime-format/datetime-format.compo
   ],
   templateUrl: './localize-tests.page.html',
   styleUrl: './localize-tests.page.css'
-})
+} )
 export class LocalizeTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'localize';

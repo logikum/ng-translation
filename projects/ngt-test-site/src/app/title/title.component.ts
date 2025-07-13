@@ -6,15 +6,17 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 /* locally accessible feature module code, always use a relative path */
 import { ContentService } from '../../shared/content.service';
 
-@Component({
+@Component( {
   selector: 'nts-title',
   imports: [ RouterLink, NgTranslationModule ],
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'
-})
+} )
 export class TitleComponent {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
-  get title(): Signal<string> { return this.contentService.title; }
+  get title(): Signal<string> {
+    return this.contentService.title;
+  }
 }

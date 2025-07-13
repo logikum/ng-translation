@@ -10,7 +10,7 @@ import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.compo
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { LocaleListComponent } from './locale-list/locale-list.component';
 
-@Component({
+@Component( {
   selector: 'nts-model-tests',
   imports: [
     NgTranslationModule,
@@ -22,10 +22,10 @@ import { LocaleListComponent } from './locale-list/locale-list.component';
   ],
   templateUrl: './model-tests.page.html',
   styleUrl: './model-tests.page.css'
-})
+} )
 export class ModelTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'model';

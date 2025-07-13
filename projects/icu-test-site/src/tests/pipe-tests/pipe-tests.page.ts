@@ -11,7 +11,7 @@ import { ToCurrencyComponent } from './to-currency/to-currency.component';
 import { ToMoneyComponent } from './to-money/to-money.component';
 import { ToDatetimeComponent } from './to-datetime/to-datetime.component';
 
-@Component({
+@Component( {
   selector: 'icu-pipe-tests',
   imports: [
     NgTranslationModule,
@@ -24,10 +24,10 @@ import { ToDatetimeComponent } from './to-datetime/to-datetime.component';
   ],
   templateUrl: './pipe-tests.page.html',
   styleUrl: './pipe-tests.page.css'
-})
+} )
 export class PipeTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'pipe';

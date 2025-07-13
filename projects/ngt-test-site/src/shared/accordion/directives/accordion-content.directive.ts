@@ -3,9 +3,9 @@ import { Directive, TemplateRef } from '@angular/core';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Directive({
+@Directive( {
   selector: '[ftsAccordionContent]'
-})
+} )
 export class AccordionContentDirective {
 
   constructor(

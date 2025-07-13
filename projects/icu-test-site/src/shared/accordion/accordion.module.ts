@@ -9,7 +9,7 @@ import { AccordionContentDirective } from './directives/accordion-content.direct
 import { AccordionTitleDirective } from './directives/accordion-title.directive';
 import { AccordionHeaderDirective } from './directives/accordion-header.directive';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     AccordionComponent,
@@ -25,5 +25,6 @@ import { AccordionHeaderDirective } from './directives/accordion-header.directiv
     AccordionTitleDirective,
     AccordionHeaderDirective
   ]
-})
-export class AccordionModule {}
+} )
+export class AccordionModule {
+}

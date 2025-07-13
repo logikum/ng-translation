@@ -1,25 +1,22 @@
 /* 3rd party libraries */
 import { Component, inject } from '@angular/core';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
 import { NgtLocaleList } from '@logikum/ngt-models';
 
 /* locally accessible feature module code, always use a relative path */
-import { AppService } from '../../../app/app.service';
 
-@Component({
+@Component( {
   selector: 'icu-locale-list',
-  imports: [
-    NgTranslationModule
-  ],
+  imports: [ NgTranslationModule ],
   templateUrl: './locale-list.component.html',
   styleUrl: './locale-list.component.css'
-})
+} )
 export class LocaleListComponent {
 
-  private readonly appService = inject( AppService );
+  private readonly translation = inject( TranslationService );
 
-  locales = new NgtLocaleList(
-    this.appService.translation,
+  readonly locales = new NgtLocaleList(
+    this.translation,
     [ 'en-US', 'hu', 'it', 'pt-BR' ]
   );
 

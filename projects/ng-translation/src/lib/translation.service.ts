@@ -11,7 +11,7 @@ import {
 /* locally accessible feature module code, always use a relative path */
 import {
   Locale, NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER, Resource, ResourceList,
-  ResourceLoader, TranslationBranch, TranslationChange, LocalizeContext
+  ResourceLoader, TextObject, TranslationChange, LocalizeContext
 } from './models';
 import {
   ArrayBufferLoader, BlobLoader, JsonLoader, TextLoader, InlineLoader
@@ -496,12 +496,12 @@ export class TranslationService implements LocalizeContext {
 
   // endregion
 
-  //region Get translation branch
+  //region Get text object
 
-  getBranch<BranchType>(
+  getTextObject<TextObjectType>(
     node: string
-  ): BranchType {
-    return new TranslationBranch( node ) as BranchType;
+  ): TextObjectType {
+    return new TextObject( node ) as TextObjectType;
   }
 
   //endregion

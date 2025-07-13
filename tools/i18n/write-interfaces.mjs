@@ -6,14 +6,15 @@ import { getNgtParams } from './get-ngt-params.mjs';
 export const writeInterfaces = (targetPath, formatter, texts) => {
 
   cleanTexts( texts );
-  const imports = getImportStatements( targetPath );
+  const baseImports = getImportStatements( targetPath );
   for (let property in texts) {
 
     let interfaceDir = targetPath;
     let filename = property;
+    let isSubdirectory = property.indexOf( '/' ) > -1;
 
     let shortPath;
-    if (property.indexOf( '/' ) > -1) {
+    if (isSubdirectory) {
       const parts = property.split( '/' );
       for (let i = 0; i < parts.length; i++) {
         if (parts[ i ].trim() === '')
@@ -33,6 +34,9 @@ export const writeInterfaces = (targetPath, formatter, texts) => {
 
     filename = dashize( filename );
     const interfacePath = interfaceDir + '/i-text-' + filename + '.ts';
+    let imports = isSubdirectory
+      ? baseImports.replaceAll('from \'', 'from \'../')
+      : baseImports;
     const text = buildInterface( formatter, '', property, texts[property], [] );
     fs.writeFileSync(
       interfacePath,

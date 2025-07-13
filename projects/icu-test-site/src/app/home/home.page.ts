@@ -15,10 +15,9 @@ import { ContentService } from '../../shared/content.service';
 } )
 export class HomePage {
 
-  private contentService = inject( ContentService );
+  private readonly contentService = inject( ContentService );
 
-  // tests = signal(tests);
-  tests = [
+  readonly tests = [
     'general', 'seasons', 'translate', 'localize', 'pipe',
     'model', 'null', 'conversion', 'other'
   ];

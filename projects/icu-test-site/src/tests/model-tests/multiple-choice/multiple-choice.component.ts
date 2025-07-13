@@ -1,13 +1,12 @@
 /* 3rd party libraries */
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
 import { NgtMultipleChoice } from '@logikum/ngt-models';
 
 /* locally accessible feature module code, always use a relative path */
-import { AppService } from '../../../app/app.service';
 
-@Component({
+@Component( {
   selector: 'icu-multiple-choice',
   imports: [
     NgTranslationModule,
@@ -15,17 +14,17 @@ import { AppService } from '../../../app/app.service';
   ],
   templateUrl: './multiple-choice.component.html',
   styleUrl: './multiple-choice.component.css'
-})
+} )
 export class MultipleChoiceComponent {
 
-  private readonly appService = inject( AppService );
+  private readonly translation = inject( TranslationService );
 
-  seasons = new NgtMultipleChoice(
-    this.appService.translation,
+  readonly seasons = new NgtMultipleChoice(
+    this.translation,
     'enums.season'
   );
-  months = new NgtMultipleChoice(
-    this.appService.translation,
+  readonly months = new NgtMultipleChoice(
+    this.translation,
     'enums.month',
     this.filterByText.bind( this )
   );
@@ -45,7 +44,7 @@ export class MultipleChoiceComponent {
         .split( '{' ).join( '&nbsp;&nbsp;&nbsp;&nbsp;{' );
   }
 
-  private  formatAsHtml(
+  private formatAsHtml(
     list: string
   ): string {
 
@@ -73,8 +72,8 @@ export class MultipleChoiceComponent {
 
     const values: Array<string> = [];
     const options = event.target.selectedOptions;
-    for (let i = 0; i < options.length; ++i) {
-      values.push( options[i].value );
+    for (const element of options) {
+      values.push( element.value );
     }
     this.seasons.selectedValues = values;
   }
@@ -85,8 +84,8 @@ export class MultipleChoiceComponent {
 
     const indexes: Array<number> = [];
     const options = event.target.selectedOptions;
-    for (let i = 0; i < options.length; ++i) {
-      indexes.push( parseInt( options[i].value, 10 ) );
+    for (const element of options) {
+      indexes.push( parseInt( element.value, 10 ) );
     }
     this.seasons.selectedIndexes = indexes;
   }

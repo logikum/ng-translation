@@ -6,17 +6,11 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 import { ContentService } from '../../shared/content.service';
 import { AccordionModule } from '../../shared/accordion/accordion.module';
 import { TranslationStringComponent } from './translation-string/translation-string.component';
-import {
-  LocalizationPipeComponent
-} from './localization-pipe/localization-pipe.component';
-import {
-  LocalizationMethodComponent
-} from './localization-method/localization-method.component';
-import {
-  CurrencyCodesComponent
-} from './currency-codes/currency-codes.component';
+import { LocalizationPipeComponent } from './localization-pipe/localization-pipe.component';
+import { LocalizationMethodComponent } from './localization-method/localization-method.component';
+import { CurrencyCodesComponent } from './currency-codes/currency-codes.component';
 
-@Component({
+@Component( {
   selector: 'nts-null-tests',
   imports: [
     NgTranslationModule,
@@ -28,10 +22,10 @@ import {
   ],
   templateUrl: './null-tests.page.html',
   styleUrl: './null-tests.page.css'
-})
+} )
 export class NullTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'null';

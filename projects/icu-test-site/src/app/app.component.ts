@@ -9,15 +9,17 @@ import { TranslationService } from '@logikum/ng-translation';
 import { HeaderComponent } from './header/header.component';
 import { TitleComponent } from './title/title.component';
 
-@Component({
+@Component( {
   selector: 'icu-root',
   imports: [ RouterOutlet, HeaderComponent, TitleComponent, AsyncPipe ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-})
+} )
 export class AppComponent {
 
-  private translation = inject(TranslationService);
+  private readonly translation = inject( TranslationService );
 
-  get isInitialized(): Observable<boolean> { return this.translation.isInitialized; }
+  get isInitialized(): Observable<boolean> {
+    return this.translation.isInitialized;
+  }
 }

@@ -4,16 +4,16 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'icu-to-percent',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './to-percent.component.html',
   styleUrl: './to-percent.component.css'
-})
+} )
 export class ToPercentComponent {
 
-  longPercent = 12.34567;
-  shortPercent = .12345;
+  readonly longPercent = 12.34567;
+  readonly shortPercent = .12345;
 }

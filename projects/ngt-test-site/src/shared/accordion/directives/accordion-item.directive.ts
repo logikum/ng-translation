@@ -6,17 +6,17 @@ import { AccordionContentDirective } from './accordion-content.directive';
 import { AccordionTitleDirective } from './accordion-title.directive';
 import { AccordionHeaderDirective } from './accordion-header.directive';
 
-@Directive({
+@Directive( {
   selector: '[ftsAccordionItem]',
   providers: [
     AccordionContentDirective, AccordionTitleDirective, AccordionHeaderDirective
   ],
-})
+} )
 export class AccordionItemDirective {
 
   @Input() title = '';
   @Input() disabled = false;
-  @ContentChild(AccordionContentDirective) content: AccordionContentDirective;
-  @ContentChild(AccordionTitleDirective) customTitle: AccordionTitleDirective;
-  @ContentChild(AccordionHeaderDirective) customHeader: AccordionHeaderDirective;
+  @ContentChild( AccordionContentDirective ) content: AccordionContentDirective;
+  @ContentChild( AccordionTitleDirective ) customTitle: AccordionTitleDirective;
+  @ContentChild( AccordionHeaderDirective ) customHeader: AccordionHeaderDirective;
 }

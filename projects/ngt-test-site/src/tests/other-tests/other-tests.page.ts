@@ -10,7 +10,7 @@ import { FormatExtenderComponent } from './format-extender/format-extender.compo
 import { EnumerationComponent } from './enumeration/enumeration.component';
 import { InlineLoaderComponent } from './inline-loader/inline-loader.component';
 
-@Component({
+@Component( {
   selector: 'nts-other-tests',
   imports: [
     NgTranslationModule,
@@ -22,10 +22,10 @@ import { InlineLoaderComponent } from './inline-loader/inline-loader.component';
   ],
   templateUrl: './other-tests.page.html',
   styleUrl: './other-tests.page.css'
-})
+} )
 export class OtherTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'other';

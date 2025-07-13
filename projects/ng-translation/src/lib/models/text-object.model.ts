@@ -6,7 +6,7 @@ import { InterpolationData, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 /* locally accessible feature module code, always use a relative path */
 import { TranslationService } from '../translation.service';
 
-export class TranslationBranch /*implements OnChanges*/ {
+export class TextObject {
 
   readonly #__translation = inject( TranslationService );
   readonly #__formatter = inject( NGT_FORMATTER_SERVICE );

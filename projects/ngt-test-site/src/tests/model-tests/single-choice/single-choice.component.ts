@@ -1,31 +1,27 @@
 /* 3rd party libraries */
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgTranslationModule } from '@logikum/ng-translation';
+import { NgTranslationModule, TranslationService } from '@logikum/ng-translation';
 import { NgtSingleChoice } from '@logikum/ngt-models';
 
 /* locally accessible feature module code, always use a relative path */
-import { AppService } from '../../../app/app.service';
 
-@Component({
+@Component( {
   selector: 'nts-single-choice',
-  imports: [
-    NgTranslationModule,
-    FormsModule
-  ],
+  imports: [ NgTranslationModule, FormsModule ],
   templateUrl: './single-choice.component.html',
   styleUrl: './single-choice.component.css'
-})
+} )
 export class SingleChoiceComponent {
 
-  private readonly appService = inject( AppService );
+  private readonly translation = inject( TranslationService );
 
-  seasons = new NgtSingleChoice(
-    this.appService.translation,
+  readonly seasons = new NgtSingleChoice(
+    this.translation,
     'enums.season'
   );
-  months = new NgtSingleChoice(
-    this.appService.translation,
+  readonly months = new NgtSingleChoice(
+    this.translation,
     'enums.month',
     this.filterByText.bind( this )
   );

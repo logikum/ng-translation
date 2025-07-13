@@ -14,7 +14,7 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 } )
 export class ReaderComponent {
 
-  today = { today: Date.now() };
-  stock = { surge: 0.0206, points: 16724.46 };
-  book = { current: 60, currency1: 'USD', onSale: 48, currency2: 'USD' };
+  readonly today = { today: Date.now() };
+  readonly stock = { surge: 0.0206, points: 16724.46 };
+  readonly book = { current: 60, currency1: 'USD', onSale: 48, currency2: 'USD' };
 }

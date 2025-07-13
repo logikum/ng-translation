@@ -6,16 +6,16 @@ import { TranslationService } from '@logikum/ng-translation';
 import { SeasonsMenuComponent } from '../seasons-menu/seasons-menu.component';
 import { IText_Seasons$Autumn } from '../../if-texts/seasons/i-text-autumn';
 
-@Component({
+@Component( {
   selector: 'nts-fall',
   imports: [
     SeasonsMenuComponent
   ],
   templateUrl: './autumn.page.html',
   styleUrl: './autumn.page.css'
-})
+} )
 export class AutumnPage {
 
   private readonly translation = inject( TranslationService );
-  t = this.translation.getBranch<IText_Seasons$Autumn>('seasons/autumn');
+  readonly t = this.translation.getTextObject<IText_Seasons$Autumn>( 'seasons/autumn' );
 }

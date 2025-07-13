@@ -4,16 +4,16 @@ import { NgTranslationModule } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
 
-@Component({
+@Component( {
   selector: 'icu-to-number',
   imports: [
     NgTranslationModule
   ],
   templateUrl: './to-number.component.html',
   styleUrl: './to-number.component.css'
-})
+} )
 export class ToNumberComponent {
 
-  longNumber = 1234567.1234567;
-  shortNumber = 1.2;
+  readonly longNumber = 1234567.1234567;
+  readonly shortNumber = 1.2;
 }

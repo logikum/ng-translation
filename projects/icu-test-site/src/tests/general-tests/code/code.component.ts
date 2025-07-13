@@ -17,7 +17,7 @@ import {
 } )
 export class CodeComponent {
 
-  private translation = inject( TranslationService );
+  private readonly translation = inject( TranslationService );
 
   get elements(): string {
     return this.translation.get( 'general.text.otherElements' );

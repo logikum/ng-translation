@@ -8,7 +8,7 @@ import { AccordionModule } from '../../shared/accordion/accordion.module';
 import { CsvFileComponent } from './csv-file/csv-file.component';
 import { PoFileComponent } from './po-file/po-file.component';
 
-@Component({
+@Component( {
   selector: 'nts-conversion-tests',
   imports: [
     NgTranslationModule,
@@ -18,10 +18,10 @@ import { PoFileComponent } from './po-file/po-file.component';
   ],
   templateUrl: './conversion-tests.page.html',
   styleUrl: './conversion-tests.page.css'
-})
+} )
 export class ConversionTestsPage {
 
-  private contentService = inject(ContentService);
+  private readonly contentService = inject( ContentService );
 
   constructor() {
     this.contentService.title = 'conversion';

@@ -9,6 +9,14 @@ import {
 /* locally accessible feature module code, always use a relative path */
 import { IntlFormatterService } from './intl-formatter.service';
 
+interface IcuSkeleton {
+
+  name: string;
+  text: string;
+  start: number;
+  end: number;
+}
+
 @Injectable( {
   providedIn: 'root'
 } )
@@ -88,19 +96,60 @@ export class IcuFormatterService implements FormatterService {
   ): string {
 
     if (args) {
-      Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
-        if (args[ key ] === null || args[ key ] === undefined) {
-          const re = new RegExp( `\\{\\s*${ key }\\s*,.*}`, 'gm' );
-          const matches = re.exec( text );
-          if (matches) {
-            matches.forEach( match => {
-              text = text.replace( match[0], '' );
+      const skeletons = this.getSkeletons( text );
+      if (skeletons.length > 0) {
+        Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
+          if (args[ key ] === null || args[ key ] === undefined) {
+            skeletons
+              .filter( s => s.name === key )
+              .forEach( s => {
+                s.text = '';
+              } );
+          }
+        } );
+        text = skeletons.map( s => s.text ).join();
+      }
+    }
+    return text;
+  }
+
+  private getSkeletons(
+    text: string
+  ): Array<IcuSkeleton> {
+
+    const result: Array<IcuSkeleton> = [];
+    let level = 0;
+    let skeleton: IcuSkeleton;
+    let lastIndex = 0;
+
+    for (let i = 0, len = text.length; i < len; i++) {
+      const char = text.charAt(i);
+      if (char === '{') {
+        if (++level === 1) {
+          skeleton = { name: '', text: '', start: i, end: -1 };
+          if (i > lastIndex) {
+            result.push( {
+              name: '',
+              text: text.substring( lastIndex, i - 1 ),
+              start: lastIndex,
+              end: i - 1
             } );
           }
         }
-      } );
+      } else if (char === '}') {
+        if (level-- === 1) {
+          skeleton.end = i;
+          skeleton.text = text.substring( skeleton.start, i + 1 );
+          const name = /[\w_$]+/m.exec( text );
+          if (name) {
+            skeleton.name = name[0].trim();
+          }
+          result.push( skeleton );
+          lastIndex = i + 1;
+        }
+      }
     }
-    return text;
+    return result;
   }
 
   private insertCurrency(

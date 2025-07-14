@@ -8,6 +8,9 @@ import { seasonSections } from '../seasons/season-sections';
 const appSections: SectionList = [
   'app', 'shared', 'enums',
   { group: 'general', items: [ 'general' ] },
+  { group: 'seasons', items: [
+      'vivaldi', 'spring', 'summer', 'autumn', 'winter'
+    ] },
   { group: 'translate', items: [ 'translate' ] },
   { group: 'localize', items: [ 'translate' ] },
   { group: 'pipe', items: [ 'translate' ] },

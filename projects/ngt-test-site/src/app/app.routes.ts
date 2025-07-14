@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { loadTranslations } from '@logikum/ng-translation';
 
 /* locally accessible feature module code, always use a relative path */
-import { HomePage } from './home/home.page';
 
 export const routes: Routes = [
   { path: 'seasons',
@@ -15,5 +14,9 @@ export const routes: Routes = [
     loadChildren: () => import('../tests/tests.module')
       .then(m => m.TestsModule)
   },
-  { path: '**', component: HomePage },
+  { path: '**',
+    // canMatch: [ loadTranslations ],
+    loadComponent: () => import('./home/home.page')
+      .then(m => m.HomePage)
+  },
 ];

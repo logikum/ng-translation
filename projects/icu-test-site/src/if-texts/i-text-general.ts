@@ -12,6 +12,26 @@ export interface IText_General {
   pipe: IText_General_Pipe;
   reader: IText_General_Reader;
   structural: IText_General_Structural;
+  textObject: IText_General_TextObject;
+}
+
+export interface IText_General_TextObject {
+
+  title: () => string;
+  form: IText_General_TextObject_Form;
+}
+
+export interface IText_General_TextObject_Form {
+
+  hint: () => string;
+  name: IText_General_TextObject_Form_Name;
+}
+
+export interface IText_General_TextObject_Form_Name {
+
+  label: () => string;
+  minLength: ( { minLength, recommended }: { minLength: number, recommended: number } ) => string;
+  maxLength: ( { maxLength }: { maxLength: number } ) => string;
 }
 
 export interface IText_General_Structural {
@@ -34,8 +54,8 @@ export interface IText_General_Reader_Form {
 export interface IText_General_Reader_Form_Name {
 
   label: () => string;
-  minLength: ( minLength: number, recommended: number ) => string;
-  maxLength: ( maxLength: number ) => string;
+  minLength: ( { minLength, recommended }: { minLength: number, recommended: number } ) => string;
+  maxLength: ( { maxLength }: { maxLength: number } ) => string;
 }
 
 export interface IText_General_Pipe {
@@ -48,9 +68,9 @@ export interface IText_General_Text {
   otherElements: () => string;
   element: IText_General_Text_Element;
   smurfs: () => string;
-  today: ( today: Date ) => string;
-  stock: ( points: number, surge: number ) => string;
-  book: ( current: [number, string], onSale: [number, string] ) => string;
+  today: ( { today }: { today: Date|number } ) => string;
+  stock: ( { points, surge }: { points: number, surge: number } ) => string;
+  book: ( { current, currency1, onSale, currency2 }: { current: number, currency1: string, onSale: number, currency2: string } ) => string;
 }
 
 export interface IText_General_Text_Element {

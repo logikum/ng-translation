@@ -17,7 +17,7 @@ export interface IText_Translate {
 export interface IText_Translate_Plural {
 
   title: () => string;
-  updated: () => string;
+  updated: ( arg0: number | string ) => string;
 }
 
 export interface IText_Translate_Percent {
@@ -27,26 +27,26 @@ export interface IText_Translate_Percent {
   basic_l: ( arg0: number ) => string;
   basic_s: ( arg0: number ) => string;
   minid_f: () => string;
-  minid_l: () => string;
-  minid_s: () => string;
+  minid_l: ( arg0: number ) => string;
+  minid_s: ( arg0: number ) => string;
   minfd_f: () => string;
-  minfd_l: () => string;
-  minfd_s: () => string;
+  minfd_l: ( arg0: number ) => string;
+  minfd_s: ( arg0: number ) => string;
   maxfd_f: () => string;
-  maxfd_l: () => string;
-  maxfd_s: () => string;
+  maxfd_l: ( arg0: number ) => string;
+  maxfd_s: ( arg0: number ) => string;
   minsd_f: () => string;
-  minsd_l: () => string;
-  minsd_s: () => string;
+  minsd_l: ( arg0: number ) => string;
+  minsd_s: ( arg0: number ) => string;
   maxsd_f: () => string;
-  maxsd_l: () => string;
-  maxsd_s: () => string;
+  maxsd_l: ( arg0: number ) => string;
+  maxsd_s: ( arg0: number ) => string;
   mixed_f: () => string;
-  mixed_l: () => string;
-  mixed_s: () => string;
+  mixed_l: ( arg0: number ) => string;
+  mixed_s: ( arg0: number ) => string;
   usegrp_f: () => string;
-  usegrp_l: () => string;
-  usegrp_s: () => string;
+  usegrp_l: ( arg0: number ) => string;
+  usegrp_s: ( arg0: number ) => string;
 }
 
 export interface IText_Translate_Number {
@@ -56,26 +56,26 @@ export interface IText_Translate_Number {
   basic_l: ( arg0: number ) => string;
   basic_s: ( arg0: number ) => string;
   minid_f: () => string;
-  minid_l: () => string;
-  minid_s: () => string;
+  minid_l: ( arg0: number ) => string;
+  minid_s: ( arg0: number ) => string;
   minfd_f: () => string;
-  minfd_l: () => string;
-  minfd_s: () => string;
+  minfd_l: ( arg0: number ) => string;
+  minfd_s: ( arg0: number ) => string;
   maxfd_f: () => string;
-  maxfd_l: () => string;
-  maxfd_s: () => string;
+  maxfd_l: ( arg0: number ) => string;
+  maxfd_s: ( arg0: number ) => string;
   minsd_f: () => string;
-  minsd_l: () => string;
-  minsd_s: () => string;
+  minsd_l: ( arg0: number ) => string;
+  minsd_s: ( arg0: number ) => string;
   maxsd_f: () => string;
-  maxsd_l: () => string;
-  maxsd_s: () => string;
+  maxsd_l: ( arg0: number ) => string;
+  maxsd_s: ( arg0: number ) => string;
   mixed_f: () => string;
-  mixed_l: () => string;
-  mixed_s: () => string;
+  mixed_l: ( arg0: number ) => string;
+  mixed_s: ( arg0: number ) => string;
   usegrp_f: () => string;
-  usegrp_l: () => string;
-  usegrp_s: () => string;
+  usegrp_l: ( arg0: number ) => string;
+  usegrp_s: ( arg0: number ) => string;
 }
 
 export interface IText_Translate_Money {
@@ -94,35 +94,35 @@ export interface IText_Translate_Datetime {
   default_l: ( arg0: Date ) => string;
   default_s: ( arg0: Date ) => string;
   short_f: () => string;
-  short_l: () => string;
-  short_s: () => string;
+  short_l: ( arg0: Date ) => string;
+  short_s: ( arg0: Date ) => string;
   medium_f: () => string;
-  medium_l: () => string;
-  medium_s: () => string;
+  medium_l: ( arg0: Date ) => string;
+  medium_s: ( arg0: Date ) => string;
   long_f: () => string;
-  long_l: () => string;
-  long_s: () => string;
+  long_l: ( arg0: Date ) => string;
+  long_s: ( arg0: Date ) => string;
   full_f: () => string;
-  full_l: () => string;
-  full_s: () => string;
+  full_l: ( arg0: Date ) => string;
+  full_s: ( arg0: Date ) => string;
   fractional_f: () => string;
-  fractional_l: () => string;
-  fractional_s: () => string;
+  fractional_l: ( arg0: Date ) => string;
+  fractional_s: ( arg0: Date ) => string;
 }
 
 export interface IText_Translate_Currency {
 
   title: () => string;
   default_f: () => string;
-  default_l: ( price: [number, string] ) => string;
-  default_s: ( price: [number, string] ) => string;
+  default_l: ( { price }: { price: [number, string] } ) => string;
+  default_s: ( { price }: { price: [number, string] } ) => string;
   code_f: () => string;
-  code_l: () => string;
-  code_s: () => string;
+  code_l: ( arg0: [number, string] ) => string;
+  code_s: ( arg0: [number, string] ) => string;
   name_f: () => string;
-  name_l: () => string;
-  name_s: () => string;
+  name_l: ( arg0: [number, string] ) => string;
+  name_s: ( arg0: [number, string] ) => string;
   symbol_f: () => string;
-  symbol_l: () => string;
-  symbol_s: () => string;
+  symbol_l: ( { price }: { price: [number, string] } ) => string;
+  symbol_s: ( { price }: { price: [number, string] } ) => string;
 }

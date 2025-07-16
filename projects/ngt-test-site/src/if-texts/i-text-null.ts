@@ -14,7 +14,7 @@ export interface IText_Null {
   percent: ( arg0: number ) => string;
   currency: ( arg0: [number, string] ) => string;
   datetime: ( arg0: Date ) => string;
-  plural: () => string;
+  plural: ( arg0: number | string ) => string;
   boolean: ( arg0: string ) => string;
   translationString: IText_Null_TranslationString;
 }

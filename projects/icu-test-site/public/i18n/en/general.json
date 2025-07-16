@@ -34,5 +34,16 @@
       "water": "water",
       "wind": "wind"
     }
+  },
+  "textObject": {
+    "title": "Using Text Object",
+    "form": {
+      "hint": "To add a new product, enter the following information",
+      "name": {
+        "label": "Product name",
+        "maxLength": "The product name cannot exceed { maxLength, number } characters.",
+        "minLength": "The product name must be at least { minLength, number } characters, but { recommended, number } characters long is recommended."
+      }
+    }
   }
 }

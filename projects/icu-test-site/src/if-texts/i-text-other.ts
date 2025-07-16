@@ -21,8 +21,8 @@ export interface IText_Other_FormatExtender {
 
   title: () => string;
   range: () => string;
-  first_last: ( first: Roman, last: Roman ) => string;
-  romanNumber: ( value: Roman ) => string;
+  first_last: ( { first, last }: { first: Roman, last: Roman } ) => string;
+  romanNumber: ( { value }: { value: Roman } ) => string;
 }
 
 export interface IText_Other_Enumeration {
@@ -32,8 +32,8 @@ export interface IText_Other_Enumeration {
   logLevel: () => string;
   season: () => string;
   month: () => string;
-  statusName: ( status: AppStatus ) => string;
-  levelName: ( level: LogLevel ) => string;
+  statusName: ( { status }: { status: AppStatus } ) => string;
+  levelName: ( { level }: { level: LogLevel } ) => string;
 }
 
 export interface IText_Other_CamelCase {

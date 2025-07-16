@@ -34,5 +34,16 @@
       "water": "víz",
       "wind": "szél"
     }
+  },
+  "textObject": {
+    "title": "Szövegobjektum használata",
+    "form": {
+      "hint": "Új termék felvételáhez adja meg az alábbi adatokat",
+      "name": {
+        "label": "Termék neve",
+        "maxLength": "A termék neve nem haladhatja meg a {{ length }} karaktert.",
+        "minLength": "A termék nevének legalább {{ 0 }} karakterből kell állnia, de {{ 1 }} karakter hosszúságú ajánlott."
+      }
+    }
   }
 }

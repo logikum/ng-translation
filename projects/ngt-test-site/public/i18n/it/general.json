@@ -34,5 +34,16 @@
       "water": "acqua",
       "wind": "vento"
     }
+  },
+  "textObject": {
+    "title": "Utilizzo dell'oggetto testo",
+    "form": {
+      "hint": "Per aggiungere un nuovo prodotto, inserisci le seguenti informazioni",
+      "name": {
+        "label": "Nome del prodotto",
+        "maxLength": "Il nome del prodotto non può superare i {{ length }} caratteri.",
+        "minLength": "Il nome del prodotto deve essere lungo almeno {{ 0 }} caratteri, ma si consiglia una lunghezza di {{ 1 }} caratteri."
+      }
+    }
   }
 }

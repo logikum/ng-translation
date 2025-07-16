@@ -17,65 +17,65 @@ export interface IText_Translate {
 export interface IText_Translate_Plural {
 
   title: () => string;
-  updated: ( just: number | string, one: number | string, formerly: number | string ) => string;
+  updated: ( { just, one, formerly }: { just: number|string, one: number|string, formerly: number|string } ) => string;
 }
 
 export interface IText_Translate_Percent {
 
   title: () => string;
   basic_f: () => string;
-  basic_l: ( shortPercent: number ) => string;
-  basic_s: ( shortPercent: number ) => string;
+  basic_l: ( { shortPercent }: { shortPercent: number } ) => string;
+  basic_s: ( { shortPercent }: { shortPercent: number } ) => string;
   minid_f: () => string;
-  minid_l: ( shortPercent: number ) => string;
-  minid_s: ( shortPercent: number ) => string;
+  minid_l: ( { shortPercent }: { shortPercent: number } ) => string;
+  minid_s: ( { shortPercent }: { shortPercent: number } ) => string;
   minfd_f: () => string;
   minfd_l: () => string;
-  minfd_s: ( shortPercent: number ) => string;
+  minfd_s: ( { shortPercent }: { shortPercent: number } ) => string;
   maxfd_f: () => string;
   maxfd_l: () => string;
-  maxfd_s: ( shortPercent: number ) => string;
+  maxfd_s: ( { shortPercent }: { shortPercent: number } ) => string;
   minsd_f: () => string;
   minsd_l: () => string;
-  minsd_s: ( longPercent: number ) => string;
+  minsd_s: ( { longPercent }: { longPercent: number } ) => string;
   maxsd_f: () => string;
   maxsd_l: () => string;
-  maxsd_s: ( longPercent: number ) => string;
+  maxsd_s: ( { longPercent }: { longPercent: number } ) => string;
   mixed_f: () => string;
-  mixed_l: ( shortPercent: number ) => string;
-  mixed_s: ( shortPercent: number ) => string;
+  mixed_l: ( { shortPercent }: { shortPercent: number } ) => string;
+  mixed_s: ( { shortPercent }: { shortPercent: number } ) => string;
   usegrp_f: () => string;
-  usegrp_l: ( longPercent: number ) => string;
-  usegrp_s: ( longPercent: number ) => string;
+  usegrp_l: ( { longPercent }: { longPercent: number } ) => string;
+  usegrp_s: ( { longPercent }: { longPercent: number } ) => string;
 }
 
 export interface IText_Translate_Number {
 
   title: () => string;
   basic_f: () => string;
-  basic_l: ( longNumber: number ) => string;
-  basic_s: ( longNumber: number ) => string;
+  basic_l: ( { longNumber }: { longNumber: number } ) => string;
+  basic_s: ( { longNumber }: { longNumber: number } ) => string;
   minid_f: () => string;
-  minid_l: ( shortNumber: number ) => string;
-  minid_s: ( shortNumber: number ) => string;
+  minid_l: ( { shortNumber }: { shortNumber: number } ) => string;
+  minid_s: ( { shortNumber }: { shortNumber: number } ) => string;
   minfd_f: () => string;
   minfd_l: () => string;
-  minfd_s: ( longNumber: number ) => string;
+  minfd_s: ( { longNumber }: { longNumber: number } ) => string;
   maxfd_f: () => string;
   maxfd_l: () => string;
-  maxfd_s: ( longNumber: number ) => string;
+  maxfd_s: ( { longNumber }: { longNumber: number } ) => string;
   minsd_f: () => string;
   minsd_l: () => string;
-  minsd_s: ( shortNumber: number ) => string;
+  minsd_s: ( { shortNumber }: { shortNumber: number } ) => string;
   maxsd_f: () => string;
   maxsd_l: () => string;
-  maxsd_s: ( longNumber: number ) => string;
+  maxsd_s: ( { longNumber }: { longNumber: number } ) => string;
   mixed_f: () => string;
-  mixed_l: ( shortNumber: number ) => string;
-  mixed_s: ( shortNumber: number ) => string;
+  mixed_l: ( { shortNumber }: { shortNumber: number } ) => string;
+  mixed_s: ( { shortNumber }: { shortNumber: number } ) => string;
   usegrp_f: () => string;
-  usegrp_l: ( longNumber: number ) => string;
-  usegrp_s: ( longNumber: number ) => string;
+  usegrp_l: ( { longNumber }: { longNumber: number } ) => string;
+  usegrp_s: ( { longNumber }: { longNumber: number } ) => string;
 }
 
 export interface IText_Translate_Money {
@@ -91,22 +91,22 @@ export interface IText_Translate_Datetime {
 
   title: () => string;
   default_f: () => string;
-  default_l: ( now: Date, now: Date ) => string;
+  default_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   default_s: () => string;
   short_f: () => string;
-  short_l: ( now: Date, now: Date ) => string;
+  short_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   short_s: () => string;
   medium_f: () => string;
-  medium_l: ( now: Date, now: Date ) => string;
+  medium_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   medium_s: () => string;
   long_f: () => string;
-  long_l: ( now: Date, now: Date ) => string;
+  long_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   long_s: () => string;
   full_f: () => string;
-  full_l: ( now: Date, now: Date ) => string;
+  full_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   full_s: () => string;
   fractional_f: () => string;
-  fractional_l: ( now: Date, now: Date ) => string;
+  fractional_l: ( { now, now }: { now: Date|number, now: Date|number } ) => string;
   fractional_s: () => string;
 }
 
@@ -114,7 +114,7 @@ export interface IText_Translate_Currency {
 
   title: () => string;
   default_f: () => string;
-  default_l: ( price: [number, string] ) => string;
+  default_l: ( { price, currency }: { price: number, currency: string } ) => string;
   default_s: () => string;
   code_f: () => string;
   code_l: () => string;

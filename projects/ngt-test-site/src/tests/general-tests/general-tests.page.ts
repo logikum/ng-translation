@@ -10,6 +10,7 @@ import { StructuralComponent } from './structural/structural.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { AttributeComponent } from './attribute/attribute.component';
 import { ReaderComponent } from './reader/reader.component';
+import { TextObjectComponent } from './text-object/text-object.component';
 
 @Component( {
   selector: 'nts-translation-tests',
@@ -20,7 +21,8 @@ import { ReaderComponent } from './reader/reader.component';
     StructuralComponent,
     PipeComponent,
     AttributeComponent,
-    ReaderComponent
+    ReaderComponent,
+    TextObjectComponent
   ],
   templateUrl: './general-tests.page.html',
   styleUrl: './general-tests.page.css'

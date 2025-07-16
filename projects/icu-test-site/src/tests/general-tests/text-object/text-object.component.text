@@ -1,0 +1,15 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> general.textObject
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Using Text Object
+
+form.hint:  To add a new product, enter the following information
+form.name.label:  Product name
+form.name.minLength:  The product name must be at least { minLength, number } characters,
+                      but { recommended, number } characters long is recommended.
+form.name.maxLength:  The product name cannot exceed { maxLength, number } characters.

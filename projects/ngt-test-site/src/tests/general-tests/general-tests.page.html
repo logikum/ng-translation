@@ -21,6 +21,13 @@
         </div>
       </ng-template>
     </div>
+    <div ftsAccordionItem [title]="t('textObject.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-text-object></nts-text-object>
+        </div>
+      </ng-template>
+    </div>
     <div ftsAccordionItem>
       <ng-template ftsAccordionTitle>
         <p class="accordion-title" [innerHTML]="t('pipe.title')">ABC</p>

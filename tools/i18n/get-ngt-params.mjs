@@ -3,14 +3,17 @@ import { capitalize } from "./helper.mjs";
 export const getNgtParams = ( text ) => {
 
   const ngtParams = [ ];
-  const re = /\{\{\s*(\w+)[|\s\w]*}}/mg;
+  const re = /\{\{\s*(\w+)[^{]*}}/mg;
   let searchResult;
+  let hasNamedArg = false;
 
   while ((searchResult = re.exec( text )) !== null) {
 
     const match  = searchResult[0];
     const token  = searchResult[1];
-    const argName = isNaN(parseInt( token, 10 )) ? token : `arg${token}`;
+    const isNamedArg = isNaN(parseInt( token, 10 ));
+    hasNamedArg ||= isNamedArg;
+    const argName = isNamedArg ? token : `arg${token}`;
 
     let argType = 'string';
     const barPos = match.indexOf( '|' );
@@ -34,18 +37,26 @@ export const getNgtParams = ( text ) => {
           break;
         case 'D':
         case 'datetime':
-          argType = 'Date';
+          argType = 'Date|number';
           break;
         case 'R':
         case 'plural':
-          argType = 'number | string';
+          argType = 'number|string';
           break;
         default:
           argType = capitalize(format);
           break;
       }
     }
-    ngtParams.push( `${argName}: ${argType}` );
+    ngtParams.push( { name: argName, type: argType } );
   }
-  return ngtParams.length > 0 ? ` ${ ngtParams.join(', ')} ` : '';
+  if (ngtParams.length) {
+    if (hasNamedArg) {
+      return ` { ${ ngtParams.map(p => p.name).join(', ')} }: { ${ ngtParams.map(p => `${p.name}: ${p.type}`).join(', ')} } `;
+    } else {
+      return ` ${ ngtParams.map(p => `${p.name}: ${p.type}`).join(', ')} `;
+    }
+  } else {
+    return '';
+  }
 }

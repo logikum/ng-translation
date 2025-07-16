@@ -12,6 +12,26 @@ export interface IText_General {
   pipe: IText_General_Pipe;
   reader: IText_General_Reader;
   structural: IText_General_Structural;
+  textObject: IText_General_TextObject;
+}
+
+export interface IText_General_TextObject {
+
+  title: () => string;
+  form: IText_General_TextObject_Form;
+}
+
+export interface IText_General_TextObject_Form {
+
+  hint: () => string;
+  name: IText_General_TextObject_Form_Name;
+}
+
+export interface IText_General_TextObject_Form_Name {
+
+  label: () => string;
+  minLength: ( arg0: number, arg1: number ) => string;
+  maxLength: ( { length }: { length: number } ) => string;
 }
 
 export interface IText_General_Structural {
@@ -35,7 +55,7 @@ export interface IText_General_Reader_Form_Name {
 
   label: () => string;
   minLength: ( arg0: string, arg1: string ) => string;
-  maxLength: ( length: string ) => string;
+  maxLength: ( { length }: { length: string } ) => string;
 }
 
 export interface IText_General_Pipe {
@@ -49,7 +69,7 @@ export interface IText_General_Text {
   element: IText_General_Text_Element;
   smurfs: () => string;
   today: ( arg0: Date ) => string;
-  stock: ( arg1: number ) => string;
+  stock: ( arg1: number, arg0: number ) => string;
   book: ( arg0: [number, string], arg1: [number, string] ) => string;
 }
 

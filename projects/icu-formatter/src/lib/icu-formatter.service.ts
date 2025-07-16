@@ -98,6 +98,7 @@ export class IcuFormatterService implements FormatterService {
     if (args) {
       const skeletons = this.getSkeletons( text );
       if (skeletons.length > 0) {
+        console.log(`skeletons: ${skeletons.map(s => JSON.stringify(s)).join(', ')}`);
         Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
           if (args[ key ] === null || args[ key ] === undefined) {
             skeletons
@@ -107,9 +108,10 @@ export class IcuFormatterService implements FormatterService {
               } );
           }
         } );
-        text = skeletons.map( s => s.text ).join();
+        text = skeletons.map( s => s.text ).join('');
       }
     }
+    console.log(`removeNullValueParams: ${text}`);
     return text;
   }
 
@@ -130,7 +132,7 @@ export class IcuFormatterService implements FormatterService {
           if (i > lastIndex) {
             result.push( {
               name: '',
-              text: text.substring( lastIndex, i - 1 ),
+              text: text.substring( lastIndex, i ),
               start: lastIndex,
               end: i - 1
             } );
@@ -140,7 +142,7 @@ export class IcuFormatterService implements FormatterService {
         if (level-- === 1) {
           skeleton.end = i;
           skeleton.text = text.substring( skeleton.start, i + 1 );
-          const name = /[\w_$]+/m.exec( text );
+          const name = /[\w_$]+/m.exec( skeleton.text );
           if (name) {
             skeleton.name = name[0].trim();
           }
@@ -148,6 +150,14 @@ export class IcuFormatterService implements FormatterService {
           lastIndex = i + 1;
         }
       }
+    }
+    if (lastIndex < text.length) {
+      result.push( {
+        name: '',
+        text: text.substring( lastIndex, text.length ),
+        start: lastIndex,
+        end: text.length - 1
+      } );
     }
     return result;
   }

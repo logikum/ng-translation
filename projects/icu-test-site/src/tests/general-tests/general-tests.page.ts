@@ -9,7 +9,6 @@ import { CodeComponent } from './code/code.component';
 import { StructuralComponent } from './structural/structural.component';
 import { PipeComponent } from './pipe/pipe.component';
 import { AttributeComponent } from './attribute/attribute.component';
-import { ReaderComponent } from './reader/reader.component';
 import { TextObjectComponent } from './text-object/text-object.component';
 
 @Component( {
@@ -21,7 +20,6 @@ import { TextObjectComponent } from './text-object/text-object.component';
     StructuralComponent,
     PipeComponent,
     AttributeComponent,
-    ReaderComponent,
     TextObjectComponent
   ],
   templateUrl: './general-tests.page.html',

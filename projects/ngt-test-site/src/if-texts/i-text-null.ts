@@ -13,8 +13,8 @@ export interface IText_Null {
   number: ( arg0: number ) => string;
   percent: ( arg0: number ) => string;
   currency: ( arg0: [number, string] ) => string;
-  datetime: ( arg0: Date ) => string;
-  plural: ( arg0: number | string ) => string;
+  datetime: ( arg0: Date|number ) => string;
+  plural: ( arg0: number|string ) => string;
   boolean: ( arg0: string ) => string;
   translationString: IText_Null_TranslationString;
 }

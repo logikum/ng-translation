@@ -10,7 +10,6 @@ export interface IText_General {
   code: IText_General_Code;
   text: IText_General_Text;
   pipe: IText_General_Pipe;
-  reader: IText_General_Reader;
   structural: IText_General_Structural;
   textObject: IText_General_TextObject;
 }
@@ -37,25 +36,6 @@ export interface IText_General_TextObject_Form_Name {
 export interface IText_General_Structural {
 
   title: () => string;
-}
-
-export interface IText_General_Reader {
-
-  title: () => string;
-  form: IText_General_Reader_Form;
-}
-
-export interface IText_General_Reader_Form {
-
-  hint: () => string;
-  name: IText_General_Reader_Form_Name;
-}
-
-export interface IText_General_Reader_Form_Name {
-
-  label: () => string;
-  minLength: ( { minLength, recommended }: { minLength: number, recommended: number } ) => string;
-  maxLength: ( { maxLength }: { maxLength: number } ) => string;
 }
 
 export interface IText_General_Pipe {

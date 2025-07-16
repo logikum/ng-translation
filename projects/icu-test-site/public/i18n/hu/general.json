@@ -20,7 +20,7 @@
     }
   },
   "structural": {
-    "title": "Strukturális direktíva használata (Context)"
+    "title": "Strukturális direktíva használata"
   },
   "text": {
     "book": "A könyv jelenlegi ára { current, number, ::currency/_1_ }, de az akció alatt { onSale, number, ::currency/_2_ } lesz.",

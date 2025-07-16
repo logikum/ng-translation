@@ -20,7 +20,7 @@
     }
   },
   "structural": {
-    "title": "Utilizzo della direttiva strutturale (Context)"
+    "title": "Utilizzo della direttiva strutturale"
   },
   "text": {
     "book": "Il libro ha attualmente un prezzo di {{ 0 | C }}, ma durante i saldi costerà {{ 1 | C }}.",

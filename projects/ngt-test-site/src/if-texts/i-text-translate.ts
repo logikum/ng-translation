@@ -17,7 +17,7 @@ export interface IText_Translate {
 export interface IText_Translate_Plural {
 
   title: () => string;
-  updated: ( arg0: number | string ) => string;
+  updated: ( arg0: number|string ) => string;
 }
 
 export interface IText_Translate_Percent {
@@ -91,23 +91,23 @@ export interface IText_Translate_Datetime {
 
   title: () => string;
   default_f: () => string;
-  default_l: ( arg0: Date ) => string;
-  default_s: ( arg0: Date ) => string;
+  default_l: ( arg0: Date|number ) => string;
+  default_s: ( arg0: Date|number ) => string;
   short_f: () => string;
-  short_l: ( arg0: Date ) => string;
-  short_s: ( arg0: Date ) => string;
+  short_l: ( arg0: Date|number ) => string;
+  short_s: ( arg0: Date|number ) => string;
   medium_f: () => string;
-  medium_l: ( arg0: Date ) => string;
-  medium_s: ( arg0: Date ) => string;
+  medium_l: ( arg0: Date|number ) => string;
+  medium_s: ( arg0: Date|number ) => string;
   long_f: () => string;
-  long_l: ( arg0: Date ) => string;
-  long_s: ( arg0: Date ) => string;
+  long_l: ( arg0: Date|number ) => string;
+  long_s: ( arg0: Date|number ) => string;
   full_f: () => string;
-  full_l: ( arg0: Date ) => string;
-  full_s: ( arg0: Date ) => string;
+  full_l: ( arg0: Date|number ) => string;
+  full_s: ( arg0: Date|number ) => string;
   fractional_f: () => string;
-  fractional_l: ( arg0: Date ) => string;
-  fractional_s: ( arg0: Date ) => string;
+  fractional_l: ( arg0: Date|number ) => string;
+  fractional_s: ( arg0: Date|number ) => string;
 }
 
 export interface IText_Translate_Currency {

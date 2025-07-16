@@ -5,8 +5,7 @@ import { NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, TranslationConfig } from '@logi
 
 /* locally accessible feature module code, always use a relative path */
 import {
-  NgtContextDirective, NgtHtmlDirective, NgtParamsDirective, NgtReaderDirective,
-  NgtTextDirective,
+  NgtContextDirective, NgtHtmlDirective, NgtParamsDirective, NgtTextDirective,
 } from './directives';
 import { NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER } from './models';
 import {
@@ -31,7 +30,6 @@ import { DefaultFormatExtender } from './default-format.extender';
     NgtContextDirective,
     NgtHtmlDirective,
     NgtParamsDirective,
-    NgtReaderDirective,
     NgtTextDirective
   ],
   exports: [
@@ -46,7 +44,6 @@ import { DefaultFormatExtender } from './default-format.extender';
     NgtContextDirective,
     NgtHtmlDirective,
     NgtParamsDirective,
-    NgtReaderDirective,
     NgtTextDirective
   ],
   providers: [

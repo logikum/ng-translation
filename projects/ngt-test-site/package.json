@@ -1,6 +1,6 @@
 {
   "name": "ngt-test-site",
-  "version": "9.1.1",
+  "version": "19.0.0",
   "description": "Test site for NgTranslation functions with NgT formatter.",
   "license" : "MIT",
   "author": {
@@ -9,10 +9,10 @@
   },
   "homepage": "https://ngt.logikum.hu",
   "peerDependencies": {
-    "@logikum/ngt-common": ">=9.1.1",
-    "@logikum/ngt-formatter": ">=9.1.1",
-    "@logikum/ng-translation": ">=9.1.1",
-    "@logikum/ngt-models": ">=9.1.1"
+    "@logikum/ngt-common": ">=19.0.0",
+    "@logikum/ngt-formatter": ">=19.0.0",
+    "@logikum/ng-translation": ">=19.0.0",
+    "@logikum/ngt-models": ">=19.0.0"
   },
   "dependencies": {
     "tslib": ">=2.6.2"

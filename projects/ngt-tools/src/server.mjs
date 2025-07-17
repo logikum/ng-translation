@@ -1,10 +1,11 @@
+#!/usr/bin/env node
 import path from 'path';
 import { setTimeout } from 'node:timers';
 import Observer from './observer.mjs';
 import { updateI18n } from './update-i18n.mjs';
 
 if (process.argv.length < 4) {
-  console.log('Usage: node server sourcePath targetPath [interfacePath] [ngt|icu]');
+  console.log('Usage: npx update-i18n textPath jsonPath [interfacePath] [ngt|icu]');
   process.exit(1);
 }
 const sourcePath = path.resolve( process.cwd(), process.argv[2] );

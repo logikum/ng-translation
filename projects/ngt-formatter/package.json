@@ -1,6 +1,6 @@
 {
   "name": "@logikum/ngt-formatter",
-  "version": "9.1.1",
+  "version": "19.0.0",
   "description": "NgTranslation - Intl based internationalization formatter",
   "keywords": [ "Angular", "translation", "i18n", "internationalization", "l10n", "localization" ],
   "license" : "MIT",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/common": "^19.1.0",
     "@angular/core": "^19.1.0",
-    "@logikum/ngt-common": "9.1.1"
+    "@logikum/ngt-common": "^19.0.0"
   },
   "dependencies": {
     "tslib": ">=2.6.2"

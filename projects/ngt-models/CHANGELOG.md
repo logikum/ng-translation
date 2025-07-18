@@ -1,5 +1,12 @@
 # Changes
 
+### v19.0.0
+_Published on 7/20/2025._
+
+* Match the version number to Angular.
+* Rename the package from ng-translatable to ngt-models.
+* Update to Angular 19.
+
 ### v9.1.1
 _Published on 3/11/2024._
 

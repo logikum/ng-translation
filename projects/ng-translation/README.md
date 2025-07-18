@@ -14,10 +14,15 @@ Features:
 * Uses structural directive in views
 * Uses pipe in views
 * Uses attribute directive in views
+* Uses text object in views
 * Uses service in code
 * Supports parameter interpolation
 * Supports parameter localization
+* Supports enumeration name translation
 * Provides localization methods in code
+* Provides configurable message formats:
+  <br>NgTranslation own format ((@logikum/ngt-formatter))
+  <br>ICU message format ((@logikum/icu-formatter))
 * Provides data models for translatable UI components in separate package
   (@logikum/ngt-models)
 * Provides several translation loaders (including inline loader)
@@ -28,6 +33,7 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
+* NgTranslation v19.x for Angular 19
 * NgTranslation v9.x for Angular 17
 * NgTranslation v8.x for Angular 16
 * NgTranslation v7.x for Angular 15

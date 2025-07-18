@@ -1,5 +1,16 @@
 # Changes
 
+### v19.0.0
+_Published on 7/20/2025._
+
+* Match the version number to Angular.
+* Add tools to generate messages and interfaces from text files.
+* Add text objects to use translation methods with arguments.
+* Use either NgT or ICU message format.
+* Handle the translation of enumeration names.
+* Rename localization ccy() method to money().
+* Update to Angular 19.
+
 ### v9.1.1
 _Published on 3/11/2024._
 

@@ -2,6 +2,8 @@
   padding: 20px 10px;
 }
 .title {
+  color: var(--medium-color);
   font-size: 1.14rem;
-  padding-bottom: 10px;
+  font-weight: bold;
+  padding: 5px 5px 10px 5px;
 }

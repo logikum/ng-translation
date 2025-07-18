@@ -16,6 +16,7 @@ Source code: [GitHub](https://github.com/logikum/ng-translation)
 
 Version map:
 
+* NgTranslatable v19.x for Angular 19
 * NgTranslatable v9.x for Angular 17
 * NgTranslatable v8.x for Angular 16
 * NgTranslatable v7.x for Angular 15

@@ -1,0 +1,42 @@
+{
+  "name": "ngt-doc-site",
+  "version": "19.0.0",
+  "description": "Documentation site of NgTranslation.",
+  "keywords": [ "Angular", "translation", "i18n", "internationalization", "l10n", "localization" ],
+  "license" : "MIT",
+  "author": {
+    "name": "Mármarosi József",
+    "email" : "marmarosi@logikum.hu"
+  },
+  "homepage": "https://ngt.logikum.hu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logikum/ng-translation.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/logikum/ng-translation/issues"
+  },
+  "dependencies": {
+    "@angular/animations": "^19.1.5",
+    "@angular/common": "^19.1.5",
+    "@angular/compiler": "^19.1.5",
+    "@angular/core": "^19.1.5",
+    "@angular/forms": "^19.1.5",
+    "@angular/platform-browser": "^19.1.5",
+    "@angular/platform-browser-dynamic": "^19.1.5",
+    "@angular/router": "^19.1.5",
+    "highlight.js": "^11.11.1",
+    "initialize-css": "^1.4.0",
+    "marked": "^16.0.0",
+    "marked-highlight": "^2.2.2",
+    "rxjs": ">=7.4.0",
+    "tslib": ">=2.6.2",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.1.5",
+    "@angular/cli": "^19.1.5",
+    "@angular/compiler-cli": "^19.1.5",
+    "typescript": "~5.5.2"
+  }
+}

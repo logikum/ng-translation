@@ -1,4 +1,7 @@
-# About ![NgTranslation](/images/ng-translation-40.png "NgTranslation")
+<div style="display: flex; flex-direction: row; align-items: center;">
+  <h1>About&nbsp;</h1>
+  <img src="/images/ng-translation-40.png" alt="NgTranslation">
+</div>
 
 NgTranslation is an internationalization and localization library for
 Angular applications.

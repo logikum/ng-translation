@@ -1,22 +1,15 @@
 /* 3rd party libraries */
-import { ChangeDetectorRef, Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-/* locally accessible feature module code, always use relative path */
-import { TranslationService } from '../services';
+/* locally accessible feature module code, always use a relative path */
 import { TranslationPipeBase } from './translation-pipe-base';
 
 @Pipe( {
   name: 'translate',
-  pure: false
+  pure: false,
+  standalone: false
 } )
 export class TranslatePipe extends TranslationPipeBase implements PipeTransform {
-
-  constructor(
-    protected readonly cdRef: ChangeDetectorRef,
-    protected readonly translation: TranslationService
-  ) {
-    super( cdRef, translation );
-  }
 
   transform(
     key: string,

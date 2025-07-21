@@ -1,0 +1,49 @@
+{
+  "attribute": {
+    "title": "Attribútum direktíva használata"
+  },
+  "code": {
+    "title": "Szöveg a kódból"
+  },
+  "pipe": {
+    "title": "A <em>translate</em> cső használata"
+  },
+  "reader": {
+    "title": "Strukturális direktíva használata (Reader)",
+    "form": {
+      "hint": "Új termék felvételáhez adja meg az alábbi adatokat",
+      "name": {
+        "label": "Termék neve",
+        "maxLength": "A termék neve nem haladhatja meg a { maxLength, number } karaktert.",
+        "minLength": "A termék nevének legalább { minLength, number } karakterből kell állnia, de { recommended, number } karakter hosszúságú ajánlott."
+      }
+    }
+  },
+  "structural": {
+    "title": "Strukturális direktíva használata"
+  },
+  "text": {
+    "book": "A könyv jelenlegi ára { current, number, ::currency/_1_ }, de az akció alatt { onSale, number, ::currency/_2_ } lesz.",
+    "otherElements": "A másik négy elem az Ötödik elem című filmben:",
+    "smurfs": "<strong>Kékek és kicsik</strong>, mindössze <em>három alma magasak</em>, a <a href=\"https://www.smurf.com/\" target=\"_blank\">Hupikék törpikék</a>et elsőre nehéz lehet megkülönböztetni.",
+    "stock": "A tőzsde { points, number } ponton zárt { surge, number, ::percent .## } emelkedés után.",
+    "today": "Mai dátum: { today, date }",
+    "element": {
+      "earth": "föld",
+      "fire": "tűz",
+      "water": "víz",
+      "wind": "szél"
+    }
+  },
+  "textObject": {
+    "title": "Szövegobjektum használata",
+    "form": {
+      "hint": "Új termék felvételáhez adja meg az alábbi adatokat",
+      "name": {
+        "label": "Termék neve",
+        "maxLength": "A termék neve nem haladhatja meg a { maxLength, number } karaktert.",
+        "minLength": "A termék nevének legalább { minLength, number } karakterből kell állnia, de { recommended, number } karakter hosszúságú ajánlott."
+      }
+    }
+  }
+}

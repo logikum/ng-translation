@@ -1,0 +1,11 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> app.enums.appStatus
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+construct:  under construction
+operate:    in operation
+maintain:   under maintenance

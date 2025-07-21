@@ -1,0 +1,383 @@
+/* 3rd party libraries */
+import { inject, Injectable } from '@angular/core';
+import { IntlMessageFormat } from 'intl-messageformat';
+import {
+  CurrencyValue, DateValue, FormatExtender, FormatterService, InterpolationData,
+  LocalizationRef, NGT_CONFIGURATION
+} from '@logikum/ngt-common';
+
+/* locally accessible feature module code, always use a relative path */
+import { IntlFormatterService } from './intl-formatter.service';
+
+interface IcuSkeleton {
+
+  name: string;
+  text: string;
+  start: number;
+  end: number;
+}
+
+@Injectable( {
+  providedIn: 'root'
+} )
+export class IcuFormatterService implements FormatterService {
+
+  private readonly config = inject( NGT_CONFIGURATION );
+  private readonly intlFormatter = inject( IntlFormatterService );
+
+  extender: FormatExtender;
+
+  get name() { return  'ICU Formatter Service'; }
+
+  //#region insert
+
+  insert(
+    data: InterpolationData,
+    args?: any
+  ): string {
+
+    if (data.text && typeof data.text === 'string') {
+      const message = this.applyExtensions(
+        this.removeNullValueParams(
+          this.insertCurrency( data.text.toString(), args ),
+          args
+        ),
+        args
+      );
+      return new IntlMessageFormat(
+        message,
+        data.locale,
+        undefined,
+        { formatters: this.intlFormatter.formatters, ignoreTag: true }
+      )
+        .format( args ) as string;
+    }
+    return data.text;
+  }
+
+  private applyExtensions(
+    text: string,
+    args?: any
+  ): string {
+
+    let resultText = text;
+    if (args) {
+      const values = args as object;
+      const re = /\{\s*([^}]+)\s*,\s*([^}]+)\s*}/mg;
+      let searchResult: RegExpExecArray;
+
+      while ((searchResult = re.exec( text )) !== null) {
+        const valueName = searchResult[ 1 ].trim();
+        const format = searchResult[ 2 ].trim();
+
+        if (this.extender.formatNames.includes( format ) &&
+            values.hasOwnProperty( valueName )) {
+          let extensionValue: string;
+          const value = values[ valueName ];
+
+          if (value !== null && value !== undefined) {
+            extensionValue = this.extender.interpolate(
+              format,
+              { key: '', locale: '', params: '', value }
+            );
+          }
+          const offset = text.length - resultText.length;
+          resultText = resultText.slice( 0, searchResult.index - offset ) +
+            (extensionValue || '') + resultText.slice( re.lastIndex - offset );
+        }
+      }
+    }
+    return resultText;
+  }
+
+  private removeNullValueParams(
+    text: string,
+    args?: object
+  ): string {
+
+    if (args) {
+      const skeletons = this.getSkeletons( text );
+      if (skeletons.length > 0) {
+        console.log(`skeletons: ${skeletons.map(s => JSON.stringify(s)).join(', ')}`);
+        Object.getOwnPropertyNames( args ).forEach( ( key: string ) => {
+          if (args[ key ] === null || args[ key ] === undefined) {
+            skeletons
+              .filter( s => s.name === key )
+              .forEach( s => {
+                s.text = '';
+              } );
+          }
+        } );
+        text = skeletons.map( s => s.text ).join('');
+      }
+    }
+    console.log(`removeNullValueParams: ${text}`);
+    return text;
+  }
+
+  private getSkeletons(
+    text: string
+  ): Array<IcuSkeleton> {
+
+    const result: Array<IcuSkeleton> = [];
+    let level = 0;
+    let skeleton: IcuSkeleton;
+    let lastIndex = 0;
+
+    for (let i = 0, len = text.length; i < len; i++) {
+      const char = text.charAt(i);
+      if (char === '{') {
+        if (++level === 1) {
+          skeleton = { name: '', text: '', start: i, end: -1 };
+          if (i > lastIndex) {
+            result.push( {
+              name: '',
+              text: text.substring( lastIndex, i ),
+              start: lastIndex,
+              end: i - 1
+            } );
+          }
+        }
+      } else if (char === '}') {
+        if (level-- === 1) {
+          skeleton.end = i;
+          skeleton.text = text.substring( skeleton.start, i + 1 );
+          const name = /[\w_$]+/m.exec( skeleton.text );
+          if (name) {
+            skeleton.name = name[0].trim();
+          }
+          result.push( skeleton );
+          lastIndex = i + 1;
+        }
+      }
+    }
+    if (lastIndex < text.length) {
+      result.push( {
+        name: '',
+        text: text.substring( lastIndex, text.length ),
+        start: lastIndex,
+        end: text.length - 1
+      } );
+    }
+    return result;
+  }
+
+  private insertCurrency(
+    text: string,
+    args?: object
+  ): string {
+
+    const matches = text.match( /currency\/_[_0-9]_/g );
+    if (matches) {
+      matches.forEach( match => {
+        const index = /\d/.exec( match );
+        if (index === null) {
+          text = text.replaceAll(
+            '___',
+            this.getCurrencyCode( args )
+          );
+        } else {
+          text = text.replaceAll( `_${ index[0] }_`,
+            this.getCurrencyCode( args, index.toString() )
+          );
+        }
+      } );
+    }
+    return text;
+  }
+
+  private  getCurrencyCode(
+    args?: object,
+    index?: string
+  ): string {
+
+    const currencyCode = args[ `currency${ index ?? '' }` ] ||
+      this.config.defaultCurrency || 'XXX';
+    // Add eventual custom default options.
+    return this.addCurrencyOptions( currencyCode );
+  }
+
+  private addCurrencyOptions(
+    currencyCode: string,
+  ): string {
+
+    if (this.config.currencyDefaultOptions) {
+      const cdo = this.config.currencyDefaultOptions[ currencyCode ] ?? '';
+      if (cdo) {
+        currencyCode += ' ' + cdo;
+      }
+    }
+    return currencyCode;
+  }
+
+  //#endregion
+
+  //#region getLocalizationRef
+
+  getLocalizationRef(): LocalizationRef {
+
+    return {
+      number: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createFormatElement( 'number', '', args );
+          return this.getFormattedValue( text, locale, value );
+        }
+      },
+      percent: (
+        locale: string,
+        value: number,
+        args?: string
+      ): string => {
+
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createFormatElement( 'number', 'percent', args );
+          return this.getFormattedValue( text, locale, value );
+        }
+      },
+      currency: (
+        locale: string,
+        value: CurrencyValue,
+        args?: string
+      ): string => {
+
+        let text = '';
+        if (!value || value[0] === null || value[0] === undefined) {
+          return '';
+        } else if (value[1] === null || value[1] === undefined || value[1] === '') {
+          text = this.createFormatElement( 'number', `.00`, args );
+          return this.getFormattedValue( text, locale, value[0] );
+        } else {
+          // Add eventual custom default options.
+          const currencyCode = this.addCurrencyOptions( value[ 1 ] );
+          text = this.createFormatElement(
+            'number',
+            `currency/${ currencyCode }`,
+            args
+          );
+          return this.getFormattedValue( text, locale, value[0] );
+        }
+      },
+      money: (
+        locale: string,
+        value: number,
+        currency?: string,
+        args?: string
+      ): string => {
+
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          let currencyCode = currency || this.config.defaultCurrency;
+          if (currency && (currency.length !== 3 ||
+            [ ...currency ].some( c => c !== c.toUpperCase() ))
+          ) {
+            currencyCode = this.config.defaultCurrency || 'XXX';
+          }
+          // Add eventual custom default options.
+          currencyCode = this.addCurrencyOptions( currencyCode );
+          const text = this.createFormatElement(
+            'number',
+            `currency/${ currencyCode }`,
+            args
+          );
+          return this.getFormattedValue( text, locale, value );
+        }
+      },
+      datetime: (
+        locale: string,
+        value: DateValue,
+        args?: string
+      ): string => {
+        throw new Error( 'Method datetime() is not implemented in ICU Formatter Service.' );
+      },
+      date: (
+        locale: string,
+        value: DateValue,
+        args?: string
+      ): string => {
+
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createDatetimeElement( 'date', args );
+          return this.getFormattedValue( text, locale, value );
+        }
+      },
+      time: (
+        locale: string,
+        value: DateValue,
+        args?: string
+      ): string => {
+
+        if (value === null || value === undefined) {
+          return '';
+        } else {
+          const text = this.createDatetimeElement( 'time', args );
+          return this.getFormattedValue( text, locale, value );
+        }
+      }
+    };
+  }
+
+  private createFormatElement(
+    type: string,
+    defaultStem: string,
+    otherStems?: string
+  ): string {
+
+    const items = [ 'value', type ];
+    const skeleton = `${ defaultStem } ${ otherStems }`.trim();
+    if (skeleton) {
+      items.push( '::' + skeleton );
+    }
+    return `{${ items.join( ', ' ) }}`;
+  }
+
+  private createDatetimeElement(
+    type: string,
+    stems?: string
+  ): string {
+
+    const items = [ 'value', type ];
+    const otherStems = [];
+    const stemArray = stems ? stems.split( ' ' ) : [];
+    stemArray.forEach( stem => {
+      if ([ 'short', 'medium', 'long', 'full' ].includes( stem )) {
+        items.push( stem );
+      } else if (stem) {
+        otherStems.push( stem );
+      }
+    });
+    const skeleton = otherStems.join( ' ' );
+    if (skeleton) {
+      items.push( '::' + skeleton );
+    }
+    return `{${ items.join( ', ' ) }}`;
+  }
+
+  private getFormattedValue(
+    text: string,
+    locale: string,
+    value: any
+  ): string {
+
+    return new IntlMessageFormat(
+      text,
+      locale,
+      undefined,
+      { formatters: this.intlFormatter.formatters }
+    )
+      .format( { value } ) as string;
+  }
+
+  //#endregion
+}

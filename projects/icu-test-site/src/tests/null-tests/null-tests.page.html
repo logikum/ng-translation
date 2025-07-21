@@ -1,0 +1,32 @@
+<ng-container *ngtContext="let t; node: 'null'">
+  <icu-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('translationString.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-translation-string></icu-translation-string>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('localizationPipe.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-localization-pipe></icu-localization-pipe>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('localizationMethod.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-localization-method></icu-localization-method>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('currencyCodes.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-currency-codes></icu-currency-codes>
+        </div>
+      </ng-template>
+    </div>
+  </icu-accordion>
+</ng-container>

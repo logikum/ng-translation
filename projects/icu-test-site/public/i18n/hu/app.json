@@ -1,0 +1,24 @@
+{
+  "conversion": "Konvertálási tesztek",
+  "translate": "Lokalizációs tesztek - t()",
+  "localize": "Lokalizációs tesztek - l()",
+  "model": "Modell tesztek",
+  "null": "Null érték tesztek",
+  "other": "Egyéb tesztek",
+  "pipe": "Lokalizációs tesztek | pipe",
+  "seasons": "Modulhasználati teszt",
+  "general": "Általános tesztek",
+  "enums": {
+    "appStatus": {
+      "construct": "építés alatt",
+      "operate": "üzemben",
+      "maintain": "karbantartás alatt"
+    }
+  },
+  "header": {
+    "name": "NgTranslation/NgTranslatable tesztek"
+  },
+  "home": {
+    "title": "Üdvözöljük az ICU formátum tesztoldalán!"
+  }
+}

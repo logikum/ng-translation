@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> app.header
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+name:   NgTranslation/NgTranslatable Tests

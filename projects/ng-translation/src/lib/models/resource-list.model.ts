@@ -1,10 +1,10 @@
 /* 3rd party libraries */
+import {
+  LoaderType, MessengerService, Section, SectionGroup, SectionItem, SectionList
+} from '@logikum/ngt-common';
 
-/* locally accessible feature module code, always use relative path */
-import { MessengerService } from '../services';
-import { LoaderType } from '../types';
+/* locally accessible feature module code, always use a relative path */
 import { Resource } from './resource.model';
-import { Section, SectionGroup, SectionItem, SectionList } from './translation-config.model';
 
 export class ResourceList {
 
@@ -60,7 +60,7 @@ export class ResourceList {
               inUse: false
             } );
 
-          } else if ((groupItem as Section).name) {
+          } else if (groupItem.name) {
             resources.push( {
               name: groupItem.name,
               alias: groupItem.alias ?? groupItem.name,

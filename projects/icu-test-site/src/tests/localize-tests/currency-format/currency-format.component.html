@@ -1,0 +1,64 @@
+<ng-container *ngtContext="let t; node: 'translate.currency'; let l = localize">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD) }}</div>
+          <div class="data">{{ l.currency(currencyEUR) }}</div>
+          <div class="data">{{ l.currency(currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

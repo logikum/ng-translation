@@ -1,0 +1,30 @@
+<ng-container *ngtContext="let t; node: 'general.text.element'">
+  <div class="context">--- the source is the same section ---</div>
+  <div class="data">{{ t('../otherElements') }}</div>
+  <div class="data flex-row">
+    <div class="row-item">{{ t('earth') }}</div>
+    <div class="row-item">{{ t('water') }}</div>
+    <div class="row-item">{{ t('wind') }}</div>
+    <div class="row-item">{{ t('fire') }}</div>
+  </div>
+  <div class="data" [innerHtml]="t('../smurfs')"></div>
+
+  <div class="context">--- the sources are shared sections ---</div>
+  <ng-container *ngtContext="let t; node: 'enums.season'">
+    <div class="data">{{ t('/shared.fourSeasons') }}</div>
+    <div class="data flex-row">
+      <div class="row-item">{{ t('spring') }}</div>
+      <div class="row-item">{{ t('summer') }}</div>
+      <div class="row-item">{{ t('autumn') }}</div>
+      <div class="row-item">{{ t('winter') }}</div>
+    </div>
+    <div class="data" [innerHtml]="t('/shared.pooh')"></div>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngtContext="let t; node: 'general.text'">
+  <div class="context">--- with interpolation ---</div>
+  <div class="data">{{ t('today', { today } ) }}</div>
+  <div class="data">{{ t('stock', stock ) }}</div>
+  <div class="data">{{ t('book', book ) }}</div>
+</ng-container>

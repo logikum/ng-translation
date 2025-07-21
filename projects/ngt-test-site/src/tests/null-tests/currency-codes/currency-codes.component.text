@@ -1,0 +1,20 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null.currencyCodes
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Currency Codes
+
+code:   Code
+value:  Value
+
+undefined:  undefined
+null:       null
+empty:      empty
+test:       test
+noCurrency: no currency
+lilangeni:  lilangeni (Swaziland)
+invalid:    invalid

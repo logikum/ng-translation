@@ -1,0 +1,17 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> other.enumeration
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Enumerations
+
+appStatus:  App status
+logLevel:   Log level
+season:     Season
+month:      Month
+
+statusName:   { status, appStatus }
+levelName:    { level, logLevel }

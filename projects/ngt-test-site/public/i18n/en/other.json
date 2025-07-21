@@ -1,0 +1,23 @@
+{
+  "camelCase": {
+    "title": "Camel Case Node Names"
+  },
+  "enumeration": {
+    "appStatus": "App status",
+    "levelName": "{{ 0 | logLevel }}",
+    "logLevel": "Log level",
+    "month": "Month",
+    "season": "Season",
+    "statusName": "{{ 0 | appStatus }}",
+    "title": "Enumerations"
+  },
+  "formatExtender": {
+    "first_last": "{{ 0 | roman }} ... {{ 1 | roman }}",
+    "range": "Range",
+    "romanNumber": "{{ 0 | roman }}",
+    "title": "Format Extender - Roman Numbers"
+  },
+  "inlineLoader": {
+    "title": "Inline Loader"
+  }
+}

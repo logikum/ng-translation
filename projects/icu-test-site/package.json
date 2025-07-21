@@ -1,0 +1,20 @@
+{
+  "name": "icu-test-site",
+  "version": "19.0.0",
+  "description": "Test site for NgTranslation functions with ICU formatter.",
+  "license" : "MIT",
+  "author": {
+    "name": "Mármarosi József",
+    "email" : "marmarosi@logikum.hu"
+  },
+  "homepage": "https://ngt.logikum.hu",
+  "peerDependencies": {
+    "@logikum/ngt-common": "^19.0.0",
+    "@logikum/icu-formatter": "^19.0.0",
+    "@logikum/ng-translation": "^19.0.0",
+    "@logikum/ngt-models": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": ">=2.6.2"
+  }
+}

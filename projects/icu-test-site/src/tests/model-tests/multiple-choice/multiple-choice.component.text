@@ -1,0 +1,18 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> model.multipleChoice
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+changeByValues:   Set by values
+changeByIndexes:  Set by indexes
+selectAll:        All
+selectNone:       None
+filter:           Filter
+selectedCount:    Selected count
+selectedIndexes:  Selected indexes
+selectedValues:   Selected values
+selectedTexts:    Selected texts
+selectedItems:    Selected items

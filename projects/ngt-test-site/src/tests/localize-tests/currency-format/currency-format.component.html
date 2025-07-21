@@ -1,0 +1,64 @@
+<ng-container *ngtContext="let t; node: 'translate.currency'; let l = localize">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD) }}</div>
+          <div class="data">{{ l.currency(currencyEUR) }}</div>
+          <div class="data">{{ l.currency(currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'currencyDisplay=code') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'currencyDisplay=code') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'currencyDisplay=code') }}</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'currencyDisplay=name') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'currencyDisplay=name') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'currencyDisplay=name') }}</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'currencyDisplay=symbol') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'currencyDisplay=symbol') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'currencyDisplay=symbol') }}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD) }}</div>
+          <div class="data">{{ l.currency(currencyEUR) }}</div>
+          <div class="data">{{ l.currency(currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'cd = code') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'cd = code') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'cd = code') }}</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'cd = name') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'cd = name') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'cd = name') }}</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">{{ l.currency(currencyUSD, 'cd = symbol') }}</div>
+          <div class="data">{{ l.currency(currencyEUR, 'cd = symbol') }}</div>
+          <div class="data">{{ l.currency(currencyHUF, 'cd = symbol') }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

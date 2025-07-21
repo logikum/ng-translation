@@ -1,0 +1,46 @@
+{
+  "localeList": {
+    "changeByCode": "Set by code",
+    "changeByIndex": "Set by index",
+    "selectedCode": "Selected code",
+    "selectedIndex": "Selected index",
+    "selectedItem": "Selected item",
+    "selectedName": "Selected name"
+  },
+  "multipleChoice": {
+    "changeByIndexes": "Set by indexes",
+    "changeByValues": "Set by values",
+    "filter": "Filter",
+    "selectAll": "All",
+    "selectNone": "None",
+    "selectedCount": "Selected count",
+    "selectedIndexes": "Selected indexes",
+    "selectedItems": "Selected items",
+    "selectedTexts": "Selected texts",
+    "selectedValues": "Selected values"
+  },
+  "singleChoice": {
+    "changeByIndex": "Set by index",
+    "changeByValue": "Set by value",
+    "filter": "Filter",
+    "selectedIndex": "Selected index",
+    "selectedItem": "Selected item",
+    "selectedText": "Selected text",
+    "selectedValue": "Selected value"
+  },
+  "textList": {
+    "advice": "Fruit is healthy.",
+    "fruit": {
+      "apple": "apple",
+      "cherry": "cherry",
+      "peach": "peach"
+    },
+    "label": {
+      "advice": "Advice",
+      "fruits": "Fruits",
+      "seasons": "Seasons",
+      "status": "Status",
+      "welcome": "Welcome"
+    }
+  }
+}

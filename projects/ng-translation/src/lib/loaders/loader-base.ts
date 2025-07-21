@@ -1,18 +1,22 @@
 /* 3rd party libraries */
 import { HttpClient } from '@angular/common/http';
+import { MessengerService } from '@logikum/ngt-common';
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 import { Locale, Resource, ResourceLoader } from '../models';
-import { MessengerService } from '../services';
 import { buildPath } from './build-path';
 
 export class LoaderBase<T> implements ResourceLoader {
 
+  private readonly options: { [ key: string ]: any };
+
   constructor(
-    protected options,
+    protected readonly responseType: 'json' | 'text' | 'blob' | 'arraybuffer',
     protected readonly http: HttpClient,
     protected readonly messenger: MessengerService
-  ) { }
+  ) {
+    this.options = { responseType };
+  }
 
   load(
     language: string,
@@ -30,7 +34,7 @@ export class LoaderBase<T> implements ResourceLoader {
           next( translations ) {
             resolve( translations as T );
           },
-          error( error ) {
+          error( error: Error ) {
             if (locale.hasRegion) {
               self.messenger.info( `Using alternative: ${ locale.neutral }` );
 

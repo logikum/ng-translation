@@ -1,0 +1,24 @@
+{
+  "conversion": "Test di conversione",
+  "translate": "Test di localizzazione - t()",
+  "localize": "Test di localizzazione - l()",
+  "model": "Test del modello",
+  "null": "Test di valore nullo",
+  "other": "Altri test",
+  "pipe": "Test di localizzazione | pipe",
+  "seasons": "Test di utilizzo del modulo",
+  "general": "Test generali",
+  "enums": {
+    "appStatus": {
+      "construct": "in costruzione",
+      "operate": "in funzione",
+      "maintain": "in manutenzione"
+    }
+  },
+  "header": {
+    "name": "Test NgTranslation/NgTranslatable"
+  },
+  "home": {
+    "title": "Benvenuti al sito del test ICU formato!"
+  }
+}

@@ -1,0 +1,48 @@
+<ng-container *ngtContext="let t; node: 'translate.number'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ t('basic_l', { longNumber }) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ t('minid_l', { shortNumber }) }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ t('minfd_l', { longNumber }) }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ t('maxfd_l', { longNumber }) }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ t('minsd_l', { shortNumber }) }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ t('maxsd_l', { longNumber }) }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ t('mixed_l', { shortNumber }) }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ t('usegrp_l', { longNumber }) }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ t('basic_s', { longNumber }) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ t('minid_s', { shortNumber }) }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ t('minfd_s', { longNumber }) }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ t('maxfd_s', { longNumber }) }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ t('minsd_s', { shortNumber }) }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ t('maxsd_s', { longNumber }) }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ t('mixed_s', { shortNumber }) }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ t('usegrp_s', { longNumber }) }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

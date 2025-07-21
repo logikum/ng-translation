@@ -1,0 +1,43 @@
+{
+  "boolean": "{ value }",
+  "currency": "{ value, number, ::currency/___ }",
+  "date": "{ value, date }",
+  "time": "{ value, time }",
+  "number": "{ value, number }",
+  "percent": "{ value, number, ::percent }",
+  "plural": "{ value, plural, =0 { nulla } =2 { néhány } other { sok } }",
+  "text": "{ text }",
+  "currencyCodes": {
+    "code": "Kód",
+    "empty": "üres",
+    "invalid": "érvénytelen",
+    "lilangeni": "lilangeni (Szváziföld)",
+    "noCurrency": "nincs valuta",
+    "null": "nulla",
+    "test": "teszt",
+    "title": "Valutakódok",
+    "undefined": "meghatározatlan",
+    "value": "Érték"
+  },
+  "localizationMethod": {
+    "method": "Módszer",
+    "null": "Nulla",
+    "title": "Lokalizációs eljárás",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  },
+  "localizationPipe": {
+    "null": "Nulla",
+    "pipe": "Cső",
+    "title": "Lokalizációs cső",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  },
+  "translationString": {
+    "dataType": "Adattípus",
+    "null": "Nulla",
+    "title": "Fordítási szöveg",
+    "undefined": "Meghatározatlan",
+    "value": "Érték"
+  }
+}

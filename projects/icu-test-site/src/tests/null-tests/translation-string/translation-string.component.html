@@ -1,0 +1,52 @@
+<ng-container *ngtContext="let t; node: 'null'">
+
+  <div class="grid-1-1-1-1">
+    <ng-container *ngtContext="let t; node: 'null.translationString'">
+      <div class="grid-item header">{{ t('dataType') }}</div>
+      <div class="grid-item header">{{ t('value') }}</div>
+      <div class="grid-item header">{{ t('null') }}</div>
+      <div class="grid-item header">{{ t('undefined') }}</div>
+    </ng-container>
+
+    <div class="grid-item label">String</div>
+    <div class="grid-item data">{{ t( 'text', { text: 'NgTranslation' } ) }}</div>
+    <div class="grid-item data">{{ t( 'text', { text: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'text', { text: undefined } ) }}</div>
+
+    <div class="grid-item label">Number</div>
+    <div class="grid-item data">{{ t( 'number', { value: 1234 } ) }}</div>
+    <div class="grid-item data">{{ t( 'number', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'number', { value: undefined } ) }}</div>
+
+    <div class="grid-item label">Percent</div>
+    <div class="grid-item data">{{ t( 'percent', { value: .1234 } ) }}</div>
+    <div class="grid-item data">{{ t( 'percent', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'percent', { value: undefined } ) }}</div>
+
+    <div class="grid-item label">Currency</div>
+    <div class="grid-item data">{{ t( 'currency', { value: 500, currency: 'HUF' } ) }}</div>
+    <div class="grid-item data">{{ t( 'currency', { value: null, currency: 'HUF' } ) }}</div>
+    <div class="grid-item data">{{ t( 'currency', { value: undefined, currency: 'HUF' } ) }}</div>
+
+    <div class="grid-item label">Date</div>
+    <div class="grid-item data">{{ t( 'date', { value: today } ) }}</div>
+    <div class="grid-item data">{{ t( 'date', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'date', { value: undefined } ) }}</div>
+
+    <div class="grid-item label">Time</div>
+    <div class="grid-item data">{{ t( 'time', { value: today } ) }}</div>
+    <div class="grid-item data">{{ t( 'time', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'time', { value: undefined } ) }}</div>
+
+    <div class="grid-item label">Plural</div>
+    <div class="grid-item data">{{ t( 'plural', { value: 2 } ) }}</div>
+    <div class="grid-item data">{{ t( 'plural', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'plural', { value: undefined } ) }}</div>
+
+    <div class="grid-item label">Boolean</div>
+    <div class="grid-item data">{{ t( 'boolean', { value: true } ) }}</div>
+    <div class="grid-item data">{{ t( 'boolean', { value: null } ) }}</div>
+    <div class="grid-item data">{{ t( 'boolean', { value: undefined } ) }}</div>
+  </div>
+
+</ng-container>

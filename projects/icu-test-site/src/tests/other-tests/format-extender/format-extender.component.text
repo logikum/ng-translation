@@ -1,0 +1,12 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> other.formatExtender
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:        Format Extender - Roman Numbers
+range:        Range
+first_last:   { first, roman } ... { last, roman }
+romanNumber:  { value, roman }

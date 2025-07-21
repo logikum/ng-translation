@@ -1,0 +1,183 @@
+/* https://www.joshwcomeau.com/css/custom-css-reset/ */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve code rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid code overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+select {
+  padding: .25rem .5rem;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --main-bg-color: white;
+  --main-fg-color: #202020;
+  --main-color-100: hsla(219,100%,20%);
+  --main-color-200: hsla(219, 100%, 28.75%);
+  --main-color-300: hsla(219, 100%, 37.5%);
+  --main-color-400: hsla(219, 100%, 46.25%);
+  --main-color-500: hsla(219, 100%, 55%);
+  --main-color-600: hsla(219, 100%, 63.75%);
+  --main-color-700: hsla(219, 100%, 72.5%);
+  --main-color-800: hsla(219, 100%, 81.25%);
+  --main-color-900: hsla(219, 100%, 90%);
+}
+body {
+  color: var(--main-fg-color);
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main-color-300);
+}
+a, a.visited {
+  color: deepskyblue;
+}
+
+/* accordion */
+.accordion-content {
+  padding: .5rem 1rem;
+}
+
+/* tests */
+.header {
+  color: #444;
+  font-weight: bold;
+}
+.label {
+  color: #444;
+}
+.data {
+  color: darkmagenta;
+}
+.context {
+  font-style: italic;
+  color: var(--main-color-300);
+}
+.filter {
+  width: 5rem;
+}
+.list-item {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+/* layout */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+}
+.row-item {
+  line-height: 1.5rem;
+}
+.col-item {
+}
+.justify-center {
+  justify-content: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-center {
+  align-items: center;
+}
+.align-end {
+  align-items: flex-end;
+}
+align-stretch {
+  align-items: stretch;
+}
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+}
+.grid-1-1-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
+}
+.grid-8 {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  column-gap: 1rem;
+}
+.grid-10 {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  column-gap: 1rem;
+}
+.grid-item {
+  line-height: 1.5rem;
+  white-space: nowrap;
+}
+.items-center {
+  justify-items: center;
+}
+
+/* other */
+.tempo {
+  color: mediumseagreen;
+  font-style: italic;
+  padding-left: 3rem;
+}
+.subtitle {
+  margin-bottom: 1.5rem;
+}

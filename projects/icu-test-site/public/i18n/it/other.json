@@ -1,0 +1,23 @@
+{
+  "camelCase": {
+    "title": "Nomi dei nodi camel case"
+  },
+  "enumeration": {
+    "appStatus": "Stato dell'app",
+    "levelName": "{ level, logLevel }",
+    "logLevel": "Livello del registro",
+    "month": "Mese",
+    "season": "Stagione",
+    "statusName": "{ status, appStatus }",
+    "title": "Enumerazioni"
+  },
+  "inlineLoader": {
+    "title": "Caricatore in linea"
+  },
+  "formatExtender": {
+    "first_last": "{ first, roman } ... { last, roman }",
+    "range": "Intervallo",
+    "romanNumber": "{ value, roman }",
+    "title": "Estensione di formato - Numeri romani"
+  }
+}

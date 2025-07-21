@@ -1,0 +1,18 @@
+{
+  "name": "ngt-tools",
+  "version": "19.0.0",
+  "description": "Tools to generate i18n messages and interfaces for NgTranslation.",
+  "license" : "MIT",
+  "author": {
+    "name": "Mármarosi József",
+    "email" : "marmarosi@logikum.hu"
+  },
+  "homepage": "https://ngt.logikum.hu",
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "json-stable-stringify": "^1.2.1"
+  },
+  "bin": {
+    "update-i18n": "src/server.mjs"
+  }
+}

@@ -3,6 +3,72 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngt-common": {
+      "projectType": "library",
+      "root": "projects/ngt-common",
+      "sourceRoot": "projects/ngt-common/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngt-common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngt-common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngt-common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngt-common/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "ngt-formatter": {
+      "projectType": "library",
+      "root": "projects/ngt-formatter",
+      "sourceRoot": "projects/ngt-formatter/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngt-formatter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngt-formatter/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngt-formatter/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngt-formatter/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
     "ng-translation": {
       "projectType": "library",
       "root": "projects/ng-translation",
@@ -34,23 +100,23 @@
         }
       }
     },
-    "ng-translatable": {
+    "ngt-models": {
       "projectType": "library",
-      "root": "projects/ng-translatable",
-      "sourceRoot": "projects/ng-translatable/src",
+      "root": "projects/ngt-models",
+      "sourceRoot": "projects/ngt-models/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ng-translatable/ng-package.json"
+            "project": "projects/ngt-models/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-translatable/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngt-models/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ng-translatable/tsconfig.lib.json"
+              "tsConfig": "projects/ngt-models/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -58,42 +124,65 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng-translatable/src/test.ts",
-            "tsConfig": "projects/ng-translatable/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-translatable/karma.conf.js"
+            "tsConfig": "projects/ngt-models/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
     },
-    "test-web-site": {
+    "ngt-test-site": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "css"
+        "@schematics/angular:class": {
+          "skipTests": true
         },
-        "@schematics/angular:application": {
-          "strict": true
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
-      "root": "projects/test-web-site",
-      "sourceRoot": "projects/test-web-site/src",
-      "prefix": "app",
+      "root": "projects/ngt-test-site",
+      "sourceRoot": "projects/ngt-test-site/src",
+      "prefix": "nts",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/test-web-site",
-            "index": "projects/test-web-site/src/index.html",
-            "main": "projects/test-web-site/src/main.ts",
-            "polyfills": "projects/test-web-site/src/polyfills.ts",
-            "tsConfig": "projects/test-web-site/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "outputPath": "dist/ngt-test-site",
+            "index": "projects/ngt-test-site/src/index.html",
+            "browser": "projects/ngt-test-site/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ngt-test-site/tsconfig.app.json",
             "assets": [
-              "projects/test-web-site/src/favicon.ico",
-              "projects/test-web-site/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngt-test-site/public"
+              }
             ],
             "styles": [
-              "projects/test-web-site/src/styles.css"
+              "projects/ngt-test-site/src/styles.css"
             ],
             "scripts": []
           },
@@ -102,30 +191,21 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "projects/test-web-site/src/environments/environment.ts",
-                  "with": "projects/test-web-site/src/environments/environment.prod.ts"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -134,34 +214,294 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test-web-site:build:production"
+              "buildTarget": "ngt-test-site:build:production"
             },
             "development": {
-              "buildTarget": "test-web-site:build:development"
+              "buildTarget": "ngt-test-site:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "test-web-site:build"
-          }
+          "builder": "@angular-devkit/build-angular:extract-i18n"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/test-web-site/src/test.ts",
-            "polyfills": "projects/test-web-site/src/polyfills.ts",
-            "tsConfig": "projects/test-web-site/tsconfig.spec.json",
-            "karmaConfig": "projects/test-web-site/karma.conf.js",
-            "inlineStyleLanguage": "scss",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngt-test-site/tsconfig.spec.json",
             "assets": [
-              "projects/test-web-site/src/favicon.ico",
-              "projects/test-web-site/src/assets"
+              {
+                "glob": "**/*",
+                "input": "projects/ngt-test-site/public"
+              }
             ],
             "styles": [
-              "projects/test-web-site/src/styles.scss"
+              "projects/ngt-test-site/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "icu-formatter": {
+      "projectType": "library",
+      "root": "projects/icu-formatter",
+      "sourceRoot": "projects/icu-formatter/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/icu-formatter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/icu-formatter/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/icu-formatter/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/icu-formatter/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "icu-test-site": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "projects/icu-test-site",
+      "sourceRoot": "projects/icu-test-site/src",
+      "prefix": "icu",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/icu-test-site",
+            "index": "projects/icu-test-site/src/index.html",
+            "browser": "projects/icu-test-site/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/icu-test-site/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/icu-test-site/public"
+              }
+            ],
+            "styles": [
+              "projects/icu-test-site/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "icu-test-site:build:production"
+            },
+            "development": {
+              "buildTarget": "icu-test-site:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/icu-test-site/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/icu-test-site/public"
+              }
+            ],
+            "styles": [
+              "projects/icu-test-site/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "ngt-doc-site": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "root": "projects/ngt-doc-site",
+      "sourceRoot": "projects/ngt-doc-site/src",
+      "prefix": "doc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/ngt-doc-site",
+            "index": "projects/ngt-doc-site/src/index.html",
+            "browser": "projects/ngt-doc-site/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ngt-doc-site/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngt-doc-site/public"
+              }
+            ],
+            "styles": [
+              "projects/ngt-doc-site/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ngt-doc-site:build:production"
+            },
+            "development": {
+              "buildTarget": "ngt-doc-site:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngt-doc-site/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngt-doc-site/public"
+              }
+            ],
+            "styles": [
+              "projects/ngt-doc-site/src/styles.css"
             ],
             "scripts": []
           }

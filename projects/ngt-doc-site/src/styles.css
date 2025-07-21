@@ -1,0 +1,33 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
+html {
+  --dark-color: #0f3d0f;
+  --darker-color: #196619;
+  --medium-color: #228B22;
+  --lighter-color: #c2f0c2;
+  --light-color: #ebfaeb;
+  --header-height: 48px;
+  font-size: 14px;
+}
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+a, a.visited {
+  color: var(--darker-color);
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; }
+h4 { font-size: 16px; }
+h1, h2, h3, h4 { font-weight: bold; }

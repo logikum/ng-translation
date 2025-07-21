@@ -1,0 +1,103 @@
+<ng-container *ngtContext="let t; node: 'model.multipleChoice'">
+
+  <div class="flex-row">
+    <div class="row-item label">{{ t('changeByValues') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByValues( $event )" multiple>
+        @for (season of seasons; track season.value) {
+          <option value="{{ season.value }}"
+                  [selected]="season.selected">
+            {{ season.text }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="row-item label">{{ t('changeByIndexes') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByIndexes( $event )" multiple>
+        @for (season of seasons; track season.value; let i = $index ) {
+          <option value="{{ i }}"
+                  [selected]="season.selected">
+            {{ season.text }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedCount') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedCount }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedIndexes') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedIndexes.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedValues') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedValues.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedTexts') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedTexts.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedItems') }}:</div>
+      <div class="grid-item data" [innerHTML]="selectedSeasons"></div>
+    </div>
+  </div>
+
+  <div class="flex-row">&nbsp;</div>
+
+  <div class="flex-row">
+    <div class="row-item">
+      @for (month of months; track month.value; let i = $index) {
+        <div class="list-item">
+          <input type="checkbox" name="month"
+                 [value]="month.value"
+                 [checked]="month.selected"
+                 (change)="changeMonth( $event )">
+          {{ month.text }}
+        </div>
+        @if (i == 5) { <br> }
+      }
+    </div>
+    <div class="row-item">
+      <button (click)="months.selectAll()">{{ t( 'selectAll' ) }}</button>
+    </div>
+    <div class="row-item">
+      <button (click)="months.deselectAll()">{{ t( 'selectNone' ) }}</button>
+    </div>
+    <div class="row-item label">{{ t('filter') }}:</div>
+    <div class="row-item">
+      <input type="text" class="filter"
+             [(ngModel)]="filterText"
+             (keyup)="months.detectChanges()">
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedCount') }}:</div>
+      <div class="grid-item data">{{ months.selectedCount }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedIndexes') }}:</div>
+      <div class="grid-item data">{{ months.selectedIndexes.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedValues') }}:</div>
+      <div class="grid-item data">{{ months.selectedValues.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedTexts') }}:</div>
+      <div class="grid-item data">{{ months.selectedTexts.join(', ') }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedItems') }}:</div>
+      <div class="grid-item data" [innerHTML]="selectedMonths"></div>
+    </div>
+  </div>
+
+</ng-container>

@@ -1,6 +1,6 @@
 /* 3rd party libraries */
 
-/* locally accessible feature module code, always use relative path */
+/* locally accessible feature module code, always use a relative path */
 
 export class Locale {
 
@@ -9,12 +9,13 @@ export class Locale {
   readonly hasRegion: boolean;
 
   constructor(
-    readonly language: string
+    readonly baseName: string
   ) {
-    const pos = language.indexOf( '-' );
 
-    this.name = language;
-    this.neutral = pos > 0 ? language.substr( 0, pos ) : language;
-    this.hasRegion = pos > 0;
+    const locale = new Intl.Locale( baseName );
+
+    this.name = locale.baseName;
+    this.neutral = locale.language;
+    this.hasRegion = !!locale.region;
   }
 }

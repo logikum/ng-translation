@@ -2,8 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "module": "es2020",
@@ -14,19 +14,25 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2021",
+      "es2021.intl",
       "dom"
     ],
     "paths": {
-      "ng-translatable": [
-        "dist/ng-translatable/ng-translatable",
-        "dist/ng-translatable"
+      "@logikum/ngt-common": [
+        "./dist/ngt-common"
       ],
-      "ng-translation": [
+      "@logikum/ng-translation": [
         "dist/ng-translation"
       ],
-      "ng-translation/*": [
-        "dist/ng-translation/*"
+      "@logikum/ngt-formatter": [
+        "./dist/ngt-formatter"
+      ],
+      "@logikum/ngt-models": [
+        "dist/ngt-models"
+      ],
+      "@logikum/icu-formatter": [
+        "./dist/icu-formatter"
       ]
     },
     "resolveJsonModule": true,

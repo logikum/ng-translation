@@ -1,0 +1,38 @@
+{
+  "attribute": {
+    "title": "Using Attribute Directive"
+  },
+  "code": {
+    "title": "Text from Code"
+  },
+  "pipe": {
+    "title": "Using Translate Pipe"
+  },
+  "structural": {
+    "title": "Using Structural Directive"
+  },
+  "text": {
+    "book": "The book is currently priced at { current, number, ::currency/_1_ }, but during the sale it will be { onSale, number, ::currency/_2_ }.",
+    "otherElements": "The other four elements in the movie The Fifth Element:",
+    "smurfs": "<strong>Blue and small</strong>, standing only <em>three apples high</em>, the <a href=\"https://www.smurf.com/\" target=\"_blank\">Smurfs</a> might be hard to tell apart at first.",
+    "stock": "The stock market closed at { points, number } points after rising { surge, number, ::percent .## }.",
+    "today": "Today's date: { today, date }",
+    "element": {
+      "earth": "earth",
+      "fire": "fire",
+      "water": "water",
+      "wind": "wind"
+    }
+  },
+  "textObject": {
+    "title": "Using Text Object",
+    "form": {
+      "hint": "To add a new product, enter the following information",
+      "name": {
+        "label": "Product name",
+        "maxLength": "The product name cannot exceed { maxLength, number } characters.",
+        "minLength": "The product name must be at least { minLength, number } characters, but { recommended, number } characters long is recommended."
+      }
+    }
+  }
+}

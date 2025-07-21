@@ -1,7 +1,7 @@
 /* 3rd party libraries */
+import { MSG_PREFIX } from '@logikum/ngt-common';
 
-/* locally accessible feature module code, always use relative path */
-import { MSG_PREFIX } from './constants';
+/* locally accessible feature module code, always use a relative path */
 
 export interface TranslationChange {
 

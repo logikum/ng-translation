@@ -1,34 +1,32 @@
 /* 3rd party libraries */
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LocalizationRef, NGT_FORMATTER_SERVICE } from '@logikum/ngt-common';
 
-/* locally accessible feature module code, always use relative path */
-import { TranslationService } from '../services';
+/* locally accessible feature module code, always use a relative path */
+import { TranslationService } from '../translation.service';
 
 @Component( {
-  template: ''
+  template: '',
+  standalone: false
 } )
-export abstract class TranslationPipeBase implements OnDestroy {
+export abstract class TranslationPipeBase {
 
-  private readonly onDestroy: Subject<void> = new Subject();
+  private readonly cdRef = inject( ChangeDetectorRef );
+  protected readonly translation = inject( TranslationService );
+  private readonly formatter = inject( NGT_FORMATTER_SERVICE );
+  protected readonly localizer: LocalizationRef;
   protected isValid = false;
   protected localized: string;
 
-  constructor(
-    protected readonly cdRef: ChangeDetectorRef,
-    protected readonly translation: TranslationService
-  ) {
+  constructor() {
+
     this.translation.languageChanged
-      .pipe( takeUntil( this.onDestroy ) )
+      .pipe( takeUntilDestroyed() )
       .subscribe( language => {
         this.isValid = false;
         this.cdRef.markForCheck();
       } );
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy.next();
-    this.onDestroy.complete();
+    this.localizer = this.formatter.getLocalizationRef();
   }
 }

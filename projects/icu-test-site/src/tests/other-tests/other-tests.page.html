@@ -1,0 +1,32 @@
+<ng-container *ngtContext="let t; node: 'other'">
+  <icu-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('enumeration.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-enumeration></icu-enumeration>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('formatExtender.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-format-extender></icu-format-extender>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('camelCase.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-camel-case></icu-camel-case>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('inlineLoader.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-inline-loader></icu-inline-loader>
+        </div>
+      </ng-template>
+    </div>
+  </icu-accordion>
+</ng-container>

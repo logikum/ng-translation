@@ -1,0 +1,14 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> model.localeList
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+changeByCode:   Set by code
+changeByIndex:  Set by index
+selectedIndex:  Selected index
+selectedCode:   Selected code
+selectedName:   Selected name
+selectedItem :  Selected item

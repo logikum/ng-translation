@@ -1,2 +1,4 @@
-export * from './translate.directive';
-export * from './translate-params.directive';
+export * from './ngt-context.directive';
+export * from './ngt-html.directive';
+export * from './ngt-params.directive';
+export * from './ngt-text.directive';

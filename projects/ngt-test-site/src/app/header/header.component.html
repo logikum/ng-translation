@@ -1,0 +1,16 @@
+@if (isInitialized | async) {
+  <div class="header flex-row justify-center align-center">
+    <div class="header-content flex-row space-between align-center">
+      <a routerLink="/">
+        <h3 ngtText="app.header.name"></h3>
+      </a>
+      <select (change)="changeLanguage( $event )">
+      @for (locale of locales; track locale.code) {
+        <option value="{{ locale.code }}" [selected]="locale.selected">
+          {{ locale.name }}
+        </option>
+      }
+      </select>
+    </div>
+  </div>
+}

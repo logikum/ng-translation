@@ -1,0 +1,14 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null.localizationMethod
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Localization Method
+
+method:     Method
+value:      Value
+null:       Null
+undefined:  Undefined

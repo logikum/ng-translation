@@ -1,0 +1,48 @@
+<ng-container *ngtContext="let t; node: 'translate.number'; let l = localize">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ l.number(longNumber) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minimumIntegerDigits=3') }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'minimumFractionDigits=5') }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'maximumFractionDigits=1') }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minimumSignificantDigits=3') }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'maximumSignificantDigits=3') }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minimumIntegerDigits=3;minimumFractionDigits=5') }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'useGrouping=false') }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ l.number(longNumber) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minid = 3') }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'minfd = 5') }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'maxfd = 1') }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minsd = 3') }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'maxsd = 3') }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'minid = 3 ; minfd = 5') }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'ug = false') }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

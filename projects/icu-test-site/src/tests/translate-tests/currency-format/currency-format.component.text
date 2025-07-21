@@ -1,0 +1,25 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translate.currency
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title: Currency Formatting
+
+default_f: Default currency format
+default_l: { price, number, ::currency/___ }
+default_s: ~
+
+code_f: Currency code format
+code_l: ~
+code_s: ~
+
+name_f: Currency name format
+name_l: ~
+name_s: ~
+
+symbol_f: Currency symbol format
+symbol_l: ~
+symbol_s: ~

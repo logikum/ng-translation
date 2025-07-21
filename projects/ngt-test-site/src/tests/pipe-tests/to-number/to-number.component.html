@@ -1,0 +1,48 @@
+<ng-container *ngtContext="let t; node: 'translate.number'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minimumIntegerDigits=3' }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'minimumFractionDigits=5' }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'maximumFractionDigits=1' }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minimumSignificantDigits=3' }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'maximumSignificantDigits=3' }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minimumIntegerDigits=3;minimumFractionDigits=5' }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'useGrouping=false' }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minid = 3' }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'minfd = 5' }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'maxfd = 1' }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minsd = 3' }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'maxsd = 3' }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ shortNumber | toNumber: 'minid = 3 ; minfd = 5' }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ longNumber | toNumber: 'ug = false' }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

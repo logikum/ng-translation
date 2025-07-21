@@ -1,0 +1,9 @@
+[
+  { "id":  "home", "text":  "Home" },
+  { "id":  "documentation", "text":  "Documentation" },
+  { "id":  "ngt-formatter", "text":  "NgT formatter" },
+  { "id":  "icu-formatter", "text":  "ICU formatter" },
+  { "id":  "text-object", "text":  "Text object" },
+  { "id":  "api", "text":  "API" },
+  { "id":  "about", "text":  "About" }
+]

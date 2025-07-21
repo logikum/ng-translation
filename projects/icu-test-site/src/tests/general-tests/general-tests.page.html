@@ -1,0 +1,42 @@
+<ng-container *ngtContext="let t; node: 'general'">
+  <icu-accordion [collapsing]="true">
+    <div ftsAccordionItem [title]="t('code.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-code></icu-code>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('structural.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-structural></icu-structural>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('textObject.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-text-object></icu-text-object>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem>
+      <ng-template ftsAccordionTitle>
+        <p class="accordion-title" [innerHTML]="t('pipe.title')">ABC</p>
+      </ng-template>
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-pipe></icu-pipe>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem [title]="t('attribute.title')">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <icu-attribute></icu-attribute>
+        </div>
+      </ng-template>
+    </div>
+  </icu-accordion>
+</ng-container>

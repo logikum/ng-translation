@@ -1,0 +1,15 @@
+/* 3rd party libraries */
+import { SectionList } from '@logikum/ngt-common';
+
+/* locally accessible feature module code, always use a relative path */
+
+export const seasonSections: SectionList = [ {
+  group: 'seasons',
+  items: [
+    'seasons/vivaldi',
+    'seasons/spring',
+    'seasons/summer',
+    'seasons/autumn',
+    'seasons/winter'
+  ] }
+];

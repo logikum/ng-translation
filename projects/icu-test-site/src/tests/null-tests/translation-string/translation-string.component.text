@@ -1,0 +1,14 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null.translationString
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Translation String
+
+dataType:   Data type
+value:      Value
+null:       Null
+undefined:  Undefined

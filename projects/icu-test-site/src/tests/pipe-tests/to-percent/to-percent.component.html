@@ -1,0 +1,48 @@
+<ng-container *ngtContext="let t; node: 'translate.percent'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: 'integer-width/*000' }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: 'integer-width/*000 .00000*' }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ longPercent | toPercent: 'group-off' }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: '000' }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: '.000*' }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: '.#' }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ longPercent | toPercent: '.###/@@@*' }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ longPercent | toPercent: '@##' }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ shortPercent | toPercent: '000 .00000*' }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ longPercent | toPercent: ',?' }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

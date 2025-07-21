@@ -1,0 +1,49 @@
+{
+  "attribute": {
+    "title": "Utilizzo della direttiva sugli attributi"
+  },
+  "code": {
+    "title": "Testo dal codice"
+  },
+  "pipe": {
+    "title": "Utilizzo di <em>translate</em> tubo"
+  },
+  "reader": {
+    "title": "Utilizzo della direttiva strutturale (Reader)",
+    "form": {
+      "hint": "Per aggiungere un nuovo prodotto, inserisci le seguenti informazioni",
+      "name": {
+        "label": "Nome del prodotto",
+        "maxLength": "Il nome del prodotto non può superare i { maxLength, number } caratteri.",
+        "minLength": "Il nome del prodotto deve essere lungo almeno { minLength, number } caratteri, ma si consiglia una lunghezza di { recommended, number } caratteri."
+      }
+    }
+  },
+  "structural": {
+    "title": "Utilizzo della direttiva strutturale"
+  },
+  "text": {
+    "book": "Il libro ha attualmente un prezzo di { current, number, ::currency/_1_ }, ma durante i saldi costerà { onSale, number, ::currency/_2_ }.",
+    "otherElements": "Gli altri quattro elementi del film Il quinto elemento:",
+    "smurfs": "<strong>Blu e piccoli</strong>, <em>alti solo tre mele</em>, i <a href=\"https://www.smurf.com/\" target=\"_blank\">Puffi</a> potrebbero risultare inizialmente difficili da distinguere.",
+    "stock": "Il mercato azionario ha chiuso a { points, number } punti dopo essere salito di { surge, number, ::percent .## }.",
+    "today": "Data odierna: { today, date }",
+    "element": {
+      "earth": "terra",
+      "fire": "fuoco",
+      "water": "acqua",
+      "wind": "vento"
+    }
+  },
+  "textObject": {
+    "title": "Utilizzo dell'oggetto testo",
+    "form": {
+      "hint": "Per aggiungere un nuovo prodotto, inserisci le seguenti informazioni",
+      "name": {
+        "label": "Nome del prodotto",
+        "maxLength": "Il nome del prodotto non può superare i { maxLength, number } caratteri.",
+        "minLength": "Il nome del prodotto deve essere lungo almeno { minLength, number } caratteri, ma si consiglia una lunghezza di { recommended, number } caratteri."
+      }
+    }
+  }
+}

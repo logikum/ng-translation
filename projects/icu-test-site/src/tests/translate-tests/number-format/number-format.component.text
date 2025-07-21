@@ -1,0 +1,41 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translate.number
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Number Formatting
+
+basic_f:  Basic number format
+basic_l:  { longNumber, number }
+basic_s:  { longNumber, number }
+
+minid_f: Minimum integer digits
+minid_l: { shortNumber, number, ::integer-width/*000}
+minid_s: { shortNumber, number, :: 000 }
+
+minfd_f: Minimum fraction digits
+minfd_l: ~
+minfd_s: { longNumber, number, :: .00000* }
+
+maxfd_f: Maximum fraction digits
+maxfd_l: ~
+maxfd_s: { longNumber, number, :: .# }
+
+minsd_f: Minimum significant digits
+minsd_l: ~
+minsd_s: { shortNumber, number, :: .#/@@@r }
+
+maxsd_f: Maximum significant digits
+maxsd_l: ~
+maxsd_s: { longNumber, number, :: @## }
+
+mixed_f: With several options
+mixed_l: { shortNumber, number, ::integer-width/*000 .00000*}
+mixed_s: { shortNumber, number, :: 000 .00000* }
+
+usegrp_f: Without grouping
+usegrp_l: { longNumber, number, ::group-off}
+usegrp_s: { longNumber, number, :: ,_ }

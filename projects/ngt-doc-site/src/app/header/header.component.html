@@ -1,0 +1,28 @@
+<div class="header" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+  <div class="link">
+    <img ngSrc="/images/menu.svg" class="menu" alt="Menu"
+         height="32" width="32"
+         (click)="isOpen = !isOpen">
+  </div>
+  <ul class="links">
+    @for (chapter of chapters; track chapter.id) {
+      <li class="link"
+          [class]="getSelected(chapter.id)"
+          (click)="selectChapter(chapter)">
+        <div class="chapter">{{ chapter.text }}</div>
+      </li>
+    }
+  </ul>
+</div>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayDisposeOnNavigation]="true"
+  (detach)="isOpen = false"
+>
+  <div class="overlay-menu" (click)="close()">
+    <doc-menu></doc-menu>
+  </div>
+</ng-template>

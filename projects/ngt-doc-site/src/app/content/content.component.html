@@ -1,0 +1,5 @@
+<div class="content">
+  <ng-container *ngIf="content$ | async as content">
+    <markdown-renderer [src]="content" ngSkipHydration ></markdown-renderer>
+  </ng-container>
+</div>

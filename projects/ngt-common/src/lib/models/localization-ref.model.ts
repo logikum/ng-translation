@@ -1,0 +1,15 @@
+/* 3rd party libraries */
+
+/* locally accessible feature module code, always use a relative path */
+import { CurrencyValue, DateValue } from '../types';
+
+export interface LocalizationRef {
+
+  number: ( locale: string, value: number, args?: string ) => string;
+  percent: ( locale: string, value: number, args?: string ) => string;
+  currency: ( locale: string, value: CurrencyValue, args?: string ) => string;
+  money: ( locale: string, value: number, currency?: string, args?: string ) => string;
+  datetime: ( locale: string, value: DateValue, args?: string ) => string;
+  date: ( locale: string, value: DateValue, args?: string ) => string;
+  time: ( locale: string, value: DateValue, args?: string ) => string;
+}

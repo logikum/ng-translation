@@ -1,0 +1,41 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translate.number
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Number Formatting
+
+basic_f:  Basic number format
+basic_l:  {{ 0|number }}
+basic_s:  {{ 0| N }}
+
+minid_f: Minimum integer digits
+minid_l: {{ 0|N:minimumIntegerDigits=3 }}
+minid_s: {{ 0 | N : minid = 3 }}
+
+minfd_f: Minimum fraction digits
+minfd_l: {{ 0|N:minimumFractionDigits=5 }}
+minfd_s: {{ 0 | N : minfd = 5 }}
+
+maxfd_f: Maximum fraction digits
+maxfd_l: {{ 0|N:maximumFractionDigits=1 }}
+maxfd_s: {{ 0 | N : maxfd = 1 }}
+
+minsd_f: Minimum significant digits
+minsd_l: {{ 0|N:minimumSignificantDigits=3 }}
+minsd_s: {{ 0 | N : minsd = 3 }}
+
+maxsd_f: Maximum significant digits
+maxsd_l: {{ 0|N:maximumSignificantDigits=3 }}
+maxsd_s: {{ 0 | N : maxsd = 3 }}
+
+mixed_f: With several options
+mixed_l: {{ 0|N:minimumIntegerDigits=3;minimumFractionDigits=5 }}
+mixed_s: {{ 0 | N : minid = 3 ; minfd = 5 }}
+
+usegrp_f: Without grouping
+usegrp_l: {{ 0|N:useGrouping=false }}
+usegrp_s: {{ 0 | N : ug = false }}

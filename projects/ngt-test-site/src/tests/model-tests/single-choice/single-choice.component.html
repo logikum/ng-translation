@@ -1,0 +1,88 @@
+<ng-container *ngtContext="let t; node: 'model.singleChoice'">
+
+  <div class="flex-row">
+    <div class="row-item">
+      @for (season of seasons; track season.value; let i = $index) {
+        <div class="list-item">
+          <input type="radio" name="season"
+                 [value]="season.value"
+                 [checked]="season.selected"
+                 (change)="changeSeason( $event )">
+          {{ season.text }}
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedIndex') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedIndex }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedValue') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedValue }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedText') }}:</div>
+      <div class="grid-item data">{{ seasons.selectedText }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedItem') }}:</div>
+      <div class="grid-item data">{{ selectedSeason }}</div>
+    </div>
+  </div>
+
+  <div class="flex-row">&nbsp;</div>
+
+  <div class="flex-row align-center">
+    <div class="row-item label">{{ t('changeByValue') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByValue( $event )">
+        @for (month of months; track month.value) {
+          <option value="{{ month.value }}"
+                  [selected]="month.selected">
+            {{ month.text }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="row-item label">{{ t('changeByIndex') }}:</div>
+    <div class="row-item">
+      <select (change)="changeByIndex( $event )">
+        @for (month of months; track month.value; let i = $index) {
+          <option value="{{ i }}"
+                  [selected]="month.selected">
+            {{ month.text }}
+          </option>
+        }
+      </select>
+    </div>
+    <div class="row-item label">{{ t('filter') }}:</div>
+    <div class="row-item">
+      <input type="text" class="filter"
+             [(ngModel)]="filterText"
+             (keyup)="months.detectChanges()">
+    </div>
+  </div>
+
+  <div class="flex-col">
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedIndex') }}:</div>
+      <div class="grid-item data">{{ months.selectedIndex }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedValue') }}:</div>
+      <div class="grid-item data">{{ months.selectedValue }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedText') }}:</div>
+      <div class="grid-item data">{{ months.selectedText }}</div>
+    </div>
+    <div class="col-item grid-10">
+      <div class="grid-item label">{{ t('selectedItem') }}:</div>
+      <div class="grid-item data">{{ selectedMonth }}</div>
+    </div>
+  </div>
+
+</ng-container>

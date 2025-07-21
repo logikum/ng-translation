@@ -1,0 +1,33 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> translate.datetime
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title: Date and Time Formatting
+
+default_f: Default date format
+default_l: { now, date } { now, time }
+default_s: ~
+
+short_f: Short date and time
+short_l: { now, date, short } { now, time, short }
+short_s: ~
+
+medium_f: Medium date and time
+medium_l: { now, date, medium } { now, time, medium }
+medium_s: ~
+
+long_f: Long date and time
+long_l: { now, date, long } { now, time, long }
+long_s: ~
+
+full_f: Full date and time
+full_l: { now, date, full } { now, time, full }
+full_s: ~
+
+fractional_f: Fractional second digits
+fractional_l: { now, date, medium } { now, time, ::HHmmssSSS }
+fractional_s: ~

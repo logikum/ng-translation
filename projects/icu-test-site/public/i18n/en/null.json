@@ -1,0 +1,43 @@
+{
+  "boolean": "{ value }",
+  "currency": "{ value, number, ::currency/___ }",
+  "date": "{ value, date }",
+  "number": "{ value, number }",
+  "percent": "{ value, number, ::percent }",
+  "plural": "{ value, plural, =0 { zero } =2 { some } other { many } }",
+  "text": "{ text }",
+  "time": "{ value, time }",
+  "currencyCodes": {
+    "code": "Code",
+    "empty": "empty",
+    "invalid": "invalid",
+    "lilangeni": "lilangeni (Swaziland)",
+    "noCurrency": "no currency",
+    "null": "null",
+    "test": "test",
+    "title": "Currency Codes",
+    "undefined": "undefined",
+    "value": "Value"
+  },
+  "localizationMethod": {
+    "method": "Method",
+    "null": "Null",
+    "title": "Localization Method",
+    "undefined": "Undefined",
+    "value": "Value"
+  },
+  "localizationPipe": {
+    "null": "Null",
+    "pipe": "Pipe",
+    "title": "Localization Pipe",
+    "undefined": "Undefined",
+    "value": "Value"
+  },
+  "translationString": {
+    "dataType": "Data type",
+    "null": "Null",
+    "title": "Translation String",
+    "undefined": "Undefined",
+    "value": "Value"
+  }
+}

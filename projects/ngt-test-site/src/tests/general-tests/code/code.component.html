@@ -1,0 +1,24 @@
+<div class="context">--- the source is the same section ---</div>
+<div class="data">{{ elements }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ earth }}</div>
+  <div class="row-item">{{ water }}</div>
+  <div class="row-item">{{ wind }}</div>
+  <div class="row-item">{{ fire }}</div>
+</div>
+<div class="data" [innerHtml]="smurfs"></div>
+
+<div class="context">--- the sources are shared sections ---</div>
+<div class="data">{{ seasons }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ spring }}</div>
+  <div class="row-item">{{ summer }}</div>
+  <div class="row-item">{{ autumn }}</div>
+  <div class="row-item">{{ winter }}</div>
+</div>
+<div class="data" [innerHtml]="pooh"></div>
+
+<div class="context">--- with interpolation ---</div>
+<div class="data">{{ today }}</div>
+<div class="data">{{ stock }}</div>
+<div class="data">{{ book }}</div>

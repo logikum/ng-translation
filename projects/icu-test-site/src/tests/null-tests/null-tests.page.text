@@ -1,0 +1,16 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> null
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+text:       { text }
+number:     { value, number }
+percent:    { value, number, ::percent }
+currency:   { value, number, ::currency/___ }
+date:       { value, date }
+time:       { value, time }
+plural:     { value, plural, =0 { zero } =2 { some } other { many } }
+boolean:    { value }

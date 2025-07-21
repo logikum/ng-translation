@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> general.pipe
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Using Translate Pipe

@@ -1,0 +1,48 @@
+<ng-container *ngtContext="let t; node: 'translate.number'; let l = localize">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ l.number(longNumber) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'integer-width/*000') }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">~</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, 'integer-width/*000 .00000*') }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, 'group-off') }}</div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-12-1">
+        <div class="label">{{ t('basic_f') }}:</div>
+        <div class="data">{{ l.number(longNumber) }}</div>
+        <div class="label">{{ t('minid_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, '000') }}</div>
+        <div class="label">{{ t('minfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, '.00000') }}</div>
+        <div class="label">{{ t('maxfd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, '.#') }}</div>
+        <div class="label">{{ t('minsd_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, '.#/@@@r') }}</div>
+        <div class="label">{{ t('maxsd_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, '@##') }}</div>
+        <div class="label">{{ t('mixed_f') }}:</div>
+        <div class="data">{{ l.number(shortNumber, '000 .00000*') }}</div>
+        <div class="label">{{ t('usegrp_f') }}:</div>
+        <div class="data">{{ l.number(longNumber, ',_') }}</div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

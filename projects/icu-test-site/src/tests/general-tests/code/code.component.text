@@ -1,0 +1,9 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> general.code
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+title:  Text from Code

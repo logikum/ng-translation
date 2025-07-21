@@ -1,0 +1,56 @@
+<ng-container *ngtContext="let t; node: 'translate.money'; let l = localize">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default' ) }}:</div>
+        <div>
+          <div class="data">{{ l.money(amount) }}</div>
+          <div class="data">{{ l.money(amount, 'GBP') }}</div>
+        </div>
+        <div class="label">{{ t('code' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('name' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('symbol' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('code' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('name' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+        <div class="label">{{ t('symbol' ) }}:</div>
+        <div>
+          <div class="data">~</div>
+          <div class="data">~</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

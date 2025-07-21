@@ -1,0 +1,26 @@
+<div class="title flex-row">
+  @if (title()) {
+    <a routerLink="/">
+      <div class="chevron">
+        <svg>
+          <use href="#chevronLeft"/>
+        </svg>
+      </div>
+    </a>
+  }
+  <a routerLink="/">
+    <h1 [ngtText]="'app.' + (title() || 'home.title')"></h1>
+  </a>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+  <defs>
+    <symbol id="chevronLeft" viewBox="6 0 18 24" fill="none">
+      <g id="bgCarrier" stroke-width="0"></g>
+      <g id="tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="iconCarrier">
+        <path d="M14 7L9 12L14 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </g>
+    </symbol>
+  </defs>
+</svg>

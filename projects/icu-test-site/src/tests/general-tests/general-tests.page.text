@@ -1,0 +1,21 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> general.text
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+otherElements:  The other four elements in the movie The Fifth Element:
+element.earth:  earth
+element.water:  water
+element.wind:   wind
+element.fire:   fire
+
+smurfs: <strong>Blue and small</strong>, standing only <em>three apples high</em>,
+        the <a href="https://www.smurf.com/" target="_blank">Smurfs</a> might be
+        hard to tell apart at first.
+
+today:  Today's date: { today, date }
+stock:  The stock market closed at { points, number } points after rising { surge, number, ::percent .## }.
+book:   The book is currently priced at { current, number, ::currency/_1_ }, but during the sale it will be { onSale, number, ::currency/_2_ }.

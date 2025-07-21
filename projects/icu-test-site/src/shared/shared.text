@@ -1,0 +1,11 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> shared
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+fourSeasons:  The four seasons:
+pooh:         “I’m not lost for I know where I am. <em>But however</em>,
+              where I am may be lost.” — <strong>Winnie the Pooh</strong>

@@ -1,0 +1,20 @@
+<header>
+  <div class="page-width">
+    <doc-header></doc-header>
+  </div>
+</header>
+<div>
+  <div class="page-width main">
+    <nav class="side-menu" #sideMenu [hidden]="hidden$ | async">
+      <doc-menu></doc-menu>
+    </nav>
+    <article class="content">
+      <router-outlet />
+    </article>
+  </div>
+</div>
+<footer>
+  <div class="page-width footer">
+    <doc-footer></doc-footer>
+  </div>
+</footer>

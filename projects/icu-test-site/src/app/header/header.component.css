@@ -1,0 +1,14 @@
+.header {
+  background-color: var(--main-color-100);
+  color: var(--main-bg-color);
+  height: 3rem;
+}
+.header-content {
+  width: 60rem;
+  a {
+    text-decoration: none;
+    h3 {
+      color: var(--main-bg-color);
+    }
+  }
+}

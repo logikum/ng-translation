@@ -1,50 +1,53 @@
 /* 3rd party libraries */
-import { APP_INITIALIZER, NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgModule, ModuleWithProviders, inject, provideAppInitializer } from '@angular/core';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { NGT_CONFIGURATION, NGT_FORMAT_EXTENDER, TranslationConfig } from '@logikum/ngt-common';
 
-/* locally accessible feature module code, always use relative path */
-import { TranslateDirective, TranslateParamsDirective } from './directives';
+/* locally accessible feature module code, always use a relative path */
 import {
-  NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER, NGT_CONFIGURATION,
-  TranslationConfig, NGT_INLINE_LOADER
-} from './models';
+  NgtContextDirective, NgtHtmlDirective, NgtParamsDirective, NgtTextDirective,
+} from './directives';
+import { NGT_TRANSLATION_CONVERTER, NGT_INLINE_LOADER } from './models';
 import {
-  ToCcyPipe, ToCurrencyPipe, ToDatetimePipe, ToNumberPipe, ToPercentPipe, TranslatePipe
+  ToMoneyPipe, ToCurrencyPipe, ToDatePipe, ToDatetimePipe, ToNumberPipe,
+  ToPercentPipe, ToTimePipe, TranslatePipe
 } from './pipes';
-import {
-  LocalizationService, MessengerService, TranslationService, TranspilerService
-} from './services';
+import { TranslationService } from './translation.service';
 import { initializerFactory } from './initializer.factory';
-import {
-  localizationServiceFactory, messengerServiceFactory,
-  translationServiceFactory, transpilerServiceFactory
-} from './service.factory';
 import { DefaultTranslationConverter } from './default-translation.converter';
-import { DefaultTranspileExtender } from './default-transpile.extender';
+import { DefaultFormatExtender } from './default-format.extender';
 
 @NgModule( {
-  imports: [
-    HttpClientModule
-  ],
   declarations: [
-    ToCcyPipe,
+    ToMoneyPipe,
     ToCurrencyPipe,
+    ToDatePipe,
     ToDatetimePipe,
     ToNumberPipe,
     ToPercentPipe,
+    ToTimePipe,
     TranslatePipe,
-    TranslateDirective,
-    TranslateParamsDirective
+    NgtContextDirective,
+    NgtHtmlDirective,
+    NgtParamsDirective,
+    NgtTextDirective
   ],
   exports: [
-    ToCcyPipe,
+    ToMoneyPipe,
     ToCurrencyPipe,
+    ToDatePipe,
     ToDatetimePipe,
     ToNumberPipe,
     ToPercentPipe,
+    ToTimePipe,
     TranslatePipe,
-    TranslateDirective,
-    TranslateParamsDirective
+    NgtContextDirective,
+    NgtHtmlDirective,
+    NgtParamsDirective,
+    NgtTextDirective
+  ],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
   ]
 } )
 export class NgTranslationModule {
@@ -66,33 +69,15 @@ export class NgTranslationModule {
           provide: NGT_TRANSLATION_CONVERTER,
           useClass: DefaultTranslationConverter
         }, {
-          provide: NGT_TRANSPILE_EXTENDER,
-          useClass: DefaultTranspileExtender
-        }, {
-          provide: MessengerService,
-          useFactory: messengerServiceFactory
-        }, {
-          provide: LocalizationService,
-          useFactory: localizationServiceFactory,
-          deps: [ MessengerService, NGT_CONFIGURATION ]
-        }, {
-          provide: TranspilerService,
-          useFactory: transpilerServiceFactory,
-          deps: [ LocalizationService, MessengerService ]
-        }, {
-          provide: TranslationService,
-          useFactory: translationServiceFactory,
-          deps: [
-            HttpClient, TranspilerService, MessengerService,
-            NGT_CONFIGURATION, NGT_INLINE_LOADER,
-            NGT_TRANSLATION_CONVERTER, NGT_TRANSPILE_EXTENDER
-          ]
-        }, {
-          provide: APP_INITIALIZER,
-          useFactory: initializerFactory,
-          deps: [ TranslationService, NGT_CONFIGURATION ],
-          multi: true
-        }
+          provide: NGT_FORMAT_EXTENDER,
+          useClass: DefaultFormatExtender
+        },
+        provideAppInitializer( () => {
+          const initializerFn = initializerFactory(
+            inject(TranslationService), inject(NGT_CONFIGURATION)
+          );
+          return initializerFn();
+        }  )
       ]
     };
   }

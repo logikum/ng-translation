@@ -1,0 +1,30 @@
+<div class="context">--- the source is the same section ---</div>
+<div class="data">{{ toText.otherElements() }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ toText.element.earth() }}</div>
+  <div class="row-item">{{ toText.element.water() }}</div>
+  <div class="row-item">{{ toText.element.wind() }}</div>
+  <div class="row-item">{{ toText.element.fire() }}</div>
+</div>
+<div class="data" [innerHtml]="toText.smurfs()"></div>
+
+<div class="context">--- the sources are shared sections ---</div>
+<div class="data">{{ toShared.fourSeasons() }}</div>
+<div class="data flex-row">
+  <div class="row-item">{{ toSeason.spring() }}</div>
+  <div class="row-item">{{ toSeason.summer() }}</div>
+  <div class="row-item">{{ toSeason.autumn() }}</div>
+  <div class="row-item">{{ toSeason.winter() }}</div>
+</div>
+<div class="data" [innerHtml]="toShared.pooh()"></div>
+
+<div class="context">--- with interpolation ---</div>
+<div class="data">{{ toText.today( today ) }}</div>
+<div class="data">{{ toText.stock( stock ) }}</div>
+<div class="data">{{ toText.book( book ) }}</div>
+
+<div class="context">--- with child nodes ---</div>
+<div class="data">{{ toObject.form.hint() }}:</div>
+<div class="data">{{ toObject.form.name.label() }}</div>
+<div class="data">{{ toObject.form.name.minLength( { minLength: 3, recommended: 10 } ) }}</div>
+<div class="data">{{ toObject.form.name.maxLength( { maxLength: 100 } ) }}</div>

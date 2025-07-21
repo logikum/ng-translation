@@ -1,0 +1,15 @@
+#
+# Section *** [folder/]file[.node[.node]...]
+# ------------------------------------------
+> model.singleChoice
+#
+# Texts *** [node.[node.]...]keyword: text
+# ------------------------------------------
+
+changeByValue:  Set by value
+changeByIndex:  Set by index
+filter:         Filter
+selectedIndex:  Selected index
+selectedValue:  Selected value
+selectedText:   Selected text
+selectedItem:   Selected item

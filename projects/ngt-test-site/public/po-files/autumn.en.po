@@ -1,0 +1,84 @@
+﻿msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: code/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: test-web-site\n"
+"Language: en\n"
+
+#: autumn.en.po
+msgctxt "title"
+msgid "Autumn"
+msgstr "Autumn"
+
+#: autumn.en.po
+msgctxt "line_1_1"
+msgid "The peasant celebrates with song and dance"
+msgstr "The peasant celebrates with song and dance"
+
+#: autumn.en.po
+msgctxt "line_1_2"
+msgid "The pleasure of the rich harvest,"
+msgstr "The pleasure of the rich harvest,"
+
+#: autumn.en.po
+msgctxt "line_1_3"
+msgid "And full of the liquor of Bacchus"
+msgstr "And full of the liquor of Bacchus"
+
+#: autumn.en.po
+msgctxt "line_1_4"
+msgid "They finish their merrymaking with a sleep."
+msgstr "They finish their merrymaking with a sleep."
+
+#: autumn.en.po
+msgctxt "line_2_1"
+msgid "All are made to leave off singing and dancing"
+msgstr "All are made to leave off singing and dancing"
+
+#: autumn.en.po
+msgctxt "line_2_2"
+msgid "By the air which now mild gives pleasure"
+msgstr "By the air which now mild gives pleasure"
+
+#: autumn.en.po
+msgctxt "line_2_3"
+msgid "And by the season which invited many"
+msgstr "And by the season which invited many"
+
+#: autumn.en.po
+msgctxt "line_2_4"
+msgid "To enjoy a sweet sleep."
+msgstr "To enjoy a sweet sleep."
+
+#: autumn.en.po
+msgctxt "line_3_1"
+msgid "At dawn the hunters"
+msgstr "At dawn the hunters"
+
+#: autumn.en.po
+msgctxt "line_3_2"
+msgid "With horns and guns and dogs leave their homes;"
+msgstr "With horns and guns and dogs leave their homes;"
+
+#: autumn.en.po
+msgctxt "line_3_3"
+msgid "The beast flees; they follow its traces."
+msgstr "The beast flees; they follow its traces."
+
+#: autumn.en.po
+msgctxt "line_4_1"
+msgid "Already terrified and tired by the great noise"
+msgstr "Already terrified and tired by the great noise"
+
+#: autumn.en.po
+msgctxt "line_4_2"
+msgid "Of the guns and the dogs, and wounded it tries"
+msgstr "Of the guns and the dogs, and wounded it tries"
+
+#: autumn.en.po
+msgctxt "line_4_3"
+msgid "Feebly to escape, but exhausted dies."
+msgstr "Feebly to escape, but exhausted dies."
+

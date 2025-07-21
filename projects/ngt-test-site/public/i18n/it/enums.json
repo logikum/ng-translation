@@ -1,0 +1,28 @@
+{
+  "logLevel": {
+    "error": "errore",
+    "info": "informazioni",
+    "success": "successo",
+    "warning": "avvertimento"
+  },
+  "month": {
+    "apr": "aprile",
+    "aug": "agosto",
+    "dec": "dicembre",
+    "feb": "febbraio",
+    "jan": "gennaio",
+    "jul": "luglio",
+    "jun": "giugno",
+    "mar": "marzo",
+    "may": "maggio",
+    "nov": "novembre",
+    "oct": "ottobre",
+    "sep": "settembre"
+  },
+  "season": {
+    "autumn": "autunno",
+    "spring": "primavera",
+    "summer": "estate",
+    "winter": "inverno"
+  }
+}

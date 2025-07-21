@@ -1,0 +1,17 @@
+<ng-container *ngIf="items$ | async as items">
+  <ul>
+    @for (item of items; track item.id) {
+      <li (click)="loadContent(item.id)"
+          [class]="['indent' + level, selected(item.id)]"
+      >
+        <span>{{ item.text }}</span>
+        <img src="/images/chevron-right-72.png" height="17" alt="" [hidden]="!selected(item.id)">
+      </li>
+      @if (item.children) {
+        <doc-side-menu [items$]="of(item.children)"
+                       [level]="level + 1"
+        ></doc-side-menu>
+      }
+    }
+  </ul>
+</ng-container>

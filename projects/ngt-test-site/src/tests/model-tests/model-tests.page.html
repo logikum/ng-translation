@@ -1,0 +1,32 @@
+<ng-container *ngtContext="let t; node: 'component'">
+  <nts-accordion [collapsing]="true">
+    <div ftsAccordionItem title="NgtLocaleList">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-locale-list></nts-locale-list>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem title="NgtSingleChoice">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-single-choice></nts-single-choice>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem title="NgtMultipleChoice">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-multiple-choice></nts-multiple-choice>
+        </div>
+      </ng-template>
+    </div>
+    <div ftsAccordionItem title="NgtTextList">
+      <ng-template ftsAccordionContent>
+        <div class="accordion-content">
+          <nts-text-list></nts-text-list>
+        </div>
+      </ng-template>
+    </div>
+  </nts-accordion>
+</ng-container>

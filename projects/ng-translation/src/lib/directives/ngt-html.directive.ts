@@ -1,0 +1,28 @@
+/* 3rd party libraries */
+import { Directive, Input, OnInit } from '@angular/core';
+
+/* locally accessible feature module code, always use a relative path */
+import { NgtDirectiveBase } from './ngt-directive-base';
+
+@Directive( {
+  selector: '[ngtHtml]',
+  standalone: false
+} )
+export class NgtHtmlDirective extends NgtDirectiveBase implements OnInit {
+
+  isHtml = true;
+
+  @Input( 'ngtHtml' )
+  set key( value: string ) {
+    this.setKeyValue( value );
+  }
+
+  @Input( 'ngt-params' )
+  set params( value: any ) {
+    this.setParamsValue( value );
+  }
+
+  ngOnInit(): void {
+    this.initialize();
+  }
+}

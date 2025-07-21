@@ -1,0 +1,64 @@
+<ng-container *ngtContext="let t; node: 'translate.currency'">
+
+  <div class="grid-1-1">
+    <div>
+      <div class="context">--- with long option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('default_l', priceUSD) }}</div>
+          <div class="data">{{ t('default_l', priceEUR) }}</div>
+          <div class="data">{{ t('default_l', priceHUF) }}</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('code_l', currencyUSD) }}</div>
+          <div class="data">{{ t('code_l', currencyEUR) }}</div>
+          <div class="data">{{ t('code_l', currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('name_l', currencyUSD) }}</div>
+          <div class="data">{{ t('name_l', currencyEUR) }}</div>
+          <div class="data">{{ t('name_l', currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('symbol_l', priceUSD) }}</div>
+          <div class="data">{{ t('symbol_l', priceEUR) }}</div>
+          <div class="data">{{ t('symbol_l', priceHUF) }}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="context">--- with short option names ---</div>
+      <div class="grid-1-1">
+        <div class="label">{{ t('default_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('default_s', priceUSD) }}</div>
+          <div class="data">{{ t('default_s', priceEUR) }}</div>
+          <div class="data">{{ t('default_s', priceHUF) }}</div>
+        </div>
+        <div class="label">{{ t('code_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('code_s', currencyUSD) }}</div>
+          <div class="data">{{ t('code_s', currencyEUR) }}</div>
+          <div class="data">{{ t('code_s', currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('name_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('name_s', currencyUSD) }}</div>
+          <div class="data">{{ t('name_s', currencyEUR) }}</div>
+          <div class="data">{{ t('name_s', currencyHUF) }}</div>
+        </div>
+        <div class="label">{{ t('symbol_f' ) }}:</div>
+        <div>
+          <div class="data">{{ t('symbol_s', priceUSD) }}</div>
+          <div class="data">{{ t('symbol_s', priceEUR) }}</div>
+          <div class="data">{{ t('symbol_s', priceHUF) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

@@ -1,14 +1,8 @@
 {
-  "name": "ng-translation",
-  "version": "9.1.1",
+  "name": "@logikum/ng-translation",
+  "version": "19.0.0",
   "description": "NgTranslation is an internationalization and localization package for Angular applications.",
-  "keywords": [
-    "Angular",
-    "i18n",
-    "internationalization",
-    "l10n",
-    "localization"
-  ],
+  "keywords": [ "Angular", "translation", "i18n", "internationalization", "l10n", "localization" ],
   "license" : "MIT",
   "author": {
     "name": "Mármarosi József",
@@ -23,12 +17,14 @@
     "url" : "https://github.com/logikum/ng-translation/issues"
   },
   "peerDependencies": {
-    "@angular/common": ">=17.1.0",
-    "@angular/core": ">=17.1.0",
-    "@angular/router": ">=17.1.0",
+    "@angular/common": "^19.1.0",
+    "@angular/core": "^19.1.0",
+    "@angular/router": "^19.1.0",
+    "@logikum/ngt-common": "^19.0.0",
     "rxjs": ">=7.4.0"
   },
   "dependencies": {
     "tslib": ">=2.6.2"
-  }
+  },
+  "sideEffects": false
 }

@@ -1,0 +1,35 @@
+<ng-container *ngtContext="let t; node: 'null.localizationMethod'; let l = localize">
+
+  <div class="grid-1-1-1-1">
+    <div class="grid-item header">{{ t('method') }}</div>
+    <div class="grid-item header">{{ t('value') }}</div>
+    <div class="grid-item header">{{ t('null') }}</div>
+    <div class="grid-item header">{{ t('undefined') }}</div>
+
+    <div class="grid-item label">l.number()</div>
+    <div class="grid-item data">{{ l.number( 1234 ) }}</div>
+    <div class="grid-item data">{{ l.number( null ) }}</div>
+    <div class="grid-item data">{{ l.number( undefined ) }}</div>
+
+    <div class="grid-item label">l.percent()</div>
+    <div class="grid-item data">{{ l.percent( .1234 ) }}</div>
+    <div class="grid-item data">{{ l.percent( null ) }}</div>
+    <div class="grid-item data">{{ l.percent( undefined ) }}</div>
+
+    <div class="grid-item label">l.currency()</div>
+    <div class="grid-item data">{{ l.currency( [ 500, 'HUF' ] ) }}</div>
+    <div class="grid-item data">{{ l.currency( [ null, 'HUF' ] ) }}</div>
+    <div class="grid-item data">{{ l.currency( [ undefined, 'HUF' ] ) }}</div>
+
+    <div class="grid-item label">l.date()</div>
+    <div class="grid-item data">{{ l.date( today ) }}</div>
+    <div class="grid-item data">{{ l.date( null ) }}</div>
+    <div class="grid-item data">{{ l.date( undefined ) }}</div>
+
+    <div class="grid-item label">l.time()</div>
+    <div class="grid-item data">{{ l.time( today ) }}</div>
+    <div class="grid-item data">{{ l.time( null ) }}</div>
+    <div class="grid-item data">{{ l.time( undefined ) }}</div>
+  </div>
+
+</ng-container>

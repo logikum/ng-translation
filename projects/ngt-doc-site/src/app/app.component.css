@@ -14,10 +14,22 @@ header {
 .side-menu {
   width: 236px;
   background-color: var(--light-color);
+  transition: width .2s;
+}
+doc-menu {
+  display: inline-block;
 }
 .content {
   flex-grow: 1;
 }
 .footer {
   border-top: 5px solid var(--darker-color);
+}
+@media (max-width: 768px) {
+  .side-menu {
+    width: 0;
+  }
+  doc-menu {
+    display: none;
+  }
 }

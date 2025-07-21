@@ -11,6 +11,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import * as documentation from './chapters/documentation.json';
 import * as ngtFormatter from './chapters/ngt-formatter.json';
 import * as icuFormatter from './chapters/icu-formatter.json';
+import * as textObject from './chapters/text-object.json';
 import * as api from './chapters/api.json';
 
 @Component({
@@ -62,6 +63,9 @@ export class MenuComponent {
           break;
         case 'icu-formatter':
           this.itemsSubject.next( (icuFormatter as any).default as Array<SideMenuItem> );
+          break;
+        case 'text-object':
+          this.itemsSubject.next( (textObject as any).default as Array<SideMenuItem> );
           break;
         case 'api':
           this.itemsSubject.next( (api as any).default as Array<SideMenuItem> );

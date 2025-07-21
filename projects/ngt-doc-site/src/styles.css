@@ -1,3 +1,5 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
 html {
   --dark-color: #0f3d0f;
   --darker-color: #196619;

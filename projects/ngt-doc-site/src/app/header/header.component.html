@@ -7,8 +7,8 @@
   <ul class="links">
     @for (chapter of chapters; track chapter.id) {
       <li class="link"
-          [class]="getSelected(chapter.id)"
-          (click)="selectChapter(chapter)">
+          [class]="isSelected(chapter.id)"
+          (click)="selectChapter(chapter.id)">
         <div class="chapter">{{ chapter.text }}</div>
       </li>
     }

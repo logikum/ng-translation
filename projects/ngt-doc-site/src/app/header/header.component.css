@@ -3,10 +3,12 @@
   flex-direction: row;
   align-items: center;
 }
+
 .menu {
   display: none;
   cursor: pointer;
 }
+
 .links {
   display: flex;
   flex-direction: row;
@@ -16,23 +18,28 @@
   white-space: nowrap;
   z-index: 999;
 }
+
 .link {
   font-size: 1.14rem;
   color: white;
   padding: 0 1rem;
   cursor: pointer;
 }
+
 .link.selected {
   background-color: var(--dark-color);
 }
+
 .chapter {
   line-height: var(--header-height);
 }
+
 @media (max-width: 768px) {
   .menu {
     display: inline-block;
   }
 }
+
 .overlay-menu {
   width: 236px;
   background-color: var(--light-color);

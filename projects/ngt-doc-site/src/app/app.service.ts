@@ -3,7 +3,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /* locally accessible feature module code, always use a relative path */
-import { Chapter, ContentChangeEvent } from './content-change.event';
+import { ContentChangeEvent } from './content-change.event';
+import { Chapter } from './data/chapter.type';
+import { SideMenuItem } from './data/side-menu-item.model';
+import { TopMenuItem } from './data/top-menu-item.model';
+import * as topMenu from './data/top-menu.json';
+import * as documentation from './data/chapters/documentation.json';
+import * as ngtFormatter from './data/chapters/ngt-formatter.json';
+import * as icuFormatter from './data/chapters/icu-formatter.json';
+import * as textObject from './data/chapters/text-object.json';
+import * as api from './data/chapters/api.json';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +20,16 @@ import { Chapter, ContentChangeEvent } from './content-change.event';
 export class AppService {
 
   private readonly changeSubject: BehaviorSubject<ContentChangeEvent>;
+  private readonly itemsSubject = new BehaviorSubject<Array<SideMenuItem>>([]);
+
+  chapters = (topMenu as any).default as Array<TopMenuItem>;
   chapter: Chapter = 'home';
   title = '';
   content = '';
+
+  get items$(): Observable<Array<SideMenuItem>> {
+    return this.itemsSubject.asObservable();
+  }
 
   get contentChange$(): Observable<ContentChangeEvent> {
     return this.changeSubject.asObservable();
@@ -28,22 +44,50 @@ export class AppService {
   }
 
   setChapter(
-    chapter: Chapter,
-    title: string
+    chapter: Chapter
   ): void {
 
-    this.chapter = chapter;
-    this.title = title;
-    this.content = '';
-    this.sendNotification();
+    if (this.chapter !== chapter) {
+      this.chapter = chapter;
+      this.title = this.chapters.find(item => item.id === chapter)?.text;
+      this.content = '';
+
+      // Select the required side menu if any.
+      let hasMenu = true;
+      switch (chapter) {
+        case 'documentation':
+          this.itemsSubject.next( (documentation as any).default as Array<SideMenuItem> );
+          break;
+        case 'ngt-formatter':
+          this.itemsSubject.next( (ngtFormatter as any).default as Array<SideMenuItem> );
+          break;
+        case 'icu-formatter':
+          this.itemsSubject.next( (icuFormatter as any).default as Array<SideMenuItem> );
+          break;
+        case 'text-object':
+          this.itemsSubject.next( (textObject as any).default as Array<SideMenuItem> );
+          break;
+        case 'api':
+          this.itemsSubject.next( (api as any).default as Array<SideMenuItem> );
+          break;
+        default:
+          this.itemsSubject.next( [] );
+          hasMenu = false;
+          break;
+      }
+      this.content = hasMenu ? this.itemsSubject.value[ 0 ].id  : '/';
+      this.sendNotification();
+    }
   }
 
   setContent(
     content: string
   ): void {
 
-    this.content = content;
-    this.sendNotification();
+    if (this.content !== content) {
+      this.content = content;
+      this.sendNotification();
+    }
   }
 
   private sendNotification(): void {

@@ -28,6 +28,7 @@ export class ContentComponent {
   }
 
   constructor() {
+
     this.appService.contentChange$
       .pipe(takeUntilDestroyed())
       .subscribe(contentChange => {
@@ -39,9 +40,9 @@ export class ContentComponent {
     contentChange: ContentChangeEvent
   ): void {
 
-    if (contentChange.content) {
+    if (contentChange.page) {
       let path = '';
-      switch (contentChange.content) {
+      switch (contentChange.page) {
         case '/':
           path = `${ contentChange.chapter }`;
           break;
@@ -49,7 +50,7 @@ export class ContentComponent {
           path = `404-not-found`;
           break;
         default:
-          path = `${ contentChange.chapter }/${ contentChange.content }`;
+          path = `${ contentChange.chapter }/${ contentChange.page }`;
           break;
       }
       this.contentSubject.next( `/content/${ path }.md` );

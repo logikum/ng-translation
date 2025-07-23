@@ -15,7 +15,7 @@ export const notFoundInterceptor: HttpInterceptorFn = (req, next) => {
       tap({
         error: err => {
           if (err instanceof HttpErrorResponse && err.status === 404) {
-            appService.setContent('404');
+            appService.setPage('404');
           }
           next( err );
         }

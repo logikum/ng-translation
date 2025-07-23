@@ -25,7 +25,7 @@ export class AppService {
   chapters = (topMenu as any).default as Array<TopMenuItem>;
   chapter: Chapter = 'home';
   title = '';
-  content = '';
+  page = '/';
 
   get items$(): Observable<Array<SideMenuItem>> {
     return this.itemsSubject.asObservable();
@@ -39,7 +39,7 @@ export class AppService {
 
     this.changeSubject = new BehaviorSubject<ContentChangeEvent>({
       chapter: this.chapter,
-      content: this.content
+      page: this.page
     });
   }
 
@@ -50,7 +50,7 @@ export class AppService {
     if (this.chapter !== chapter) {
       this.chapter = chapter;
       this.title = this.chapters.find(item => item.id === chapter)?.text;
-      this.content = '';
+      this.page = '';
 
       // Select the required side menu if any.
       let hasMenu = true;
@@ -75,17 +75,17 @@ export class AppService {
           hasMenu = false;
           break;
       }
-      this.content = hasMenu ? this.itemsSubject.value[ 0 ].id  : '/';
+      this.page = hasMenu ? this.itemsSubject.value[ 0 ].id  : '/';
       this.sendNotification();
     }
   }
 
-  setContent(
-    content: string
+  setPage(
+    page: string
   ): void {
 
-    if (this.content !== content) {
-      this.content = content;
+    if (this.page !== page) {
+      this.page = page;
       this.sendNotification();
     }
   }
@@ -94,7 +94,7 @@ export class AppService {
 
     this.changeSubject.next({
       chapter: this.chapter,
-      content: this.content
+      page: this.page
     });
   }
 }

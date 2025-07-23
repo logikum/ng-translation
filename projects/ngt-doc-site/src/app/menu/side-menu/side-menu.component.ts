@@ -27,12 +27,12 @@ export class SideMenuComponent {
   selected(
     id: string
   ): string {
-    return this.appService.content === id ? 'selected' : '';
+    return this.appService.page === id ? 'selected' : '';
   }
 
-  loadContent(
-    content: string,
+  loadPage(
+    page: string,
   ): void {
-    this.appService.setContent(content);
+    this.appService.setPage(page);
   }
 }

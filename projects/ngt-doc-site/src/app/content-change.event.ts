@@ -7,5 +7,5 @@ export type Chapter = 'home' | 'documentation' | 'ngt-formatter' | 'icu-formatte
 export interface ContentChangeEvent {
 
   chapter: Chapter;
-  content: string;
+  page: string;
 }

@@ -1,7 +1,7 @@
 <ng-container *ngIf="items$ | async as items">
   <ul>
     @for (item of items; track item.id) {
-      <li (click)="loadContent(item.id)"
+      <li (click)="loadPage(item.id)"
           [class]="['indent' + level, selected(item.id)]"
       >
         <span>{{ item.text }}</span>
